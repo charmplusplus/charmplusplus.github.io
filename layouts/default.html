@@ -2,28 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Charm - <%= @item[:title] %></title>
+    <title>Charm: <%= @item[:title] %></title>
     <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
 
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc <%= Nanoc::VERSION %>"> 
   </head>
   <body>
-    <div id="main">
-      <%= yield %>
+    <div id="header">
+      <div id="maintext">Charm++</div>
     </div>
-    <div id="sidebar">
-      <h2>Documentation</h2>
+    <div id="menu">
       <ul>
-        <li><a href="http://nanoc.stoneship.org/docs/">Documentation</a></li>
-        <li><a href="http://nanoc.stoneship.org/docs/3-getting-started/">Getting Started</a></li>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/applications">Applications</a></li>
+        <li><a href="/benchmarks">Benchmarks</a></li>
+        <li><a href="/documentation">Documentation</a></li>
       </ul>
-      <h2>Community</h2>
-      <ul>
-        <li><a href="http://groups.google.com/group/nanoc/">Discussion Group</a></li>
-        <li><a href="irc://chat.freenode.net/#nanoc">IRC Channel</a></li>
-        <li><a href="http://projects.stoneship.org/trac/nanoc/">Wiki</a></li>
-      </ul>
+    </div>
+    <div id="main">
+      <div id="content">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>
