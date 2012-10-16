@@ -25,11 +25,10 @@ a:hover {
     width: 1000px;
 }
 
-#menu {
-    border-top: 1px solid blue;
+#menu ul {
+    list-style: none;
+    padding: 0px;
     margin: 0px auto;
-    width: 1000px;
-    height: 50px;
 }
 
 #menu ul {
@@ -55,10 +54,18 @@ a:hover {
     padding-top: 75px;
 }
 
+ 
 #header {
-    /*border: 1px solid red;*/
-    width: 1000px;
-    height: 200px;
-    margin: 0px auto;
-    background-color: #EEEEEE;
+  background-image:url('images/header.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 984px;
+  height: 165px;
+  margin: 0px auto 5px auto;
 }
+
+#home {
+  width: 90px;
+}
+
+
