@@ -138,7 +138,7 @@ a:hover {
   width: 119px;
 }
 
-.download:hover, downloadSelected {
+.download:hover, .downloadSelected {
   background-image:url('images/download_over.png');
   background-repeat: no-repeat;
   background-size: 100%;
@@ -152,7 +152,7 @@ a:hover {
   width: 66px;
 }
 
-.tools:hover, toolsSelected {
+.tools:hover, .toolsSelected {
   background-image:url('images/tools_over.png');
   background-repeat: no-repeat;
   background-size: 100%;
