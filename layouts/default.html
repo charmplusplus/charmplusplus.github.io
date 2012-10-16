@@ -12,9 +12,13 @@
     <div id="header">
       <div id="menu">
 	<ul>
-	  <li id="home">
-	    <a href="/"><img src="images/home.png" /></a>
-	  </li>
+	  <li class="<%= @item[:homec] %>"><a class="headerLink" href="/"></a></li>
+          <li class="<%= @item[:tutorialc] %>"><a class="headerLink" href="/"></a></li>
+          <li class="<%= @item[:applicationsc] %>"><a class="headerLink" href="/"></a></li>
+          <li class="<%= @item[:benchmarksc] %>"><a class="headerLink" href="/"></a></li>
+          <li class="<%= @item[:downloadc] %>"><a class="headerLink" href="/"></a></li>
+          <li class="<%= @item[:toolsc] %>"><a class="headerLink" href="/"></a></li>
+          <li class="<%= @item[:helpc] %>" ><a class="headerLink" href="/"></a></li>
 	</ul>
       </div>
     </div>

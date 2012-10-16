@@ -26,26 +26,36 @@ a:hover {
 }
 
 #menu ul {
+    position: relative;
     list-style: none;
     padding: 0px;
+    top: 128px;
+    left: 65px;
     margin: 0px auto;
+    float: left;
+    /*border: 1px solid green;*/
 }
 
-#menu ul {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    list-style-type: none;
+.headerLink {
+    /*border: 1px solid yellow;*/
+    height: 36px;
+    display: block;
 }
 
 #menu ul li {
-    /*border: 1px solid green;*/
-    display: inline;
-    padding: 5px 20px 5px 20px;
+    list-style-type: none;
+    /*border: 1px solid blue;*/
+    display: block;
+    padding: 0px;
+    height: 36px;
+    float: left;
+    margin-right: 25px;
 }
 
-#menu ul li:hover {
-    background-color: #EEEEEE;
+#menu ul li:hover, .selected {
+    background-color: #FFFFFF;
     cursor: pointer;
+    float: left;
 }
 
 #maintext {
@@ -64,8 +74,101 @@ a:hover {
   margin: 0px auto 5px auto;
 }
 
-#home {
-  width: 90px;
+
+.home {
+  background-image:url('images/home.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 75px;
 }
 
+.home:hover, .homeSelected {
+  background-image:url('images/home_over.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 75px;
+}
 
+.tutorial {
+  background-image:url('images/tutorial.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 91px;
+}
+
+.tutorial:hover, .tutorialSelected {
+  background-image:url('images/tutorial_over.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 91px;
+}
+
+.applications {
+  background-image:url('images/applications.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 143px;
+}
+
+.applications:hover, .applicationsSelected {
+  background-image:url('images/applications_over.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 143px;
+}
+
+.benchmarks {
+  background-image:url('images/benchmarks.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 140px;
+}
+
+.benchmarks:hover, .benchmarksSelected {
+  background-image:url('images/benchmarks_over.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 140px;
+}
+
+.download {
+  background-image:url('images/download.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 119px;
+}
+
+.download:hover, downloadSelected {
+  background-image:url('images/download_over.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 119px;
+}
+
+.tools {
+  background-image:url('images/tools.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 66px;
+}
+
+.tools:hover, toolsSelected {
+  background-image:url('images/tools_over.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 66px;
+}
+
+.help {
+  background-image:url('images/help.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 60px;
+}
+
+.help:hover, .helpSelected {
+  background-image:url('images/help_over.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 60px;
+}
