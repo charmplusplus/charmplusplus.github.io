@@ -27,7 +27,7 @@ a:hover {
     left: -1px;
     z-index: -1;
     width: 974px;
-    min-height: 500px;
+    min-height: 730px;
     background-image:url('images/sides.png');
     background-repeat: repeat-y;
     background-size: 100%;
@@ -194,4 +194,71 @@ a:hover {
   padding-top: 10px;
   text-align: center;
   color: white;
+}
+
+#leftPanel {
+    border: 1px solid red;
+    height: 700px;
+    width: 720px;
+    float: left;
+}
+
+#rightPanel {
+    border: 1px solid green;
+    height: 700px;
+    width: 210px;
+    float: left;
+}
+
+#container {
+    padding-top: 10px;
+    margin-left: 20px;
+    width: 980px;
+}
+
+#newsFeed {
+    border: 1px solid blue;
+    width: 210px;
+    height: 350px;
+}
+
+#quickLinks {
+    border: 1px solid yellow;
+    width: 210px;
+    height: 350px;
+}
+
+#blurb {
+    border: 1px solid black;
+    width: 700px;
+    margin-left: 10px;
+    height: 250px;
+}
+
+#buttonLinks {
+    border: 1px solid green;
+    width: 535px;
+    margin-left: 10px;
+    height: 450px;
+    float: left;
+}
+
+#archs {
+    border: 1px solid red;
+    width: 150px;
+    margin-left: 10px;
+    height: 450px;
+    float: left;
+}
+
+#buttons {
+    border: 1px solid blue;
+    width: 535px;
+    height: 300px;
+}
+
+#apps {
+    border: 1px solid green;
+    width: 535px;
+    height: 150px;
 }
