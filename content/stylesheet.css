@@ -22,7 +22,15 @@ a:hover {
 
 #main {
     margin: 0px auto;
-    width: 1000px;
+    position: relative;
+    top: -10px;
+    left: -1px;
+    z-index: -1;
+    width: 974px;
+    min-height: 500px;
+    background-image:url('images/sides.png');
+    background-repeat: repeat-y;
+    background-size: 100%;
 }
 
 #menu ul {
@@ -171,4 +179,19 @@ a:hover {
   background-repeat: no-repeat;
   background-size: 100%;
   width: 60px;
+}
+
+#footer {
+  background-image:url('images/footer.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 988px;
+  height: 150px;
+  position: relative;
+  top: -20px;
+  left: 0px;
+  margin: 0px auto;
+  padding-top: 10px;
+  text-align: center;
+  color: white;
 }
