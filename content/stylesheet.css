@@ -199,7 +199,7 @@ a:hover {
 #leftPanel {
     /*border: 1px solid red;*/
     height: 700px;
-    width: 720px;
+    width: 780px;
     float: left;
 }
 
@@ -231,7 +231,7 @@ a:hover {
 #blurb {
     /*border: 1px solid black;*/
     border-bottom: 1px solid #c1272d;
-    width: 650px;
+    width: 700px;
     margin-left: 10px;
     height: 180px;
     background-image:url('images/blurb_back.png');
@@ -244,38 +244,54 @@ a:hover {
 }
 
 #buttonLinks {
-    border: 1px solid green;
-    width: 535px;
+    /*border: 1px solid green;*/
+    border-right: 1px solid #c1272d;
+    width: 600px;
     margin-left: 10px;
+    margin-top: 10px;
     height: 450px;
     float: left;
 }
 
 #archs {
-    border: 1px solid red;
-    width: 150px;
-    margin-left: 10px;
+    /*border: 1px solid red;*/
+    
+    width: 160px;
     height: 450px;
     float: left;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+#archs ul {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+#archs ul li {
+    padding-bottom: 10px;
 }
 
 #buttons {
     /*border: 1px solid blue;*/
-    width: 535px;
-    height: 300px;
+    width: 610px;
+    height: 230px;
+    margin-top: 15px;
 }
 
 .button {
     background-image:url('images/button_back.png');
     background-repeat: no-repeat;
     background-size: 100%;
-    border: 1px solid red;
-    width: 250px;
+    /*border: 1px solid red;*/
+    width: 270px;
     height: 55px;
-    font-size: 16pt;
+    font-size: 17pt;
     font-weight: bold;
     padding-left: 20px;
     float: left;
+    margin-bottom: 20px;
+    margin-right: 10px;
 }
 
 #startedIcon {
@@ -305,10 +321,44 @@ a:hover {
     background-repeat: no-repeat;
     background-size: 100%;
     width: 40px;
-    height: 40px;
+    height: 45px;
     float: left;
     position: relative;
     top: 5px;
+}
+
+#downloadIcon {
+    background-image:url('images/download_icon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 32px;
+    height: 45px;
+    float: left;
+    position: relative;
+    top: 5px;
+    margin-right: 8px;
+}
+
+#publicationsIcon {
+    background-image:url('images/publication_icon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 43px;
+    height: 45px;
+    float: left;
+    position: relative;
+    top: 10px;
+}
+
+#contactIcon {
+    background-image:url('images/contact_icon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 43px;
+    height: 45px;
+    float: left;
+    position: relative;
+    top: 10px;
 }
 
 .buttonText {
@@ -318,9 +368,27 @@ a:hover {
 }
 
 #apps {
-    border: 1px solid green;
-    width: 535px;
+    border-top: 1px solid #c1272d;
+    width: 590px;
     height: 150px;
+}
+
+#appButtonNAMD {
+    background-image:url('images/namd_app.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 140px;
+    height: 140px;
+    float: left;
+}
+
+#appButtonOpenAtom {
+    background-image:url('images/openatom_app.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 140px;
+    height: 140px;
+    float: left;
 }
 
 .quicktext {
