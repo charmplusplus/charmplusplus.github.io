@@ -25,7 +25,6 @@ a:hover {
     position: relative;
     top: -10px;
     left: -1px;
-    z-index: -1;
     width: 974px;
     min-height: 700px;
     background-image:url('images/sides.png');
@@ -81,7 +80,6 @@ a:hover {
   height: 165px;
   margin: 0px auto 5px auto;
 }
-
 
 .home {
   background-image:url('images/home.png');
