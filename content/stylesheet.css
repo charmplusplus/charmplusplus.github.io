@@ -292,6 +292,7 @@ a:hover {
     float: left;
     margin-bottom: 20px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 #startedIcon {
@@ -302,7 +303,7 @@ a:hover {
     height: 40px;
     float: left;
     position: relative;
-    top: 5px;
+    top: 7px;
 }
 
 #modelIcon {
@@ -313,7 +314,7 @@ a:hover {
     height: 40px;
     float: left;
     position: relative;
-    top: 5px;
+    top: 8px;
 }
 
 #manualIcon {
@@ -382,6 +383,7 @@ a:hover {
     height: 140px;
     float: left;
     padding-left: 5px;
+    cursor: pointer;
 }
 
 #appButtonOpenAtom {
@@ -392,6 +394,7 @@ a:hover {
     height: 140px;
     float: left;
     padding-left: 5px;
+    cursor: pointer;
 }
 
 #appButtonChanga {
@@ -402,6 +405,7 @@ a:hover {
     height: 140px;
     float: left;
     padding-left: 5px;
+    cursor: pointer;
 }
 
 #appButtonBigsim {
@@ -412,6 +416,7 @@ a:hover {
     height: 140px;
     float: left;
     padding-left: 5px;
+    cursor: pointer;
 }
 
 .quicktext {
