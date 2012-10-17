@@ -204,7 +204,7 @@ a:hover {
 }
 
 #rightPanel {
-    border: 1px solid green;
+    /*border: 1px solid green;*/
     height: 700px;
     width: 150px;
     float: left;
@@ -223,9 +223,10 @@ a:hover {
 }
 
 #quickLinks {
-    border: 1px solid yellow;
+    /*border: 1px solid yellow;*/
     width: 150px;
     height: 350px;
+    border-bottom: 1px solid #c1272d;
 }
 
 #blurb {
@@ -403,31 +404,23 @@ a:hover {
 #quicklist ul {
     position: relative;
     top: 28px;
-    list-style: none;
     padding: 0px;
-    left: 65px;
-    margin: 0px auto;
+    margin: 0px;
+    float: left;
+    left: 40px;
 }
 
 #quicklist ul li {
-    display: block;
     padding: 0px;
     height: 36px;
     margin-bottom: 5px;
+  
 }
 
 .quickitems{
-    left:-10px;
     font-size: 15px;
     color: blue;
     font-family: sans-serif
-}
-
-.quickline {
-    color:  #C1272D;
-    width: 100px;
-    height: 10px;
-    size: 5px;
 }
 
 
