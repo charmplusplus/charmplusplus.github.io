@@ -230,9 +230,16 @@ a:hover {
 
 #blurb {
     border: 1px solid black;
-    width: 700px;
+    width: 650px;
     margin-left: 10px;
-    height: 250px;
+    height: 180px;
+    background-image:url('images/blurb_back.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 #buttonLinks {
