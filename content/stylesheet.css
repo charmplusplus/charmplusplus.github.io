@@ -262,3 +262,20 @@ a:hover {
     width: 535px;
     height: 150px;
 }
+
+.quicktext {
+    position: relative;
+    font-size: 20px;
+    top: 10px;
+    text-align: center;
+    color: red;
+    font-family: sans-serif
+}
+
+#quicklist ul {
+    position: relative;
+    list-style: none;
+    padding: 0px;
+    left: 65px;
+    margin: 0px auto;
+}
