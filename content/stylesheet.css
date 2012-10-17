@@ -197,7 +197,7 @@ a:hover {
 }
 
 #leftPanel {
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     height: 700px;
     width: 720px;
     float: left;
@@ -206,7 +206,7 @@ a:hover {
 #rightPanel {
     border: 1px solid green;
     height: 700px;
-    width: 210px;
+    width: 150px;
     float: left;
 }
 
@@ -218,18 +218,19 @@ a:hover {
 
 #newsFeed {
     border: 1px solid blue;
-    width: 210px;
+    width: 150px;
     height: 350px;
 }
 
 #quickLinks {
     border: 1px solid yellow;
-    width: 210px;
+    width: 150px;
     height: 350px;
 }
 
 #blurb {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
+    border-bottom: 1px solid #c1272d;
     width: 650px;
     margin-left: 10px;
     height: 180px;
@@ -259,9 +260,61 @@ a:hover {
 }
 
 #buttons {
-    border: 1px solid blue;
+    /*border: 1px solid blue;*/
     width: 535px;
     height: 300px;
+}
+
+.button {
+    background-image:url('images/button_back.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border: 1px solid red;
+    width: 250px;
+    height: 55px;
+    font-size: 16pt;
+    font-weight: bold;
+    padding-left: 20px;
+    float: left;
+}
+
+#startedIcon {
+    background-image:url('images/started_icon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 40px;
+    height: 40px;
+    float: left;
+    position: relative;
+    top: 5px;
+}
+
+#modelIcon {
+    background-image:url('images/model_icon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 40px;
+    height: 40px;
+    float: left;
+    position: relative;
+    top: 5px;
+}
+
+#manualIcon {
+    background-image:url('images/manual_icon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 40px;
+    height: 40px;
+    float: left;
+    position: relative;
+    top: 5px;
+}
+
+.buttonText {
+    position: relative;
+    top: 12px;
+    left: 5px;
 }
 
 #apps {
