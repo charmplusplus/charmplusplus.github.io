@@ -197,13 +197,15 @@ a:hover {
 #leftPanel {
     /*border: 1px solid red;*/
     border-right: 1px solid #c1272d;
-    height: 700px;
+    height: 680px;
     width: 780px;
     float: left;
 }
 
 #rightPanel {
     /*border: 1px solid green;*/
+    position: relative;
+    left: 5px;
     height: 650px;
     width: 150px;
     float: left;
@@ -217,7 +219,7 @@ a:hover {
 
 #newsFeed {
     /*border: 1px solid blue;*/
-    width: 150px;
+    width: 125px;
     height: 325px;
 }
 
@@ -250,7 +252,7 @@ a:hover {
     width: 600px;
     margin-left: 10px;
     margin-top: 10px;
-    height: 410px;
+    height: 415px;
     float: left;
 }
 
@@ -435,12 +437,11 @@ a:hover {
     padding: 0px;
     margin: 0px;
     float: left;
-    left: 40px;
+    left: 30px;
 }
 
 #quicklist ul li {
     padding: 0px;
-    height: 36px;
     margin-bottom: 5px;
   
 }
@@ -448,13 +449,13 @@ a:hover {
 .quickitems{
     font-size: 15px;
     color: green;
-    font-family: sans-serif
+    font-family: sans-serif;
 }
 
 .newsitems{
     font-size: 15px;
     color: blue;
-    font-family: sans-serif
+    font-family: sans-serif;
 }
 
 
