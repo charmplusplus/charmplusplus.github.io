@@ -27,7 +27,7 @@ a:hover {
     left: -1px;
     z-index: -1;
     width: 974px;
-    min-height: 730px;
+    min-height: 700px;
     background-image:url('images/sides.png');
     background-repeat: repeat-y;
     background-size: 100%;
@@ -205,7 +205,8 @@ a:hover {
 
 #rightPanel {
     /*border: 1px solid green;*/
-    height: 700px;
+    border: 1px solid green;
+    height: 650px;
     width: 150px;
     float: left;
 }
@@ -219,14 +220,14 @@ a:hover {
 #newsFeed {
     border: 1px solid blue;
     width: 150px;
-    height: 350px;
+    height: 325px;
 }
 
 #quickLinks {
     /*border: 1px solid yellow;*/
     width: 150px;
-    height: 350px;
     border-bottom: 1px solid #c1272d;
+    height: 325px;
 }
 
 #blurb {
@@ -234,7 +235,8 @@ a:hover {
     border-bottom: 1px solid #c1272d;
     width: 700px;
     margin-left: 10px;
-    height: 180px;
+    margin-bottom: 10px;
+    height: 200px;
     background-image:url('images/blurb_back.png');
     background-repeat: no-repeat;
     background-size: 100%;
@@ -250,22 +252,21 @@ a:hover {
     width: 600px;
     margin-left: 10px;
     margin-top: 10px;
-    height: 450px;
+    height: 410px;
     float: left;
 }
 
 #archs {
     /*border: 1px solid red;*/
-    
-    width: 160px;
+    width: 150px;
     height: 450px;
     float: left;
-    margin-left: 5px;
+    margin-left: 10px;
     margin-top: 10px;
 }
 
 #archs ul {
-    padding-left: 20px;
+    padding-left: 25px;
     margin-top: 10px;
 }
 
@@ -277,7 +278,7 @@ a:hover {
     /*border: 1px solid blue;*/
     width: 610px;
     height: 230px;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
 .button {
@@ -371,7 +372,8 @@ a:hover {
 #apps {
     border-top: 1px solid #c1272d;
     width: 590px;
-    height: 150px;
+    height: 130px;
+    padding-top: 20px;
 }
 
 #appButtonNAMD {
@@ -381,6 +383,7 @@ a:hover {
     width: 140px;
     height: 140px;
     float: left;
+    padding-left: 5px;
 }
 
 #appButtonOpenAtom {
@@ -390,6 +393,27 @@ a:hover {
     width: 140px;
     height: 140px;
     float: left;
+    padding-left: 5px;
+}
+
+#appButtonChanga {
+    background-image:url('images/changa_app.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 140px;
+    height: 140px;
+    float: left;
+    padding-left: 5px;
+}
+
+#appButtonBigsim {
+    background-image:url('images/bigsim_app.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 140px;
+    height: 140px;
+    float: left;
+    padding-left: 5px;
 }
 
 .quicktext {
