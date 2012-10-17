@@ -203,7 +203,6 @@ a:hover {
 
 #rightPanel {
     /*border: 1px solid green;*/
-    border: 1px solid green;
     height: 650px;
     width: 150px;
     float: left;
@@ -216,7 +215,7 @@ a:hover {
 }
 
 #newsFeed {
-    border: 1px solid blue;
+    /*border: 1px solid blue;*/
     width: 150px;
     height: 325px;
 }
