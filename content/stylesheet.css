@@ -325,7 +325,7 @@ a:hover {
 
 .quicktext {
     position: relative;
-    font-size: 20px;
+    font-size: 18px;
     top: 10px;
     text-align: center;
     color: red;
@@ -334,8 +334,32 @@ a:hover {
 
 #quicklist ul {
     position: relative;
+    top: 28px;
     list-style: none;
     padding: 0px;
     left: 65px;
     margin: 0px auto;
 }
+
+#quicklist ul li {
+    display: block;
+    padding: 0px;
+    height: 36px;
+    margin-bottom: 5px;
+}
+
+.quickitems{
+    left:-10px;
+    font-size: 15px;
+    color: blue;
+    font-family: sans-serif
+}
+
+.quickline {
+    color:  #C1272D;
+    width: 100px;
+    height: 10px;
+    size: 5px;
+}
+
+
