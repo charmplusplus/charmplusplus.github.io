@@ -291,6 +291,7 @@ a:hover {
     float: left;
     margin-bottom: 20px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 #startedIcon {
@@ -301,7 +302,7 @@ a:hover {
     height: 40px;
     float: left;
     position: relative;
-    top: 5px;
+    top: 7px;
 }
 
 #modelIcon {
@@ -312,7 +313,7 @@ a:hover {
     height: 40px;
     float: left;
     position: relative;
-    top: 5px;
+    top: 8px;
 }
 
 #manualIcon {
