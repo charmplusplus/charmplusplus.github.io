@@ -458,6 +458,15 @@ a:hover {
     font-family: sans-serif;
 }
 
+#toolsContainer {
+    padding-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 5px;
+    width: 980px;
+}
+
+
 #content {
     padding: 20px 30px;
 }
