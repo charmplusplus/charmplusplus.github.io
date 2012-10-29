@@ -27,28 +27,26 @@ short-range non-bonded force calculation in NAMD
 and resembles the miniMD application in the Mantevo benchmark
 suite maintained by Sandia National Laboratories.
 </p>
-
 git://charm.cs.illinois.edu/benchmarks/leanmd.git
 
 <li> <h3>Dense LU</h3>	 	
-
 git://charm.cs.illinois.edu/charmlu.git
+
 <li> <h3>1D FFT	</h3>
 <p>
 Our implementation of Global FFT takes input size N and performs a complex 1D FFT on an NxN matrix where subsequent rows are contiguous data elements of a double precision complex vector. Three all-to-all transposes are required to perform the FFT and unscramble the data.  All-to-all operations are executed via point-to-point messages and external libraries (FFTW or ESSL) perform serial FFTs on the rows of the matrix.
 </p>
-
 git://charm.cs.illinois.edu/benchmarks/fft-trans.git
+
 <li> <h3>Random Access</h3>
 <p>
 For Random Access benchmark we use the Mesh
 Streamer library for optimizing all-to-all
 communication on small messages.
 </p>
-
 git://charm.cs.illinois.edu/benchmarks/randomAccess.git
-<li> <h3>EP Stream</h3>
 
+<li> <h3>EP Stream</h3>
 git://charm.cs.illinois.edu/benchmarks/hpccstream.git
 
 <li><h3>Triangular Solver</h3>
@@ -64,7 +62,6 @@ its independent parts and waits for its dependency messages from the left.
 Nondiagonal blocks wait for the solution values from their corresponding diagonal block,
 and then start their computation (and receipt of other messages).
 </p>
-
 git://charm.cs.illinois.edu/benchmarks/triangularsolver.git
 <li><h3>AMR</h3>
 <p>
@@ -81,11 +78,24 @@ The Barnes-Hut algorithm is a tree-based scheme to compute fast
 and approximate time-series solutions to the N-body problem, where
 Barnes-Hut algorithm for N-body problem is a method of calculating forces on a system of N bodies that grows only as N log N. It uses a tree-structured hierarchical recursive subdivision of space into cubic cells. Barnes-Hut method is widely used in cosmological simulations.  
 </p>
-
 git://charm.cs.illinois.edu/benchmarks/barnes.git 
 </div>
 
 <br>
+
+<div id="npb"><h2>NAS Parallel Benchmarks (NPB)</h2>
+<br>
+<a href="http://www.nas.nasa.gov/publications/npb.html">NPB website</a>
+<br>
+<a
+href="https://wiki.engr.illinois.edu/display/ppl/Adaptive+MPI+%28AMPI%29">AMPI version</a> 
+<br>
+<p>
+We have AMPI version of BT, CG, EP, FT, IS, LU, MG, SP.
+</p>
+</div>
+<br>
+
 <div id="hilo"><h2>LANL HILO</h2>
 git location git://charm.cs.illinois.edu/benchmarks/hilo (to be added by Ralf)
 </div>
@@ -98,7 +108,10 @@ list of mini-apps can be found here. Our leanMD benchmark is a peer of the
 miniMD mini-app in the suite.
 </p>
 
-<li> miniMD/leanMD git://charm.cs.illinois.edu/benchmarks/leanmd.git
-<li> hpccg https://charm.cs.uiuc.edu/private/gitweb2.cgi?p=users/lifflander/hpccg.git;a=summary
+<li><h3>miniMD/leanMD</h3>
+git://charm.cs.illinois.edu/benchmarks/leanmd.git
+<li><h3>hpccg</h3>
+https://charm.cs.uiuc.edu/private/gitweb2.cgi?p=users/lifflander/hpccg.git;a=summary
 </div>
+
 </ul>
