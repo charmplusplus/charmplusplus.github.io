@@ -458,7 +458,6 @@ a:hover {
     font-family: sans-serif;
 }
 
-
 #toolsContainer {
     padding-top: 10px;
     margin-left: 20px;
@@ -468,3 +467,6 @@ a:hover {
 }
 
 
+#content {
+    padding: 20px 30px;
+}
