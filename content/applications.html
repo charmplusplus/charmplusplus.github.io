@@ -14,6 +14,15 @@ helpc: help
 <li>ChaNGa - Computational Cosmology and N-Body Codes
         
 <li>CSE - Computational Science and Engineering Applications
+<p>
+Profesor P. Geubelle and S. Breitenfeld of the <a href="http://ssm7.ae.uiuc.edu/PHG_GROUP/"> Computational Solid Mechanics Group</a> have developed CrackProp, an explicit Finite Element method simulation of viscoelastic and plasto-elastic mechanics. The simulation tracks conventional volumentric elements, coupled by flat "cohesive" interface elements using the Charm++ <a href="http://charm.cs.uiuc.edu/fem/">Finite Element Framework</a>.
+</p>
+<p>
+Professor J. Dantzig and Jun-Ho Jeong of the Solidification Processing Lab have parallelized their dendritic growth metal solidification application using the Charm++ Finite Element Framework. This adaptive mesh, implicit solver fluid dynamics application is quite different from the explicit structures codes normally used. 
+</p>
+<p>
+The framework handles the changes to the adaptive mesh by re-assembling the parallel mesh, repartitioning, and redistributing the mesh pieces. Since the mesh changes only rarely, this does not significantly impact the speed of the simulation. The implicit solvers are implemented using the conjugate gradient method, which solves a global matrix using local operations.
+</p>
           
 <li>LeanMD - Protein Folding on Peta-FLOP class machines
           
