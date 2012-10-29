@@ -12,26 +12,40 @@ helpc: help
 <div id="container">
   <div id="leftPanel">
     <div id="blurb">
-      blurb goes here. blurb goes here. blurb goes here. blurb goes here. blurb
-      goes here. blurb goes here. blurb goes here. blurb goes here. blurb goes
-      here. blurb goes here. blurb goes here. blurb goes here. blurb goes
-      here. blurb goes here. blurb goes here. blurb goes here. blurb goes
-      here. blurb goes here. blurb goes here. blurb goes here. blurb goes
-      here. blurb goes here. blurb goes here. blurb goes here. blurb goes
-      here. blurb goes here. blurb goes here. blurb goes here. blurb goes
-      here. blurb goes here. blurb goes here. blurb goes here. blurb goes
-      here. blurb goes here. blurb goes here. blurb goes here. blurb goes
-      here. blurb goes here. blurb goes here. blurb goes here.
+Charm++ is a C++ based parallel programming system, supported by an
+adaptive runtime system, which runs programs portably from the simple
+multicore nodes, to the largest supercomputers.  The programs specify
+a parallel computation in terms of collections of C++ objects, called
+chares,  that interact with each other via asynchronous method
+invocations.  (You write your programs in C++, with an additional
+description of interfaces. ) Programmers don’t concern themselves with
+where these objects are (i.e. on which processors) or when the methods
+execute. Those concerns are left to the runtime system (RTS) to
+control.  These objects are *migratable* in the sense that the RTS may
+change their placement during execution.  Since there are typically
+multiple chare objects on each processor, the model is also
+characterized by “over-decomposition” of work and data units.  These
+features empower an adaptive and introspective RTS to support such
+novel features as automatic dynamic load balancing, fault tolerance,
+and auotomatic overlap of communication and computation.
+
+Charm++ is a production-quality system, used by scientists and
+engineers in multiple disciplines, with its own debugging and
+performance analysis tools, and with a nightly build system that tests
+in on dozens of combinations of processors, networks, OSs, and
+compilers.  It is installed on most national supercomputers. Charm++
+modules can interoperate with MPI modules. We welcome you to this
+website to explore Charm++.
     </div>
     <div id="bottomPanel">
       <div id="buttonLinks">
         <div id="buttons">
-          <div class="button" onclick="window.location = '/'"> <div id="startedIcon"></div> <div class="buttonText">Getting Started</div> </div>
+          <div class="button" onclick="window.location = '/getting_started'"> <div id="startedIcon"></div> <div class="buttonText">Getting Started</div> </div>
           <div class="button"> <div id="downloadIcon"></div> <div class="buttonText">Download</div> </div>
           <div class="button"> <div id="modelIcon"></div> <div class="buttonText">Execution Model</div> </div>
           <div class="button"> <div id="publicationsIcon"></div> <div class="buttonText">Publications</div> </div>
           <div class="button"> <div id="manualIcon"></div> <div class="buttonText">Manual</div> </div>
-          <div class="button"> <div id="contactIcon"></div> <div class="buttonText">Contact Us</div> </div>
+          <a href="/contact"><div class="button"> <div id="contactIcon"></div> <div class="buttonText">Contact Us</div> </div></a>
         </div>
         <div id="apps">
           <div id="appButtonNAMD"></div>
@@ -58,10 +72,10 @@ helpc: help
       <div class="quicktext">Quick Links</div>
         <div id="quicklist">
           <ul>
-            <li><a class="quickitems" href="/">Autobuild</a></li>  
-            <li><a class="quickitems" href="/">Getting Started</a></li>  
+            <li><a class="quickitems" href="http://charm.cs.uiuc.edu/autobuild/cur/">Autobuild</a></li>  
+            <li><a class="quickitems" href="/getting_started">Getting Started</a></li>  
             <li><a class="quickitems" href="/">Newsletter</a></li>  
-            <li><a class="quickitems" href="/">Charm Workshop</a></li>  
+            <li><a class="quickitems" href="http://charm.cs.uiuc.edu/charmWorkshop/">Charm Workshop</a></li>  
             <li><a class="quickitems" href="/">Charm Book</a></li>  
           </ul>
         </div>
@@ -70,9 +84,9 @@ helpc: help
       <div class="quicktext">NewsFeed</div>
         <div id="quicklist">
           <ul>
-            <li><a class="newsitems" href="/">Fernbach Award for Profs Kale, Schulten</a></li>  
-            <li><a class="newsitems" href="/">Local SIAM chapter hosting Charm++ Tutorial</a></li>  
-            <li><a class="newsitems" href="/">Charm++ version 6.4.0 released</a></li>  
+            <li><a class="newsitems" href="/news#Frenbach">Fernbach Award for Profs Kale, Schulten</a></li>  
+            <li><a class="newsitems" href="/news#SIAM">Local SIAM chapter hosting Charm++ Tutorial</a></li>  
+            <li><a class="newsitems" href="/news#Charm64">Charm++ version 6.4.0 released</a></li>  
           </ul>
         </div>
       </div>

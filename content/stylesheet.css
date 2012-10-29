@@ -479,6 +479,14 @@ a:hover {
   text-align: center;
 }
 
+#toolsContainer {
+    padding-top: 10px;
+    margin-left: 20px;
+    padding-right: 30px;
+    margin-bottom: 5px;
+    width: 980px;
+}
+
 #downloadtext {
   position: relative;
   float: left;
@@ -490,4 +498,6 @@ a:hover {
   font-family: sans-serif
 }
 
-
+#content {
+    padding: 20px 30px;
+}
