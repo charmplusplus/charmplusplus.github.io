@@ -459,5 +459,12 @@ a:hover {
 }
 
 
+#toolsContainer {
+    padding-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 5px;
+    width: 980px;
+}
 
 
