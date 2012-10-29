@@ -1,0 +1,2 @@
+all: 
+	nanoc compile
