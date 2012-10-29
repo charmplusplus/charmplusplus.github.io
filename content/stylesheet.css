@@ -458,6 +458,36 @@ a:hover {
     font-family: sans-serif;
 }
 
+#downloadpage {
+  position: relative;
+  left: 20px;
+  top: 20px;
+  width: 950px;
+  height: 700px;
+}
 
+.charmbox {
+  position: relative;
+  float: left;
+  left: 20px;
+  width: 220px;
+  height: 75px;
+  background: #D0BBC0;
+  font-size: 24px;
+  border-radius: 10px;
+  border: 5px solid #303030;
+  text-align: center;
+}
+
+#downloadtext {
+  position: relative;
+  float: left;
+  font-size: 18px;
+  top:  20px;
+  left: 20px;
+  width: 900px;
+  text-align: left;
+  font-family: sans-serif
+}
 
 

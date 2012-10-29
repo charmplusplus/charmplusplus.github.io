@@ -8,3 +8,33 @@ downloadc: download selected downloadSelected
 toolsc: tools
 helpc: help
 ---
+
+<div id="downloadpage">
+  <div class="charmbox" onclick="window.location = '/'">
+    <div class="buttonText">Download Charm++ 6.4.0</div>
+  </div>
+  <div id="downloadtext">
+    The latest development version of Charm++ can be downloaded directly from our
+    source archive. The Git version control system is used, which is available from
+    <a href=http://git-scm.com/>here</a>.
+    <br></br>
+    This development version may not be as portable or robust as the released
+    versions. Therefore, it may be prudent to keep a backup of old copies of
+    Charm++.
+    <br></br>
+    Check out Charm++ from the repository:
+    <br></br>
+    $ git clone git://charm.cs.uiuc.edu/charm.git
+    <br></br>
+    This will create a directory named charm. Move to this directory:
+    <br></br>
+    $ cd charm
+    <br></br>
+    And now build Charm (net-linux example):
+    <br></br>
+    $ ./build charm++ net-linux-x86_64 [ --with-production | -g ]
+    <br></br>
+    This will make a net-linux-x86_64 directory, with bin, include, lib etc
+    subdirectories.
+  </div>
+</div>
