@@ -49,3 +49,23 @@ Many important problems in material science, chemistry, solid-state physics, and
 </div>
 
 </ul>
+
+<div id="ChaNGa"><h2>ChaNGaD - N-Body Cosmological Simulations</h2>
+<p>
+ChaNGa (Charm++ N-Body Gravity Simulator) is a production cosmological simulator to study formation of galaxies and other large scale scale structures in the Universe. It is a collaboration with Prof. Thomas Quinn of University of Washington and Prof. Orion Lawlor of University of Alaska Fairbanks. While there is a multitude of existing N-Body implementations, many of these are "toy" programs which were written with an eye to study performance of parallel tree codes, rather than as scientific software which can provide useful insight to astrophysicists. In contrast to these, ChaNGa is a production code with the features required for accurate simulation, including canonical, comoving coordinates with a symplectic integrator to efficiently handle cosmological dynamics, individual and adaptive time steps, periodic boundary conditions using Ewald summation, and Smooth Particle Hydrodynamics (SPH) for adiabatic gas.
+</p>
+<br>
+<p>
+ChaNGa implements the well-known Barnes-Hut algorithm, which has N log N computational complexity, organizing the particles involved in the simulation into a tree based on Oct, Orthogonal Recursive Bisection (ORB), or SFC decompositions. In order to compute the pair interaction between particles and collections of particles on different processors, parts of the tree needed for the computation are imported from the remote processors which own them. To avoid an explosion in the memory used for large data sets, we structure the import so that the external nodes are transferred only once and used by all the particles which need them on a given processor. For this reason, a CacheManager has been built, with the functionality of a software cache.
+</p>
+<br>
+<p>
+ChaNGa uses the Charm++ Salsa parallel visualization and analysis tool. Visualization in the context of cosmology involves a huge amount of data, possibly spread over multiple processors. Salsa uses the client server model in Charm++ to interact with code running on multiple processors. The visualizer allows the user to zoom in and out, pan and rotate the image, which result in update requests sent from the visualizer code to the processors running the parallel program. 
+</p>
+<br>
+<p>
+ChaNGa has been scaled to 32K processors, and has been ported to clusters of GPUs. Over time, ChaNGa is being actively developed and improved, with an eye for efficient utilization and scaling of current and future supercomputing systems. 
+</p>
+</div>
+
+</ul>
