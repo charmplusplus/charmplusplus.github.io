@@ -13,7 +13,7 @@ helpc: help
 
 <li>ChaNGa - Computational Cosmology and N-Body Codes
         
-<li>CSE - Computational Science and Engineering Applications
+<div id="CSE"><h2>CSE- Computational Science and Engineering Applications</h2>
 <p>
 Profesor P. Geubelle and S. Breitenfeld of the <a href="http://ssm7.ae.uiuc.edu/PHG_GROUP/"> Computational Solid Mechanics Group</a> have developed CrackProp, an explicit Finite Element method simulation of viscoelastic and plasto-elastic mechanics. The simulation tracks conventional volumentric elements, coupled by flat "cohesive" interface elements using the Charm++ <a href="http://charm.cs.uiuc.edu/fem/">Finite Element Framework</a>.
 </p>
@@ -23,9 +23,12 @@ Professor J. Dantzig and Jun-Ho Jeong of the Solidification Processing Lab have 
 <p>
 The framework handles the changes to the adaptive mesh by re-assembling the parallel mesh, repartitioning, and redistributing the mesh pieces. Since the mesh changes only rarely, this does not significantly impact the speed of the simulation. The implicit solvers are implemented using the conjugate gradient method, which solves a global matrix using local operations.
 </p>
-          
-<li>LeanMD - Protein Folding on Peta-FLOP class machines
-          
+</div>
+<div id="CharmEpisimdemics"><h2>CharmEpisimdemics - Contagion in Social Networks</h2>
+<p>
+The study of contagion effects in extremely large social networks, such as the spread of disease pathogens through a population, is critical to many areas of our world.  CharmEpisimdemics is a collaboration to leverage the Charm++ model to accelerate the study of these effects by enabling much greater scaling in agent based simulation.  See the <a href="http://ndssl.vbi.vt.edu/episims.php">EpiSims</a> website for more information about the EpiSims project.
+</p>
+</div>          
 <div id="NAMD"><h2>NAMD - Molecular Dynamics</h2>
 <p>
 NAMD is a parallel, object-oriented molecular dynamics code designed for high-performance simulation of large biomolecular systems. NAMD is distributed free of charge and includes source code.
@@ -39,7 +42,10 @@ The dynamic components of NAMD are implemented in the Charm++ parallel language.
 
 </ul>
 
+<div id="OpenAtom"><h2>OpenAtom - Ab initio Molecular Dynamics</h2>
+<p>
+Many important problems in material science, chemistry, solid-state physics, and biophysics require a modeling approach based on fundamental quantum mechanical principles. A particular approach that has proven to be relatively efficient and useful is Car-Parrinello ab initio molecular dynamics (CPAIMD). Parallelization of this approach beyond a few hundred processors is challenging, due to the complex dependencies among various subcomputations, which lead to complex communication optimization and load balancing problems. We have parallelized CPAIMD using Charm++. The computation is modeled using a large number of virtual processors, which are mapped flexibly to available processors with assistance from the Charm++ runtime system.  See the <a href="http://charm.cs.uiuc.edu/OpenAtom/">OpenAtom</a> web site for more details.
+<p>
+</div>
 
-
-<li>OpenAtom - Ab Initio Molecular Dynamics
 </ul>
