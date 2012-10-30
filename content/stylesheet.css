@@ -462,14 +462,6 @@ a:hover {
     font-family: sans-serif;
 }
 
-#downloadpage {
-  position: relative;
-  left: 20px;
-  top: 20px;
-  width: 950px;
-  height: 700px;
-}
-
 .charmbox {
   position: relative;
   float: left;
@@ -505,7 +497,7 @@ a:hover {
 /*    padding: 20px 30px;*/
 }
 
-#contactContainer,#startedContainer {
+#contactContainer,#startedContainer,#downloadContainer {
     padding: 40px;
 }
 
