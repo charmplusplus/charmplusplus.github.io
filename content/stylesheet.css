@@ -240,9 +240,9 @@ a:hover {
     width: 700px;
     margin-left: 10px;
     margin-bottom: 10px;
-    height: 400px;
+    height: 410px;
     background-image:url('images/blurb_back.png');
-    background-repeat: repeat-y;
+    background-repeat: no-repeat;
     background-size: 100%;
     padding-left: 30px;
     padding-right: 30px;
