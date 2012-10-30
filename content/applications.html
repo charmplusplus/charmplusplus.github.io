@@ -9,63 +9,109 @@ toolsc: tools
 helpc: help
 ---
 
-<ul>
-
-<li>ChaNGa - Computational Cosmology and N-Body Codes
-        
 <div id="CSE"><h2>CSE- Computational Science and Engineering Applications</h2>
-<p>
-Profesor P. Geubelle and S. Breitenfeld of the <a href="http://ssm7.ae.uiuc.edu/PHG_GROUP/"> Computational Solid Mechanics Group</a> have developed CrackProp, an explicit Finite Element method simulation of viscoelastic and plasto-elastic mechanics. The simulation tracks conventional volumentric elements, coupled by flat "cohesive" interface elements using the Charm++ <a href="http://charm.cs.uiuc.edu/fem/">Finite Element Framework</a>.
+<p>Professor P. Geubelle and S. Breitenfeld of
+the <a href="http://ssm7.ae.uiuc.edu/PHG_GROUP/"> Computational Solid Mechanics
+Group</a> have developed CrackProp, an explicit Finite Element method
+simulation of viscoelastic and plasto-elastic mechanics. The simulation tracks
+conventional volumentric elements, coupled by flat "cohesive" interface
+elements using the Charm++ <a href="http://charm.cs.uiuc.edu/fem/">Finite
+Element Framework</a>.
 </p>
-<p>
-Professor J. Dantzig and Jun-Ho Jeong of the Solidification Processing Lab have parallelized their dendritic growth metal solidification application using the Charm++ Finite Element Framework. This adaptive mesh, implicit solver fluid dynamics application is quite different from the explicit structures codes normally used. 
-</p>
-<p>
-The framework handles the changes to the adaptive mesh by re-assembling the parallel mesh, repartitioning, and redistributing the mesh pieces. Since the mesh changes only rarely, this does not significantly impact the speed of the simulation. The implicit solvers are implemented using the conjugate gradient method, which solves a global matrix using local operations.
-</p>
-</div>
-<div id="CharmEpisimdemics"><h2>CharmEpisimdemics - Contagion in Social Networks</h2>
-<p>
-The study of contagion effects in extremely large social networks, such as the spread of disease pathogens through a population, is critical to many areas of our world.  CharmEpisimdemics is a collaboration to leverage the Charm++ model to accelerate the study of these effects by enabling much greater scaling in agent based simulation.  See the <a href="http://ndssl.vbi.vt.edu/episims.php">EpiSims</a> website for more information about the EpiSims project.
-</p>
-</div>          
-<div id="NAMD"><h2>NAMD - Molecular Dynamics</h2>
-<p>
-NAMD is a parallel, object-oriented molecular dynamics code designed for high-performance simulation of large biomolecular systems. NAMD is distributed free of charge and includes source code.
-Charm++, developed by Prof. Kale and co-workers, simplifies parallel programming and provides automatic load balancing, which was crucial to the performance of NAMD.  It is used by tens of thousands of biophysical researchers with production versions installed on most supercomputing platforms.  See the <a href="http://www.ks.uiuc.edu/Research/namd/namd.html">TCBG NAMD</a> web site for NIH supported download and tutorial instructions.
-</p>
-<br>
-<p>
-The dynamic components of NAMD are implemented in the Charm++ parallel language. It is composed of collections of C++ objects, which communicate by remotely invoking methods on other objects. This supports the multi-partition decompositions in NAMD. Also data-driven execution adaptively overlaps communication and computation. Finally, NAMD benefits from Charm++'s load balancing framework to achieve unsurpassed parallel performance.  See <a href="http://charm.cs.uiuc.edu/research/moldyn">PPL NAMD</a> research page for more details.
-</p>
+
+<p>Professor J. Dantzig and Jun-Ho Jeong of the Solidification Processing Lab
+have parallelized their dendritic growth metal solidification application using
+the Charm++ Finite Element Framework. This adaptive mesh, implicit solver fluid
+dynamics application is quite different from the explicit structures codes
+normally used.</p>
+
+<p>The framework handles the changes to the adaptive mesh by re-assembling the
+parallel mesh, repartitioning, and redistributing the mesh pieces. Since the
+mesh changes only rarely, this does not significantly impact the speed of the
+simulation. The implicit solvers are implemented using the conjugate gradient
+method, which solves a global matrix using local operations.</p>
 </div>
 
-</ul>
+<div id="CharmEpisimdemics"><h2>CharmEpisimdemics - Contagion in Social Networks</h2>
+<p>The study of contagion effects in extremely large social networks, such as
+the spread of disease pathogens through a population, is critical to many areas
+of our world.  CharmEpisimdemics is a collaboration to leverage the Charm++
+model to accelerate the study of these effects by enabling much greater scaling
+in agent based simulation.  See
+the <a href="http://ndssl.vbi.vt.edu/episims.php">EpiSims</a> website for more
+information about the EpiSims project. </p>
+</div>
+
+<div id="NAMD"><h2>NAMD - Molecular Dynamics</h2>
+<p> NAMD is a parallel, object-oriented molecular dynamics code designed for
+high-performance simulation of large biomolecular systems. NAMD is distributed
+free of charge and includes source code.  Charm++, developed by Prof. Kale and
+co-workers, simplifies parallel programming and provides automatic load
+balancing, which was crucial to the performance of NAMD.  It is used by tens of
+thousands of biophysical researchers with production versions installed on most
+supercomputing platforms.  See
+the <a href="http://www.ks.uiuc.edu/Research/namd/namd.html">TCBG NAMD</a> web
+site for NIH supported download and tutorial instructions. </p>
+<p> The dynamic components of NAMD are implemented in the Charm++ parallel
+language. It is composed of collections of C++ objects, which communicate by
+remotely invoking methods on other objects. This supports the multi-partition
+decompositions in NAMD. Also data-driven execution adaptively overlaps
+communication and computation. Finally, NAMD benefits from Charm++'s load
+balancing framework to achieve unsurpassed parallel performance.
+See <a href="http://charm.cs.uiuc.edu/research/moldyn">PPL NAMD</a> research
+page for more details. </p>
+</div>
 
 <div id="OpenAtom"><h2>OpenAtom - Ab initio Molecular Dynamics</h2>
-<p>
-Many important problems in material science, chemistry, solid-state physics, and biophysics require a modeling approach based on fundamental quantum mechanical principles. A particular approach that has proven to be relatively efficient and useful is Car-Parrinello ab initio molecular dynamics (CPAIMD). Parallelization of this approach beyond a few hundred processors is challenging, due to the complex dependencies among various subcomputations, which lead to complex communication optimization and load balancing problems. We have parallelized CPAIMD using Charm++. The computation is modeled using a large number of virtual processors, which are mapped flexibly to available processors with assistance from the Charm++ runtime system.  See the <a href="http://charm.cs.uiuc.edu/OpenAtom/">OpenAtom</a> web site for more details.
-<p>
+<p> Many important problems in material science, chemistry, solid-state
+physics, and biophysics require a modeling approach based on fundamental
+quantum mechanical principles. A particular approach that has proven to be
+relatively efficient and useful is Car-Parrinello ab initio molecular dynamics
+(CPAIMD). Parallelization of this approach beyond a few hundred processors is
+challenging, due to the complex dependencies among various subcomputations,
+which lead to complex communication optimization and load balancing
+problems. We have parallelized CPAIMD using Charm++. The computation is modeled
+using a large number of virtual processors, which are mapped flexibly to
+available processors with assistance from the Charm++ runtime system.  See
+the <a href="http://charm.cs.uiuc.edu/OpenAtom/">OpenAtom</a> web site for more
+details.<p>
 </div>
-
-</ul>
 
 <div id="ChaNGa"><h2>ChaNGaD - N-Body Cosmological Simulations</h2>
-<p>
-ChaNGa (Charm++ N-Body Gravity Simulator) is a production cosmological simulator to study formation of galaxies and other large scale scale structures in the Universe. It is a collaboration with Prof. Thomas Quinn of University of Washington and Prof. Orion Lawlor of University of Alaska Fairbanks. While there is a multitude of existing N-Body implementations, many of these are "toy" programs which were written with an eye to study performance of parallel tree codes, rather than as scientific software which can provide useful insight to astrophysicists. In contrast to these, ChaNGa is a production code with the features required for accurate simulation, including canonical, comoving coordinates with a symplectic integrator to efficiently handle cosmological dynamics, individual and adaptive time steps, periodic boundary conditions using Ewald summation, and Smooth Particle Hydrodynamics (SPH) for adiabatic gas.
-</p>
-<br>
-<p>
-ChaNGa implements the well-known Barnes-Hut algorithm, which has N log N computational complexity, organizing the particles involved in the simulation into a tree based on Oct, Orthogonal Recursive Bisection (ORB), or SFC decompositions. In order to compute the pair interaction between particles and collections of particles on different processors, parts of the tree needed for the computation are imported from the remote processors which own them. To avoid an explosion in the memory used for large data sets, we structure the import so that the external nodes are transferred only once and used by all the particles which need them on a given processor. For this reason, a CacheManager has been built, with the functionality of a software cache.
-</p>
-<br>
-<p>
-ChaNGa uses the Charm++ Salsa parallel visualization and analysis tool. Visualization in the context of cosmology involves a huge amount of data, possibly spread over multiple processors. Salsa uses the client server model in Charm++ to interact with code running on multiple processors. The visualizer allows the user to zoom in and out, pan and rotate the image, which result in update requests sent from the visualizer code to the processors running the parallel program. 
-</p>
-<br>
-<p>
-ChaNGa has been scaled to 32K processors, and has been ported to clusters of GPUs. Over time, ChaNGa is being actively developed and improved, with an eye for efficient utilization and scaling of current and future supercomputing systems. 
-</p>
-</div>
+<p> ChaNGa (Charm++ N-Body Gravity Simulator) is a production cosmological
+simulator to study formation of galaxies and other large scale scale structures
+in the Universe. It is a collaboration with Prof. Thomas Quinn of University of
+Washington and Prof. Orion Lawlor of University of Alaska Fairbanks. While
+there is a multitude of existing N-Body implementations, many of these are
+"toy" programs which were written with an eye to study performance of parallel
+tree codes, rather than as scientific software which can provide useful insight
+to astrophysicists. In contrast to these, ChaNGa is a production code with the
+features required for accurate simulation, including canonical, comoving
+coordinates with a symplectic integrator to efficiently handle cosmological
+dynamics, individual and adaptive time steps, periodic boundary conditions
+using Ewald summation, and Smooth Particle Hydrodynamics (SPH) for adiabatic
+gas.</p>
+<p> ChaNGa implements the well-known Barnes-Hut algorithm, which has N log N
+computational complexity, organizing the particles involved in the simulation
+into a tree based on Oct, Orthogonal Recursive Bisection (ORB), or SFC
+decompositions. In order to compute the pair interaction between particles and
+collections of particles on different processors, parts of the tree needed for
+the computation are imported from the remote processors which own them. To
+avoid an explosion in the memory used for large data sets, we structure the
+import so that the external nodes are transferred only once and used by all the
+particles which need them on a given processor. For this reason, a CacheManager
+has been built, with the functionality of a software cache. </p>
 
-</ul>
+<p> ChaNGa uses the Charm++ Salsa parallel visualization and analysis
+tool. Visualization in the context of cosmology involves a huge amount of data,
+possibly spread over multiple processors. Salsa uses the client server model in
+Charm++ to interact with code running on multiple processors. The visualizer
+allows the user to zoom in and out, pan and rotate the image, which result in
+update requests sent from the visualizer code to the processors running the
+parallel program.</p>
+
+<p>ChaNGa has been scaled to 32K processors, and has been ported to clusters of
+GPUs. Over time, ChaNGa is being actively developed and improved, with an eye
+for efficient utilization and scaling of current and future supercomputing
+systems.</p>
+</div>
