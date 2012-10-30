@@ -505,6 +505,10 @@ a:hover {
 /*    padding: 20px 30px;*/
 }
 
+#contactContainer {
+    padding: 40px;
+}
+
 .app h2,.benchmark h2 {
     color: #555555;
     padding-bottom: 20px;
