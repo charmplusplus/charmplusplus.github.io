@@ -505,17 +505,21 @@ a:hover {
 /*    padding: 20px 30px;*/
 }
 
-.app h2 {
+.app h2,.benchmark h2 {
     color: #555555;
     padding-bottom: 20px;
     text-align: center;
 }
 
-.app {
+.app,.benchmark {
     padding: 40px;
     border-bottom: 2px solid red;
 }
 
-.app p {
+.app p,.benchmark p {
     text-align: justify;
+}
+
+.giturl {
+    color: blue;
 }
