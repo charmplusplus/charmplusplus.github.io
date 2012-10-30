@@ -13,6 +13,10 @@ a {
   text-decoration: none;
 }
 
+p {
+    padding-bottom: 10px;
+}
+
 a:link,
 a:visited {
 }
@@ -26,7 +30,7 @@ a:hover {
     top: -10px;
     left: -1px;
     width: 974px;
-    min-height: 700px;
+    min-height: 900px;
     background-image:url('images/sides.png');
     background-repeat: repeat-y;
     background-size: 100%;
@@ -197,7 +201,7 @@ a:hover {
 #leftPanel {
     /*border: 1px solid red;*/
     border-right: 1px solid #c1272d;
-    height: 680px;
+    height: 880px;
     width: 780px;
     float: left;
 }
@@ -206,7 +210,7 @@ a:hover {
     /*border: 1px solid green;*/
     position: relative;
     left: 5px;
-    height: 650px;
+    height: 850px;
     width: 150px;
     float: left;
 }
@@ -236,9 +240,9 @@ a:hover {
     width: 700px;
     margin-left: 10px;
     margin-bottom: 10px;
-    height: 200px;
+    height: 400px;
     background-image:url('images/blurb_back.png');
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-size: 100%;
     padding-left: 30px;
     padding-right: 30px;
@@ -499,5 +503,5 @@ a:hover {
 }
 
 #content {
-    padding: 20px 30px;
+/*    padding: 20px 30px;*/
 }
