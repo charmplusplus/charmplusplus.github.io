@@ -483,12 +483,11 @@ a:hover {
   text-align: center;
 }
 
-#toolsContainer {
+#toolsContainer,#applicationContainer {
     padding-top: 10px;
     margin-left: 20px;
     padding-right: 30px;
     margin-bottom: 5px;
-    width: 980px;
 }
 
 #downloadtext {
