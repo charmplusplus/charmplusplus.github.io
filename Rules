@@ -39,6 +39,11 @@ route '/stylesheet/' do
   '/style.css'
 end
 
+route '/tutorial/' do
+  # Write item with identifier /foo/ to /foo/index.html
+  item.identifier + 'index.html'
+end
+
 route '/tutorial/*' do
   # Write item with identifier /foo/ to /foo.ext
   item.identifier.chop + '.' + item[:extension]
