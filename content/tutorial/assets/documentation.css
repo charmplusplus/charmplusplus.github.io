@@ -134,3 +134,20 @@ span.arabic		{   }
 span.textbf		{ font-weight: bold  }
 span.textsf		{ font-style: italic  }
 
+#footer {
+	margin: 4px auto 20px;
+	padding: 0 30px;
+	border: none;
+	line-height: normal;
+	font-size: 70%;
+	font-weight: normal;
+	font-style: normal;
+	text-align: center;
+	text-decoration: none;
+	list-style-type: none;
+	color: #394d4d;
+}
+
+#footer img { height: 15px; width: 80px; margin: 5px 5px 5px 0px; border: none; }
+#footer a:link, #footer a:visited { color: #394d4d; text-decoration: none; border: none; font-weight: normal; }
+#footer a:hover, #footer a:active { color: gray; text-decoration: none; border: none; font-weight: normal; }
