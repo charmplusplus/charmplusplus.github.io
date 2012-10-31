@@ -1,0 +1,69 @@
+<html>
+
+ <head>
+  <title>Charm++ Tutorial - Reductions</title>
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+ </head>
+ 
+ <body>
+ 
+  <!--<a href="TableOfContents.htm">Back to Table of Contents...</a><br><br>-->
+  
+  <!--#include virtual="header.htm"-->
+
+  
+  <!-- Section Title -->
+  <h1>Reductions</h1>
+
+<p class="BasicParagraph"> By now, we've spent a lot of time in this tutorial talking about how to decompose problems into chares and distribute these chares across processors.  One these chares are distributed, you might need an efficient way to recombine the results of their computations on one processor. When you need to combine values from an array of chares, you can turn to one of the most important parallel programming tools: a <i>reduction</i>. </p>
+
+<p class="BasicParagraph"> Reductions turn data that is scattered across a chare array into a single value using a reduction operation, such as sum or maximum. Each of the chares in the array contribute some local data, like the local error or minimum value, and it's combined to form a global value, such as the global error or global minimum.</p>
+
+<h3>Why Use Reductions?</h3>
+
+<p class="BasicParagraph">Simple message passing will suffice to gather values from each chare and combine them. You could easily write a program where each chare sends its local value to chare 0, which sifts through these values and produces the desired result. So why should you use a reduction operation instead?</p>
+
+<p class="BasicParagraph">The first reason is efficiency. If every chare in the array sends its value directly to chare 0, then chare 0 has a massive amount of messages to process and the others have none. Therefore chare 0 becomes a bottleneck. A better approach is to construct a tree of processors, where each chare takes a few messages from child chares, combines them, and passes the result on to the next level. This eliminates the bottleneck at chare 0 and improves performance, but it's more complicated to implement. If you use a reduction this complexity is hidden by the runtime system, but you still reap the rewards of a more efficient program.</p>
+
+<p class="BasicParagraph">The second reason to use reductions is clarity. There are many reduction operations that are very common in parallel programs: finding global minima, constructing a list in which each element comes from a different chare, testing if a logical condition is true on any chare, and so on. Charm++ has several built-in <i>reduction types</i> that correspond to these and many other operations. What's the advantage? Someone reading your code can immediately look and see that since you're using a <tt>CkReduction::max_int</tt> operation, you must be finding the maximum integer over your chare array. If you did the computation by hand, they would have to look more carefully and determine what your code is meant to do.</p>
+
+<h3>How to use Reductions</h3>
+
+<p class="BasicParagraph">To be able to use reductions, we need two things: a way for chares to contribute data to the reduction, and a way to handle that data once it's been reduced. Fortunately, all chares have a member function <tt>contribute</tt> that is used to contribute local data to a reduction. It has the following method signature:</p>
+
+<tt> void contribute(int nBytes,const void *data,CkReduction::reducerType type);</tt>
+
+<p class="BasicParagraph">This call takes an integer specifying the size in bytes of the data you're contributing, a pointer to the data, and a special object of type <tt>CkReduction::reducerType</tt> that specifies what kind of reduction is being performed (e.g. sum of integers). For example, if you are summing a local variable representing force on each chare, the contribution call might look like this:</p>
+
+<tt>double force = get_force(); // find local force <br/>
+contribute(sizeof(double), &amp;force, CkReduction::sum_double);</tt>
+
+<p class="BasicParagraph">In this tutorial we will only use simple reduction types like sum or max of basic types. For more information on the variety of reduction types available and on how to write your own reduction types, see <a href="http://charm.cs.uiuc.edu/manuals/html/charm++/3_14Reductions.html#reductions">the Charm++ manual</a>.</p>
+
+<p class="BasicParagraph">We now know how to contribute local data to a reduction, but we still need a way to way to handle the output of the reduction. In Charm++, you handle the result of a reduction using a callback object known as a <i>reduction client</i>. This is essentially just a function that will be called once the reduction is complete that has access to its result.</p>
+
+<p class="BasicParagraph">Charm++ has an extensive callback system, which is described in <a href="http://charm.cs.uiuc.edu/manuals/html/charm++/3_15Callbacks.html#callbacks">the Charm++ manual</a>. We won't need all of this functionality to set up a simple callback, though. We will simply construct a callback that, when invoked, will call a chare entry method that we specify. To do this we construct a <tt>CkCallback</tt> object with the method to be invoked and a chare proxy indicating the class to which the method belongs. For example, if we have a chare array of type <tt>myType</tt>, which has a proxy name thisProxy and a member function <tt>myReductionFunction</tt>, you could construct a callback object like this:</p>
+
+<tt>CkCallback* cb = new CkCallback(CkIndex_myType::myReductionFunction(NULL), thisProxy);</tt>
+
+<p class="BasicParagraph">There is an important restriction on callback functions: they must accept a single argument of type <tt>CkReductionMessage*</tt>. This message will contain the data generated by the reduction. It has methods <tt>getSize()</tt>, which returns the size of the data in bytes, and <tt>getData()</tt>, which returns a pointer to the data.</p>
+
+<p class="BasicParagraph">There are two ways to specify the reduction client associated with a reduction. First, you can set a chare array's default reduction client via the <tt>ckSetReductionClient</tt> function. Then if no client is specified when you call <tt>contribute</tt>, the default will be used. The second technique is to specify the callback function as an optional parameter to the <tt>contribute</tt> function. If you pass a CkCallback object as the last parameter of your call to contribute on each chare, that callback will be used. If different chares specify different clients, the behavior is undefined.</p>
+
+<h3>An Example</h3>
+
+<p class="BasicParagraph">That was a lot of abstract information, but a concrete example should make things clear. Let's consider an example Charm++ program which calculates an approximate value of pi in parallel. The program consists of an array of Pi chares, each of which has a calculate method which uses Riemann sums to calculate a portion of the integral of 4*arctan(x) from 0 to 1, giving an approximation for pi. If that doesn't make sense to you, don't worry! The only thing we need to know for this example is that each chare calculates a partial sum. We add all of these partial sums together to compute our approximation of pi.</p>
+
+<p class="BasicParagraph">First, take a look at pimessage, an implementation that does not use reductions. Each Pi chare calculates its local sum and then directly invokes an entry method of the Main chare that manually combines these values and determines when it has received all of the contributions. This is a simple implementation, but having the main chare receive a message from each worker chare is inefficient and writing your own handler to combine incoming messages is inconvenient. It's not bad for this simple example, but in more complicated codes with lots of different reductions this is a real problem.</p>
+
+<p class="BasicParagraph">Now look at pireduce, which replaces the direct messages to the main chare with a reduction. Now instead of invoking one of Main's entry methods directly, the chares contribute to a reduction whose client invokes one of Main's methods. Main's receive method extracts the result of the reduction, reports the result, and then exits. Thus with only minor changes to the program we have converted it to use Charm++ reductions. Reductions are a basic building-block of parallel applications, and they will quickly become second nature to you as you become and experienced Charm++ programmer.</p>
+
+
+
+
+  <!--#include virtual="footer.htm"-->
+
+
+ </body>
+
+</html>

@@ -1,0 +1,301 @@
+<html>
+
+ <head>
+  <title>Charm++ Tutorial - Pack-UnPack (PUP) Routines</title>
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+ </head>
+ 
+ <body>
+ 
+  <!--<a href="TableOfContents.htm">Back to Table of Contents...</a><br><br>-->
+
+  <!--#include virtual="header.htm"-->
+  
+  
+  <!-- Section Title -->
+  <h1>Pack-UnPack (PUP) Routines</h1>
+
+
+  <h2>Object Migration</h2>
+
+  <p class="BasicParagraph">
+   One of the main advantages of having an application broken down into a set of chare objects
+   is that the chare objects are <i>migratable</i>.  By migratable, we mean that no one chare
+   object is tied to a particular processing element.  Because of this, the Charm++ Runtime
+   System can freely <i>migrate</i> the chare objects in a Charm++ application between the
+   processing elements available.  There are numerous reasons for doing this.
+  </p>
+
+  <ul>
+
+   <li style="{margin-bottom:15px;}">
+    <b>Load-Balancing:</b>  The most obvious reason for wanting to migrate objects is the
+    ability to balance the workloads of the various processing elements.  If a few processing
+    elements, or even just a single processing element, is overloaded, the rest of the processing
+    elements will become idle.  This wastes precious processing cycles and results in an overall
+    degragation of the application's performance.  By dynamically migrating the chare objects
+    between the processing elements, the Charm++ Runtime System is able to re-balance the workloads
+    of the processing elements based on actually runtime data so that all of the processing elements
+    are being fully utilized.
+
+   <li style="{margin-bottom:15px;}">
+    <b>Fault Tolerance:</b>  Another benefit of being able to migrate objects is being able to
+    duplicate objects (either on disk for a checkpoint or in-memory to enabling dynamic fault
+    recovery).  If one of the processing elements were to fail/crash during the execution
+    of a Charm++ application, the duplicated object states can then be recovered and the
+    lost object recreated while the rest of the application (i.e. chare objects on unaffected
+    processing elements) continues to execute.  Furthermore, if the Charm++ Runtime System is
+    <i>warned</i> by the underlying system that a processing element or node is about to fail
+    (e.g. temperature sensor warning), the chare objects on that particular processing element(s)
+    can be migrated away from the defective hardware in an attempt to avoid the fault altogether.
+
+   <li style="{margin-bottom:15px;}">
+    <b>Shrinking/Growing Executions:</b>  As a Charm++ application is executing, the load of the overall
+    cluster may changed (i.e. another job is launched, a more important job is launched, another
+    job may complete freeing processing elements, and so on).  Because the chare objects can be
+    moved around freely, the Charm++ application can dynamically move objects onto and off of
+    processing elements.  Effectively, this give a Charm++ application the ability to abandon
+    processing elements that it is currently using (freeing them for other activities) or to
+    <i>migrate</i> work onto newly available processing elements.  Once again, this can be done
+    dynamically by the Charm++ Runtime System while the Charm++ application continues to run.
+
+   <li style="{margin-bottom:15px;}">
+    <b>Parameter Marshling:</b>  Generally speaking, an object (not just chare objects; C++ objects,
+    C structures, and so on) can have PUP routines.  Any object that has a PUP routine can then be
+    passed as an argument in an entry method invokation.
+
+  </ul>
+
+  <!-- Figure -->
+  <a class="StandardFigure" href="images/PackUnPackProcess.jpg">
+   <table class="StandardFigure" align=right border=0>
+    <tr><td align=center valign=middle>
+     <img class="StandardFigure" src="images/PackUnPackProcess_sm.jpg" border=0o>
+    </td></tr>
+    <tr><td align=center valign=middle>
+     <b>Figure:</b> Process of "Object Migration": A Chare Object Moving from One Processing<br>
+                    Element to Another Processing Element
+    </td></tr>
+   </table>
+  </a>
+
+
+  <h2>Pack-UnPack (PUP) Routines</h2>
+
+  <p class="BasicParagraph">
+   What makes object migration possible is the ability to serialize the state of a chare object
+   into a contiguous peice of memory (i.e. a message, a file, and so on).  By seriallizing the
+   state of the chare object, the chare object can be recreated, along with its state, at a later
+   time and potentially in a different location such as another processing element.  See the figure
+   to the right.  For a chare
+   object to be able to undergo object migration, it must have a <i>Pack-UnPack</i> or PUP routine.
+   The PUP routine performs the tasks of <i>sizing</i>, <i>packing</i> (serializing), and <i>unpacking</i>
+   (deserializing) the chare object.
+  </p>
+
+  <ul>
+
+   <li style="{margin-bottom:15px;}">
+    <b>Sizing:</b> <i>(On source processing element)</i> First, the PUP routine is called by the
+    Charm++ Runtime System to measure how much memory will be needed (i.e. the size of the buffer)
+    to encapsulate the state of the chare object.  Once the size of the buffer is known, the buffer
+    is allocated by the Charm++ Runtime System.
+
+   <li style="{margin-bottom:15px;}">
+    <b>Packing:</b> <i>(On source processing element)</i> Second, the PUP routine is called again
+    to actually pack the state of the chare object into the buffer.
+
+   <li style="{margin-bottom:15px;}">
+    <b>Migration:</b> At this point, the buffer can be sent to another processing element via a
+    message, it can be stored into a file on a hard disk for later use (checkpoint), and so on.
+
+   <li style="{margin-bottom:15px;}">
+    <b>Unpacking:</b> <i>(On target processing element)</i> Finally, once the buffer arrives to
+    its target processing element, the PUP routine is called again to unpack the state of the
+    chare object thus recreating the chare object that was originally packed on the source
+    processing element.
+
+  </ul>
+
+  <p class="BasicParagraph">
+   The process of object migration, can be controlled by the Charm++ application.  By default,
+   the Charm++ Runtime System can initiate object migration for a chare object at any time (as
+   long as the chare objects isn't currently executing an entry method).  However, it is possible
+   for the Charm++ application to indicate that object migrations should only occur at specific
+   times when it is safe to do so.
+  </p>
+  
+  <br clear=all>
+
+
+  <h2>PUP Routine Example</h2>
+
+  <!-- Figure -->
+  <center>
+   <table class="StandardFigure" border=0 cellspacing=0 cellpadding=5 align=right>
+    <tr>
+
+     <td align=center>
+
+      <!-- Header File -->
+      <table border=0 cellspacing=0 cellpadding=5 style="{margin-bottom:15px;}">
+       <tr>
+        <td align=center valign=middle bgColor=bbbbbb><b><u>Header File</u></b></td>
+       </tr>
+       <tr>
+        <td align=left valign=top bgColor=bbbbbb>
+         <div class="code">
+          <code>
+           class MyChare : public CBase_MyChare {<br>
+           <br>
+           &nbsp;private:<br>
+           &nbsp;&nbsp;<font class="codeComment">/// Member Variables ///</font><br>
+           &nbsp;&nbsp;int a;<br>
+           &nbsp;&nbsp;float b;<br>
+           &nbsp;&nbsp;char c;<br>
+           &nbsp;&nbsp;float localArray[LOCAL_SIZE];<br>
+           &nbsp;&nbsp;int heapArraySize;  <font class="codeComment">// length of heapArray array</font><br>
+           &nbsp;&nbsp;float* heapArray;<br>
+           <br>
+           &nbsp;public:<br>
+           &nbsp;&nbsp;<font class="codeComment">/// Constructor(s)/Destructor ///</font><br>
+           &nbsp;&nbsp;MyChare();<br>
+           &nbsp;&nbsp;MyChare(CkMigrateMessage *msg);<br>
+           &nbsp;&nbsp;~MyChare() {<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;if (heapArray != NULL) {<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delete [] heapArray;<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;heapArray = NULL;<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+           &nbsp;&nbsp;}<br>
+           <br>
+           &nbsp;&nbsp;<font class="codeComment">/// PUP Routine ///</font><br>
+           &nbsp;&nbsp;void pup(PUP::er &p) {<br>
+           <br>
+           &nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">// Call PUP Routine for superclass</font><br>
+           &nbsp;&nbsp;&nbsp;&nbsp;CBase_MyChare::pup(p);<br>
+           <br>
+           &nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">// Basic primitives</font><br>
+           &nbsp;&nbsp;&nbsp;&nbsp;p | a;<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;p | b;<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;p | c;<br>
+           <br>
+           &nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">// Member Arrays</font><br>
+           &nbsp;&nbsp;&nbsp;&nbsp;p(localArray, LOCAL_SIZE);<br>
+           <br>
+           &nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">// Heap-Allocated Data Array</font><br>
+           &nbsp;&nbsp;&nbsp;&nbsp;p | heapArraySize;<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;if (p.isUnpacking()) {<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;heapArray = new float[heapArraySize];<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;p(heapArray, heapArraySize);<br>
+           &nbsp;&nbsp;}<br>
+           };<br>
+          </code>
+         </div>
+        </td>
+       </tr>
+      </table>
+
+     </td>
+
+    </tr>
+   </table>
+  </center>
+
+  <p class="BasicParagraph">
+   The code example to the right contains an example chare object with its associated PUP routine.
+   The process of migrating the object is outlined below.
+  </p>
+
+  <ul>
+
+   <div style="{margin-bottom:15px; margin-left:15px;}"><b>Source Processing Element</b></div>
+
+   <li style="{margin-bottom:15px; margin-left:15px;}">
+    <b>Step 1 - Call to <i>ckAboutToMigrate()</i>:</b> Optionally, one can override the virtual
+    member function <i>ckAboutToMigrate()</i> in their chare class.  If this is done, this member
+    function will be called on the chare object before the process of packing the chare object
+    begins.
+   </li>
+
+   <li style="{margin-bottom:15px; margin-left:15px;}">
+    <b>Step 2 - Sizing:</b> <i>MyChare::pup()</i> is called with a sizing <i>PUP::er</i>.  When this
+    occurs, the <i>| (pipe)</i> and <i>() (parenthesis)</i> operators simply do a <i>sizeof</i>
+    operation.  The sizing <i>PUP::er</i> can then accumulate the sizes of all the data that
+    needs to be packed.
+   </li>
+
+   <li style="{margin-bottom:15px; margin-left:15px;}">
+    <b>Step 3 - Packing:</b> <i>MyChare::pup()</i> is called a second time with a packing
+    <i>PUP::er</i>.  This time, the <i>| (pipe)</i> and <i>() (parenthesis)</i> operators copy
+    the data from the variable specified (or what the variable points to for pointers) into the
+    buffer allocated by the Charm++ Runtime System.
+   </li>
+
+   <li style="{margin-bottom:15px; margin-left:15px;}">
+    <b>Step 4 - Destructor:</b> <i>MyChare::~MyChare()</i> is called to destroy the object.
+    Note that this step only occurs if the chare object is being destroyed on the source processor
+    (e.g. if the object is migrating).  This step would be skipped if the chare object's state
+    is simply being checkpointed (and thus the heapArray is free'd in the destructor and not in the
+    PUP routine).
+   </li>
+
+   <div style="{margin-bottom:15px; margin-left:15px;}"><i>(message containing chare object sent across the interconnect)</i></div>
+
+   <div style="{margin-bottom:15px; margin-left:15px;}"><b>Destination Processing Element</b></div>
+
+   <li style="{margin-bottom:15px; margin-left:15px;}">
+    <b>Step 5 - Constructor:</b> <i>MyChare::MyChare(CkMigrateMessage *msg)</i> is called to create
+    the chare object on the destination processing element.
+   </li>
+
+   <li style="{margin-bottom:15px; margin-left:15px;}">
+    <b>Step 6 - UnPacking:</b> <i>MyChare::pup()</i> is called for a third time with an unpacking
+    <i>PUP::er</i>.  This time, the <i>| (pipe)</i> and <i>() (parenthesis)</i> operators copy the
+    data from the buffer into the variable specified (or what the variable points to for pointers).
+   </li>
+
+   <li style="{margin-bottom:15px; margin-left:15px;}">
+    <b>Step 7 - Call to <i>ckJustMigrated()</i>:</b> Optionally, one can override the virtual
+    member function <i>ckJustMigrated()</i> in their chare class.  If this is done, this member
+    function will be called on the chare object after the process of unpacking the chare object
+    has completed.
+   </li>
+
+  </ul>
+
+  <p class="BasicParagraph">
+   <font color=ff0000>Please Note: The code to the right assumes that (1) the migration constructor,
+   <i>MyChare::MyChare(CkMigrateMessage *msg)</i>, does not allocate memory for heapArray and that
+   (2) the heapArray pointer points to something by the time the object migration process begins.
+   A similar technique, as was used for heapArray in this example, can be used for handling the opening
+   and closing of files, and so on.
+   </font>
+  </p>
+
+  <h3>Useful PUP::er Functions</h3>
+
+  <ul>
+
+   <li style="{margin-bottom:15px; margin-left:15px;}">
+    <b>isSizing():</b> Returns true if the sizing step is occuring, false otherwise.
+
+   <li style="{margin-bottom:15px; margin-left:15px;}">
+    <b>isPacking():</b> Returns true if the packing step is occuring, false otherwise.
+
+   <li style="{margin-bottom:15px; margin-left:15px;}">
+    <b>isDeleting():</b> Returns true if the packing step is occuring and the object
+    being PUP'ed will be <i>deleted</i> immediately afterwards, false otherwise.
+
+   <li style="{margin-bottom:15px; margin-left:15px;}">
+    <b>isUnpacking():</b> Returns true if the unpacking step is occuring, false otherwise.
+
+  </ul>
+
+
+  <!--#include virtual="footer.htm"-->
+
+
+ </body>
+
+</html>

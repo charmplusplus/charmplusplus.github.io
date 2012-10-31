@@ -1,0 +1,164 @@
+<html>
+
+ <head>
+  <title>Charm++ Tutorial - Reductions</title>
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+ </head>
+
+ <body>
+
+  <a href="TableOfContents.htm">Back to Table of Contents...</a><br><br>
+
+
+  <!-- Section Title -->
+  <h1>Introducing Reductions</h1>  
+
+
+  <h3>Reductions</h3>
+  
+  <p class="BasicParagraph">
+   By now, we've spent a lot of time in this tutorial talking about how to decompose problems
+   into chares and distribute them across processors.  That's great, but what good is splitting
+   up your problem if you can't put it back together? When you need to combine values from an array
+   of chares, you can turn to one of the most important parallel programming tools: a <i>reduction</i>.
+  </p>
+
+  <p class="BasicParagraph">
+   Reductions turn data that is scattered across a chare array into a single value using a reduction
+   operation, such as sum or maximum. Each of the chares in the array contribute some local data
+  </P>
+
+  <h2>"Hello World" Code</h2>
+
+  <h3>The "Hello" Chare Class</h3>
+
+  <!-- Figure -->
+  <center>
+   <table class="StandardFigure" border=0 cellspacing=0 cellpadding=5>
+    <tr>
+
+     <td>
+      <table border=0 cellspacing=0 cellpadding=5>
+
+       <!-- Header File -->
+       <tr>
+        <td align=center valign=middle bgColor=bbbbbb><b><u>Header File <i>(hello.h)</i></u></b></td>
+       </tr>
+       <tr>
+        <td align=left valign=top bgColor=bbbbbb>
+         <div class="code">
+          <code>
+           #ifndef __HELLO_H__<br>
+           #define __HELLO_H__<br>
+           <br>
+           class Hello : public CBase_Hello {<br>
+           <br>
+           &nbsp;public:<br>
+           <br>
+           &nbsp;&nbsp;<font class="codeComment">/// Constructors ///</font><br>
+           &nbsp;&nbsp;Hello();<br>
+           &nbsp;&nbsp;Hello(CkMigrateMessage *msg);<br>
+           <br>
+           &nbsp;&nbsp;<font class="codeComment">/// Entry Methods ///</font><br>
+           &nbsp;&nbsp;void sayHi(int from);<br>
+           };<br>
+           <br>
+           #endif //__HELLO_H__
+          </code>
+         </div>
+        </td>
+       </tr>
+
+       <!-- Interface File -->
+       <tr>
+        <td align=center valign=middle bgColor=bbbbbb><b><u>Interface File <i>(hello.ci)</i></u></b></td>
+       </tr>
+       <tr>
+        <td align=left valign=top bgColor=bbbbbb>
+         <div class="code">
+          <code>
+           module hello {<br>
+           <br>
+           &nbsp;&nbsp;array [1D] Hello {<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;entry Hello();<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;entry void sayHi(int);<br>
+           &nbsp;&nbsp;};<br>
+           <br>
+           };
+          </code>
+         </div>
+        </td>
+       </tr>
+
+      </table>
+     </td>
+
+
+
+     <td>
+      <table border=0 cellspacing=0 cellpadding=5>
+
+       <!-- Source File -->
+       <tr>
+        <td align=center valign=middle bgColor=bbbbbb><b><u>Header File <i>(hello.C)</i></u></b></td>
+       </tr>
+       <tr>
+        <td align=left valign=top bgColor=bbbbbb>
+         <div class="code">
+          <code>
+           #include "hello.decl.h"<br>
+           <br>
+           #include "hello.h"<br>
+           #include "main.decl.h"<br>
+           <br>
+           <br>
+           extern /* readonly */ CProxy_Main mainProxy;<br>
+           extern /* readonly */ int numElements;<br>
+           <br>
+           <br>
+           Hello::Hello() {<br>
+           &nbsp;&nbsp;// Nothing to do when the Hello chare object is created.<br>
+           &nbsp;&nbsp;//   This is where member variables would be initialized<br>
+           &nbsp;&nbsp;//   just like in a C++ class constructor.<br>
+           }<br>
+           <br>
+           <br>
+           // Constructor needed for chare object migration (ignore for now)<br>
+           // NOTE: This constructor does not need to appear in the ".ci" file<br>
+           Hello::Hello(CkMigrateMessage *msg) { }<br>
+           <br>
+           <br>
+           void Hello ::sayHi(int from) {<br>
+           <br>
+           &nbsp;&nbsp;// Have this chare object say hello to the user.<br>
+           &nbsp;&nbsp;CkPrintf("\"Hello\" from Hello chare # %d on "<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"processor %d (told by %d).\n",<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;thisIndex, CkMyPe(), from);<br>
+           <br>
+           &nbsp;&nbsp;// Tell the next chare object in this array of chare objects<br>
+           &nbsp;&nbsp;//   to also say hello.  If this is the last chare object in<br>
+           &nbsp;&nbsp;//   the array of chare objects, then tell the main chare<br>
+           &nbsp;&nbsp;//   object to exit the program.<br>
+           &nbsp;&nbsp;if (thisIndex < (numElements - 1))<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;thisProxy[thisIndex + 1].sayHi(thisIndex);
+           &nbsp;&nbsp;else<br>
+		      &nbsp;&nbsp;&nbsp;&nbsp;mainProxy.done();
+           }<br>
+           <br>
+           <br>
+           #include "hello.def.h"
+          </code>
+         </div>
+        </td>
+       </tr>
+
+      </table>
+     </td>
+
+
+
+
+
+ </body>
+
+</html>

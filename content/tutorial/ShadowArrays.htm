@@ -1,0 +1,90 @@
+<html>
+
+ <head>
+  <title>Charm++ Tutorial - Shadow Arrays (AKA: Bound Arrays)</title>
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+ </head>
+ 
+ <body>
+ 
+  <!--<a href="TableOfContents.htm">Back to Table of Contents...</a><br><br>-->
+  
+  <!--#include virtual="header.htm"-->
+
+  
+  <!-- Section Title -->
+  <h1>Shadow Arrays (AKA: Bound Arrays)</h1>
+
+  <p class="BasicParagraph">
+   It may be useful to have corresponding elements of two or more chare arrays to be located on the
+   same processor.  For exmaple, if the corresponding elements of chare arrays <i>X</i> and <i>Y</i>
+   frequently communicate with one another, it would be advantagous to have those elements,
+   <i>X[i]</i> and <i>Y[i]</i>, on the same processor to reduce communication costs.  Shadow arrays
+   in Charm++ are a way of accomplishing just this type of behavior.  When two or more arrays are
+   <i>bound</i>, the Charm++ Runtime System ensures that the objects are always located on the same
+   physical processor.
+  </p>
+
+  <!-- Figure -->
+  <table class="StandardFigure" border=0 align=right>
+   <tr><td align=left valign=middle bgColor=bbbbbb>
+    <div style="{margin:5px;}">
+     <code>
+      <font class="codeComment">// Assumed variable declarations</font><br>
+      int numElements = <font class="generalComment">...</font>;<br>
+      <br>
+      <font class="codeComment">// Creation of first array (standard process)</font><br>
+      CProxy_myArrayClass1 myArray1 = CProxy_myArrayClass1::ckNew(<i>...parameters...</i> , numElements);<br>
+      <br>
+      <font class="codeComment">// Creation of the second array (bound to the first)</font><br>
+      CkArrayOptions ckOptions(numElements);<br>
+      opts.bindTo(myArray1);<br>
+      CProxy_myArrayClass2 myArray2 = CProxy_myArrayClass2::ckNew(ckOptions);<br>
+     </code>
+    </div>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 1:</b> Code to create two chare arrays, <i>myArray1</i> and <i>myArray2</i>, which are
+    bound together.
+   </td></tr>
+  </table>
+
+  <p class="BasicParagraph">
+   Shadow (or bound) arrays create a relationship in terms of element mapping and load balancing between
+   two or more arrays.  The idea is fairly straight forward.  First, a chare array is created in the
+   standard manner.  Then, a second array is created as a shadow of the first array (or bound to the first
+   array).  This is done through the <i>CkArrayOptions</i> parameter to the <i>ckNew</i> call which creates
+   the second array.  Additional arrays can also be bound to this set of bound arrays in a similar manner.
+  </p>
+
+  <p class="BasicParagraph">
+   There is no restriction to the type or number of chare elements in the arrays.  The bound arrays can
+   be instances of the same chare array class or be different chare array classes.  Also, the arrays do not
+   have to have the same number of elements.  For indexes where the other array doesn't have a corresponding
+   element, the element that exists is free to move between processors arbitrarily.  The Charm++ Runtime
+   System simply ensures that <i>when there are corresponding elements (that is, elements at
+   corresponding indexes), in a set of bound arrays, the elements will be located on the same physical
+   processor</i>.
+  </p>
+
+  <p class="BasicParagraph">
+   Since the corresponding objects are always located on the same processor, the objects can take advantage
+   of this in various ways.  For example, they can obtain local pointers to one another via a call to
+   <i>ckLocal()</i> on the proxy for the element.  However, each time the objects migrate (i.e. the objects
+   are unpacked via the <a href="PackUnPackRoutines.htm">Pack-UnPack Routines</a>), the local pointer needs
+   to be refreshed so it is a valid pointer on the new physical processor.
+  </p>
+
+  <p class="BasicParagraph">
+   For more information on callbacks, please see
+   <a href="http://charm.cs.uiuc.edu/manuals/html/charm++/3_8Advanced_Arrays.html#SECTION00038600000000000000">Section 3.8.6: Advanced Array Creation: Bound Arrays</a> of the
+   <a href="http://charm.cs.uiuc.edu/manuals/html/charm++/manual.html">The Charm++ Programming Language Manual</a>
+  </p>
+
+
+  <!--#include virtual="footer.htm"-->
+
+
+ </body>
+
+</html>

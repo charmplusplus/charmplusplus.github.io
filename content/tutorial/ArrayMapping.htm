@@ -1,0 +1,92 @@
+<html>
+
+ <head>
+  <title>Charm++ Tutorial - Mapping Chare Array Elements to Physical Processors</title>
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+ </head>
+ 
+ <body>
+ 
+  <!--<a href="TableOfContents.htm">Back to Table of Contents...</a><br><br>-->
+  
+  <!--#include virtual="header.htm"-->
+
+  
+  <!-- Section Title -->
+  <h1>Mapping Chare Array Elements to Physical Processors</h1>
+
+  <p class="BasicParagraph">
+   For various reasons (performance, etc.) the programmer may wish to control where the initial chare
+   array elements in a chare array reside (that is, on which physical processor they are located).  There
+   are multiple methods the programmer can use to control the initial placement of chare array elements
+   in a chare array on the physical processors.
+  </p>
+
+
+  <h2>Inserting Individual Chare Array Elements</h2>
+
+  <p class="BasicParagraph">
+   The most direct method of controlling which processors the chare array elements are located on
+   initially is to explicitly create the chare array element one-by-one, specifying with processor
+   it should be located on during creation.  This can be done by creating the chare array with a
+   call to <i>myArrayProxy = CProxy_myArrayClass::CkNew()</i> with no arguments (or the number of elements set to zero
+   if a CkArrayOptions object is used).  Once the chare array has been created, individual chare
+   array elements can be inserted by using the <i>myArrayProxy[i].insert(pe)</i> function call where <i>i</i>
+   is the index of the chare array element to create and <i>pe</i> is the processor number on which the
+   chare array element should be created on.  Once all chare array elements have been added to the array,
+   the <i>myArrayProxy::doneInserting()</i> call must be called to indicate to the Charm++ Runtime System
+   that the initial elements of the chare array have been added.  Additional chare array elements can be
+   added at a later time followed by an additional call to <i>myArrayProxy::doneInserting()</i>.
+  </p>
+
+
+  <h2>Using the CkArrayMap Class</h2>
+
+  <p class="BasicParagraph">
+   Chare arrays also have an associated <i>CkArrayMap</i> class which maps indexes in the arrays
+   to specific processors.  By default, a round-robin (<i>RRMap</i>) map object is used.
+   When the chare array is being created, the programmer can specify which map object the array
+   should use via a call to <i>CkArrayOptions::setMap()</i>.  For example, instead of round-robin,
+   the programmer might use the <i>BlockMap</i> map class to have the objects mapped in a blocked
+   scheme.
+  </p>
+
+  <p class="BasicParagraph">
+   The programmer may create their own map object to be used for a chare array.  Simply create a
+   child class of the <i>CkArrayMap</i> class.  The important member functions are outlined below.  Then,
+   create an instance of the class and associate the map object with the chare array (via <i>CkArrayOptions</i>)
+   during array creation time.
+  </p>
+
+  <p class="BasicParagraph">
+   <b>CkArrayMap::populateInitial():</b>  This function is responsible for creating all of the
+   initial array elements located on the physical processor.  That is, it is called on every processor
+   and makes a call to the chare array manager's <i>insertInitial()</i> function for each of the chare
+   array elements local to that processor (triggering the creation of the actual chare array elements on
+   the physical processor).  This is a virtual function; the child class can provide
+   its own implementation of this function.  However, one is provided by <i>CkArrayMap</i> itself which
+   simply uses the <i>CkArrayMap::procNum()</i> function to decide where the chare array elements
+   initially reside.
+  </p>
+
+  <p class="BasicParagraph">
+   <b>CkArrayMap::procNum():</b>  This function simply maps an array index (input) to the number
+   of the physical processor (output).  For example, the round-robin map class's (<i>RRMap</i>) version
+   of this function simply returns '<i>index % CkNumPes()</i>'.  This function is a pure virtual member
+   function.  The child class <i>must</i> provide an implementation of this function.
+  </p>
+
+  <p class="BasicParagraph">
+   <b>CkArrayMap::homePe():</b>  This function is similar to the <i>procNum()</i> function, however, the value
+   returned indicates which physical processor is the <i>home</i> processor for the chare array element.
+   This is a virtual function, the child class can provide its own implementation of this function.  However,
+   one is provided by <i>CkArrayMap</i> itself which simply returns the same value that <i>procNum()</i> returns.
+  </p>
+
+
+  <!--#include virtual="footer.htm"-->
+
+
+ </body>
+
+</html>

@@ -1,0 +1,284 @@
+<html>
+
+ <head>
+  <title>Charm++ Tutorial - Concepts of Charm++</title>
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+ </head>
+ 
+ <body>
+ 
+  <!--<a href="TableOfContents.htm">Back to Table of Contents...</a><br><br>-->
+
+  <!--#include virtual="header.htm"-->
+  
+  
+  <!-- Section Title -->
+  <h1>Introduction to Charm++ Concepts</h1>
+
+
+  <!-- Content -->
+  <h2>What is Charm++?</h2>
+  
+  <p class="BasicParagraph">
+   Charm++ is an object-oriented asynchronous message passing parallel programming
+   paradigm.  What does all that mean?
+  </p>
+  
+  <p class="BasicParagraph">
+   Let's start with "programming paradigm."  By
+   programming paradigm, we mean Charm++ is a way of writing a program (a programming model).
+   Charm++ is not a programming language in and of itself.  Instead, Charm++ uses the C++
+   programming language as it's base language.  Charm++ adds additional functionality and
+   structure on top of C++ that allows the programmer to solve the problem at hand.
+  </p>
+
+  <p class="BasicParagraph">
+   By "parallel", we mean that Charm++ is used to write parallel applications.  Generally
+   speaking, parallel applications are applications where multiple threads of execution
+   are executing simultaneously.  This can be several threads time sharing a single processing
+   element; or, several threads time sharing many processing elements.  Each thread of
+   execution is a sequence of sequential code (that is, code that executes in program
+   order from start to finish without communicating with another thread of execution).  In
+   terms of Charm++, the term parallel simply means that several <i>things</i> may be
+   occuring at any given moment (one or more chunks of code being executed, messages
+   being passed between chares, and so on).
+  </p>
+ 
+  <p class="BasicParagraph">
+   "Object-oriented" basically means the same thing that it means in the C++ programming
+   language.  The program is broken down into a logical collection of objects that interact with
+   each other.  This same concept is true for Charm++.  In Charm++, however, there are special
+   objects called <i>chares</i>.  Chares will be discussed in more detail later.  For now, each
+   chare object may contain some state (i.e. data), send and receive messages, and will perform
+   some <i>task</i> in response to receiving a message (that is, execute a special member
+   function called an <i>entry method</i>).
+  </p>
+  
+  <p class="BasicParagraph">
+   By "asynchronous message passing", we mean that the chare objects communicate with
+   each other by sending messages to one another.  The asynchronous keyword means that the
+   messages are sent in a manner that is asynchronous to the execution of code associated
+   with the chare objects.  That is to say, if code operating on a chare object decides to send
+   a message to another chare object, the sending of the message occures in an asynchronous manner
+   to the code execution (the code directly after the <i>send</i> immediately continues execution
+   while the message <i>travels</i> towards the target chare).  The oppisite is also true; a
+   chare object can receive a message from another chare object at any time regardless of what
+   the receiving chare is doing at that particular moment.  How messages are passed, what code
+   is executed, and so on will be discussed later in the tutorial.  It is worth noting that the
+   passing of messages is also refered to as <i>method invocation</i> or <i>remote method
+   invocation</i> since, from the perspective of the sending chare object, the code simply looks
+   like the calling code is invoking a member function of the target chare.
+  </p>
+ 
+ 
+  <h2>What is a Charm++ Program?</h2>
+ 
+  <p class="BasicParagraph">
+   At a high-level, from the programmer's perspective, a Charm++ program is simply a
+   collection of chare objects.  Each chare object has some state associated with it.  The
+   chare objects communicate by sending messages to one another.  When a particular chare
+   object receives a message, it will execute an entry method to processes the message.  This
+
+   <!-- Figure -->
+   <a class="StandardFigure" href="images/Charm_UserView.jpg">
+    <table class="StandardFigure" align=right border=0>
+     <tr><td align=center valign=middle>
+      <img class="StandardFigure" src="images/Charm_UserView_sm.jpg" border=0o>
+     </td></tr>
+     <tr><td align=center valign=middle>
+      <b>Figure 1:</b> User's View of a Charm++ Application
+     </td></tr>
+    </table>
+   </a>
+ 
+   entry method may perform one or more operations/calculations, it may <i>send</i>
+   more messages to other chare objects, it may buffer the contents of the message for later
+   processing, or it may do nothing at all.  This is how forward progression is made in the
+   overall application.  One chare sends a message to another chare, the receiving chare
+   does some computation and then sends out more messages to other chares, and so on, and so on.
+   Execution begins with a special chare called the <i>main chare</i> (similar to how execution
+   of a C++ program begins with the exection of a special function called <i>main</i>).
+  </p>
+
+  <p class="BasicParagraph">
+   It is worth pointing out that the description of a Charm++ application does not involve
+   the number of processing elements (i.e. one thread per processing element), what type of
+   processing elements are involved, how many chares there are per processing element, or even
+   how data is transfered between processing elements.  Charm++ applications are simply written
+   in terms of the chare objects.  The programmer does not have to worry about the number of
+   processing elements that will be available when the program is executed or what type of
+   interconnect (network) will be used to connect the processing elements together.  All of these
+   details are left to an intellegent runtime system called the Charm++ Runtime System.  The
+   Charm++ Runtime System takes care of mapping each of the chares to the physical processing
+   elements, routing messages over the interconnect, and so on.
+  </p>
+ 
+ 
+  <h3>Chare Objects</h3>
+  
+  <p class="BasicParagraph">
+   Each of the chare objects in the Charm++ application can be thought of as independent
+   entities.  Each chare object has it's own state (that is, data local to it).  Chare
+   objects in the application cannot directly access the state of another chare objects,
+   however, any chare object can directly communicate with any other chare object.  The
+   overall set of chare objects in the application is commonly refered to as the
+   <i>global object space</i>.  Any chare object in the global object space can request
+   informtion on another chare object's state by sending the chare object a message
+   requesting the information.
+  </p>
+ 
+  <p class="BasicParagraph">
+   For the purposes of this tutorial, we will use two terms: <i>chare class</i> and
+   <i>chare object</i>.  These terms have the same basic meaning as their C++
+   equivelants, <i>class</i> and <i>object</i>, respectively.  A chare class defines
+   a type of chare object (the blueprints of a chare object).  A chare object is a
+   specific instance of a chare class.  Another term that will be used in this tutorial
+   is <i>chare array</i>.  A chare array is simply an array of chare objects (just like
+   an integer array is an array of integers in C++).  See the section on
+   <a href="#chareCollections">Chare Collections</a> below.
+  </p>
+  
+  <p class="BasicParagraph">
+   There is one special chare object in a Charm++ application, the <i>main chare
+   object</i>.  The main chare object acts as the entry point of the Charm++ application
+   in a similar manner to the main function in a C++ application (see Entry Methods below).
+  </p>
+ 
+
+  <h3>Messages</h3>
+  
+  <p class="BasicParagraph">
+   The chare objects communicate with each other by sending messages to one another.
+   In Charm++, this process is also referred to as <i>remote method invocation</i> since
+   the <i>sending</i> chare object simply calls one of the <i>receiving</i> chare object's
+   entry methods (more on entry methods later).  From the programmer's perspective, the
+   code basically looks like it is calling a member function on the target chare object.
+  </p>
+ 
+ 
+  <h3>Entry Methods</h3>
+  
+  <p class="BasicParagraph">
+   Entry methods are special member functions of the chare class.  The difference between
+   a normal C++ member function and a Charm++ entry methods is that Charm++ entry methods
+   act as the reception points for messages (or, in other words, they are the member
+   functions that can be remotely invoked by other chare objects).  When one chare object
+   does a remote method invocation on another chare object, the data being send is packed
+   into a message and passed to the receiving chare object.  Once the receiving chare
+   object receives the message, the entry method that was specified by the <i>sending</i>
+   chare object is invoked (executed) and the data in the message is passed to that entry
+   method.
+  </p>
+  
+  <p class="BasicParagraph">
+   Each of the chare classes also has constructor entry methods (basically the same thing
+   as a constructor in C++).  When a chare object is created, this constructor entry method is
+   automatically invoked by the Charm++ Runtime System to create the chare object (once
+   again, similar to what is done for an object in C++).  The execution of a Charm++
+   application begins with the execution of the main chare object's constructor.
+  </p>
+ 
+  <p class="BasicParagraph">
+   There are two aspects of entry methods that make the different from standard C++ member
+   functions.  First, entry methods do not have return values (i.e. they return void).
+   Second, from the perspective of the calling chare object,
+   the entry method returns immediately and the code of the calling chare object continues
+   to execute.  This does not mean that the target entry method has executed, only that a
+   message has been sent to the chare object which will cause the target entry method to
+   execute at some time in the future.  Both of
+   these aspects of entry methods are directly related to the message passing nature of
+   Charm++.  Invoking an entry method on a chare object does not cause the entry method to
+   execute immediately nor is any value produced immediately.  Instead a message is sent
+   to the target chare and the entry method will be executed at some point in the future.
+  </p>
+
+
+  <h3>Proxies</h3>
+
+  <!-- Figure -->
+  <table class="StandardFigure" border=0 align=right>
+   <tr><td valign=middle>
+    <a href="images/ProxiesAndGOS.jpg">
+     <img class="StandardFigure" src="images/ProxiesAndGOS_sm.jpg" border=0o>
+    </a>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 2:</b> Proxies and the Global Object Space
+   </td></tr>
+  </table>
+
+  <p class="BasicParagraph">
+   Because the actual chare objects in the global object space in a Charm++ program are
+   spread out across the various processing elements, it is not always possible
+   for two chare objects to directly communicate with each other.  Instead, for one chare
+   object to invoke an entry method on another chare object, the sending chare object must
+   first have a reference called a <i>proxy</i> to the target chare object.  The proxy objects
+   hide the details of the actual communication from the programmer.  Entry methods are called
+   on the proxy object as if the chare object itself were local to the current physical
+   processor.  The Charm++ Runtime System takes care of locating the actual chare object in
+   the global object space on behalf of the chare object.  See Figure 2.
+  </p> 
+
+
+  <a name="chareCollections"></a>
+  <h2>Chare Collections</h2>
+
+  <p class="BasicParagraph">
+   In actual Charm++ applications, it is more common to see collections of chare objects
+   rather than individual chare objects.  The collection of chare objects is spread out
+   across the processors and all memmber are commonly performing a similar operation on
+   different peices of data.  There are several types of chare collections.
+  </p>
+
+  <p class="BasicParagraph">
+   Each collection within a program is represented by a unique handle.  This handle is
+   visible to all processors (can be transfered between processors) and can be used to
+   access the members of the collection.
+  </p>
+
+  <h3>Chare Arrays</h3>
+
+  <p class="BasicParagraph">
+   As was previously mentioned, a chare array is simply an array of chare objects.  The
+   array can indexed using a simple integer index similar to how C++ arrays are indexed
+   (int arrays, for example).  Chare arrays can be single or multidemensional (indexing
+   schemes for 1D through 6D are provided).  Chare arrays can also be indexed using more
+   complex schemes such as a bit vector or even use user defined objects to index into
+   the array.
+  </p>
+
+  <p class="BasicParagraph">
+   Initially, the chare array elements are spread out according to a mapping scheme
+   (with round-robin being the default).  However, because the chare array elements are
+   migratable chare objects, they can be moved between the processors on an individual
+   basis.  The Charm++ Runtime System will migrate the chare array elements between the
+   processors based on runtime data that it gathers in an effort to balance the processing
+   load on all of the processors.  The programmer does not have to concern themselves with
+   where each of the individual chare array elements are.  Even if a chare array element
+   is moved from one processor to another, the programmer still refers to it as the same
+   array element (e.g. <i>myChareArray[i]</i> for the <i>i</i>th element in the
+   <i>myChareArray</i> chare array).  The Charm++ Runtime System takes care of making sure
+   the message are redirected to the appropriate processor.
+  </p>
+
+  <h3>Chare Groups</h3>
+
+  <p class="BasicParagraph">
+   A chare group is a collection where each of the physical processors available to the
+   application has one, and only one, representative (chare object) located on it.
+  </p>
+
+  <h3>Chare NodeGroups</h3>
+
+  <p class="BasicParagraph">
+   A chare nodegroup is similar to a chare group.  The difference is that there is only a
+   single representative per node, instead of per processor.
+  </p>
+
+
+  <!--#include virtual="footer.htm"-->
+
+ 
+ </body>
+
+</html>

@@ -1,0 +1,101 @@
+<html>
+
+ <head>
+  <title>Charm++ Tutorial - Appendix: Building the Charm++ Runtime System</title>
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+ </head>
+ 
+ <body>
+ 
+  <!--<a href="TableOfContents.htm">Back to Table of Contents...</a><br><br>-->
+
+  <!--#include virtual="header.htm"-->
+  
+  
+  <!-- Section Title -->
+  <h1>Building the Charm++ Runtime System</h1>
+
+  <p class="BasicParagraph">
+   In the root directory of the Charm++ distribution is a <i>build</i> script.  This build script
+   is used to compile the Charm++ Runtime System for a particular platform.  The exact platform that
+   should be used depends on the setup of the machine being used by the user.  For the sake of this
+   example, we will assume that the target platform is a cluster of linux workstations.
+   <font color=ff0000><i>
+    Please Note:  If the build script is executed with the "--help" command-line argument
+    (i.e. the command "./build --help"), it will print out a usage message which includes a list
+    of platforms available.
+   </i></font>
+  </p>
+
+  <p class="BasicParagraph">
+   The general usage form of the build script is:<br><br>
+  </p>
+
+   <center><b><code>
+    build &lt;target&gt; &lt;version&gt; &lt;options&gt; [ charmc-options ... ]
+   </code></b></center>
+
+  <p class="BasicParagraph">
+   where:
+  </p>
+
+  <ul>
+   <li style="{margin-bottom:10px;}">
+       <b>&lt;target&gt;:</b> This indicates which portion of the Charm++ distribution should be
+       built.  Because there are many components to the Charm++ distribution this allows the user
+       to only build the portions that are needed for their purpose.  Targets include: charm++, AMPI,
+       FEM, LIBS, bigemulator, pose, jade, and msa.  For example, the charm++ target builds the
+       basic Charm++ Runtime System. The LIBS target builds additional libraries with various
+       functionality (also builds the charm++ target on which it depends).  If the pose target is
+       used, both charm++ and LIBS targets will be built followed
+       by the pose target.  The pose target will create the required libraries needed for applications
+       that will use its PDES functionality.
+   <li style="{margin-bottom:10px;}">
+       <b>&lt;version&gt;:</b> This is one of the available platforms.  For a cluster of linux
+       workstations connected using an Ethernet network, the target platform is <i>net-linux</i>.
+       For the full list of supported platforms, use "./build --help".
+   <li style="{margin-bottom:10px;}">
+       <b>&lt;options&gt;</b> <i>(Optional)</i><b>:</b> This is where platform specific options
+       should be specified.  For example, multiple compilers are supported for various platforms.
+       If the user wishes to use a compiler different from the default compiler for the platform,
+       this would be specified here.  Other platform specific options can include options for the
+       type of network, SMP-mode, PAPI support, and so on.
+   <li style="{margin-bottom:10px;}">
+       <b>[ charmc-options ... ]</b> <i>(Optional)</i><b>:</b> This is where compiler specific
+       options can be specified.  The compiler wrapper charmc will use the options specified here
+       by default when it is used to compile Charm++ programs.  The compiler that it wraps is
+       either the default compiler for the platform or the user defined compiler specified in
+       the <i>&lt;options&gt;</i> portion of the build command.
+  </ul> </body> </html>
+
+  <h3>Examples</h3>
+
+  <p class="BasicParagraph">
+   <b>(1)</b> For a cluster of Linux workstations connected by an Ethernet network (32-bit x86 architecture):
+   <code><b>./build charm++ net-linux</b></code><br>
+
+   <b>(2)</b> 1 with SMP support:
+   <code><b>./build charm++ net-linux smp</b></code><br>
+
+   <b>(3)</b> 1 with the "-O3" compiler option on by default for charmc:
+   <code><b>./build charm++ net-linux "-O3"</b></code><br>
+
+   <b>(4)</b> 1 with both SMP support and the "-O3" compiler option on by default for charmc:
+   <code><b>./build charm++ net-linux smp "-O3"</b></code><br>
+
+  </p>
+
+  <p class="BasicParagraph">
+   <font color=ff0000><i>
+    WARNING:  Depending on the speed of the machine being used and the options specified, the build
+    process of the Charm++ Runtime System can take several minutes (as high as 10-20 minutes for
+    older machines).
+   </i></font>
+  </p>
+
+
+  <!--#include virtual="footer.htm"-->
+
+ </body>
+
+</html>

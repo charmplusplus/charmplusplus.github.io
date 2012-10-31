@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Charm++ Tutorial - Converse Client-Server</title>
+    <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+  </head>
+
+  <body>
+
+    <!--<a href="TableOfContents.htm">Back to Table of Contents...</a><br><br>-->
+
+    <!--#include virtual="header.htm"-->
+
+    <h1>Converse Client-Server (CCS) - Stearing the 2D Jacobi Program</h1>
+
+    <h2>CCS</h2>
+
+    CCS is a protocol that enables any Charm++ program to act as a server, and
+    respond to requests sent by a client. The server will export the actions
+    available, and a client (written in C/C++ or Java) can request the server to
+    perform any action available.
+
+    <h2>Using CCS</h2>
+
+    In using CCS there are two steps:
+
+    <ol>
+      <li>Modify a Charm++ program to add the methods that will perform the
+      required operations, and register them to the system;
+
+      <li>Create a client program with the desired user interface to use the
+      features exported by the server.
+    </ol>
+
+    The server, when launched, will need to be instructed to listen for incoming
+    requests. This is performed with the option <b>++server</b>. The option
+    <b>++server-port=&lt;number&gt;</b> can be used to force the server to use a
+    specific port. The server, while starting, will print the information
+    necessary for the client to connect: IP and port number. Following is an
+    example:
+
+    <table class="StandardFigure" border=0 cellspacing=0 cellpaddin=5>
+        <tr>
+          <td align=left valign=top bgColor=bbbbbb>
+            <div class="code">
+              <code>
+                  ccs: Server IP = 192.168.3.23, Server port = 15763
+              </code>
+            </div>
+          </td>
+        </tr>
+    </table>
+
+    <h2>Modifying the 2D Jacobi Program</h2>
+
+    The 2D Jacobi program was presented <a href="Basic2DJacobi.htm">here</a>. We
+    will start with this program as a basis, and extend it to receive request to
+    modify values in the grid. When a request is received, the program will
+    modify the value and proceed to evolve the system until a new equilibrium is
+    reached.
+
+    In Charm++ CCS requests can be mapped to callbacks (see <a
+    href="Callbacks.htm">here</a> for more info on callbacks). The main function
+    to register callbacks to CCS is:
+
+    <table class="StandardFigure" border=0 cellspacing=0 cellpaddin=5>
+        <tr>
+          <td align=left valign=top bgColor=bbbbbb>
+            <div class="code">
+              <code>
+                 void CcsRegisterHandler(const char *handlerName, const CkCallback &amp;cb);
+              </code>
+            </div>
+          </td>
+        </tr>
+    </table>
+
+    where <i>handlerName</i> is the string identifier of the CCS request which
+    will be sent by the client, and <i>cb</i> is the associated callback that
+    will be invoked upon receipt of the request. This registration needs to be
+    performed only once in the entire system, therefore an intuitive location do
+    do it is inside the mainchare "main" method (the one receiving CkArgMsg as
+    parameter). The maximum length of the handler name is 32 characters.
+
+    <p>We can see in the example code, in main.C line 85 and 86, how this is
+    performed by registering a callback to the entire jacobi array when there is
+    an incoming request named "changeValue", and a callback to the mainchare
+    when there is an incoming request named "exit".
+
+    <table class="StandardFigure" border=0 cellspacing=0 cellpaddin=5>
+        <tr>
+          <td align=left valign=top bgColor=bbbbbb>
+            <div class="code">
+              <code>
+                  <font class="codeComment">// Register the callbacks for CCS</font><br>
+                  CcsRegisterHandler("changeValue", CkCallback(CkIndex_Jacobi::ccsRequest(0), jacobiArray));<br>
+                  CcsRegisterHandler("exit", CkCallback(CkIndex_Main::terminate(0), mainProxy));
+              </code>
+            </div>
+          </td>
+        </tr>
+    </table>
+
+    <table class="StandardFigure" border=0 cellspacing=0 cellpaddin=5
+      align=right>
+        <tr>
+          <td align=left valign=top bgColor=bbbbbb>
+            <div class="code">
+              <code>
+                struct CkCcsRequestMsg {<br>
+                &nbsp;&nbsp;CcsDelayedReply reply;
+                <font class="codeComment">//Object to send reply to.</font><br>
+                &nbsp;&nbsp;int length;
+                <font class="codeComment">//Number of bytes of request data.</font><br>
+                &nbsp;&nbsp;char *data;
+                <font class="codeComment">//Actual data sent along with request.</font><br>
+                };
+              </code>
+            </div>
+          </td>
+        </tr>
+    </table>
+
+    <p>The method to respond to the callback is registered as a normal entry method
+    for the corresponding object. This method receives as input a
+    <i>CkCcsRequestMsg</i> which contains the information received from the
+    client, as well as the information to reply to such client. The structure of
+    CkCcsRequestMsg is shown on the right.
+
+    <p>Being "changeValue" triggered on the entire chare array, every element will
+    execute the code. Each element will therefore pull the information out of
+    the request, and update the values that belong to it. The format of this
+    information must be agreed between client as server. This agreement, in our
+    example is in the data structures <i>ChangeRequest</i> and
+    <i>SingleValue</i> inside the header file <i>jacobi-CS.h</i> (which is
+    included by both the client and the server).
+
+    <p>Once the modification has happened, the array contributes back to the
+    mainchare in stepCheckin, and a new iteration will be triggered if the
+    modification exceeds the value of the threshold. The computation will then
+    continue until a new balance is reached. To notice that this example follows
+    the same structure used by the plain Jacobi example, therefore the upper
+    left corner of the matrix is maintained fixed at one, and the border of the
+    entire matrix is maintained fixed at zero.
+
+    <p>Another modification we made to Jacobi is eliminating the call to CkExit in
+    Main::stepCheckin when the equilibrium is reached. This gives the
+    possibility to a client to connect and send requests. In this case, to
+    terminate the application, the client has to send a request to the CCS
+    handler "exit", which will provide to call CkExit.
+
+    <p>In the case of "exit" we have no desire to reply to the client, so we can
+    simply ignore it. Nevertheless, in the case of "changeValue" we would like
+    to let the client know if the modification has succeded. In order to do
+    this, we use the same structure of the request to send back a list of value
+    change request that could not be applied by the server (clearly an empty
+    list means that everything went ok).
+
+    <p>The only caviat to be careful when replying to the client, is that <b>only
+    one single reply is allowed per request</b>. This implies that not every
+    element of the chare array can respond to the client, but only one element
+    can. In our example, the chare element with index (0, 0) will reply to the
+    client.
+
+
+    <h2>Creating the client</h2>
+
+    Together with the modification of the parallel application to accept
+    requests through CCS, we need to create a specific application to generate
+    such requests. This application will run on the user's desktop. For this
+    example we choose to build the client in C++. The source code and be found
+    <a href="examples/Basic2DJacobi_CCS">here</a> together with the server code.
+
+    <p>This client reads two parameters from the command line (the name of the host
+    where the server is running and its port, as printed by the server at
+    startup), connects to the server, and enters an infinite loop asking the
+    user for input. This input, which specifies a position in the matrix to
+    modify and its new value, is then converted to a request in the agreed
+    format and sent to the server. It then waits for the reply from the server
+    before asking the user for the next input. An empty input from the user will
+    trigger the other request to the server, the one to terminate.
+
+    <p>To notice that the server does not implement security measures to prevent
+    requests coming from a client to corrupt the data. This can happen if a
+    request arrives to the server while it is still updating the matrix, before
+    it has reached the equilibrium. Here we will consider only the case that the
+    user sends requests at the right moment, namely when the server is idle. It
+    is left as an exercise to the user to implement a synchronization mechanism
+    to allow the server to accept requests at any time, even if the matrix has
+    not yet reached an equilibrium.
+
+    <p>Other than the usual system libraries, the client requires to header files. 
+    One is <i>jacobi-CS.h</i> which specifies the format of request and replies;
+    the other is <i>ccs-client.h</i> which contains the classes and functions
+    necessary to use CCS. When compiling, we will still need to use the Charm++
+    compiler <i>charmc</i> with a target language of <i>C++</i> and the extra
+    flag <i>-seq</i> to specify that the code is sequential and not parallel. 
+    Moreover, the dynamic library called <i>ccs-client</i> must be linked in. 
+    The command line used to compile the client (present in the makefile) is
+    shown here below.
+
+    <center>
+    <table class="StandardFigure" border=0 cellspacing=0 cellpaddin=5
+      align=left>
+        <tr>
+          <td align=left valign=top bgColor=bbbbbb>
+            <div class="code">
+              <code>
+                charmc -o client.o client.C<br>
+                charmc -language c++ <b>-seq</b> -o client client.o -lreadline <b>-lccs-client</b>
+              </code>
+            </div>
+          </td>
+        </tr>
+    </table>
+    </center>
+
+
+    <!--#include virtual="footer.htm"-->
+
+  </body>
+</html>

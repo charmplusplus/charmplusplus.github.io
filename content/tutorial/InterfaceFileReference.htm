@@ -1,0 +1,265 @@
+<html>
+
+ <head>
+  <title>Charm++ Tutorial - Interface File Reference</title>
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+ </head>
+
+ <body>
+
+  <!--<a href="TableOfContents.htm">Back to Table of Contents...</a><br><br>-->
+
+  <!--#include virtual="header.htm"-->
+
+
+  <!-- Section Title -->
+  <h1>Interface File Reference</i></h1>
+
+  <center>
+   <table cellpadding=5 cellspacing=0>
+
+    <tr bgcolor=eeeeee>
+     <td colspan=2 align=center valign=middle><b>Covered Items</b></td>
+    </tr>
+
+    <tr>
+     <td align=right><b>Chares and Groups:</b></td>
+     <td>
+      <a href="#chares">Chare Objects</a>,
+      <a href="#chareArrays">Chare Arrays</a>,
+      <a href="#groups">Groups and Node Groups</a>
+     </td>
+    </tr>
+
+    <tr>
+     <td align=right><b>Entry Methods:</b></td>
+     <td>
+      <a href="#nokeep">Read-Only Messages</a>,
+      <a href="#inline">Inline Messages</a>,
+      <a href="#expedited">Expedited Messages</a>,
+      <a href="#immediate">Immediate Messages</a>,<br>
+      <a href="#threaded">Threaded</a>,
+      <a href="#sync">Synchronized</a>,
+      <a href="#exclusive">Exclusive</a>,
+      <a href="#notrace">Non-Traced</a>
+     </td>
+    </tr>
+
+    <tr>
+     <td align=right><b>Initialization Functions:</b></td>
+     <td>
+      <a href="#initnode">Nodes</a>,
+      <a href="#initproc">Processors</a>
+     </td>
+    </tr>
+
+    <tr>
+     <td align=right><b>Miscellaneous:</b></td>
+     <td>
+      <a href="#include">Include</a>
+     </td>
+    </tr>
+
+   </table>
+  </center>
+
+
+
+  <h2>Chares and Groups</h2>
+
+  <a name="chares"></a>
+  <h3>Chare Objects</h3>
+
+  <a name="chareArrays"></a>
+  <h3>Chare Arrays</h3>
+
+  <a name="groups"></a>
+  <h3>Groups and Node Groups</h3>
+
+  <p class="BasicParagraph">
+   Groups are similar to chare arrays in that they are collections of objects that span multiple
+   processors.  However, unlike a chare array, there is exactly one group object per processor
+   (exactly one object per node for node groups).
+  </p>
+
+
+  <h2>Entry Methods</h2>
+
+  <a name="nokeep"></a>
+  <h3>Read-Only Messages</h3>
+
+  <p class="BasicParagraph">
+   In some cases, it can be advantagous for the Charm++ Runtime System to <i>know</i> that a message
+   and the data that it contains will be treated in a read-only manner.  The programmer can indicate
+   this to the runtime system by marking the entry method with <i>nokeep</i> in the interface file.
+   When this is done, the runtime system assumes that the message (and the data it contains) will not
+   be modified or deleted by the entry method.  This is particularly useful in cases such as broadcasts
+   where multiple chares on the same processor will be receiving the same message.  If no chare object
+   modifies or deletes the message, they can all share a single copy of the message.  This allows the
+   runtime to reuse the message instead of making a separate copy of the message for each chare object.
+  </p>
+
+  <p class="BasicParagraph">
+   <i><b>Example:</b></i>  entry [nokeep] void myEntryMethod(...);
+  </p>
+
+
+  <a name="inline"></a>
+  <h3>Inline Messages</h3>
+
+  <p class="BasicParagraph">
+   ...
+  </p>
+
+  <p class="BasicParagraph">
+   <i><b>Example:</b></i>  entry [inline] void myEntryMethod(...);
+  </p>
+
+
+  <a name="expedited"></a>
+  <h3>Expedited Messages</h3>
+
+  <p class="BasicParagraph">
+   ...
+  </p>
+
+  <p class="BasicParagraph">
+   <i><b>Example:</b></i>  entry [expedited] void myEntryMethod(...);
+  </p>
+
+
+  <a name="immediate"></a>
+  <h3>Immediate Messages</h3>
+
+  <p class="BasicParagraph">
+   ...
+  </p>
+
+  <p class="BasicParagraph">
+   <i><b>Example:</b></i>  entry [immediate] void myEntryMethod(...);
+  </p>
+
+
+  <a name="threaded"></a>
+  <h3>Threaded</h3>
+
+  <p class="BasicParagraph">
+   This keyword causes the entry method to be executed by a light-weight Converse thread (CthThread).  Since
+   a separate thread is executing the entry method, it has a separate stack.  This gives the
+   entry method the ability to suspend its execution (CthSuspend()) and re-awakened at a later time
+   (CthAwaken()).  While the entry method is actively executing (i.e. is not currently suspended),
+   it is still the only entry method executing on the processor.  If a threaded entry method
+   suspends itself, other entry methods may be executed/scheduled by the Charm++ Runtime System.
+   Once the threaded entry method is re-awakened and scheduled, it will have execusive use of the
+   processor again until it either re-suspends itself or completes.
+  </p>
+
+  <p class="BasicParagraph">
+   <i><b>Example:</b></i>  entry [threaded] void myEntryMethod(...);
+  </p>
+
+
+  <a name="sync"></a>
+  <h3>Synchronized</h3>
+
+  <p class="BasicParagraph">
+   A synchronized entry method is an entry method that will block the caller when it is called.  It is
+   assumed/required that the calling entry method be a <i>threaded</i> entry method so that it can
+   suspend until the synchronized entry method is finished.  Because synchronized entry methods block
+   the execution of the calling entry method, they can return values to the caller if desired.
+  </p>
+
+  <p class="BasicParagraph">
+   <i><b>Example:</b></i>  entry [sync] void myEntryMethod(...);
+  </p>
+
+
+  <a name="exclusive"></a>
+  <h3>Exclusive</h3>
+
+  <p class="BasicParagraph">
+   This keyword only applied to node groups.  Entry methods for node groups that are marked with the
+   <i>exclusive</i> keyword will not execute on the same node while another <i>exclusive</i> entry method
+   in the same node group is executing.  That is, for any given node group, only one of its <i>exclusive</i>
+   entry methods can be executing on the node at any given moment.
+  </p>
+
+  <p class="BasicParagraph">
+   <i><b>Example:</b></i>  entry [exclusive] void myEntryMethod(...);
+  </p>
+
+
+  <a name="notrace"></a>
+  <h3>Non-Traced</h3>
+
+  <p class="BasicParagraph">
+   This keyword causes the entry method to be <i>invisible</i> to Projections.  That is, information
+   about this entry method will not be retained in Projection's log files.
+  </p>
+
+  <p class="BasicParagraph">
+   <i><b>Example:</b></i>  entry [notrace] myEntryMethod(...);
+  </p>
+
+
+  <h2>Initialization Functions</h2>
+
+  <!-- Figure -->
+  <table class="StandardFigure" align=right border=0>
+   <tr><td align=left valign=middle bgColor=bbbbbb>
+    <div style="{margin:5px;}">
+     <code>
+      module <i>foo</i> {<br>
+      <br>
+      &nbsp;&nbsp;initnode void nodeInitFunction(void);<br>
+      &nbsp;&nbsp;initproc void procInitFunction(void);<br>
+      <br>
+      &nbsp;&nbsp;chare <i>myChare</i> {<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;initnode void charesNodeInitFunction(void);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;initnode void charesProcInitFunction(void);<br>
+      &nbsp;&nbsp;}<br>
+      }
+     </code>
+    </div>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 1:</b> Declaring Initialization Functions in the Interface File
+   </td></tr>
+  </table>
+
+  <a name="initnode"></a>
+  <h3>Nodes</h3>
+
+  <p class="BasicParagraph">
+   If a function is marked with the <i>initnode</i> heyword in the interface file, the function will
+   be executed once on each node before the main chare is created.  See Figure 1 for examples of how
+   to declare node initialization functions.
+  </p>
+
+  <a name="initproc"></a>
+  <h3>Processors</h3>
+
+  <p class="BasicParagraph">
+   Similarly, functions marked with the <i>initproc</i> keyword in the interface file will be executed
+   once on each processor before the main chare is created.  Note that node initialization functions are
+   executed before processor initialization functions.  See Figure 1 for examples of how to declare
+   processor initialization functions.
+  </p>
+
+
+  <h2>Miscellaneous</h2>
+
+  <a name="include"></a>
+  <h3>Include</h3>
+
+  <p class="BasicParagraph">
+   ...
+  </p>
+
+
+  <!--#include virtual="footer.htm"-->
+
+
+ </body>
+
+</html>

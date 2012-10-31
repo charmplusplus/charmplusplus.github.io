@@ -1,0 +1,95 @@
+<html>
+
+ <head>
+  <title>Charm++ Tutorial - Projections</title>
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+ </head>
+ 
+ <body>
+ 
+  <!--<a href="TableOfContents.htm">Back to Table of Contents...</a><br><br>-->
+  
+  <!--#include virtual="header.htm"-->
+
+  
+  <!-- Section Title -->
+  <h1>Projections</h1>
+
+  <p class="BasicParagraph">
+   <i>Projections</i> is a performance visualization tool designed to work closely with the
+   Charm++ Runtime System.  The Charm++ Runtime System collects performance data about the Charm++
+   application during runtime.  This data is then analyzed by Projections.  Projections can
+   present this data to the user using several different graphs/representations.
+  </p>
+
+  <p class="BasicParagraph">
+  </p>
+
+
+  <h3>How Projections Works</h3>
+
+  <p class="BasicParagraph">
+   The Charm++ Runtime System keeps track of when each entry methods starts and stops.  Additionally,
+   it keeps track of the various messages that are sent by the entry methods (including aspects such
+   as where the message is headed, the size of the message, and so on).  This information is recorded
+   in log files which are analyzed after the program has finished executing.
+   The user can also choose to enable and disable the collection of the performance data dynamically
+   during runtime.
+  </p>
+
+  <p class="BasicParagraph">
+  </p>
+
+  <h3>Commonly Used Graphs/Visualizations Available In Projections</h3>
+
+  <!-- Figure -->
+  <center>
+  <table class="StandardFigure" border=0 width=1000 cellspacing=20>
+
+   <tr>
+    <td align=right valign=middle bgColor=ffffff>
+     <a href="images/Projections_Summary.jpg">
+      <img src="images/Projections_Summary_sm.jpg" border=0>
+     </a>
+    </td>
+    <td align=left valign=middle>
+     <b>Summary:</b>  When projections is initially openned, a summary graph of the application execution
+     is presented to the user (assuming the summary module was linked to the application; see the
+     <a href="#CompileTimeOptions">Compile Time Options</a> section below).  The utilization is an
+     aggregate of all the processors.
+    </td>
+   </tr>
+
+
+   <tr>
+    <td align=right valign=middle bgColor=ffffff>
+     <a href="images/Projections_Overview.jpg">
+      <img src="images/Projections_Overview_sm.jpg" border=0>
+     </a>
+    </td>
+    <td align=left valign=middle>
+     <b>Overview:</b>  In the overview graph, each processor is repressented by a horizontal bar
+     with time increasing time from left to right.  The color of the bar at that point in time
+     represents the utilization of that processor (see the color scale to the left of the overview
+     graph).
+    </td>
+   </tr>
+
+  </table>
+  </center>
+
+
+  <h2>Using Projections</h2>
+
+  <a name="CompileTimeOptions"></a>
+  <h3>Compile Time Options</h3>
+
+  <h3>Runtime Options</h3>
+
+
+  <!--#include virtual="footer.htm"-->
+
+
+ </body>
+
+</html>

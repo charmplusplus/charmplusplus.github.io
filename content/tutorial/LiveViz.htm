@@ -1,0 +1,199 @@
+<html>
+
+ <head>
+  <title>Charm++ Tutorial - LiveViz</title>
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+ </head>
+
+ <body>
+
+  <!--<a href="TableOfContents.htm">Back to Table of Contents...</a><br><br>-->
+
+  <!--#include virtual="header.htm"-->
+
+
+  <!-- Section Title -->
+  <h1>LiveViz <i>(using the 2D Jacobi Program)</i></h1>
+
+  <table cellpadding=0 cellspacing=0 align=right>
+   <tr><td>
+
+  <!-- Figure -->
+  <table class="StandardFigure" border=0 width=610 cellpadding=0 cellspacing=10>
+   <tr>
+    <td colspan=3 align=center valign=middle>
+     <img src="images/LiveViz_2DJacobiExample_BeforeAfter.jpg">
+    </td>
+   </tr>
+   <tr>
+    <td align=center valign=middle width=300>(<i>Before</i>: Only a few outer-loop iterations)</td>
+    <td align=center valign=middle width=10>&nbsp;</td>
+    <td align=center valign=middle width=300>(<i>After</i>: After many outer-loop iterations)</td>
+   </tr>
+   <tr>
+    <td colspan=3 align=center valign=middle>
+     <b>Figure 1:</b> Before and after screenshots of LiveViz output.  If the data values are
+     thought of as temperature.  Red represents <i>hot (value near 1.0)</i>.  Blue represents
+     <i>cold (value near 0.0)</i>.  Black is a <i>middle temperature (value near 0.5)</i>.
+    </td>
+   </tr>
+  </table>
+
+   </td></tr>
+   <tr><td>
+
+  <!-- Figure -->
+  <table class="StandardFigure" border=0 width=610 cellpadding=0 cellspacing=10>
+   <tr>
+    <td align=center valign=middle><img src="images/LiveViz_2DJacobiExample_ColorScale.jpg"></td>
+   </tr>
+   <tr>
+    <td align=center valign=middle>
+     <b>Figure 2:</b> Color Scale
+    </td>
+   </tr>
+  </table>
+
+   </td></tr>
+  </table>
+
+
+  <h2>LiveViz</h2>
+
+  <p class="BasicParagraph">
+   LiveViz is a library (module) that enables a Charm++ application to present output to the user
+   in a graphical form as the program continues to execute.  More specifically, an image is created
+   for a chare array.  Each chare object in the chare array <i>contributes</i> to the image.  Once
+   all of the chare objects in the chare array have contributed their portion of the image, the combined
+   image is presented to the user via a LiveViz client application which displays the image.
+  </p>
+
+
+  <h2>How to Use LiveViz</h2>
+
+  <p class="BasicParagraph">
+   First, a special entry method is declared for the chare array.  Specifically, an entry method that
+   takes a <i>liveVizRequestMsg</i> message.  This message contains various peices of information
+   including the size of the display area in the LiveViz client program (that is, the size of the area
+   where the chare array can draw to).  A callback object is created that points to this partictular
+   entry method.
+  </p>
+
+  <p class="BasicParagraph">
+   Second, after the chare array is created, LiveViz must be configured.  LiveViz can
+   be configured to create both grayscale and color images (and floating-point <i>images</i> which will be
+   converted to a color images).  LiveViz can also be configured to control when the image is updated:
+   when the program triggers it, when the client triggers it, or to be continuously updated.  The
+   configuration is contained in an object called a <i>liveVizConfig</i> object.
+  </p>
+
+  <p class="BasicParagraph">
+   Third, LiveViz is then <i>initialized</i> for a chare array and configuration object pair.  Once this
+   occures, the chare array can create a LiveViz image which can give the user information related to
+   its current state.
+  </p>
+
+
+  <h2>Revisiting the Basic 2D Jacobi Program</h2>
+
+  <p class="BasicParagraph">
+   The Basic 2D Jacobi program (which was originally presented <a href="Basic2DJacobi.htm">here</a>)
+   will be extended to provide LiveViz support.  In the original Basic 2D Jacobi program, there was
+   only a single point being held constant over the entire value matrix.  To make the LiveViz output
+   more interesting, the Basic 2D Jacobi program has been modified to have several areas held constant.
+   In particular, every chare object (except for the first row of chare objects) will hold the
+   first row of its local value sub-matrix at a constant value.  The constant values will alternate
+   for neighboring chare objects (to create a checkerboard like pattern).
+  </p>
+
+  <p class="BasicParagraph">
+   The values in the value matrix fall between the values of 0.0 and 1.0.  If we imagine
+   that they represent a temperature value on a 2D surface, with 0.0 being <i>cold</i> and 1.0 being
+   <i>hot</i>, then the resulting image will be a temperature image of the 2D surface.
+  </p>
+
+  <h3>Modifying the Basic 2D Jacobi Program</h3>
+
+  <p class="BasicParagraph">
+   A modified version of the Basic 2D Jacobi program can be found
+   <a href="examples/Basic2DJacobi_LiveViz.tar.gz">here (Basic2DJacobi_LiveViz.tar.gz)</a>.
+   In addition to changing which value
+   elements are held constant, several <i>sleep</i> calls have been added to slow the code down so
+   user can both have time to connect the LiveViz client and time to see the image change slowly.
+  </p>
+
+  <p class="BasicParagraph">
+   First, as is described above, an entry method that takes a <i>liveVizRequestMsg</i> message must be
+   created.  The prototype for this function should fit the form
+   <b><code>void MyChareClass::myLiveVizEntryMethod(liveVizRequestMsg* msg)</code></b> where
+   <i>MyChareClass</i> is the name of the chare class and <i>myLiveVizEntryMethod</i> is the name of
+   the entry method.  At some point in this function, a call to the <i>liveVizDeposit</i> function.
+   The prototype for the <i>liveVizDeposit</i> function is
+   <b><code>liveVizDeposit(msg, startX, startY, width, height, imageBuff, this, max_image_data)</code></b>.
+   The important parameters are as follows: <i>msg</i> is a pointer to the <i>liveVizRequestMsg</i> that
+   was passed to the entry method, <i>startX</i> and <i>startY</i> are the X and Y coordinates of the upper
+   left corner of the sub-image contributed by this chare object, <i>width</i> and <i>height</i> are the
+   width and height of the sub-image contributed by this chare object, <i>imageBuff</i> is a pointer to
+   a data buffer containing the image data for the sub-image (the format of which depends on the type of
+   image being produced), and <i>this</i> is the special C++ <i>this</i> pointer.  The final parameter,
+   in this case <i>max_image_data</i>, is used to control how image data is combined when multiple chare
+   objects product data to overlapping areas of the image (that is, when one or more sub-images created by
+   chare objects overlap with one another).
+  </p>
+
+  <p class="BasicParagraph">
+   In the case of the Basic 2D Jacobi program, each of the Jacobi chare objects in the 2D chare array
+   have an independent, non-overlapping portion of the overall value matrix (their local sub-matrix).
+   Because of this, none of the sub-images create by the chare objects will overlap with one another.
+   To keep the code simple, the resulting image will have a single pixel per element in the value matrix.
+   The width and height of the client's drawing area will be ignored to keep the code simple and straight
+   forward.  In the example code, the name of the entry method is
+   <i>Jacobi::liveVizFunc()</i> and the code for it can be found in <i>jacobi.C</i>.
+  </p>
+
+  <p class="BasicParagraph">
+   Second, a <i>liveVizConfig</i> object containing configuration data for LiveViz must be created.
+   For this example, a color image is created and will be continuously updated.
+  </p>
+
+  <p class="BasicParagraph">
+   Third, LiveViz is initiallized with the chare array and configuration object pair.  The code for
+   doing both the second and third steps can be found in <i>Main::Main()</i> in <i>main.C</i>.
+  </p>
+
+  <h3>Running the Basic 2D Jacobi Program</h3>
+
+  <p class="BasicParagraph">
+   When the Charm++ program is started, it must
+   specify that it will act as a <i>CCS server</i>.  To do this add the following options to the
+   command line used to launch the Charm++ program: <b><code>++server ++server-port xxxx</code></b> where
+   <i>xxxx</i> is the port number where the Charm++ application will listen for CCS messages.  LiveViz
+   uses CCS to communicate with the Charm++ application.
+  </p>
+
+  <p class="BasicParagraph">
+   Once the Charm++ program has been started, a
+   LiveViz client program can attach to it.  One LiveViz client program can be found at
+   <i>[charmDir]/java/bin/liveViz</i> where <i>[charmDir]</i> is the base directory for the Charm++
+   distribution.  This LiveViz client program expects two command line arguements: (1) <i>host</i> which
+   is the name of the machine on which the <i>charmrun</i> command was executed and (2) <i>port</i> which is
+   the port number the Charm++ application is listening for CCS messsages on (should match the <i>xxxx</i>
+   specified for the <i>++server-port xxxx</i> command line option given to <i>charmrun</i>).
+  </p>
+
+
+  <h2>More on LiveViz</h2>
+
+  <p class="BasicParagraph">
+   For more information on LiveViz, please refer to
+   <a href="http://charm.cs.uiuc.edu/manuals/html/libraries/6_liveViz_Library.html">Section 6: LiveViz Library</a> in the
+   <a href="http://charm.cs.uiuc.edu/manuals/html/libraries/manual.html">Converse and Charm++ Libraries Manual</a>.
+  </p>
+
+
+  <!--#include virtual="footer.htm"-->
+
+
+ </body>
+
+</html>

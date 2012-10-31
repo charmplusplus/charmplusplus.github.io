@@ -1,0 +1,98 @@
+<html>
+
+ <head>
+  <title>Charm++ Tutorial - Callbacks</title>
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+ </head>
+ 
+ <body>
+ 
+  <!--<a href="TableOfContents.htm">Back to Table of Contents...</a><br><br>-->
+
+  <!--#include virtual="header.htm"-->
+  
+  
+  <!-- Section Title -->
+  <h1>Callbacks</h1>
+
+  <p class="BasicParagraph">
+   Callbacks are used by the the Charm++ Runtime System, frameworks, libraries, and so on to notify
+   application code that some kind of <i>event</i> has occured.  For example, reductions use callbacks to
+   notifiy the application code when the reduction has completed.  The basic idea is that the application
+   code can specify what <i>action</i> to take when the callback is <i>triggered</i> (i.e. the specific
+   <i>event</i> occurs).  The <i>action</i> taken can be a variety of things including calling function or
+   having the application exit.
+  </p>
+
+  <h3><i>"Do Nothing"</i> Callback</h3>
+
+  <p class="BasicParagraph">
+   To create a callback object that does nothing, simply create it as follows:
+   <b>CkCallback cb(CkCallback::ignore)</b>.  When triggered, the callback does nothing.
+  </p>
+
+  <h3><i>CkExit</i> Callback</h3>
+
+  <p class="BasicParagraph">
+   To create a callback object that will cause CkExit() to be called when the callback is triggered,
+   simply create it as follows: <b>CkCallback cb(CkCallback::ckExit)</b>.
+  </p>
+
+  <h3><i>C Function</i> Callback</h3>
+
+  <p class="BasicParagraph">
+   To create a callback object that will cause a C function to be executed, create it as
+   follows: <b>CkCallback cb(CkCallbackFunc cFunc, void* param)</b>.  Here, the type of the
+   <i>CkCallbackFunc</i> is <b>void myCFunction(void* param, void* msg)</b>.  The <i>param</i>
+   pointer used when the callback object was created will be passed to the C function as the
+   <i>param</i> parameter.  The <i>msg</i> parameter will point to the message created by whatever
+   <i>entity</i> (e.g. a library) triggers the callback.
+  </p>
+
+  <h3><i>Entry Method</i> Callback</h3>
+
+  <p class="BasicParagraph">
+   To create a callback object that will cause an entry method to be called on a chare object,
+   create it as follows: <b>CkCallback cb(int entryMethodIndex, CkChareID &id)</b>.  Each entry
+   method for a chare class has an associated <i>entry method index</i>.  The <i>entry method
+   index</i> is used here to identify which entry method on the chare object (specified by the
+   <i>id</i> parameter) should be executed.
+  </p>
+
+  <p class="BasicParagraph">
+   To get the <i>entry method index</i> for any given
+   entry method, do the following:
+   <b>int entryMethodIndex = CkIndex_MyChareClass::myEntryMethod(<i>...parameters for entry method...</i>)</b>
+   where <i>MyChareClass</i> is the name of the chare class and <i>myEntryMethod</i> is the name
+   of the entry method.  The parameters passed to this function are not actually used when retrieving
+   the <i>entry method index</i>; they are only used to identify which entry method is actually being
+   called in cases where multiple entry methods share the same name (i.e. are overloaded).  For example,
+   to get the <i>entry method index</i> for an entry method with the following prototype:
+   <b>void MyChareClass::myEntryMethod(int* x)</b> one could use
+   <b>int myEntryMethodIndex = CkIndex_MyChareClass::myEntryMethod((int*)NULL)</b>.  (Remember, this is not
+   actually calling <i>myEntryMethod</i> so it is alright for the pointer to have a <i>NULL</i> value.  Only
+   the type of the parameter is important so overloaded functions can be differentiated.)
+  </p>
+
+  <h2>Example Usage</h2>
+
+  <p class="BasicParagraph">
+   For an example of how a callback would be created an used, please see the
+   <a href="Reductions.htm">Reductions Section</a>.
+  </p>
+
+  <h2>More Information</h2>
+
+  <p class="BasicParagraph">
+   For more information on callbacks, please see
+   <a href="http://charm.cs.uiuc.edu/manuals/html/charm++/3_15Callbacks.html">Section 3.15: Callbacks</a> of the
+   <a href="http://charm.cs.uiuc.edu/manuals/html/charm++/manual.html">The Charm++ Programming Language Manual</a>
+  </p>
+
+
+  <!--#include virtual="footer.htm"-->
+
+
+ </body>
+
+</html>

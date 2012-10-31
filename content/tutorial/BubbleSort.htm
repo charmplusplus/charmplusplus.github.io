@@ -1,0 +1,276 @@
+<html>
+
+ <head>
+  <title>Charm++ Tutorial - Bubble Sort</title>
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+ </head>
+ 
+ <body>
+ 
+  <!--<a href="TableOfContents.htm">Back to Table of Contents...</a><br><br>-->
+
+  <!--#include virtual="header.htm"-->
+  
+  
+  <!-- Section Title -->
+  <h1>Bubble Sort</h1>
+
+
+  <!-- Figure -->
+  <table class="StandardFigure" border=0 align=right>
+   <tr><td align=left valign=middle bgColor=bbbbbb>
+    <div style="{margin:5px;}">
+     <code>
+      <font class="codeComment">// Assumed variable declarations</font><br>
+      #define N <font class="generalComment">...</font><br>
+      int array[N] = { <font class="generalComment">...</font> };<br>
+      <br>
+      <font class="codeComment">// Outer-Loop - Do (N - 1) iterations</font><br>
+      for (int iter = 0; iter < (N - 1); iter++) {<br>
+      <br>
+      &nbsp;&nbsp;<font class="codeComment">// Inner-Loop</font><br>
+      &nbsp;&nbsp;for (int i = 0; i < (N - 1); i++) {<br>
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">// Check this element against next element, and</font><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">//   swap them if needed (a test/swap operation)</font><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;if (array[i] > array[i+1]) {<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int tmp = array[i];<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array[i] = array[i+1];<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array[i+1] = tmp;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+      &nbsp;&nbsp;}<br>
+      }<br>
+     </code>
+    </div>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 1:</b> C++ Code for Bubble Sort Calculation
+   </td></tr>
+  </table>
+
+
+  <h3>Description of Bubble Sort</h3>
+
+  <p class="BasicParagraph">
+   The bubble sort alogrithm is a fairly straight forward way of sorting an array of values.
+   The goal of the calculation is to sort the contents of the array.
+   For the purpose of example, lets say we wish to sort an array of integers values
+   with length <i>N</i> so that the lowest values are at the beginning of the array (lowest index)
+   and the highest values are at the end of the array (highest index).
+  </p>
+
+  <p class="BasicParagraph">
+   The overall calculation is broken down into several iterations.  During each iteration, the
+   array is scanned.  Each element is compared against its neighbor.  If the two elements are
+   out of order (that is, if the element at the lower index has a higher value than the element
+   at the higher index), then values in the elements should be swapped.  This means that any value
+   in the array will only move by at most one index in the array during each iteration.  In the
+   worst case, an element will have to move from one end of the array to the completely other end
+   of the array (i.e. move <i>N&nbsp;-&nbsp;1</i> indexes).  This requires <i>N&nbsp;-&nbsp;1</i>
+   iterations to be performed (if no check is done during each iteration to test if the array is
+   sorted; we will not do this check, for now, to keep the code simple).
+  </p>
+
+  <h3>Parallel Implementation of Bubble Sort</h3>
+
+  <p class="BasicParagraph">  
+   The first observation to make about bubble sort is that the order of the test/swap operations (that is,
+   <i>if</i> statement in Figure 1) doesn't really matter.  It may make a slight difference on the total
+   number of iterations for a value at a particular location to move a certain distance, but this is a minor
+   point.  Because the order of these test/swap operations does not matter, each iteration can be broken up
+   into two phases.  In one phase, all of the odd elements (that is, elements at odd indexes) will compare
+   their value with their higher neighbor (that is, the element at index + 1).  By doing this, each element
+   in the array is involved in at most one test/swap during this phase.  In the next phase, all of the even
+   elements (that is, elements at even indexes) will compare their values with their higher neighbor.  If
+   it is easier to visualize, in the first phase the odd elements will compare their values with one neighbor
+   (all in one direction, either higher or lower) and then with the other neighbor in the next phase.  Figure
+   3 below, under the <i>Implement It</i> section, has an example array being sorted to help illustrate this
+   idea.
+  </p>
+
+  <p class="BasicParagraph">
+   For the sake of simplicity, we will start by only having a single array element (value) per chare object
+   in the chare array.  Additionally, we will use an implicit barrier to control progress via communication
+   with the main chare object.  Since the chare objects are only involved in a single test/swap operation per
+   phase, there should be little to no state to keep track of.
+  </p>
+
+  <!-- Figure -->
+  <table class="StandardFigure" align=right border=0>
+   <tr><td align=center valign=middle>
+    <a href="images/BubbleSortPhase.jpg">
+     <img class="StandardFigure" src="images/BubbleSortPhase_sm.jpg" border=0>
+    </a>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 2:</b> Communication performed in a single<br>
+    phase of the bubble sort calculation.
+   </td></tr>
+  </table>
+
+  <p class="BasicParagraph">
+   The communication between chare objects within any given phase should be fairly straight forward.  Let us
+   consider a single pair of chare objects, chare object at index <i>X</i> and its neighbor at index
+   <i>X+1</i>.  One of the chare objects, let's say <i>X</i>, will initiate the test by sending it's value
+   to the other object, <i>X+1</i>.  Once the message arrives is received, chare object <i>X+1</i>
+   <i>knows</i> both values and can perform the test.  If the object decides that the order of the
+   values is fine, it can deny the swap by sending a message back to <i>X</i> indicating this.  If, however,
+   the values need to be swapped, <i>X+1</i> can simply replace its old value with the value <i>X</i> sent
+   to it and send a message back to <i>X</i> containing its old value which <i>X</i> will use to replace
+   <i>X</i>'s value (completing the swap operation).  See Figure 2.
+  </p>
+
+  <p class="BasicParagraph">
+   Once the chare object at index <i>X</i> has received a reply from <i>X+1</i>, <i>X</i> will send
+   a message to the main chare object to indiciate that this pair (<i>X</i> and <i>X+1</i>) has finished the
+   swap for this phase of this iteration.  Once all of the pairs have done this, the main chare object will
+   start the next phase of the computation.  For now, this will serve as an implicit barrier which will
+   reduce the number of race conditions that are possible and reduce the complexity of the code for the
+   chare array.  However, it should be noted, the presence of this implicit barrier will degrade the performance
+   of the calculation as the chare objects in the chare array are continuously having to synchronize with
+   one another (and wait for the slowest object).
+  </p>
+
+
+  <h3>Implement It</h3>
+
+  <p class="BasicParagraph">
+   Try implementing the bubble sort calculation using Charm++.  See the hints for
+   <a href="ParallelPrefix.htm#Implement">implementing the parallel prefix program</a>
+   (specifically makefile, initial values, and checking correctness).
+
+   <ul>
+
+    <li style="{margin-bottom:20px;}">
+     <b>Single Value per Chare Object</b>: To keep things simple, start by having one array value
+     per chare object.  So, <i>N</i> chare objects each with a single integer value.
+    </li>
+
+    <li style="{margin-bottom:20px;}">
+     <b>Phases</b>: For the sake of simplicity, it may be easier to initially implement the program
+     so that each iteration is broken down into two phases.  In the first phase, have each of the odd
+     elements (i.e. each element at an odd index) test for swap (and swap if need be) with their
+     neighbors.  Then, in a second phase, of the remaining elements (i.e. each element at an even index)
+     have each test and swap with their neighbors.  This will mean that only a single chare object
+     is involved in a single test/swap during any given phase.  See the example below.  The indexes in
+     ( ) indicate a pair of chare objects that are communicating during the given phase.
+
+     <center>
+     <table class="StandardFigure" cellpadding=8 cellspacing=0>
+
+      <tr bgColor=eeeeee>
+       <td colspan=3 align=center>initial array:  {  0, 1, 6, 3, 7, 2, 9, 3 }</td>
+      </tr>
+
+      <tr bgColor=dddddd>
+       <td align=center valign=middle><b>Iteration and Phase</b></td>
+       <td align=center valign=middle><b>Before Phase starts</b></td>
+       <td align=center valign=middle><b>After Phase Completes</b></td>
+      </tr>
+
+      <tr bgColor=eeeeee>
+       <td align=center valign=middle>iteration 1, phase 1</td>
+       <td align=center valign=middle>{ (0,1), (6,3), (7,2), (9,3) }</td>
+       <td align=center valign=middle>{ (0,1), (3,6), (2,7), (3,9) }</td>
+      </tr>
+
+      <tr bgColor=eeeeee>
+       <td align=center valign=middle>iteration 1, phase 2</td>
+       <td align=center valign=middle>{ 0, (1,3), (6,2), (7,3), 9 }</td>
+       <td align=center valign=middle>{ 0, (1,3), (2,6), (3,7), 9 }</td>
+      </tr>
+
+      <tr bgColor=eeeeee>
+       <td align=center valign=middle>iteration 2, phase 1</td>
+       <td align=center valign=middle>{ (0,1), (3,2), (6,3), (7,9) }</td>
+       <td align=center valign=middle>{ (0,1), (2,3), (3,6), (7,9) }</td>
+      </tr>
+
+      <tr>
+       <td align=center valign=middle colspan=3>
+        <b>Figure 3:</b> Example array being sorted using the parallel bubble sort algorithm.
+       </td>
+      </tr>
+
+     </table>
+     </center>
+
+    </li>
+
+    <li style="{margin-bottom:20px;}">
+     <b>Barriers</b>: Use implicit barriers between the
+     phases.  That is, have the main chare control the progress of the calculation by having each
+     chare object in the array checkin with the main chare after each phase of each iteration.
+     While this is obviously less efficient, it will be easier for the programmer to keep track of
+     what the program is doing for the sake of learning.
+    </li>
+
+   </ul>
+
+  </p>
+
+  <h3>Solution</h3>
+
+  <p class="BasicParagraph">
+   A simple solution for this program can be found
+   <a href="examples/BubbleSort.tar.gz">here (BubbleSort.tar.gz)</a>.
+   Please note, this solution does not just run for <i>N</i> iterations.  Instead, it exits after
+   there have been two consecutive phases with no swaps occuring (indicating that the array is
+   sorted).
+  </p>
+
+
+  <h2>Extensions&nbsp;/&nbsp;Performance&nbsp;Considerations</h2>
+
+  <h3>Multiple Values per Chare Object</h3>
+
+  <p class="BasicParagraph">
+   Similar to the extension for the parallel prefix program, try implementing this calculation so
+   that each chare object contains multiple values.  Having a single integer value per chare object
+   is inefficient since the amount of computation done in an entry method is quite low and won't be
+   able to efficiently overlap with the overhead of sending messages.  With multiple integer values
+   per chare object, the amount of computation done per each message received will rise and likely
+   increase the efficiency of the program.
+  </p>
+
+  <h3>No Need for Barriers</h3>
+
+  <p class="BasicParagraph">
+   The presense of the implicit barriers reduces the efficiency of the calculation.  The barriers
+   are not actually required though.  Try writing an implementation that does not use any barriers.
+   That is, have the main chare start the computation and then only be notified when the array is
+   correctly sorted.  Additionally, no single chare object should act as a manager for any of the
+   other chare objects.  Instead, they should all be peers, each containing their values and trying
+   to trade values with their neighbors if they find that values are out of order.  Once again, it
+   will probably be easier to first implement an barrier-less implementation with each chare object
+   only having a single integer value.
+  </p>
+
+  <p class="BasicParagraph">
+   <b>Hint</b>:  Each chare object only needs to talk to its neighbors.  It should check both neighbors
+   to check if the values (its value and its neighbors values) are in order.  If the values are not in
+   order, then the appropriate swaps should take place. If a swap takes place between a chare object
+   and its neighbor, the other neighbor's value should also be rechecked to see if the new value needs
+   to be swapped with the other neighbor.  If a chare object checks both neighbors and finds that the
+   values are in order, it is currently finished working (for now).  I could be later <i>woken</i> up
+   by a neighbor that received a new value and might have to swap again in the future.  When all chare
+   objects decide that they are finished (no chare needs to swap with any of its neighbors) then the
+   overall array is sorted and all the chare objects are no longer sending/receiving any messages or
+   executing any entry methods.  Here, something called quiescence detection can be used.  <i>Quiescence</i>
+   occurs when all of the following conditions are met: (1) no chare objects are currenly processing
+   a messsage (i.e. executing an entry method), (2) no chare object has a message queued for it by the
+   Charm++ Runtime System, and (3) no messages are <i>in-flight</i> in the interconnect.  For more
+   information on quiescence detection, see
+   <a href="http://charm.cs.uiuc.edu/manuals/html/charm++/3_13Quiescence_Detection.html">Section 3.13: Quiescence Detection</a> of the
+   <a href="http://charm.cs.uiuc.edu/manuals/html/charm++/manual.html">The Charm++ Programming Language Manual</a>.
+   It might be easier to continue on with the tutorial and come back to this version of
+   bubble sort after having become a bit more experienced with Charm++ (specifically
+   after learning more about <a href="Callbacks.htm">callbacks</a>).
+  </p>
+
+  <!--#include virtual="footer.htm"-->
+
+
+ </body>
+
+</html>
