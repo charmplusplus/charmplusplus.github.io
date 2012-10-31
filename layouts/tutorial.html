@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Charm: <%= @item[:title] %></title>
+    <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc <%= Nanoc::VERSION %>"> 
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+	<ul>
+	  <li class="<%= @item[:homec] %>"><a class="headerLink" href="/"></a></li>
+          <li class="<%= @item[:tutorialc] %>"><a class="headerLink" href="/tutorial"></a></li>
+          <li class="<%= @item[:applicationsc] %>"><a class="headerLink" href="/applications"></a></li>
+          <li class="<%= @item[:benchmarksc] %>"><a class="headerLink" href="/benchmarks"></a></li>
+          <li class="<%= @item[:downloadc] %>"><a class="headerLink" href="/download"></a></li>
+          <li class="<%= @item[:toolsc] %>"><a class="headerLink" href="/tools"></a></li>
+          <li class="<%= @item[:helpc] %>" ><a class="headerLink" href="/help"></a></li>
+	</ul>
+      </div>
+    </div>
+
+    <div id="main">
+      <div id="content">
+        <%= yield %>
+      </div>
+    </div>
+
+    <div id="footer">
+      Copyright 2012
+    </div>
+  </body>
+</html>
