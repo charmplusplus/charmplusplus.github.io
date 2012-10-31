@@ -3,34 +3,48 @@
   <head>
     <meta charset="utf-8">
     <title>Charm: <%= @item[:title] %></title>
-    <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
+		<link href="tutorial/assets/documentation.css" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
+		</script>
+		<script src="http://charm.cs.illinois.edu/codemirror/lib/codemirror.js" type="text/javascript">
+		</script>
+		<script src="http://charm.cs.illinois.edu/codemirror/mode/clike/clike.js" type="text/javascript">
+		</script>
+		<script src="http://charm.cs.illinois.edu/codemirror/lib/util/runmode.js" type="text/javascript">
+		</script>
+		<link href="http://charm.cs.illinois.edu/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
+		<link href="http://charm.cs.illinois.edu/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
+		<script src="tutorial/assets/prettify.js" type="text/javascript">
+		</script>
+
 
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc <%= Nanoc::VERSION %>"> 
   </head>
   <body>
-    <div id="header">
-      <div id="menu">
-	<ul>
-	  <li class="<%= @item[:homec] %>"><a class="headerLink" href="/"></a></li>
-          <li class="<%= @item[:tutorialc] %>"><a class="headerLink" href="/tutorial"></a></li>
-          <li class="<%= @item[:applicationsc] %>"><a class="headerLink" href="/applications"></a></li>
-          <li class="<%= @item[:benchmarksc] %>"><a class="headerLink" href="/benchmarks"></a></li>
-          <li class="<%= @item[:downloadc] %>"><a class="headerLink" href="/download"></a></li>
-          <li class="<%= @item[:toolsc] %>"><a class="headerLink" href="/tools"></a></li>
-          <li class="<%= @item[:helpc] %>" ><a class="headerLink" href="/help"></a></li>
-	</ul>
-      </div>
+    <div class="navigation">
+				<ul id="nav-quicklinks">
+					<li class="<%= @item[:homec] %>"><a class="headerLink" href="/">Home</a></li>
+          <li class="<%= @item[:tutorialc] %>"><a class="headerLink" href="/tutorial">Tutorial</a></li>
+          <li class="<%= @item[:applicationsc] %>"><a class="headerLink" href="/applications">Applications</a></li>
+          <li class="<%= @item[:benchmarksc] %>"><a class="headerLink" href="/benchmarks">Benchmarks</a></li>
+          <li class="<%= @item[:downloadc] %>"><a class="headerLink" href="/download">Download</a></li>
+          <li class="<%= @item[:toolsc] %>"><a class="headerLink" href="/tools">Tools</a></li>
+          <li class="<%= @item[:helpc] %>" ><a class="headerLink" href="/help">Help</a></li>
+				</ul>
+      <div class="manualtitle"> Charm: <%= @item[:title] %> </div>
     </div>
 
-    <div id="main">
+    <div id="maincontainer">
       <div id="content">
         <%= yield %>
       </div>
     </div>
 
     <div id="footer">
-      Copyright 2012
+      Parallel Programming Lab, Dept of Computer Science, University of Illinois
     </div>
   </body>
 </html>
