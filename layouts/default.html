@@ -19,7 +19,6 @@
 		<script src="/assets/prettify.js" type="text/javascript">
 		</script>
 
-
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc <%= Nanoc::VERSION %>"> 
   </head>
@@ -40,7 +39,7 @@
 				<ul id="nav-quicklinks">
 					<li class="<%= @item[:homec] %>">         <a href="/">Home</a></li>
           <li class="<%= @item[:explorec] %>">      <a href="/explore/">Explore</a></li>
-          <li class="<%= @item[:manualc] %>">        <a href="/manual/">Manual</a></li>
+          <li class="<%= @item[:learnc] %>">        <a href="/manual/">Manual</a></li>
           <li class="<%= @item[:tutorialc] %>">     <a href="/tutorial">Tutorial</a></li>
           <li class="<%= @item[:applicationsc] %>"> <a href="/applications">Applications</a></li>
           <li class="<%= @item[:benchmarksc] %>">   <a href="/benchmarks">Benchmarks</a></li>
@@ -50,7 +49,7 @@
       <div class="manualtitle"> Charm: <%= @item[:title] %> </div>
     </div>
 		<ul id="nav-floatmenu">
-			<li title='Explore Charm++'  class="nav-floaticon"> <img src='/images/explore_icon.png'  width="44px" />
+			<li title='Explore Charm++'  class="nav-floaticon"> <img src='/images/explore_icon.png' />
 				<div>
 				<h6>Explore Charm++</h6>
 				<ul>
@@ -61,7 +60,7 @@
 				</ul>
 				</div>
 			</li>
-			<li title='Learn Charm++'    class="nav-floaticon"> <img src='/images/manual_icon.png'   width="36px" />
+			<li title='Learn Charm++'    class="nav-floaticon"> <img src='/images/manual_icon.png' />
 				<div>
 				<h6>Learn Charm++</h6>
 				<ul>
@@ -72,7 +71,7 @@
 				</ul>
 				</div>
 			</li>
-			<li title='Follow Charm++'    class="nav-floaticon"> <img src='/images/git_icon.png'      width="32px" />
+			<li title='Follow Charm++'    class="nav-floaticon"> <img src='/images/git_icon.png' />
 				<div>
 				<h6>Follow Charm++</h6>
 				<ul>
@@ -82,7 +81,7 @@
 				</ul>
 				</div>
 			</li>
-			<li title='Download Charm++' class="nav-floaticon"> <a href="/download/"><img src='/images/download_icon.png' width="25px" /></a></li>
+			<li title='Download Charm++' class="nav-floaticon"> <a href="/download/"><img src='/images/download_icon.png' /></a></li>
 		</ul>
 
   </body>
