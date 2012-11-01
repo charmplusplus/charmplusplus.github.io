@@ -13,8 +13,10 @@ $(document).ready( function() {
     .css('cursor','pointer');
 
 		$("#nav-floatmenu > li")
-		.click(      function() { var $kids = $(this).css("border-color", "#00a4e4").children('div').fadeToggle(); } )
-		.mouseleave( function() { var $kids = $(this).css("border-color", "#ffffff").children('div').fadeOut(); } );
+		.click(      function() { $(this).css("border-color", "#00a4e4").children('div').fadeToggle(); } )
+		.mouseleave( function() { $(this).children('div').fadeOut().parent().css("border-color", "#ffffff"); } );
+		//$("#nav-floatmenu > li > div")
+		//.mouseleave( function() { $(this).fadeOut().parent().css("border-color", "#ffffff"); } );
 
 } )
 

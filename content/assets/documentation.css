@@ -160,10 +160,10 @@ div.manualtitle	{
 #nav-floatmenu * { text-align: left; }
 #nav-floatmenu ul { list-style-type: none; margin: 0; padding: 0; }
 #nav-floatmenu img { border: none; margin: 0; padding: 0;  }
-#nav-floatmenu a, #nav-floatmenu a:visited { border: none; margin: 0; padding: 10px 20px; display: block; color: #333333; }
+#nav-floatmenu a, #nav-floatmenu a:visited { border: none; margin: 0; display: block; color: #333333; }
 #nav-floatmenu a:hover, #nav-floatmenu a:active { background: #00a4e4; }
 #nav-floatmenu h6 { text-align: center; font-size: 110%; margin:3px auto; }
-#nav-floatmenu > li { margin:5px; padding: 3px; height:40px; border-left: 5px solid #ffffff; }
+#nav-floatmenu > li { margin:5px; border-left: 5px solid #ffffff; }
 #nav-floatmenu > li > div {
 	display: none;
 	float: left;
@@ -174,7 +174,7 @@ div.manualtitle	{
 }
 #nav-floatmenu > li > div li { border-bottom: 1px dotted #999999; }
 #nav-floatmenu > li > div li:last-child { border-bottom: none; }
-
+#nav-floatmenu > li > div a { padding: 10px 20px; } 
 
 
 pre {
