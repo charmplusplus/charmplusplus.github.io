@@ -12,5 +12,9 @@ $(document).ready( function() {
     .mouseleave( function() { $("ul.manual-toc").fadeOut('slow'); $("#pulldowntab").fadeIn('slow'); } )
     .css('cursor','pointer');
 
+		$("#nav-floatmenu > li")
+		.click(      function() { var $kids = $(this).css("border-color", "#00a4e4").children('div').fadeToggle(); } )
+		.mouseleave( function() { var $kids = $(this).css("border-color", "#ffffff").children('div').fadeOut(); } );
+
 } )
 

@@ -23,7 +23,19 @@
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc <%= Nanoc::VERSION %>"> 
   </head>
+
   <body>
+    <div id="maincontainer">
+      <div id="content">
+        <%= yield %>
+      </div>
+    </div>
+
+    <div id="footer">
+      Parallel Programming Lab, Dept of Computer Science, University of Illinois
+    </div>
+
+
     <div class="navigation">
 				<ul id="nav-quicklinks">
 					<li class="<%= @item[:homec] %>">         <a href="/">Home</a></li>
@@ -36,22 +48,42 @@
           <li class="<%= @item[:pplc] %>">          <a href="/download">PPL</a></li>
 				</ul>
       <div class="manualtitle"> Charm: <%= @item[:title] %> </div>
-			<div id="nav-floatmenu">
-				<a title='Explore Charm++'  href="#explore"> <img src='/images/explore_icon.png'  width="44px" /></a>
-				<a title='Learn Charm++'    href="#learn">   <img src='/images/manual_icon.png'   width="36px" /></a>
-				<a title='Browse Source'    href="#browse">  <img src='/images/git_icon.png'      width="32px" /></a>
-				<a title='Download Charm++' href="#download"><img src='/images/download_icon.png' width="30px" /></a>
-			</div>
     </div>
+		<ul id="nav-floatmenu">
+			<li title='Explore Charm++'  class="nav-floaticon"> <img src='/images/explore_icon.png'  width="44px" />
+				<div>
+				<h6>Explore Charm++</h6>
+				<ul>
+					<li><a href="/capabilities/">Capabilities</a></li>
+					<li><a href="/progmodel/">Programming Model</a></li>
+					<li><a href="/execmodel/">Execution Model</a></li>
+					<li><a href="/history/">History</a></li>
+				</ul>
+				</div>
+			</li>
+			<li title='Learn Charm++'    class="nav-floaticon"> <img src='/images/manual_icon.png'   width="36px" />
+				<div>
+				<h6>Learn Charm++</h6>
+				<ul>
+					<li><a href="http://charm.cs.illinois.edu/manuals/html/charm++/A.html">Installation</a></li>
+					<li><a href="/tutorial/">Tutorial</a></li>
+					<li><a href="/manual/">Manual</a></li>
+					<li><a href="http://charm.cs.illinois.edu/papers">Publications</a></li>
+				</ul>
+				</div>
+			</li>
+			<li title='Browse Source'    class="nav-floaticon"> <img src='/images/git_icon.png'      width="32px" />
+				<div>
+				<h6>Browse Source</h6>
+				<ul>
+					<li><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=charm.git">Recent Commits</a></li>
+					<li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+					<li><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi">Other Repositories</a></li>
+				</ul>
+				</div>
+			</li>
+			<li title='Download Charm++' class="nav-floaticon"> <a href="/download/"><img src='/images/download_icon.png' width="25px" /></a></li>
+		</ul>
 
-    <div id="maincontainer">
-      <div id="content">
-        <%= yield %>
-      </div>
-    </div>
-
-    <div id="footer">
-      Parallel Programming Lab, Dept of Computer Science, University of Illinois
-    </div>
   </body>
 </html>
