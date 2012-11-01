@@ -36,7 +36,54 @@
       <div class="manualtitle"> Charm: <%= @item[:title] %> </div>
     </div>
 
-		<div id=splashscreen">
+		<div id="scrollcontainer">
+		<div id="splashscreen">
+		<h2>Charm++</h2>
+		<h3>parallel programming framework</h3>
+				<ul id="keytraits">
+						<li>
+								<h4>migratable objects</h4>
+								<p>Express parallelism in terms of interacting collections of objects.
+								Design your classes to represent the units of work and data
+								natural to your app.
+								Dont be shackled by worrying about processors / ranks.
+								<!-- Your application objects can be automatically migrated across processors. -->
+								</p>
+						</li>
+						<li>
+								<h4>asynchronous methods</h4>
+								<p>Communication is as simple as invoking methods on remote objects.
+								Get zero-effort overlap of your computation with your communication.
+								Define your own serializable data types or message types.
+								<!-- Send data as method parameters, or in custom defined messages. -->
+								<!-- Every method invocation expresses a dependency in your parallel algorithm. -->
+								</p>
+						</li>
+						<li>
+						<h4>adaptive runtime</h4>
+						<p>Allow our intelligent runtime system to orchestrate execution.
+						You design and decompose the parallel algorithm; the runtime
+						observes and optimizes performance.
+						<!-- We believe this division of responsibilities is the secret to
+						productivity and portable performance. -->
+						</p>
+						</li>
+				</ul>
+				<div id="capabilities">
+					<h3>capabilities</h3>
+					<ul>
+						<li>Portable code</li>
+						<li>Automatic overlap</li>
+						<li>Automatic load balancing</li>
+						<li>Automatic checkpointing</li>
+						<li>Resilience to process failures</li>
+						<li>Independent modules, interleaved execution</li>
+						<li>Interoperable with MPI and OpenMP</li>
+						<li>Highly customizable</li>
+						<li alt="debugging, performance visualization, performance prediction">Ecosystem of tools</li>
+					</ul>
+				</div>
+		</div>
 		</div>
 
     <div id="maincontainer">

@@ -40,16 +40,33 @@ code, pre { font-family: "Courier New" Courier monospace; }
 body {
 		background: #ffffff;
 		background: url(hatchbkgd.png) repeat;
+		margin: 0; padding: 0;
+}
+
+#scrollcontainer {
+	width:100%;
+	margin: 0; padding: 0;
+	background: #ffffff;
 }
 
 #splashscreen {
-		width: 750px;
-		height: 400px;
-		margin: 4em auto 20px;
+		width: 900px;
+		margin: 20px auto;
 		padding: 2px;
-		-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
-		border: 1px solid #ccc;
 }
+
+#splashscreen h2 { font-size: 300%; margin-bottom:2px; padding:2px; }
+#splashscreen h3 { font-size: 150%; margin-top:2px; padding:2px; }
+#splashscreen h4 { font-size: 120%; margin:2px auto; color:#006600; text-align: center; }
+#keytraits {
+		list-style-type: none;
+		-moz-column-count: 3; -webkit-column-count: 3; column-count: 3;
+}
+#keytraits li { display: inline-block; }
+#keytraits li p { color: #777777; font-size:90%; }
+#capabilities { border-top: 1px solid #cccccc; }
+#capabilities ul { -moz-column-count: 2; -webkit-column-count: 2; column-count: 2; }
+
 
 #maincontainer {
 		background: #efefef; color: black;
@@ -79,6 +96,7 @@ div.navigation a:hover { color: #c4c4c4; border-color: #c4c4c4; }
 ul.manual-toc {
 		-moz-column-width: 32em;
 		-webkit-column-width: 32em;
+		column-width: 32em;
 		display: none;
 }
 
