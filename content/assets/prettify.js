@@ -7,11 +7,11 @@ $(document).ready( function() {
     .children("span.cm-charmkeyword").css("color", "#dd5ef3");
 
     // Enable top pull-down menu functionality
-    $(".navigation")
-    .append('<span id="pulldowntab" class="navsymbol">&raquo;</span>')
-    .click( function() { $("ul.manual-toc").fadeToggle(); $("#pulldowntab").toggle(); } )
-    .mouseleave( function() { $("ul.manual-toc").fadeOut('slow'); $("#pulldowntab").fadeIn('slow'); } )
-    .css('cursor','pointer');
+    //$(".navigation")
+    //.append('<span id="pulldowntab" class="navsymbol">&raquo;</span>')
+    //.click( function() { $("ul.manual-toc").fadeToggle(); $("#pulldowntab").toggle(); } )
+    //.mouseleave( function() { $("ul.manual-toc").fadeOut('slow'); $("#pulldowntab").fadeIn('slow'); } )
+    //.css('cursor','pointer');
 
     // Enable floating navigation menu functionality
 	$("#nav-floatmenu > li")
