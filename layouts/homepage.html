@@ -50,10 +50,11 @@
 				<ul id="keytraits">
 						<li>
 								<h4>migratable objects</h4>
-								<p>Express parallelism in terms of interacting collections of objects.
-								Design your classes to represent the units of work and data
-								natural to your app.
-								Dont be shackled by worrying about processors / ranks.
+								<p>
+								Use our unified data / task parallel model.
+								Express parallelism in terms of interacting collections of objects.
+								Use work and data units natural to your app.
+								Dont shackle performance by explicitly managing ranks / processors.
 								<!-- Your application objects can be automatically migrated across processors. -->
 								</p>
 						</li>
@@ -61,7 +62,7 @@
 								<h4>asynchronous methods</h4>
 								<p>Communication is as simple as invoking methods on remote objects.
 								Get zero-effort overlap of your computation with your communication.
-								Define your own serializable data types or message types.
+								Define your own serializable data or message types.
 								<!-- Send data as method parameters, or in custom defined messages. -->
 								<!-- Every method invocation expresses a dependency in your parallel algorithm. -->
 								</p>
