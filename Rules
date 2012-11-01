@@ -22,8 +22,19 @@ compile '*' do
   if item.binary?
     # don’t filter binary items
   else
-    filter :erb
-    layout 'default'
+    case item[:extension]
+        when 'html'
+            # Lay the content out into this template
+            layout 'default'
+            # Run the laid out content through erb to run embedded function calls etc
+            filter :erb
+            #Convert resource links to use relative paths
+            #filter :relativize_paths,:type => :html
+        when 'css'
+            filter :relativize_paths,:type => :css
+        when 'js'
+            filter :relativize_paths,:type => :css
+    end
   end
 end
 
@@ -32,18 +43,19 @@ route '/tutorial/' do
   item.identifier + 'index.html'
 end
 
-route '/tutorial/*' do
-  # Write item with identifier /foo/ to /foo.ext
-  item.identifier.chop + '.' + item[:extension]
-end
-
 route '*' do
   if item.binary?
     # Write item with identifier /foo/ to /foo.ext
     item.identifier.chop + '.' + item[:extension]
   else
-    # Write item with identifier /foo/ to /foo/index.html
-    item.identifier + 'index.html'
+    case item[:extension]
+        when nil
+            item.identifier.chop
+        when 'html'
+            item.identifier + 'index.html'
+        else
+            item.identifier.chop + '.' + item[:extension]
+    end
   end
 end
 
