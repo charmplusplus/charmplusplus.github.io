@@ -166,8 +166,8 @@ div.manualtitle	{
 #nav-floatmenu > li { margin:5px; border-left: 5px solid #ffffff; }
 #nav-floatmenu > li > div {
 	display: none;
-	float: left;
-	position: absolute; top: 15%; left: 65px;
+	float: right;
+	position: relative; top: -48px; left: 15px;
 	width: 12em;
 	border-left: 5px solid #00a4e4;
 	z-index: 10;
