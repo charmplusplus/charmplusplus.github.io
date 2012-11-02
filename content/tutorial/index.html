@@ -8,36 +8,424 @@ downloadc: download
 toolsc: tools
 helpc: help
 ---
-      <h1> Charm++ Programming Tutorial </h1>
-      <p>
-       The purpose of this tutorial is to give the reader
-       a basic understanding of how to program using the Charm++ parallel programming model. Charm++
-       is an object-oriented message passing parallel programming model which has mainly been used in
-       realm of HPC and scientific computing.  Charm++ can be used to write parallel applications that
-       run on a variety of machines ranging from a single notebook/desktop computer to computer clusters
-       containing tens of thousands of processors.  To date, Charm++ applications have been shown to
-       scale to as many as forty thousand processors on some of the world's largest and most powerful
-       supercomputers.
-      </p>
 
-      <p> On to the <a href="TableOfContents.html">Table of Contents</a> </p>
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+  <script language="javascript"><!--
 
-<b>Charm++ Workshops:</b>
-<br>
-<font size="+1">
-<li><a href="http://charm.cs.illinois.edu/workshops/charmWorkshop2012/">10th Workshop 2012</a>
-<li><a href="http://charm.cs.illinois.edu/workshops/charmWorkshop2011/">9th Workshop 2011</a>
-<li><a href="http://charm.cs.illinois.edu/workshops/charmWorkshop2010/">8th Workshop 2010</a>
-<li><a href="http://charm.cs.illinois.edu/workshops/charmWorkshop2009/">7th Workshop 2009</a>
-<li><a href="http://charm.cs.illinois.edu/workshops/charmWorkshop2008/">6th Workshop 2008</a>
-<li><a href="http://charm.cs.illinois.edu/workshops/charmWorkshop2007/">5th Workshop 2007</a>
-<li><a href="http://charm.cs.illinois.edu/workshops/charmWorkshop2005/">4th Workshop 2005</a>
-<li><a href="http://charm.cs.illinois.edu/workshops/charmWorkshop2004/">3rd Workshop 2004</a>
-<li><a href="http://charm.cs.illinois.edu/workshops/charmWorkshop2003/">2nd Workshop 2003</a>
-<li><a href="http://charm.cs.illinois.edu/workshops/charmWorkshop2002/">1st Workshop 2002</a>
-</font>
+    function showHide(contentElemID) {
+      if ((document.getElementById(contentElemID).style.display == 'none')) {
+        document.getElementById(contentElemID).style.display = 'inline';
+        setCookieFlag(contentElemID);
+      } else {
+        document.getElementById(contentElemID).style.display = 'none';
+        clearCookieFlag(contentElemID);
+      }
+    }
 
-<p>
-<b>Charm++ Workshop Introduction</b><a href="http://www.youtube.com/watch?v=FifzNTjRqt0&feature=relmfu"> video</a>.
-<b>For more</b> tutorial material, slides and readings refer <a href= "/classmaterial"> here. </a>
-</p>
+    function setCookie(name, value) {
+
+      // Create a date in the future
+      var date = new Date();
+      date.setTime( date.getTime() + (100*24*60*60*1000) );
+
+      // Set the cookie
+      document.cookie = name + '=' + value + '; expires=' + date.toGMTString() + '; path=/';      
+    }
+
+    function getCookie(name) {
+
+      // Split the cookies up and search through them
+      var cookies = document.cookie.split(';');
+      var nameEqual = name + '=';
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var startIndex = cookie.indexOf(nameEqual);
+        if (startIndex >= 0) {
+          var rtn = cookie.substring(nameEqual.length + startIndex, cookie.length);
+          return rtn;
+        }
+      }
+
+      // If execution reaches this point, the cookie was not found
+      return null;
+    }
+
+    function setCookieFlag(name) {
+      setCookie(name, '1');
+    }
+
+    function clearCookieFlag(name) {
+      setCookie(name, '0');
+    }
+
+    function getCookieFlag(name) {
+      var rtn = 0;
+      var cookieValue = getCookie(name);
+      if (cookieValue != null) {
+        if (cookieValue.charAt(0) == '1') {
+          rtn = 1;
+        }
+      }
+
+      return rtn;
+    }
+
+    var sections = new Array('BasicsOfCharmProgramming_SubSections',
+                             'BasicExamplePrograms_SubSections',
+                             'BasicCharmAbstractions_SubSections',
+                             'MoreExamplePrograms_SubSections',
+                             'Tools_SubSections',
+                             'AdvancedCharmAbstractions_SubSections',
+                             'ConverseFunctionality_SubSections',
+                             'LibrariesFrameworks_SubSections',
+                             'BeyondCharm_SubSections',
+                             'AMPI_SubSections',
+                             'Charisma_SubSections',
+                             'MSA_SubSections',
+                             'SDag_SubSections',
+                             'CharmApplications_SubSections',
+                             'Appendices_SubSections'
+                            );
+
+    function init() {
+
+      // Expand each section
+      for (var i = 0; i < sections.length; i++) {
+        var flag = getCookieFlag(sections[i]);
+        if (flag) {
+          showHide(sections[i]);
+        }
+      }
+    }
+
+   --></script>
+
+
+  <!--------------------- Introduction ------------------------->
+  <table border=0 cellpadding=5 cellspacing=0 class="TOCBlock">
+   <tr>
+    <td valign=middle align=center width=30 bgColor=f8e8c8><img src="images/Intro.png"></td>
+    <td valign=middle align=left style="{background-image:url(images/BGFade_Left_FFEECC.png); background-repeat:repeat-y;}">
+
+
+  <div class="TOCSection">
+   <div class="TOCSectionName">
+    <a href="Preface.html">Preface</a>
+    <img src="images/TOCArrowRight.png">
+   </div>
+   <div class="TOCSectionDescription">
+    This section describes what knowledge the reader is assumed to have, what knowledge the
+    reader will gain by working through this tutorial, a description of the tutorial itself,
+    and so on.
+   </div>
+  </div>
+
+ 
+  <div class="TOCSection">
+   <div class="TOCSectionName">
+    <a href="CharmConcepts.html">Introduction to Charm++ Concepts</a>
+    <img src="images/TOCArrowRight.png">
+   </div>
+   <div class="TOCSectionDescription">
+    This section describes the basic ideas behind the Charm++ programming model.
+    It introduces the concept of <i>chares</i>, <i>asyncronous message passing</i>,
+    and so on.
+   </div>
+  </div>
+
+  
+  <div class="TOCSection">
+   <div class="TOCSectionName">
+    <a href="CharmRuntimeSystem.html">Introduction to the Charm++ Runtime System</a>
+    <img src="images/TOCArrowRight.png">
+   </div>
+   <div class="TOCSectionDescription">
+    This section describes the Charm++ Runtime System and what role it plays during
+    the execution of a Charm++ application.  The various software layers (i.e.
+    machine layer, Converse, and so on) along with what role they play will be
+    discussed.
+   </div>
+  </div>
+
+    </td>
+   </tr>
+  </table>
+
+  <!--------------------- Basic ------------------------->
+  <table border=0 cellpadding=5 cellspacing=0 class="TOCBlock">
+   <tr>
+    <td valign=middle align=center width=30 bgColor=e8e8f8><img src="images/Basic.png"></td>
+    <td valign=middle align=left style="{background-image:url(images/BGFade_Left_EEEEFF.png); background-repeat:repeat-y;}">
+
+  
+  <div class="TOCSection">
+   <div class="TOCSectionName">
+    <a href="JavaScript:showHide('BasicsOfCharmProgramming_SubSections');">
+     Basics of Charm++ Programming
+    </a>
+   </div>
+   <div class="TOCSectionDescription">
+    This introduces the basic of Charm++ programming.  Simple example programs are
+    discussed along with the associated concepts of the Charm++ programming model.
+   </div>
+   <div class="TOCSectionContents" id="BasicsOfCharmProgramming_SubSections" style="{display:none;}">
+
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="CharmComponents.html">Components of a Charm++ Program</a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+     <div class="TOCSubSectionDescription">
+      This section introduces the basic components that make up a Charm++ program
+      (chare classes, entry methods, <i>.ci</i> files, and so on).  It also introduces
+      some of the Charm++ tools that are use to compile a Charm++ program.
+     </div>
+    </div>
+
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="BasicHelloWorld.html">Basic "Hello World" Program (single processor, single chare)</a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+     <div class="TOCSubSectionDescription">
+      This example "Hello World" program represents the simplest Charm++ program
+      that can be written.  The source code is given and key ideas are pointed out
+      to help the reader understand the basics of a Charm++ program.
+     </div>
+    </div>
+   
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="ArrayHelloWorld.html">Array "Hello World": A Slightly More Advanced "Hello World" Program (multiple processor, multiple chares)</a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+     <div class="TOCSubSectionDescription">
+      This example "Hello World" program is slightly more advanced than the basic one
+      presented previously.  This program creates multiple chare objects in the form of
+      a chare array.
+     </div>
+    </div>
+
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="BroadcastHelloWorld.html">Broadcast "Hello World": A Parallel "Hello World" Program (multiple processor, multiple chares)</a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+     <div class="TOCSubSectionDescription">
+      ...
+     </div>
+    </div>
+
+   </div>
+  </div>
+
+
+  <div class="TOCSection">
+   <div class="TOCSectionName">
+    <a href="JavaScript:showHide('BasicExamplePrograms_SubSections');">
+     Basic Example Charm++ Programs
+    </a>
+   </div>
+   <div class="TOCSectionDescription">
+    This section contains example Charm++ programs (some in detail, some left
+    as excersise to the reader).
+   </div>
+   <div class="TOCSectionContents" id="BasicExamplePrograms_SubSections" style="{display:none;}">
+   
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="ParallelPrefix.html">
+       Parallel Prefix
+      </a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+     <div class="TOCSubSectionDescription">
+       ... Parallel prefix program (code, description of object instances, communication,
+       Charm++ concepts utilized, etc.) ...
+     </div>
+    </div>
+
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="BubbleSort.html">Bubble Sort</a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+     <div class="TOCSubSectionDescription">
+       ... Bubble sort program (code, description of object instances, communication,
+       Charm++ concepts utilized, etc.) ...
+     </div>
+    </div>
+
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="Basic2DJacobi.html">
+       2D Jacobi (5-Point Stencil)
+      </a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+     <div class="TOCSubSectionDescription">
+       ... 2D Jacobi program (code, description of object instances, communication,
+       Charm++ concepts utilized, etc.) ...
+     </div>
+    </div>
+
+   </div>
+  </div>
+
+
+  <div class="TOCSection">
+   <div class="TOCSectionName">
+    <a href="JavaScript:showHide('BasicCharmAbstractions_SubSections');">
+     Basic Charm++ Abstractions
+    </a>
+   </div>
+   <div class="TOCSectionDescription">
+     This section presents some of the abstractions that are contained in Charm++ (reductions,
+     and so on).
+   </div>
+   <div class="TOCSectionContents" id="BasicCharmAbstractions_SubSections" style="{display:none;}">
+   
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="PackUnPackRoutines.html">Pack-UnPack (PUP) Routines</a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+     <div class="TOCSubSectionDescription">
+       ...
+     </div>
+    </div>
+
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="Callbacks.html">Callbacks</a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+     <div class="TOCSubSectionDescription">
+       ...
+     </div>
+    </div>
+
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="Reductions.html">Reductions</a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+     <div class="TOCSubSectionDescription">
+       ...
+     </div>
+    </div>
+
+   </div>
+  </div>
+
+
+  <div class="TOCSection">
+   <div class="TOCSectionName">
+    <a href="JavaScript:showHide('MoreExamplePrograms_SubSections');">
+     More Example Charm++ Programs
+    </a>
+   </div>
+   <div class="TOCSectionDescription">
+    This section contains more example Charm++ programs which use one or more of the Charm++
+    abstractions.
+   </div>
+   <div class="TOCSectionContents" id="MoreExamplePrograms_SubSections" style="{display:none;}">
+
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      PI Example
+      <img src="images/TOCArrowRight.png">
+     </div>
+     <div class="TOCSubSectionDescription">
+       ...
+     </div>
+    </div>
+
+   </div>
+  </div>
+
+
+    </td>
+   </tr>
+  </table>
+
+  <!--------------------- Advanced ------------------------->
+  <table border=0 cellpadding=5 cellspacing=0 class="TOCBlock">
+   <tr>
+    <td valign=middle align=center width=30 bgColor=eeccdd><img src="images/Advanced.png"></td>
+    <td valign=middle align=left style="{background-image:url(images/BGFade_Left_FFDDEE.png); background-repeat:repeat-y;}">
+
+
+
+  <div class="TOCSection">
+   <div class="TOCSectionName">
+    <a href="JavaScript:showHide('Tools_SubSections');">
+     Tools Available to Charm++ Applications
+    </a>
+   </div>
+   <div class="TOCSectionDescription">
+    This section presents some of the tools that are available to Charm++ applications.
+   </div>
+   <div class="TOCSectionContents" id="Tools_SubSections" style="{display:none;}">
+   
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="Projections.html">Projections (Performance Analysis)</a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+     <div class="TOCSubSectionSubName">
+      <a style="{text-decoration:none;}" href="http://charm.cs.uiuc.edu/research/parallel_perf/">(Official Projections Site)</a>
+     </div>
+    </div>
+
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="LiveViz.html">LiveViz</a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+    </div>
+
+   </div>
+  </div>
+
+
+  <div class="TOCSection">
+   <div class="TOCSectionName">
+    <a href="JavaScript:showHide('AdvancedCharmAbstractions_SubSections');">
+     Advanced Charm++ Abstractions
+    </a>
+   </div>
+   <div class="TOCSectionDescription">
+     This section presents some of the abstractions that are contained in Charm++ (reductions,
+     and so on).
+   </div>
+   <div class="TOCSectionContents" id="AdvancedCharmAbstractions_SubSections" style="{display:none;}">
+
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="ArrayMapping.html">Mapping Chare Array Elements to Physical Processors</a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+    </div>
+
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="ShadowArrays.html">Shadow Arrays (AKA: Bound Arrays)</a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+    </div>
+
+    <div class="TOCSubSection">
+     <div class="TOCSubSectionName">
+      <a href="ArraySections.html">Array Sections</a>
+      <img src="images/TOCArrowRight.png">
+     </div>
+    </div>
+
+   </div>
+  </div>
+
+
+    </td>
+   </tr>
+  </table>
