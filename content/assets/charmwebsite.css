@@ -227,6 +227,9 @@ span.textsf		{ font-style: italic  }
 	font-size: 80%;
 }
 #newsfeed h6 { text-align: center; font-size: 110%; margin:3px auto; }
-#newsfeed ul { margin: 0; }
+#newsfeed ul { margin: 0; padding: 0; list-style-type: none; }
+#newsfeed li { margin: 3px auto; border-bottom: 1px dotted #cccccc; }
+#newsfeed li:last-child { border-bottom: none; }
+
 .newsitem {}
 
