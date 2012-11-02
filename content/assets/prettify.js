@@ -15,8 +15,8 @@ $(document).ready( function() {
 
     // Enable floating navigation menu functionality
 	$("#nav-floatmenu > li")
-	.mouseenter( function() { $(this).css("border-color", "#00a4e4").children('div').show(); } )
-	.mouseleave( function() { $(this).css("border-color", "#ffffff").children('div').hide(); } );
+	.mouseenter( function() { $(this).css("border-color", "#00a4e4"    ).children('div').show(); } )
+	.mouseleave( function() { $(this).css("border-color", "transparent").children('div').hide(); } );
 
 } )
 
