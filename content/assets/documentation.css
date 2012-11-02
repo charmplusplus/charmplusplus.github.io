@@ -171,6 +171,9 @@ div.manualtitle	{
 	width: 12em;
 	border-left: 5px solid #00a4e4;
 	z-index: 10;
+	background: white;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
 }
 #nav-floatmenu > li > div li { border-bottom: 1px dotted #999999; }
 #nav-floatmenu > li > div li:last-child { border-bottom: none; }
