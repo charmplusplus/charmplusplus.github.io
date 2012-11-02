@@ -178,6 +178,7 @@ div.manualtitle	{
 #nav-floatmenu > li > div li { border-bottom: 1px dotted #999999; }
 #nav-floatmenu > li > div li:last-child { border-bottom: none; }
 #nav-floatmenu > li > div a { padding: 10px 20px; } 
+#nav-floatmenu > li > div li:last-child > a { border-bottom-right-radius: 8px; }
 
 
 pre {
@@ -228,7 +229,7 @@ span.textsf		{ font-style: italic  }
 }
 #newsfeed h6 { text-align: center; font-size: 110%; margin:3px auto; }
 #newsfeed ul { margin: 0; padding: 0; list-style-type: none; }
-#newsfeed li { margin: 3px auto; border-bottom: 1px dotted #cccccc; }
+#newsfeed li { margin: 3px auto; min-height: 2em; border-bottom: 1px dotted #cccccc; }
 #newsfeed li:last-child { border-bottom: none; }
 
 .newsitem {}
