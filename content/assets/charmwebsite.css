@@ -95,60 +95,77 @@ body {
 #navbar a { color: #88d6f9; }
 #navbar a:hover { color: #c4c4c4; border-color: #c4c4c4; }
 
-#navmenu {
+#nav-quicklinks {
 		display:inline-block;
 		padding: 0px 10px;
 		margin: 5px;
 		float: right;
 }
 
-#navmenu > li {
+#nav-quicklinks > li {
 		display: inline;
 		padding:0px 2px;
 		margin: 0px 1em;
 }
 
-#navmenu a { text-decoration: none; }
-#navmenu a:hover { color: #c4c4c4; }
+#nav-quicklinks a { text-decoration: none; }
+#nav-quicklinks a:hover { color: #c4c4c4; }
 
-#mainmenu {
+#navholder { float: right; margin-right: 10px; }
+#menubutton {
+	height: 1.5em; width: 8em;
+	text-align: center;
+	vertical-align: bottom;
+	font-weight: bold;
+	display: block;
+	padding: 0.2em 5px;
+}
+
+#navmenu {
+	position: absolute; top: -9999px;
 	margin: 0; padding: 1em 1em 0.5em;
-	position: absolute; top: 2em; right: 0;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
 	list-style-type: none;
 	background: #2c2c2c;
 }
-#mainmenu h6 { text-align: center; font-size: 120%; margin:3px auto; }
-#mainmenu > li {
+#navholder:hover #navmenu { position: absolute; top: 2em; right: 10px; }
+
+#navmenu h6 { text-align: center; font-size: 120%; margin:3px auto; }
+#navmenu > li {
 	display: inline-block;
 	vertical-align: top;
 }
-#mainmenu > li > div {
+#navmenu > li > div {
 	margin: 5px 1.0em 1em;
 	padding: 5px;
 	background: #333333;
 	border-radius: 5px;
 }
-#mainmenu > li ul { list-style-type: none; margin: 0; padding: 0; }
-#mainmenu > li a,
-#mainmenu > li a:visited {
+#navmenu > li ul { list-style-type: none; margin: 0; padding: 0; }
+#navmenu > li a,
+#navmenu > li a:visited {
 	border: none;
 	margin: 0; padding: 10px 20px;
 	display: inline-block;
 	width: 10em;
 }
-#mainmenu > li a:hover,
-#mainmenu > li a:active { background: #00a4e4; color: #2c2c2c; }
-#mainmenu > li > div li { border-bottom: 1px dotted #999999; }
-#mainmenu > li > div li:last-child { border-bottom: none; }
-#mainmenu > li > div li:last-child > a {
+#navmenu > li a:hover,
+#navmenu > li a:active { background: #00a4e4; color: #2c2c2c; }
+#navmenu > li > div li { border-bottom: 1px dotted #999999; }
+#navmenu > li > div li:last-child { border-bottom: none; }
+#navmenu > li > div li:last-child > a {
 	border-bottom-right-radius: 4px;
 	border-bottom-left-radius: 4px;
 }
-#nav-download > a { border-radius: 4px; }
-
-
+#navgit {
+	background: #555555;
+	color: #efefef;
+	border: 1px solid #2c2c2c;
+	padding: 5px;
+	width: 7em;
+}
+#nav-ppl > a { border-radius: 4px; }
 #nav-explore,
 #nav-learn,
 #nav-follow

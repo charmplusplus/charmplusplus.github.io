@@ -88,12 +88,13 @@
 
 
 <div id="navbar">
-	<div class="pagetitle"> Charm++: <%= @item[:title] %> </div>
-	<ul id="navmenu">
-	<li><a href="http://ppl.cs.illinois.edu">PPL</a></li>
-	<li title='Home'> <a href="/"><img src='/images/home_icon.png' width="16px"/></a></li>
-	<li id="mainbutton">Menu
-		<ul id="mainmenu">
+	<div class="pagetitle">
+	<a href="/" title="Home"><img src='/images/home_icon.png' width="16px"/></a>
+	Charm++: <%= @item[:title] %>
+	</div>
+	<div id="navholder">
+		<span id="menubutton">Menu</span>
+		<ul id="navmenu">
 		<li>
 			<div id="nav-explore">
 			<h6>Explore</h6>
@@ -130,13 +131,24 @@
 			<li><a href="">Mailing Lists</a></li>
 			</ul>
 			</div>
+			<div id="nav-ppl">
+			<a href="http://ppl.cs.illinois.edu"><h6>PPL Website</h6></a>
+			</div>
+		</li>
+		<li>
 			<div id="nav-download">
-			<a href="/download/"><h6>Download</h6></a>
+			<h6>Download</h6>
+			<ul>
+			<li><a href="http://charm.cs.illinois.edu/distrib/charm-6.4.0_src.tar.bz2">v6.4.0 (tar.bz2)</a></li>
+			<li><a href="http://charm.cs.illinois.edu/autobuild/cur/charm_src.tar.gz">latest dev (tar.gz)</a></li>
+			<li>git clone
+			<input id="navgit" class="giturl" readonly value="git://charm.cs.illinois.edu/charm.git"></input>
+			</li>
+			</ul>
 			</div>
 		</li>
 		</ul>
-	</li>
-	</ul>
+	</div>
 </div>
 
   </body>
