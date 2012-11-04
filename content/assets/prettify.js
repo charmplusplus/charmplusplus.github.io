@@ -21,5 +21,9 @@ $(document).ready( function() {
 	.mouseenter( function() { $("#navmenu").fadeIn('slow'); } )
 	.mouseleave( function() { $("#navmenu").fadeOut('fast'); } );
 
+    // If git repo url input fields get focus, select the text by default
+    $("#navgit")
+    .focus( function() { $(this).select(); } )
+    .mouseup(function(e){ e.preventDefault(); });
 } )
 
