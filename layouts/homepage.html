@@ -87,56 +87,57 @@
     </div>
 
 
-    <div class="navigation">
-				<ul id="nav-quicklinks">
-          <li><a href="http://ppl.cs.illinois.edu">PPL</a></li>
-				</ul>
-      <div class="manualtitle"> Charm++: <%= @item[:title] %> </div>
-			<ul id="menubar">
-				<li id="menutoggler">Menu
-		<ul id="nav-floatmenu">
-			<li>
-				<div>
-				<h6 id="explore">Explore</h6>
-				<ul>
-					<li><a href="/capabilities/">Capabilities</a></li>
-					<li><a href="/progmodel/">Programming Model</a></li>
-					<li><a href="/execmodel/">Execution Model</a></li>
-					<li><a href="/applications/">Applications</a></li>
-					<li><a href="http://charm.cs.illinois.edu/papers">Publications</a></li>
-					<li><a href="/history/">History</a></li>
-				</ul>
-				</div>
-			</li>
-			<li>
-				<div>
-				<h6 id="learn">Learn</h6>
-				<ul>
-					<li><a href="http://charm.cs.illinois.edu/manuals/html/charm++/A.html">Installation</a></li>
-					<li><a href="/tutorial/">Tutorial</a></li>
-					<li><a href="/manual/">Manual</a></li>
-					<li><a href="/benchmarks/">Mini-Apps</a></li>
-					<li><a href="/tools/">Tools</a></li>
-					<li><a href="/othermedia/">Other Media</a></li>
-				</ul>
-				</div>
-			</li>
-			<li>
-				<div>
-				<h6 id"follow">Follow</h6>
-				<ul>
-					<li><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=charm.git">Recent Commits</a></li>
-					<li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
-					<li><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi">Other Repositories</a></li>
-					<li><a href="">Mailing Lists</a></li>
-				</ul>
-				</div>
-			</li>
-		</ul></li>
-				<li title='Home'> <a href="/"><img src='/images/home_icon.png' width="13px"/></a></li>
-				<li title='Download Charm++'> <a href="/download/"><img src='/images/download_icon.png' width=13px"/></a></li>
+<div id="navbar">
+	<div class="pagetitle"> Charm++: <%= @item[:title] %> </div>
+	<ul id="navmenu">
+	<li><a href="http://ppl.cs.illinois.edu">PPL</a></li>
+	<li title='Home'> <a href="/"><img src='/images/home_icon.png' width="16px"/></a></li>
+	<li id="mainbutton">Menu
+		<ul id="mainmenu">
+		<li>
+			<div id="nav-explore">
+			<h6>Explore</h6>
+			<ul>
+			<li><a href="/capabilities/">Capabilities</a></li>
+			<li><a href="/progmodel/">Programming Model</a></li>
+			<li><a href="/execmodel/">Execution Model</a></li>
+			<li><a href="/applications/">Applications</a></li>
+			<li><a href="http://charm.cs.illinois.edu/papers">Publications</a></li>
+			<li><a href="/history/">History</a></li>
 			</ul>
-    </div>
+			</div>
+		</li>
+		<li>
+			<div id="nav-learn">
+			<h6>Learn</h6>
+			<ul>
+			<li><a href="http://charm.cs.illinois.edu/manuals/html/charm++/A.html">Installation</a></li>
+			<li><a href="/tutorial/">Tutorial</a></li>
+			<li><a href="/manual/">Manual</a></li>
+			<li><a href="/benchmarks/">Mini-Apps</a></li>
+			<li><a href="/tools/">Tools</a></li>
+			<li><a href="/othermedia/">Other Media</a></li>
+			</ul>
+			</div>
+		</li>
+		<li>
+			<div id="nav-follow">
+			<h6>Follow</h6>
+			<ul>
+			<li><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=charm.git">Recent Commits</a></li>
+			<li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+			<li><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi">Other Repositories</a></li>
+			<li><a href="">Mailing Lists</a></li>
+			</ul>
+			</div>
+			<div id="nav-download">
+			<a href="/download/"><h6>Download</h6></a>
+			</div>
+		</li>
+		</ul>
+	</li>
+	</ul>
+</div>
 
   </body>
 </html>
