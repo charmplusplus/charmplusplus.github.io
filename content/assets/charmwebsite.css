@@ -122,14 +122,17 @@ body {
 }
 
 #navmenu {
-	position: absolute; top: -9999px;
+	position: absolute; right: 10px;
+	/* For css-only animation of menu upon hover */
+	top: -9999px;
 	margin: 0; padding: 1em 1em 0.5em;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
 	list-style-type: none;
 	background: #2c2c2c;
 }
-#navholder:hover #navmenu { position: absolute; top: 2em; right: 10px; }
+/* For css-only animation of menu upon hover */
+/*#navholder:hover #navmenu { top: 2em; }*/
 
 #navmenu h6 { text-align: center; font-size: 120%; margin:3px auto; }
 #navmenu > li {

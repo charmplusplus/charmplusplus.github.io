@@ -13,10 +13,13 @@ $(document).ready( function() {
     //.mouseleave( function() { $("ul.manual-toc").fadeOut('slow'); $("#pulldowntab").fadeIn('slow'); } )
     //.css('cursor','pointer');
 
-    // Enable floating navigation menu functionality
-	//$("#nav-floatmenu > li")
-	//.mouseenter( function() { $(this).css("border-color", "#00a4e4"    ).children('div').show(); } )
-	//.mouseleave( function() { $(this).css("border-color", "transparent").children('div').hide(); } );
+    // Since js is enabled, fix the positioning for navmenu
+    $("#navmenu").css("top", "2em").hide();
+
+    // Enable navigation menu functionality
+	$("#navholder")
+	.mouseenter( function() { $("#navmenu").fadeIn('slow'); } )
+	.mouseleave( function() { $("#navmenu").fadeOut('fast'); } );
 
 } )
 
