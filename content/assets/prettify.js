@@ -14,9 +14,9 @@ $(document).ready( function() {
     //.css('cursor','pointer');
 
     // Enable floating navigation menu functionality
-	$("#nav-floatmenu > li")
-	.mouseenter( function() { $(this).css("border-color", "#00a4e4"    ).children('div').show(); } )
-	.mouseleave( function() { $(this).css("border-color", "transparent").children('div').hide(); } );
+	//$("#nav-floatmenu > li")
+	//.mouseenter( function() { $(this).css("border-color", "#00a4e4"    ).children('div').show(); } )
+	//.mouseleave( function() { $(this).css("border-color", "transparent").children('div').hide(); } );
 
 } )
 

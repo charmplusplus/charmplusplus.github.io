@@ -92,11 +92,12 @@
           <li><a href="http://ppl.cs.illinois.edu">PPL</a></li>
 				</ul>
       <div class="manualtitle"> Charm++: <%= @item[:title] %> </div>
-    </div>
+			<ul id="menubar">
+				<li id="menutoggler">Menu
 		<ul id="nav-floatmenu">
-			<li> <img src='/images/explore_icon.png' />
+			<li>
 				<div>
-				<h6>Explore Charm++</h6>
+				<h6 id="explore">Explore</h6>
 				<ul>
 					<li><a href="/capabilities/">Capabilities</a></li>
 					<li><a href="/progmodel/">Programming Model</a></li>
@@ -107,9 +108,9 @@
 				</ul>
 				</div>
 			</li>
-			<li> <img src='/images/manual_icon.png' />
+			<li>
 				<div>
-				<h6>Learn Charm++</h6>
+				<h6 id="learn">Learn</h6>
 				<ul>
 					<li><a href="http://charm.cs.illinois.edu/manuals/html/charm++/A.html">Installation</a></li>
 					<li><a href="/tutorial/">Tutorial</a></li>
@@ -120,9 +121,9 @@
 				</ul>
 				</div>
 			</li>
-			<li> <img src='/images/git_icon.png' />
+			<li>
 				<div>
-				<h6>Follow Charm++</h6>
+				<h6 id"follow">Follow</h6>
 				<ul>
 					<li><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=charm.git">Recent Commits</a></li>
 					<li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
@@ -131,9 +132,11 @@
 				</ul>
 				</div>
 			</li>
-			<li title='Download Charm++'> <a href="/download/"><img src='/images/download_icon.png' /></a></li>
-			<li title='Home'> <a href="/"><img src='/images/home_icon.png' /></a></li>
-		</ul>
+		</ul></li>
+				<li title='Home'> <a href="/"><img src='/images/home_icon.png' width="13px"/></a></li>
+				<li title='Download Charm++'> <a href="/download/"><img src='/images/download_icon.png' width=13px"/></a></li>
+			</ul>
+    </div>
 
   </body>
 </html>

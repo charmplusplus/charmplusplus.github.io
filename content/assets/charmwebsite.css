@@ -148,37 +148,47 @@ div.manualtitle	{
 	writing-mode: tb-rl;
 }
 
+#menubar {
+	float: left;
+	list-style-type: none;
+	margin: 5px;
+	padding: 0;
+}
+
+#menubar > li { display: inline-block; }
+
 #nav-floatmenu {
 	margin: 0; padding: 0;
-	position: fixed; top: 15%; left: 4px;
+	position: absolute; top: 2em;
 	border: none;
-	border-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
 	text-align: center;
 	list-style-type: none;
 	cursor: pointer;
+	background: #2c2c2c;
 }
+#nav-floatmeu > li { display: inline-block; }
 #nav-floatmenu * { text-align: left; }
 #nav-floatmenu ul { list-style-type: none; margin: 0; padding: 0; }
 #nav-floatmenu img { border: none; margin: 0; padding: 0;  }
-#nav-floatmenu a, #nav-floatmenu a:visited { border: none; margin: 0; display: block; color: #333333; }
-#nav-floatmenu a:hover, #nav-floatmenu a:active { background: #00a4e4; }
+#nav-floatmenu a, #nav-floatmenu a:visited { border: none; margin: 0; display: }
+#nav-floatmenu a:hover, #nav-floatmenu a:active { background: #00a4e4; color: #2c2c2c; }
 #nav-floatmenu h6 { text-align: center; font-size: 110%; margin:3px auto; }
-#nav-floatmenu > li { margin:5px; border-left: 5px solid transparent; }
-#nav-floatmenu > li > div {
+/*#nav-floatmenu > li > div {
+	width: 12em;
 	display: none;
 	float: right;
 	position: relative; top: -48px; left: 15px;
-	width: 12em;
 	border-left: 5px solid #00a4e4;
 	z-index: 10;
 	background: white;
 	border-top-right-radius: 8px;
 	border-bottom-right-radius: 8px;
-}
+}*/
 #nav-floatmenu > li > div li { border-bottom: 1px dotted #999999; }
 #nav-floatmenu > li > div li:last-child { border-bottom: none; }
 #nav-floatmenu > li > div a { padding: 10px 20px; } 
-#nav-floatmenu > li > div li:last-child > a { border-bottom-right-radius: 8px; }
 
 
 pre {
