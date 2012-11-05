@@ -66,7 +66,11 @@ body {
 #keytraits li { display: inline-block; }
 #keytraits li p { color: #777777; font-size:90%; }
 #capabilities { border-top: 1px solid #cccccc; }
-#capabilities ul { -moz-column-count: 2; -webkit-column-count: 2; column-count: 2; }
+#capabilities h3 { margin-bottom: 5px; }
+#capabilities ul {
+	-moz-column-count: 2; -webkit-column-count: 2; column-count: 2;
+	margin: 2px 5em;
+}
 
 
 #maincontainer {
