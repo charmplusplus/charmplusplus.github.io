@@ -18,23 +18,23 @@ helpc: help
 				</ul>
 		</div>
     <div id="blurb">
-      <p>Charm++ is a parallel programming framework in <strong>C++</strong>, supported
-      by an adaptive runtime system, which runs programs portably
-      from simple multicore computers to the
-      largest supercomputers. The programs specify a parallel
-      computation in terms of collections of C++ objects, called chares, that
-      interact with each other via asynchronous method invocations.
-      (You write your programs in C++, with an additional description of
-      interfaces.) Programmers don't concern themselves with where these
-      objects are (i.e. on which processors) or when the methods execute. Those
-      concerns are left to the runtime system (RTS) to control.  These objects
-      are migratable in the sense that the RTS may change their
-      placement during execution.  Since there are typically multiple chare
-      objects on each processor, the model is also characterized by
-      over-decomposition of work and data units.  These features empower an
-      adaptive and introspective RTS to support such novel features as
-      automatic dynamic load balancing, fault tolerance, and
-      automatic overlap of communication and computation.</p>
+			<p>Charm++ is a parallel programming framework in <strong>C++</strong>,
+			supported by an adaptive runtime system, which runs programs portably
+			from small multicore computers (your laptop) to the largest
+			supercomputers. The programs specify a parallel computation in terms of
+			collections of C++ objects, called <em>chares</em>, that interact with
+			each other via asynchronous method invocations.  Charm++ programs are
+			simply written in C++, with an additional description of parallel
+			interfaces in separate files.</p>
+
+			<p>Programmers don't concern themselves with where these objects are
+			(i.e. on which processors) or when the methods execute. Those concerns
+			are left to the runtime system (RTS) to control. These objects are
+			migratable in the sense that the RTS may change their placement during
+			execution. Since there are typically multiple chare objects on each
+			processor, the model is also characterized by over-decomposition of work
+			and data units. These features empower an adaptive and introspective RTS
+			to support the novel feature set that we provide.</p>
 
       </p>Charm++ is a production-quality system, used by scientists and
       engineers in multiple disciplines, with its own debugging and performance
@@ -44,14 +44,12 @@ helpc: help
       interoperate with MPI modules. We welcome you to this website to explore
       Charm++.</p>
     </div>
-    <div id="archs">
-      <h4>supported architectures</h4>
-      <ul>
-        <li>IBM BlueGene/Q</li>
-        <li>IBM BlueGene/P</li>
-        <li>Cray XK6</li>
-        <li>Net Linux</li>
-        <li>Windows</li>
-        <li>Mac</li>
-      </ul>
-    </div>
+		<h3>supported architectures</h3>
+		<ul>
+				<li>IBM BlueGene/Q</li>
+				<li>IBM BlueGene/P</li>
+				<li>Cray XK6</li>
+				<li>Net Linux</li>
+				<li>Windows</li>
+				<li>Mac</li>
+		</ul>
