@@ -4,61 +4,62 @@ title: Programming Model
 
 <h2>Programming Model</h2>
 
-<h4>object-based program design</h4>
+<h4>Object-based program design</h4>
 <ul>
-<li>object-based</li>
-<li>write native C++ code </li>
-<li>express algo using full OO design</li>
-<li>decompose computation into interacting object collections</li>
+<li>Express algorithms and program designs using objects</li>
+<li>Decompose computation into interacting object collections</li>
+<li>Write native C++ code</li>
+<li>Use all C++ capabilities (OO, generics etc)</li>
 </ul>
 
-<h4>globally addressible objects</h4>
+<h4>Globally addressible objects</h4>
 <ul>
-<li>some classes are elevated into global visibility</li>
-<li>objects of these classes can be addressed from any processor</li>
+<li>Some classes are elevated into global visibility</li>
+<li>Objects of these classes can be addressed from any processor</li>
+<li>Parallel control flow primarily involves these globally visible objects</li>
 </ul>
 
-<h4>globally invocable methods</h4>
+<h4>Globally invocable methods</h4>
 <ul>
-<li>some methods of globally visible classes are also elevated into global visibility</li>
-<li>only these methods of a globally visible object can be invoked from any processor</li>
+<li>Some methods of globally visible classes are also elevated into global visibility</li>
+<li>Only these methods of a globally visible object can be invoked from any processor</li>
 </ul>
 
-<h4>asynchronous methods</h4>
+<h4>Asynchronous methods</h4>
 <ul>
-<li>objects in computation interact using method invocations</li>
-<li>do not return any data</li>
-<li>method invocation does not block</li>
-<li>no promise of immediate execution</li>
+<li>Objects in computation interact using method invocations</li>
+<li>Do not return any data</li>
+<li>Method invocation does not block</li>
+<li>No promise of immediate execution</li>
 </ul>
 
-<h4>object collections</h4>
+<h4>Object collections</h4>
 <ul>
-<li>collections of objects of a given type can be created, managed and addressed collectively</li>
-<li>collections are indexed</li>
-<li>each object in collection is globally visible. can be addressed via the tuple of collection handle and object index.</li>
-<li>method invocations on such collections are implicit broadcasts to all objects</li>
+<li>Collections of objects of a given type can be created, managed and addressed collectively</li>
+<li>Collections are indexed</li>
+<li>Each object in collection is globally visible. can be addressed via the tuple of collection handle and object index.</li>
+<li>Method invocations on such collections are implicit broadcasts to all objects</li>
 </ul>
 
-<h4>object placement</h4>
+<h4>Object placement</h4>
 <ul>
-<li>easily control placement of objects on processors</li>
+<li>Easily control placement of objects on processors</li>
 </ul>
 
-<h4>migratable / serializable objects</h4>
+<h4>Migratable / serializable objects</h4>
 <ul>
-<li>objects can be migrated</li>
-<li>any data in program can be migrated</li>
-<li>simply needs a serialization function</li>
+<li>Objects can be migrated</li>
+<li>Any data in program can be migrated</li>
+<li>Simply needs a serialization function</li>
 </ul>
 
-<h4>decompose data across object collection</h4>
+<h4>Decompose data across object collection</h4>
 <ul>
-<li>typical data decomposition is by decomposing the data across multiple objects of a single class</li>
-<li>massively parallel computations on each portion of the data can be performed by simply invoking methods on the whole collection</li>
+<li>Typical data decomposition is by decomposing the data across multiple objects of a single class</li>
+<li>Massively parallel computations on each portion of the data can be performed by simply invoking methods on the whole collection</li>
 </ul>
 
-<h4>decompose data manipulation across methods</h4>
+<h4>Decompose data manipulation across methods</h4>
 
-<h4>easily task parallelism</h4>
+<h4>Easily task parallelism</h4>
 
