@@ -468,11 +468,12 @@ a:hover {
   left: 20px;
   width: 220px;
   height: 75px;
-  background: #D0BBC0;
+  background: #9E2323;
   font-size: 24px;
   border-radius: 10px;
   border: 5px solid #303030;
   text-align: center;
+  cursor: pointer;
 }
 
 #toolsContainer,#applicationContainer {
@@ -533,4 +534,13 @@ a:hover {
 .challenge { font-weight: bold; }
 
 blockquote { font-style: italic; }
+
+.terminaltext {
+  position: relative;
+  font-size: 20px;
+  text-align: left;
+  font-family: sans-serif;
+  font-style:italic;
+  padding-bottom: 20px;
+}
 
