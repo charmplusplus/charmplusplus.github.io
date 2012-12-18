@@ -87,10 +87,8 @@ body {
 		position: fixed;
 		top:0; left:0;
 		width: 100%;
-		height: 2em;
 		text-align: left;
-		margin:0; padding: 2px;
-		border-bottom: 1px #444444 solid;
+		margin:0;
 		background: #2c2c2c;
 		color: #efefef;
 		font-size: 90%;
@@ -115,28 +113,33 @@ body {
 #nav-quicklinks a { text-decoration: none; }
 #nav-quicklinks a:hover { color: #c4c4c4; }
 
-#navholder { float: right; margin-right: 10px; }
+#navholder { float: right; }
 #menubutton {
-	height: 1.8em; width: 8em;
+	width: 8em;
 	text-align: center;
 	vertical-align: bottom;
 	font-weight: bold;
 	display: block;
-	padding: 0.2em 5px;
+	padding: 7px 5px 6px;
+	background: #a63400;
+	color: #efefef;
 }
 
 #navmenu {
-	position: absolute; right: 10px;
+	position: absolute; right: 0px;
 	/* For css-only animation of menu upon hover */
 	top: -9999px;
 	margin: 0; padding: 1em 1em 0.5em;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
 	list-style-type: none;
-	background: #2c2c2c;
+	background: #000000;
 }
 /* For css-only animation of menu upon hover */
-/*#navholder:hover #navmenu { top: 2em; }*/
+/*
+#navholder:hover #navmenu { top: 2em; }
+#navholder:hover #menubutton { background: #000000; }
+*/
 
 #navmenu h6 { text-align: center; font-size: 120%; margin:3px auto; padding: 3px; }
 #navmenu > li {
@@ -145,7 +148,7 @@ body {
 }
 #navmenu > li > div {
 	margin: 5px 1.0em 1em;
-	background: #333333;
+	background: #202020;
 	border-radius: 5px;
 }
 #navmenu > li ul { list-style-type: none; margin: 0; padding: 0; }

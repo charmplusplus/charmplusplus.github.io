@@ -17,9 +17,9 @@ $(document).ready( function() {
     $("#navmenu").css("top", "2em").hide();
 
     // Enable navigation menu functionality
-	$("#navholder")
-	.mouseenter( function() { $("#navmenu").fadeIn('slow'); } )
-	.mouseleave( function() { $("#navmenu").fadeOut('fast'); } );
+	  $("#navholder")
+	  .mouseenter( function() { $("#menubutton").css('background','#000000'); $("#navmenu").fadeIn('slow'); } )
+	  .mouseleave( function() { $("#menubutton").css('background','#a63400'); $("#navmenu").fadeOut('fast'); } );
 
     // If git repo url input fields get focus, select the text by default
     $("#navgit")
