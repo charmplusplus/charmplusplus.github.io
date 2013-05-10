@@ -196,7 +196,34 @@ helpc: help
 <a name="denselu"></a>
 <div class="benchmark">
   <h2>Dense LU</h2>	 	
+  <p> This benchmark is the Charm++ implementation of LU solver, one of the
+  seven HPC Challenge benchmarks. Since Charm++ is a general and fully capable
+  programming paradigm, our LU implementation does not employ any
+  linear algebra specific notations. Our implementation is very succinct and
+  presents several distinct benefits.
+  <p> We use a typical block-decomposed algorithm for the LU factorization
+  process. Our focus in this effort has been less on choosing the best possible
+  factorization algorithm than on demonstrating productivity with a reasonable
+  choice.  The input matrix of n x n elements is decomposed into square blocks
+  of b x b elements each. We delegate underlying sequential operations to an available
+  high performance linear algebra library, typically a platform-specific
+  implementation of BLAS and perform partial pivoting for each matrix column.
+
+  <div class="features"><p>Features: composable libary, flexible data placement,
+  block-centric control flow, separation of concerns.
   <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/charmlu.git">git://charm.cs.illinois.edu/charmlu.git</a></div>
+<center>
+  <div id="multi_figure">
+    <figure>
+    <figure>
+      <img src="../figs/denselu_perf.png" width=600>
+      <figcaption>Figure: weak scaling (matrix occupies 75% of memory) from 120 to 8064
+      processors on Jaguar (Cray XT5). Strong scaling (n = 96, 000) from 256 to
+      4096 processors on Intrepid (IBM BG/P).</figcaption>
+    </figure>
+  </div>
+</center>
+
 </div>
 
 <a name="hpccg"></a>
