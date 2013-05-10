@@ -141,12 +141,56 @@ helpc: help
 <div class="benchmark">
   <h2>Barnes-Hut</h2>
   <p> The Barnes-Hut algorithm is a tree-based scheme to compute fast and
-    approximate time-series solutions to the N-body problem, where Barnes-Hut
-    algorithm for N-body problem is a method of calculating forces on a system
-    of N bodies that grows only as N log N. It uses a tree-structured
-    hierarchical recursive subdivision of space into cubic cells. Barnes-Hut
-    method is widely used in cosmological simulations. </p>
+  approximate time-series solutions to the N-body problem, where Barnes-Hut
+  algorithm for N-body problem is a method of calculating forces on a system
+  of N bodies that grows only as N log N. It uses a tree-structured
+  hierarchical recursive subdivision of space into cubic cells. Barnes-Hut
+  method is widely used in cosmological simulations.
+
+  <p> The N-body problem involves the numerical calculation of the trajectories
+  of N point masses (or charges) moving under the influence of a conservative
+  force field such as that induced by gravity (or electrical charges).
+  In its simplest form, the method models bodies as particles of zero
+  extent moving in a collision-less manner. The objective is to calculate the net
+  force incident on every particle at discrete time steps. These forces are then
+  used to update the velocity and position of each particle, leading into the next time step,
+  where the net force on each particle is calculated once more, etc.
+  In general, the force may be long-range in nature (as is the case
+      with gravity), so that interactions between distant particles must also
+  be calculated. Thus, in order to obtain a good approximation to the actual
+  solution of a system, O(N<sup>2</sup>) computations must be performed. Given its
+  quadratic complexity, the amount of work done by this all-pairs method makes it
+  infeasible for systems with large N.
+
+  <p>Barnes and Hut devised a hierarchical N-body method that
+  performs significantly fewer computations but at the cost of a greater
+  relative error in the computed solution. The method relies on the spatial
+  partitioning of the input system of particles, thereby imposing a tree-structure on it.
+  Particles that are close to each other in space are grouped into closely related nodes of
+  the tree. This allows the approximation of forces on a particle due to a distant group 
+  of particles through the multipole moments of that group.
+  Note that applying such an approximation to points relatively close to the group
+  will result in gross errors of calculation. In such a case, sub-partitions within
+  the group are tested for proximity to the point. This technique, applied systematically,
+  yields an expected complexity of O(N lg N), making it suitable for
+  large systems of particles.
+
+
   <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/barnes.git">git://charm.cs.illinois.edu/benchmarks/barnes.git</a></div>
+<center>
+  <div id="multi_figure">
+    <figure>
+      <img src="../figs/barnes_concept.png" width=600>
+      <figcaption>Time Progression view showing 2 processors executing an
+      iteration of Barnes-Hut.</figcaption>
+    </figure>
+    <figure>
+      <img src="../figs/barnes_perf.png"  width=300>
+      <figcaption>Performance of Barnes-Hut for 10 and 50 million particle
+      systems on Intrepid (IBM BG/P).</figcaption>
+    </figure>
+  </div>
+</center>
 </div>
 
 <a name="denselu"></a>
