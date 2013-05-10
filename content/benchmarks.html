@@ -237,23 +237,22 @@ helpc: help
   <h2>Triangular Solver</h2>
   <p> Solution of sparse triangular systems of linear equations is a
     performance bottleneck in many methods for solving more general sparse
-    systems, such as many iterative methods with preconditioners.  The matrix
-    is divided into blocks of columns. Each block is analyzed to find its
-    independent rows for computation. If there are dense regions below the
+    systems, such as many iterative methods with preconditioners.  In our algorithm, the matrix
+    is divided into blocks of columns, where each block is analyzed to find its
+    independent rows for solution. In addition, if there are dense regions below the
     diagonal section (we assume lower triangular for description), they are
     divided into new blocks. Each diagonal block starts the computation with
     its independent parts and waits for its dependency messages from the left.
     Nondiagonal blocks wait for the solution values from their corresponding
-    diagonal block, and then start their computation (and receipt of other
-    messages). </p>
+    diagonal block, and then start their computation. </p>
   <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/triangularsolver.git">git://charm.cs.illinois.edu/benchmarks/triangularsolver.git</a></div>
 <center>
   <div id="multi_figure">
     <figure>
       <img src="../figs/solver_perf.png" width=600>
       <figcaption>Figure: performance of sparse triangular solver on Intrepid
-      (IBM BG/P) for different sparse matrices. Performance is also
-      competetive with SuperLU DIST.</figcaption>
+      (IBM BG/P) for different sparse matrices. Performance is much
+      better than the standard SuperLU DIST package.</figcaption>
     </figure>
   </div>
 </center>
