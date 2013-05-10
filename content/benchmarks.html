@@ -17,46 +17,89 @@ helpc: help
 <!-- </p> -->
 <!-- <br> -->
 
+<div class="bench-list">
+<ul>
+<li><a href="#leanmd">LeanMD - molecular dynamics</a></li>
+<li><a href="#amr">AMR - adaptive mesh refinement</a></li>
+<li><a href="#barnes">Barnes Hut - n-body problem</a></li>
+<li><a href="#denselu">DenseLU - matrix solver (HPC Challenge)</a></li>
+<li><a href="#hpccg">HPCCG - conjugant gradient (Mantevo)</a></li>
+<li><a href="#solver">TS - triangular solver</a></li>
+<li><a href="#fft">FFT - one dimensional FFT (HPC Challenge)</a></li>
+<li><a href="#random">RA - random access (HPC Challenge)</a></li>
+<li><a href="#stream">EP - stream (HPC Challenge)</a></li>
+</ul>
+
+<a name="leanmd"></a>
 <div class="benchmark">
   <h2>LeandMD</h2>
-  <p>LeanMD is a molecular dynamics simulation program written in Charm++. This
-    benchmark simulates the behavior of atoms based on the Lennard-Jones
-    potential, which is an effective potential that describes the interaction
-    between two uncharged molecules or atoms. The computation performed in this
-    code mimics the short-range non-bonded force calculation in NAMD and
-    resembles the miniMD application in the Mantevo benchmark suite maintained
-    by Sandia National Laboratories.</p>
-  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/leanmd.git</div>
+  <p>LeanMD is a molecular dynamics simulation program written in Charm++. This benchmark 
+  simulates the behavior of atoms based on the Lennard-Jones potential, which is an effective 
+  potential that describes the interaction between two uncharged molecules or atoms. 
+  The computation performed in this code mimics the short-range non-bonded force calculation 
+  in NAMD, and resembles the LJ force computation in miniMD benchmark in the Mantevo benchmark suite 
+  maintained by Sandia National Laboratories. 
+  <p>The force calculation in Lennard-Jones dynamics is done within a cutoff-radius, r<sub>c</sub> for every atom. 
+  In LeanMD, the computation is parallelized using a hybrid scheme of spatial and force decomposition. 
+  The three-dimensional (3D) simulation space consisting of atoms is divided into cells of dimensions 
+  that are equal to the sum of the cutoff distance, r<sub>c</sub> and a margin. In each iteration, 
+  force calculations are done for all pairs of atoms that are within the cutoff distance. The force calculation 
+  for a pair of cells is assigned to a different set of objects called computes. Based on the forces sent by 
+    the computes, the cells perform the force integration and update various properties of their 
+    atoms – acceleration, velocity and positions.
+  
+  <div class="features">Features: Automated load balancing, fault tolerance, multicast manager</div>
+  <div class="giturl">Git: git://charm.cs.illinois.edu/benchmarks/leanmd.git</div>
 </div>
 
+<div id="multi_figure">
+<figure>
+<img src="../figs/leanmd_bgp.png" width=300>
+<img src="../figs/leanmd_bgq.png" width=300>
+<figcaption>Figure: performance of LeandMD on Blue Gene/P and Blue Gene/Q </figcaption>
+</figure>
+<figure>
+<img src="../figs/leanmd_bgq_chkp.png" width=300>
+<img src="../figs/leanmd_bgq_restart.png" width=300>
+<figcaption>Figure: fault tolerant LeandMD on Blue Gene/Q</figcaption>
+</figure>
+</div>
+
+<a name="amr"></a>
+<div class="benchmark">
+  <h2>AMR</h2>
+  <p> This benchmarks is mesh restructuring algorithm for adaptive mesh
+    refinement computations. The parallel mesh restructuring algorithm operates
+    in terms of near-neighbor communication among individual blocks, and a
+    single synchronization-only collective. </p>
+  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/amr.git</div>
+</div>
+
+<a name="barnes"></a>
+<div class="benchmark">
+  <h2>Barnes-Hut</h2>
+  <p> The Barnes-Hut algorithm is a tree-based scheme to compute fast and
+    approximate time-series solutions to the N-body problem, where Barnes-Hut
+    algorithm for N-body problem is a method of calculating forces on a system
+    of N bodies that grows only as N log N. It uses a tree-structured
+    hierarchical recursive subdivision of space into cubic cells. Barnes-Hut
+    method is widely used in cosmological simulations. </p>
+  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/barnes.git</div>
+</div>
+
+<a name="denselu"></a>
 <div class="benchmark">
   <h2>Dense LU</h2>	 	
   <div class="giturl">git://charm.cs.illinois.edu/charmlu.git</div>
 </div>
 
+<a name="hpccg"></a>
 <div class="benchmark">
-  <h2>1D FFT</h2>
-  <p> Our implementation of Global FFT takes input size N and performs a
-  complex 1D FFT on an NxN matrix where subsequent rows are contiguous data
-  elements of a double precision complex vector. Three all-to-all transposes
-  are required to perform the FFT and unscramble the data.  All-to-all
-  operations are executed via point-to-point messages and external libraries
-  (FFTW or ESSL) perform serial FFTs on the rows of the matrix. </p>
-  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/fft-trans.git</div>
+  <h2>hpccg</h2>
+  <div class="giturl">https://charm.cs.uiuc.edu/private/gitweb2.cgi?p=users/lifflander/hpccg.git;a=summary</div>
 </div>
 
-<div class="benchmark">
-  <h2>Random Access</h2>
-  <p> For Random Access benchmark we use the Mesh Streamer library for
-    optimizing all-to-all communication on small messages. </p>
-  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/randomAccess.git</div>
-</div>
-
-<div class="benchmark">
-  <h2>EP Stream</h2>
-  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/hpccstream.git</div>
-</div>
-
+<a name="solver"></a>
 <div class="benchmark">
   <h2>Triangular Solver</h2>
   <p> Solution of sparse triangular systems of linear equations is a
@@ -73,58 +116,29 @@ helpc: help
   <div class="giturl">git://charm.cs.illinois.edu/benchmarks/triangularsolver.git</div>
 </div>
 
+<a name="fft"></a>
 <div class="benchmark">
-  <h2>AMR</h2>
-  <p> This benchmarks is mesh restructuring algorithm for adaptive mesh
-    refinement computations. The parallel mesh restructuring algorithm operates
-    in terms of near-neighbor communication among individual blocks, and a
-    single synchronization-only collective. </p>
-  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/amr.git</div>
+  <h2>1D FFT</h2>
+  <p> Our implementation of Global FFT takes input size N and performs a
+  complex 1D FFT on an NxN matrix where subsequent rows are contiguous data
+  elements of a double precision complex vector. Three all-to-all transposes
+  are required to perform the FFT and unscramble the data.  All-to-all
+  operations are executed via point-to-point messages and external libraries
+  (FFTW or ESSL) perform serial FFTs on the rows of the matrix. </p>
+  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/fft-trans.git</div>
 </div>
 
+<a name="random"></a>
 <div class="benchmark">
-  <h2>Barnes-Hut</h2>
-  <p> The Barnes-Hut algorithm is a tree-based scheme to compute fast and
-    approximate time-series solutions to the N-body problem, where Barnes-Hut
-    algorithm for N-body problem is a method of calculating forces on a system
-    of N bodies that grows only as N log N. It uses a tree-structured
-    hierarchical recursive subdivision of space into cubic cells. Barnes-Hut
-    method is widely used in cosmological simulations. </p>
-  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/barnes.git</div>
+  <h2>Random Access</h2>
+  <p> For Random Access benchmark we use the Mesh Streamer library for
+    optimizing all-to-all communication on small messages. </p>
+  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/randomAccess.git</div>
 </div>
 
-<!-- <br>-->
-
-<!-- <div id="npb"><h2>NAS Parallel Benchmarks (NPB)</h2> -->
-<!-- <br> -->
-<!-- <a href="http://www.nas.nasa.gov/publications/npb.html">NPB website</a> -->
-<!-- <br> -->
-<!-- <a -->
-<!-- href="https://wiki.engr.illinois.edu/display/ppl/Adaptive+MPI+%28AMPI%29">AMPI version</a>  -->
-<!-- <br> -->
-<!-- <p> -->
-<!-- We have AMPI version of BT, CG, EP, FT, IS, LU, MG, SP. -->
-<!-- </p> -->
-<!-- </div> -->
-<!-- <br> -->
-
+<a name="stream"></a>
 <div class="benchmark">
-  <h2>LANL HILO</h2>
-  <div class="giturl">git location git://charm.cs.illinois.edu/benchmarks/hilo (to be added by Ralf)</div>
+  <h2>EP Stream</h2>
+  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/hpccstream.git</div>
 </div>
 
-<!-- <br> -->
-<!-- <div id="mantevo"><h2>Mantevo</h2> -->
-<!-- <p> -->
-<!-- Mantevo is a suite of mini-apps, proxy-apps and mini-drivers from Sandia. The -->
-<!-- list of mini-apps can be found here. Our leanMD benchmark is a peer of the -->
-<!-- miniMD mini-app in the suite. -->
-<!-- </p> -->
-
-<!-- <h2>miniMD/leanMD</h2> -->
-<!-- git://charm.cs.illinois.edu/benchmarks/leanmd.git -->
-
-<div class="benchmark">
-  <h2>hpccg</h2>
-  <div class="giturl">https://charm.cs.uiuc.edu/private/gitweb2.cgi?p=users/lifflander/hpccg.git;a=summary</div>
-</div>
