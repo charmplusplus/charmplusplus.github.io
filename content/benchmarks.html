@@ -17,6 +17,11 @@ helpc: help
 <!-- </p> -->
 <!-- <br> -->
 
+<h1>MiniApps</h1>
+
+<p>The following are a collection of miniApps we have implemented to demonstrate
+  the efficacy of the Charm++ model:</p>
+
 <div class="bench-list">
 <ul>
 <li><a href="#leanmd">LeanMD - molecular dynamics</a></li>
@@ -48,21 +53,23 @@ helpc: help
     the computes, the cells perform the force integration and update various properties of their 
     atoms – acceleration, velocity and positions.
   
-  <div class="features">Features: Automated load balancing, fault tolerance, multicast manager</div>
-  <div class="giturl">Git: git://charm.cs.illinois.edu/benchmarks/leanmd.git</div>
-</div>
+  <div class="features"><p>Features: Automated load balancing, fault tolerance, multicast manager</p></div>
+  <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/leanmd.git">git://charm.cs.illinois.edu/benchmarks/leanmd.git</a></div>
 
-<div id="multi_figure">
-<figure>
-<img src="../figs/leanmd_bgp.png" width=300>
-<img src="../figs/leanmd_bgq.png" width=300>
-<figcaption>Figure: performance of LeandMD on Blue Gene/P and Blue Gene/Q </figcaption>
-</figure>
-<figure>
-<img src="../figs/leanmd_bgq_chkp.png" width=300>
-<img src="../figs/leanmd_bgq_restart.png" width=300>
-<figcaption>Figure: fault tolerant LeandMD on Blue Gene/Q</figcaption>
-</figure>
+<center>
+  <div id="multi_figure">
+    <figure>
+      <img src="../figs/leanmd_bgp.png" width=300>
+      <img src="../figs/leanmd_bgq.png" width=300>
+      <figcaption>Figure: performance of LeandMD on Blue Gene/P and Blue Gene/Q </figcaption>
+    </figure>
+    <figure>
+      <img src="../figs/leanmd_bgq_chkp.png" width=300>
+      <img src="../figs/leanmd_bgq_restart.png" width=300>
+      <figcaption>Figure: fault tolerant LeandMD on Blue Gene/Q</figcaption>
+    </figure>
+  </div>
+</center>
 </div>
 
 <a name="amr"></a>
@@ -72,7 +79,7 @@ helpc: help
     refinement computations. The parallel mesh restructuring algorithm operates
     in terms of near-neighbor communication among individual blocks, and a
     single synchronization-only collective. </p>
-  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/amr.git</div>
+  <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/amr.git">git://charm.cs.illinois.edu/benchmarks/amr.git</a></div>
 </div>
 
 <a name="barnes"></a>
@@ -84,13 +91,13 @@ helpc: help
     of N bodies that grows only as N log N. It uses a tree-structured
     hierarchical recursive subdivision of space into cubic cells. Barnes-Hut
     method is widely used in cosmological simulations. </p>
-  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/barnes.git</div>
+  <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/barnes.git">git://charm.cs.illinois.edu/benchmarks/barnes.git</a></div>
 </div>
 
 <a name="denselu"></a>
 <div class="benchmark">
   <h2>Dense LU</h2>	 	
-  <div class="giturl">git://charm.cs.illinois.edu/charmlu.git</div>
+  <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/charmlu.git">git://charm.cs.illinois.edu/charmlu.git</a></div>
 </div>
 
 <a name="hpccg"></a>
@@ -113,7 +120,7 @@ helpc: help
     Nondiagonal blocks wait for the solution values from their corresponding
     diagonal block, and then start their computation (and receipt of other
     messages). </p>
-  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/triangularsolver.git</div>
+  <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/triangularsolver.git">git://charm.cs.illinois.edu/benchmarks/triangularsolver.git</a></div>
 </div>
 
 <a name="fft"></a>
@@ -125,7 +132,7 @@ helpc: help
   are required to perform the FFT and unscramble the data.  All-to-all
   operations are executed via point-to-point messages and external libraries
   (FFTW or ESSL) perform serial FFTs on the rows of the matrix. </p>
-  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/fft-trans.git</div>
+  <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/fft-trans.git">git://charm.cs.illinois.edu/benchmarks/fft-trans.git</a></div>
 </div>
 
 <a name="random"></a>
@@ -133,12 +140,12 @@ helpc: help
   <h2>Random Access</h2>
   <p> For Random Access benchmark we use the Mesh Streamer library for
     optimizing all-to-all communication on small messages. </p>
-  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/randomAccess.git</div>
+  <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/randomAccess.git">git://charm.cs.illinois.edu/benchmarks/randomAccess.git</a></div>
 </div>
 
 <a name="stream"></a>
 <div class="benchmark">
   <h2>EP Stream</h2>
-  <div class="giturl">git://charm.cs.illinois.edu/benchmarks/hpccstream.git</div>
+  <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/hpccstream.git">git://charm.cs.illinois.edu/benchmarks/hpccstream.git</a></div>
 </div>
 

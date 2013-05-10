@@ -282,3 +282,16 @@ span.textsf		{ font-style: italic  }
 
 .newsitem {}
 
+.giturl {
+    font-family: monospace;
+    padding-left: 20pt;
+}
+
+p {
+    padding-left: 20pt;
+}
+
+.benchmark {
+    padding-bottom: 20px;
+    border-top: 2px solid black;
+}
