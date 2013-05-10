@@ -284,9 +284,28 @@ helpc: help
 <a name="random"></a>
 <div class="benchmark">
   <h2>Random Access</h2>
-  <p> For Random Access benchmark we use the Mesh Streamer library for
-    optimizing all-to-all communication on small messages. </p>
+  <p>This benchmark makes use of the general purpose communication library in
+  Charm++, TRAM, to implement the random access benchmark of HPC Challenge
+  suite.
+  <p>We used a Charm++ group to partition the global table across the nodes in a
+  run. A group can be thought of as a chare array with one chare per Processing
+  Element (PE), which corresponds to either a core or a thread in the system.
+  For example, on Blue Gene/P, we ran using a single PE per core, while on Blue
+  Gene/Q, we ran in a mode employing one PE per thread, and up to 4 threads per
+  core. Each element of the group allocates its part of the global table,
+  generates random update keys, and sends the updates to the appropriate
+  destination.
+  <div class="features"><p>Features: TRAM, automated topology discovery.</div>
   <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/randomAccess.git">git://charm.cs.illinois.edu/benchmarks/randomAccess.git</a></div>
+<center>
+  <div id="multi_figure">
+    <figure>
+      <img src="../figs/ra_mesh.png" height=300>
+      <img src="../figs/ra_perf.png" height=300>
+      <figcaption>Figure: Random access in Charm++. Left: message aggreation using TRAM. Right: performance of random access on Intrepid (IBM BG/P) and Vesta (IBM BG/Q).
+    </figure>
+  </div>
+</center>
 </div>
 
 <a name="stream"></a>
