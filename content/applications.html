@@ -148,8 +148,8 @@ the <a href="http://charm.cs.uiuc.edu/OpenAtom/">OpenAtom</a> web site for more
 details.<p>
 <br>
 </div>
-
 <hr>
+
 <a name="CSE"></a>
 <div id="CSE" class="app"><h2>Computational Science and Engineering Applications - CSE</h2>
 <p align="justify">Professor P. Geubelle and S. Breitenfeld of
@@ -180,5 +180,37 @@ method, which solves a global matrix using local operations.</p>
 
 <br>
 </div>
+
+<a name="CSAR"></a>
+<div id="CSAR" class="app"><h2>Advanced Rocket Simulation</h2>
+
+<figure>
+	<img src="../images/rsrm_ignition_app.jpg" alt="CSE" width="250" height="228"
+	Hspace="10" Vspace="10"align="right">
+</figure>
+
+<p align="justify">
+The principal goal
+of <a href="http://www.csar.uiuc.edu/">Center for Simulation of Advanced Rockets (CSAR)</a> 
+is detailed, integrated, whole-system simulation of solid propellant
+rockets under both normal and abnormal operating conditions. 
+
+Various components of the integrated rocket simulation codes, ROCFLO, ROCSOLID,
+and ROCFACE have been ported to Adaptive MPI with minimal changes and with
+little effort, providing them with automatic load balancing capabilities. The
+AMPI implementation also enhances the modularity of rocket codes by using
+separate sets of virtual processors for ROCFLO and ROCSOLID. Based on a similar
+programming paradigm, a prototype finite element method (FEM) framework has been
+developed. Although originally designed for finite element applications, it is
+general enough for unstructured mesh applications. Using the FEM framework, code
+developers write only sequential code that implements the node and
+element-specific computations of the FEM solver, while the details of
+parallelism such as partitioning, communication, and load balancing are taken
+care of by the framework. 
+</p>
+
+
+</div>
+
 </div>
 </div>
