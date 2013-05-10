@@ -4,37 +4,37 @@ title: Capabilities
 
 <h2>Capabilities</h2>
 
-<h3>Automatic overlap</h3>
+<h3>Automatic Overlap</h3>
 
-<p>Because parallelism in Charm++ is expressed via parallel objects interacting
-instead of processors, the runtime can seamlessly provide overlap of
+<p>Because parallelism in Charm++ is expressed via interacting parallel objects
+instead of processors, the runtime system can seamlessly provide overlap of
 communication and computation as an application runs.</p>
 
-<h3>Automatic load balancing</h3>
+<h3>Automatic Load Balancing</h3>
 
 <p>Charm++ ships with an entire suite of load balancers, which can be selected
-at runtime. All the application must do is provide a hint on when it a good
+at runtime. All the application must do is provide a hint on when it is a good
 time to synchronize for load balancing. </p>
 
-<h3>Automatic checkpointing/fault tolerance</h3>
+<h3>Automatic Checkpointing and Fault Tolerance</h3>
 
 <p>Charm++ can easily checkpoint an application's data to disk or to the memory
 of a buddy node. If a fault occurs and the job persists, Charm++ will detect a
 hard node failure and automatically continue execution from the previous
 in-memory checkpoint. The programmer simply specifies the data to checkpoint
-using a simple routine that is used for load balancing to serialize the
+using a clean interface that is used for load balancing to serialize the
 data.</p>
 
-<h3>Portable code</h3>
+<h3>Portable Code</h3>
 
 <p>Charm++ comes pre-packaged with many machine layers that are tuned to the
 latest supercomputer architectures, ranging from Blue Gene/Q to Cray XK6.</p>
 
-<h3>Independent modules, interleaved execution</h3>
+<h3>Independent Modules, Interleaved Execution</h3>
 
 <p>Because Charm++ programs are written in terms of a set of modules that
 define parallel objects, multiple modules can execute concurrently. When one
-module has little work and is idle, another module can fill the gap. Because
+module has little work to do or is idle, another module can fill the gap. Because
 work can be prioritized in Charm++, the user can specify which objects have
 priority and they will be treated accordingly by the Charm++ scheduler</p>
 
@@ -42,12 +42,12 @@ priority and they will be treated accordingly by the Charm++ scheduler</p>
 
 <p>When Charm++ is compiled with the MPI machine layer, it can be easily
 combined with MPI code to assist porting codes. Charm++ supports time and space
-sharing, allowing MPI to execution with Charm++ code in phases or partitioned
+sharing, allowing MPI to execute with Charm++ code in phases or partitioned
 by processors.</p>
 
-<h3>Ecosystem of tools</h3>
+<h3>Ecosystem of Tools</h3>
 
-<p>Charm++ is not just a programming language or runtime; it also comes with a
+<p>Charm++ is not just a programming language or runtime system; it also comes with a
 full suite of tools, ranging from a parallel debugger to performance
 visualization. You can even inject python code on the fly as your application
 runs using the CCS tool.</p>
