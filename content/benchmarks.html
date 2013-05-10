@@ -180,12 +180,12 @@ helpc: help
   <div id="multi_figure">
     <figure>
       <img src="../figs/barnes_concept.png" width=600>
-      <figcaption>Time Progression view showing 2 processors executing an
+      <figcaption>Figure: Time Progression view showing 2 processors executing an
       iteration of Barnes-Hut.</figcaption>
     </figure>
     <figure>
-      <img src="../figs/barnes_perf.png"  width=300>
-      <figcaption>Performance of Barnes-Hut for 10 and 50 million particle
+      <img src="../figs/barnes_perf.png"  width=600>
+      <figcaption>Figure: Performance of Barnes-Hut for 10 and 50 million particle
       systems on Intrepid (IBM BG/P).</figcaption>
     </figure>
   </div>
@@ -237,23 +237,22 @@ helpc: help
   <h2>Triangular Solver</h2>
   <p> Solution of sparse triangular systems of linear equations is a
     performance bottleneck in many methods for solving more general sparse
-    systems, such as many iterative methods with preconditioners.  The matrix
-    is divided into blocks of columns. Each block is analyzed to find its
-    independent rows for computation. If there are dense regions below the
+    systems, such as many iterative methods with preconditioners.  In our algorithm, the matrix
+    is divided into blocks of columns, where each block is analyzed to find its
+    independent rows for solution. In addition, if there are dense regions below the
     diagonal section (we assume lower triangular for description), they are
     divided into new blocks. Each diagonal block starts the computation with
     its independent parts and waits for its dependency messages from the left.
     Nondiagonal blocks wait for the solution values from their corresponding
-    diagonal block, and then start their computation (and receipt of other
-    messages). </p>
+    diagonal block, and then start their computation. </p>
   <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/triangularsolver.git">git://charm.cs.illinois.edu/benchmarks/triangularsolver.git</a></div>
 <center>
   <div id="multi_figure">
     <figure>
       <img src="../figs/solver_perf.png" width=600>
       <figcaption>Figure: performance of sparse triangular solver on Intrepid
-      (IBM BG/P) for different sparse matrices. Performance is also
-      competetive with SuperLU DIST.</figcaption>
+      (IBM BG/P) for different sparse matrices. Performance is much
+      better than the standard SuperLU DIST package.</figcaption>
     </figure>
   </div>
 </center>
@@ -284,17 +283,35 @@ helpc: help
 <a name="random"></a>
 <div class="benchmark">
   <h2>Random Access</h2>
-  <p>This benchmark makes use of the general purpose communication library in
-  Charm++, TRAM, to implement the random access benchmark of HPC Challenge
-  suite.
-  <p>We used a Charm++ group to partition the global table across the nodes in a
-  run. A group can be thought of as a chare array with one chare per Processing
-  Element (PE), which corresponds to either a core or a thread in the system.
-  For example, on Blue Gene/P, we ran using a single PE per core, while on Blue
-  Gene/Q, we ran in a mode employing one PE per thread, and up to 4 threads per
-  core. Each element of the group allocates its part of the global table,
-  generates random update keys, and sends the updates to the appropriate
+  <p> The HPC Challenge Random Access benchmark measures the rate of processing
+  updates to a distributed table. Each process issues updates to random
+  locations in the table. The small size of individual update messages in this
+  benchmark makes it prohibitively expensive to send each item as a separate
+  message. This makes the benchmark an ideal scenario for using TRAM, our
+  general purpose message aggregation library. TRAM routes messages over an
+  N-dimensional virtual topology comprising the PEs involved in the run. The
+  topology needs to be specified when creating an instance of the library. To
+  facilitate the specification of the virtual topology, we used the Charm++
+  Topology Manager library, which provides an interface to determine the network
+  topology for the current run. In typical cases, we found that using virtual
+  topologies with dimensions matching the network representation of the current
+  run led to good performance.
+
+  <p> We used a Charm++ group to partition the global table across the nodes in
+  a run. Each element of the group allocates its part of the global
+  table, generates random update keys, and sends the updates to the appropriate
   destination.
+
+  <p> In the context of TRAM, each processor is limited to sending to and receiving
+  messages from a subset of the processors involved in the run. When determining
+  where to send a particular data item (in our case table update), TRAM selects
+  a destination from among its peers so that data items always make forward
+  progress toward the destination. Items traveling to the same intermediate
+  destination are combined into larger messages. This approach achieves improved
+  aggregation and lower memory utilization compared to schemes which aggregate
+  separately for each destination on the network.
+
+
   <div class="features"><p>Features: TRAM, automated topology discovery.</div>
   <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/randomAccess.git">git://charm.cs.illinois.edu/benchmarks/randomAccess.git</a></div>
 <center>
