@@ -250,9 +250,8 @@ helpc: help
 <center>
   <div id="multi_figure">
     <figure>
-    <figure>
       <img src="../figs/solver_perf.png" width=600>
-      <figcaption>Figure: Performance of sparse triangular solver on Intrepid
+      <figcaption>Figure: performance of sparse triangular solver on Intrepid
       (IBM BG/P) for different sparse matrices. Performance is also
       competetive with SuperLU DIST.</figcaption>
     </figure>
@@ -269,7 +268,17 @@ helpc: help
   are required to perform the FFT and unscramble the data.  All-to-all
   operations are executed via point-to-point messages and external libraries
   (FFTW or ESSL) perform serial FFTs on the rows of the matrix. </p>
+
+  <div class"features"<p>Features: interoperability with MPI, adaptive overlap.</div>
   <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/fft-trans.git">git://charm.cs.illinois.edu/benchmarks/fft-trans.git</a></div>
+<center>
+  <div id="multi_figure">
+    <figure>
+      <img src="../figs/fft_perf.png" width=600>
+      <figcaption>Figure: performance of Global FFT on IBM’s BG/Q BG/P.</figcaption>
+    </figure>
+  </div>
+</center>
 </div>
 
 <a name="random"></a>
