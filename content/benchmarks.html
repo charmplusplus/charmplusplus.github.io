@@ -175,7 +175,6 @@ helpc: help
   yields an expected complexity of O(N lg N), making it suitable for
   large systems of particles.
 
-
   <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/barnes.git">git://charm.cs.illinois.edu/benchmarks/barnes.git</a></div>
 <center>
   <div id="multi_figure">
@@ -228,8 +227,9 @@ helpc: help
 
 <a name="hpccg"></a>
 <div class="benchmark">
-  <h2>hpccg</h2>
-  <div class="giturl">https://charm.cs.uiuc.edu/private/gitweb2.cgi?p=users/lifflander/hpccg.git;a=summary</div>
+  <h2>HPPCG</h2>
+  <p>HPCCG is Charm++ implementation of HPPCG mini-application in Mantevo Suite.
+  <div class="giturl"><a href="https://charm.cs.illinois.edu/private/gitweb2.cgi?p=users/lifflander/hpccg.git;a=summary">https://charm.cs.illinois.edu/private/gitweb2.cgi?p=users/lifflander/hpccg.git;a=summary</a></div>
 </div>
 
 <a name="solver"></a>
@@ -247,6 +247,17 @@ helpc: help
     diagonal block, and then start their computation (and receipt of other
     messages). </p>
   <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/triangularsolver.git">git://charm.cs.illinois.edu/benchmarks/triangularsolver.git</a></div>
+<center>
+  <div id="multi_figure">
+    <figure>
+    <figure>
+      <img src="../figs/solver_perf.png" width=600>
+      <figcaption>Figure: Performance of sparse triangular solver on Intrepid
+      (IBM BG/P) for different sparse matrices. Performance is also
+      competetive with SuperLU DIST.</figcaption>
+    </figure>
+  </div>
+</center>
 </div>
 
 <a name="fft"></a>
