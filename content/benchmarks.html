@@ -50,10 +50,10 @@ helpc: help
   that are equal to the sum of the cutoff distance, r<sub>c</sub> and a margin. In each iteration, 
   force calculations are done for all pairs of atoms that are within the cutoff distance. The force calculation 
   for a pair of cells is assigned to a different set of objects called computes. Based on the forces sent by 
-    the computes, the cells perform the force integration and update various properties of their 
-    atoms – acceleration, velocity and positions.
+  the computes, the cells perform the force integration and update various properties of their 
+  atoms – acceleration, velocity and positions.
   
-  <div class="features"><p>Features: Automated load balancing, fault tolerance, multicast manager</p></div>
+  <div class="features"><p>Features: Automated load balancing, fault tolerance, multicast manager.</p></div>
   <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/leanmd.git">git://charm.cs.illinois.edu/benchmarks/leanmd.git</a></div>
 
 <center>
@@ -75,11 +75,66 @@ helpc: help
 <a name="amr"></a>
 <div class="benchmark">
   <h2>AMR</h2>
-  <p> This benchmarks is mesh restructuring algorithm for adaptive mesh
-    refinement computations. The parallel mesh restructuring algorithm operates
-    in terms of near-neighbor communication among individual blocks, and a
-    single synchronization-only collective. </p>
+  <p>AMR is mesh restructuring algorithm for adaptive mesh refinement computations. 
+  The parallel mesh restructuring algorithm operates in terms of near-neighbor 
+  communicatio  among individual blocks, and a single synchronization-only collective. 
+  
+  <p> Traditional AMR algorithms phrase the design in terms of processors that
+  contain many blocks. Instead, we promote blocks to first-class entities that
+  act as a virtual pro- cessor. As the mesh is refined or coarsened in AMR, the
+  number of blocks will change and traditional algorithms require
+  synchronization at these points. However, to enhance productively, we abstract
+  the blocks as a collection that dynamically expands and contracts over time.
+  Refinement decisions can then be local to each block and propagated as far as
+  algorithmically required so blocks are always within one refinement level of
+  their neighbors. Because remeshing occurs only at discrete points in the
+  simulation time, instead of using collective communication that is proportional
+  to the depth of the recursive refinement, we use a scalable termination
+  detection mechanism built into our runtime to globally determine when all
+  refinement decisions have been finalized. Previous collective methods require
+  O(d) rounds of collective communication, where d is the refinement and
+  consume O(P) memory per processor to store the results. By utilizing
+  termination detection, we consume a negligible amount of memory and communicate
+  no data. Besides termination detection, blocks execute completely
+  asynchronously, communicating only with neighboring blocks when required.
+
+  <p>Traditional AMR implementations store the quad-tree instance on each
+  process consuming O(P) memory and taking O(log N) time for neighbor lookup.
+  We organize the blocks into a quad-tree but address each block by their
+  location in the tree using bit vectors to represent quadrants recursively.
+  It requires only O(#blocks/P) memory per process and O(1) lookup time. It also
+  frees the programmer from having to know where the block lies; instead, the
+  underly- ing runtime system manages the physical locations of each block and
+  provides direct, efficient communication between them. The runtime system can
+  then redistribute the blocks periodically without any change to the logic.
+
+  <div class="features"><p>Features: quiescence detection, dynamic chare creation, load balancing.</p></div>
   <div class="giturl"><a href="http://charm.cs.illinois.edu/cgi-bin/gitweb.cgi?p=benchmarks/amr.git">git://charm.cs.illinois.edu/benchmarks/amr.git</a></div>
+
+<center>
+  <div id="multi_figure">
+    <figure>
+      <img src="../figs/amr_out1.png" width=200>
+      <img src="../figs/amr_out2.png" width=200>
+      <img src="../figs/amr_out3.png" width=200>
+      <figcaption>Figure: example simulation of a circular fluid
+      advected by a constant velocity field. From left to right, the figure
+      displays the fluid density after 2, 572, and 1022 iterations respectively.
+      The white squares demonstrate how the mesh is evolving over time.</figcaption>
+    </figure>
+    <figure>
+      <img src="../figs/amr_perf.png" height=300 width=300>
+      <img src="../figs/amr_remesh.png" height=300 width=400>
+      <figcaption>Figure: performance of AMR on Blue Gene/Q. Left: Timesteps per
+      second strong scaling on IBM BG/Q with a max depth of 15. Right:  The
+      non-overlapped delay of remeshing in milliseconds. The
+      candlestick graphs the minimum and maximum values, the 5th and 95th
+      percentile, and the median.</figcaption>
+    </figure>
+  </div>
+</center>
+</div>
+  
 </div>
 
 <a name="barnes"></a>
