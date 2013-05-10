@@ -216,13 +216,19 @@ care of by the framework.
 
 <a name="PSTIP"></a>
 <div id="pstip" class="app"><h2>PSTIP - Parallel Stochastic Integer Programming</h2>
-<p>Stochastic optimization is used for optimal resource allocation under 
+<figure>
+	<img src="../figs/jetalloc.png" alt="CSE" width="400" height="300"
+	Hspace="10" Vspace="10"align="right">
+</figure>
+
+<p align="justify">Stochastic optimization is used for optimal resource allocation under 
 uncertainty. Application of stochastic programming spans a diverse set of fields
 ranging from production, financial modeling, transportation (road as well as air), 
 supply chain and scheduling to environmental and pollution control, telecommunications 
 and electricity. When integer optimization is required, then branch-and-bound are accepted
 norms.</p>
-<p>
+
+<p align="justify">
 Unlike typical, iterative scientific applications, this application has
 some very interesting characteristics that make it challenging
 to realize a scalable design. The total amount of computation
@@ -235,6 +241,11 @@ sizes. The structure of the branch-and-bound search tree is
 sensitive to several factors, any of which can significantly alter the
 search tree causing longer times to solution.</p>
 
-<p></p>
-</div>
+<p>
+Our parallel design exploits simultaneous parallelism
+on two different fronts - parallel exploration of the branch-and-bound tree vertices
+tree and parallel evaluation of scenarios. Our designs show strong scaling to
+hundreds of cores.
+</p>
+
 </div>
