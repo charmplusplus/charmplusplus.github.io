@@ -4,7 +4,7 @@ TARGET := output
 
 all: 
 	nanoc compile
-	cp -dpr examples/ $(TARGET)/tutorial/
+	rsync -raz examples/ $(TARGET)/tutorial/
 
 clean:
 	rm -rf $(TARGET)
