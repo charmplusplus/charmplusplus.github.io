@@ -108,7 +108,7 @@ helpc: help
    The communication between chare objects within any given phase should be fairly straight forward.  Let us
    consider a single pair of chare objects, chare object at index <i>X</i> and its neighbor at index
    <i>X+1</i>.  One of the chare objects, let's say <i>X</i>, will initiate the test by sending it's value
-   to the other object, <i>X+1</i>.  Once the message arrives is received, chare object <i>X+1</i>
+   to the other object, <i>X+1</i>.  Once the message is received, chare object <i>X+1</i>
    <i>knows</i> both values and can perform the test.  If the object decides that the order of the
    values is fine, it can deny the swap by sending a message back to <i>X</i> indicating this.  If, however,
    the values need to be swapped, <i>X+1</i> can simply replace its old value with the value <i>X</i> sent

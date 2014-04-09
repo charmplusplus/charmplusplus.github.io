@@ -55,7 +55,7 @@ helpc: help
    each other by sending messages to one another.  The asynchronous keyword means that the
    messages are sent in a manner that is asynchronous to the execution of code associated
    with the chare objects.  That is to say, if code operating on a chare object decides to send
-   a message to another chare object, the sending of the message occures in an asynchronous manner
+   a message to another chare object, the sending of the message occurs in an asynchronous manner
    to the code execution (the code directly after the <i>send</i> immediately continues execution
    while the message <i>travels</i> towards the target chare).  The oppisite is also true; a
    chare object can receive a message from another chare object at any time regardless of what
@@ -159,7 +159,7 @@ helpc: help
    a normal C++ member function and a Charm++ entry methods is that Charm++ entry methods
    act as the reception points for messages (or, in other words, they are the member
    functions that can be remotely invoked by other chare objects).  When one chare object
-   does a remote method invocation on another chare object, the data being send is packed
+   does a remote method invocation on another chare object, the data being sent is packed
    into a message and passed to the receiving chare object.  Once the receiving chare
    object receives the message, the entry method that was specified by the <i>sending</i>
    chare object is invoked (executed) and the data in the message is passed to that entry
@@ -175,7 +175,7 @@ helpc: help
   </p>
  
   <p class="BasicParagraph">
-   There are two aspects of entry methods that make the different from standard C++ member
+   There are two aspects of entry methods that make them different from standard C++ member
    functions.  First, entry methods do not have return values (i.e. they return void).
    Second, from the perspective of the calling chare object,
    the entry method returns immediately and the code of the calling chare object continues
@@ -223,7 +223,7 @@ helpc: help
    In actual Charm++ applications, it is more common to see collections of chare objects
    rather than individual chare objects.  The collection of chare objects is spread out
    across the processors and all memmber are commonly performing a similar operation on
-   different peices of data.  There are several types of chare collections.
+   different pieces of data.  There are several types of chare collections.
   </p>
 
   <p class="BasicParagraph">
