@@ -17,41 +17,92 @@ helpc: help
 				  <li><a class="newsitem" href="/news#charm65">Stable release of Charm++ version 6.5.0</a></li>  
 				  <li><a class="newsitem" href="/news#SIAM">Local SIAM chapter hosted Charm++ Tutorial</a></li>  
 				  <li><a class="newsitem" href="/news#Charm64">Charm++ version 6.4.0 released</a></li>  
+                                  <li><a class="newsitem" href="/news#fernbach">Fernbach Award for Profs. Kale, Schulten</a></li>
 				</ul>
 		</div>
     <div id="blurb">
-			<p>Charm++ is a parallel programming framework in <strong>C++</strong>,
-			supported by an adaptive runtime system, which runs programs portably
-			from small multicore computers (your laptop) to the largest
-			supercomputers. The programs specify a parallel computation in terms of
-			collections of C++ objects, called <em>chares</em>, that interact with
-			each other via asynchronous method invocations.  Charm++ programs are
-			simply written in C++, with an additional description of parallel
-			interfaces in separate files.</p>
+			<p><em>Charm++ is a parallel programming framework in C++, supported by
+			an adaptive runtime system, which enhances user productivity and allows
+			programs to run portably from small multicore computers (your laptop) to
+			the largest supercomputers.</em></p>
+			
+			<p>It enables users to easily expose and express much of the parallelism
+			in their algorithms while automating many of the requirements for high
+			performance and scalability. It permits writing parallel programs in
+			units that are natural to the domain, without having to deal with
+			processors and threads.</p>
 
-			<p>Programmers don't concern themselves with where these objects are
-			(i.e. on which processors) or when the methods execute. Those concerns
-			are left to the runtime system (RTS) to control. These objects are
-			migratable in the sense that the RTS may change their placement during
-			execution. Since there are typically multiple chare objects on each
-			processor, the model is also characterized by over-decomposition of work
-			and data units. These features empower an adaptive and introspective RTS
-			to support the novel feature set that we provide.</p>
+			<p>Charm++ has been in production use for over 15 years in the
+			scientific, high performance computing community and currently has
+			thousands of users in dozens of countries across a wide variety of
+			computing disciplines.  It has been adopted by many computing teams, and
+			has been used to produce several large, parallel applications. It is
+			actively developed, maintained and supported by the
+			<a href="ppl.cs.illinois.edu">parallel programming lab</a> at
+			<a href="illinois.edu">UIUC</a>, and its collaborators.</p>
 
-      </p>Charm++ is a production-quality system, used by scientists and
-      engineers in multiple disciplines, with its own debugging and performance
-      analysis tools, and with a nightly build system that tests in on dozens
-      of combinations of processors, networks, OSs, and compilers.  It is
-      installed on most national supercomputers. Charm++ modules can
-      interoperate with MPI modules. We welcome you to this website to explore
-      Charm++.</p>
+			<!--
+			<p>Charm++ advocates expressing parallelism in domain-specific units that
+			are independent of processors / threads, overdecomposing data and
+			computation, concurrency constrained by algorithmic dependencies,
+			parallel execution managed by an intelligent runtime system, and higher
+			user productivity via a separation of concerns between the application
+			developer and the runtime system.</p>
+
+			<p>Users specify a parallel algorithm in terms of collections of C++
+			objects, called <em>chares</em>, that interact with each other via
+			asynchronous method invocations.  Users simply express the parallel
+			algorithm and algorithmic dependencies and are not burdened with
+			considerations of which processors or threads these objects live in.
+			Charm++ programs are simply written in C++, with additional annotations
+			on the objects and methods that are globally visible.</p>
+
+			<p> The Charm++ runtime system manages the locations of these objects,
+			delivers any data and method invocations expressed by the program, and
+			orchestrates the overall parallel execution.  Users provide serialization
+			routines, and the runtime system uses these to dynamically migrate
+			objects across processors during execution.  These features empower an
+			adaptive and introspective RTS to support the novel feature set that we
+			provide.</p>
+			-->
     </div>
-		<h3>supported architectures</h3>
-		<ul>
-				<li>IBM BlueGene/Q and BlueGene/P</li>
-				<li>IBM POWER7</li>
-				<li>Cray XC30, XE6, XK6/7</li>
-				<li>Clusters with ethernet or Infiniband</li>
-				<li>Standalone Linux, Mac OS X, and Windows systems</li>
-				<li>Coming soon: Intel MIC</li>
+		<ul id="portability">
+		<li>
+				<h3>environments</h3>
+				<ul>
+						<li>x86 (workstations, laptops etc)</li>
+						<li>ARM (CARMA dev boards)</li>
+						<li>Cray XC30, XE6, XK6/7</li>
+						<li>IBM BlueGene (L,P,Q)</li>
+						<li>IBM POWER7</li>
+						<li>beowulf clusters</li>
+						<li>Coming soon: Intel MIC</li>
+						<li>linux, mac, windows</li>
+				</ul>
+		</li>
+		<li>
+				<h3>network interfaces</h3>
+				<ul>
+						<li>TCP, UDP</li>
+						<li>Infiniband verbs</li>
+						<li>MPI</li>
+						<li>DCMF (IBM BlueGene P)</li>
+						<li>PAMI (IBM BlueGene Q)</li>
+						<li>uGNI (Cray Gemini and Aries)</li>
+						<li>Shared Memory</li>
+				</ul>
+		</li>
+		<li>
+				<h3>compilers</h3>
+				<ul>
+						<li>clang</li>
+						<li>cray</li>
+						<li>fujitsu</li>
+						<li>gcc</li>
+						<li>ibm</li>
+						<li>intel</li>
+						<li>microsoft</li>
+						<li>portland group</li>
+				</ul>
+		</li>
 		</ul>

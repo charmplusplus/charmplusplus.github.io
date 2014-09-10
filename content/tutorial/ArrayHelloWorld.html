@@ -64,13 +64,13 @@ helpc: help
   </p>
 
   <p class="BasicParagraph">
-   For the purpose of this example program, readonly variables server two purposes.  The
+   For the purpose of this example program, readonly variables serve two purposes.  The
    first is to place a reference to the Main chare object into the global object space
    so that all of the Hello chare objects can invoke entry methods on it.  While all of the
    chare objects in the global object space can invoke entry methods on one another, they
    first need a reference (called a <i>Proxy</i>) to the target chare object.  The second
    purpose is to contain global constants.  In this case, the number of Hello chare objects,
-   which can be specified on the command-line by the user) is contained in the
+   which can be specified on the command-line by the user, is contained in the
    <i>numElements</i> readonly variable.
   </p>
 
@@ -584,7 +584,7 @@ helpc: help
    This interleaving of tasks is a common issue in parallel programming in  general and
    something that makes writing a parallel program more difficult than writting a serial program.
    By their very nature, parallel programs have multiple processing elements acting independently
-   of one another.  When two or processing elements have to perform a set of tasks in a particular
+   of one another.  When two or more processing elements have to perform a set of tasks in a particular
    order (i.e. task <i>A</i> must complete on processing element <i>X</i> before task <i>B</i> can
    begin on processing element <i>Y</i>) the processing elements must synchronize.  With little
    synchronization, the processing elements are, for the most part, acting independently from one
