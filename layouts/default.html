@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Charm++: <%= @item[:title] %></title>
 		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
 		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
@@ -18,88 +19,102 @@
 		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
 		<script src="/assets/prettify.js" type="text/javascript">
 		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <!-- you don't need to keep this, but it's cool for stats! -->
     <meta name="generator" content="nanoc <%= Nanoc::VERSION %>"> 
   </head>
 
   <body>
-    <div id="maincontainer">
-      <div id="content">
-        <%= yield %>
-      </div>
-    </div>
+    <div class="container">
+ <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="/"><b>Charm++</b></a>
+	  </div>
 
-    <div id="footer">
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="/capabilities/">Capabilities</a></li>
+		  <li><a href="/progmodel/">Programming Model</a></li>
+		  <li><a href="/execmodel/">Execution Model</a></li>
+		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
+		  <li><a href="/history/">History</a></li>
+		</ul>
+              </li>
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="http://charm.cs.illinois.edu/manuals/html/charm++/A.html">Installation</a></li>
+      		  <li><a href="/tutorial/">Tutorial</a></li>
+      		  <li><a href="/help/">Manual</a></li>
+      		  <li><a href="/benchmarks/">Mini-Apps</a></li>
+      		  <li><a href="/tools/">Tools</a></li>
+      		  <li><a href="/othermedia/">Other Media</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="http://charm.cs.illinois.edu/gerrit/gitweb?p=charm.git">Recent Commits</a></li>
+      	  <li><a href="https://charm.cs.illinois.edu/redmine/projects/charm">Issue Tracker</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+      	  <li><a href="http://lists.cs.illinois.edu/mailman/listinfo/charm">Mailing Lists</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/gerrit/#/admin/projects/">Other Repositories</a></li>
+      	  <li><a href="http://ppl.cs.illinois.edu">PPL Website</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Downloads <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  	<li><a href="http://charm.cs.illinois.edu/distrib/charm-6.6.0.tar.gz">v6.6.0 (tar.gz)</a></li>
+      			<li><a href="http://charm.cs.illinois.edu/autobuild/cur/charm_src.tar.gz">latest dev (tar.gz)</a></li>
+      			<li>git clone
+      			<input type="text" id="navgit" class="giturl" readonly value="http://charm.cs.illinois.edu/gerrit/charm.git"></input>
+      			</li>
+      			<li><a href="http://charm.cs.illinois.edu/distrib/binaries/projections/projections_6.2.1.tar.gz">Projections (tar.gz)</a></li>
+      			<li><a href="http://charm.cs.illinois.edu/distrib/binaries/charmdebug/charmdebug_6.2.0.tar.gz">CharmDebug(tar.gz)</a></li>
+      			<li><a href="http://charm.cs.illinois.edu/software">Release Info</a></li>
+		</ul>
+              </li>
+
+	    </ul>
+	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
+              <div class="form-group">
+		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
+		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+
+<!--      <div id="maincontainer">-->
+	<div id="content">
+          <%= yield %>
+	</div>
+<!--      </div>-->
+      
+      <div id="footer">
     	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
 	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
 	<a href="http://illinois.edu">University of Illinois</a>
+      </div>
     </div>
-
-
-<div id="navbar">
-	<a href="/" id="homebutton" title="Home"><img src='/images/home_icon.png' width="16px"/></a>
-	<span class="pagetitle"> Charm++: <%= @item[:title] %> </span>
-	<div id="navholder">
-		<span id="menubutton">Menu</span>
-		<ul id="navmenu">
-		<li>
-			<div id="nav-explore">
-			<h6>Explore</h6>
-			<ul>
-			<li><a href="/capabilities/">Capabilities</a></li>
-			<li><a href="/progmodel/">Programming Model</a></li>
-			<li><a href="/execmodel/">Execution Model</a></li>
-			<li><a href="/applications/">Applications</a></li>
-			<li><a href="http://charm.cs.illinois.edu/papers">Publications</a></li>
-			<li><a href="/history/">History</a></li>
-			</ul>
-			</div>
-		</li>
-		<li>
-			<div id="nav-learn">
-			<h6>Learn</h6>
-			<ul>
-			<li><a href="http://charm.cs.illinois.edu/manuals/html/charm++/A.html">Installation</a></li>
-			<li><a href="/tutorial/">Tutorial</a></li>
-			<li><a href="/help/">Manual</a></li>
-			<li><a href="/benchmarks/">Mini-Apps</a></li>
-			<li><a href="/tools/">Tools</a></li>
-			<li><a href="/othermedia/">Other Media</a></li>
-			</ul>
-			</div>
-		</li>
-		<li>
-			<div id="nav-follow">
-			<h6>Follow</h6>
-			<ul>
-			<li><a href="http://charm.cs.illinois.edu/gerrit/gitweb?p=charm.git">Recent Commits</a></li>
-			<li><a href="https://charm.cs.illinois.edu/redmine/projects/charm">Issue Tracker</a></li>
-			<li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
-			<li><a href="http://lists.cs.illinois.edu/mailman/listinfo/charm">Mailing Lists</a></li>
-			<li><a href="http://charm.cs.illinois.edu/gerrit/#/admin/projects/">Other Repositories</a></li>
-			<li><a href="http://ppl.cs.illinois.edu">PPL Website</a></li>
-			</ul>
-			</div>
-		</li>
-		<li>
-			<div id="nav-download">
-			<h6>Download</h6>
-			<ul>
-			<li><a href="http://charm.cs.illinois.edu/distrib/charm-6.6.0.tar.gz">v6.6.0 (tar.gz)</a></li>
-			<li><a href="http://charm.cs.illinois.edu/autobuild/cur/charm_src.tar.gz">latest dev (tar.gz)</a></li>
-			<li>git clone
-			<input type="text" id="navgit" class="giturl" readonly value="http://charm.cs.illinois.edu/gerrit/charm.git"></input>
-			</li>
-			<li><a href="http://charm.cs.illinois.edu/distrib/binaries/projections/projections_6.2.1.tar.gz">Projections (tar.gz)</a></li>
-			<li><a href="http://charm.cs.illinois.edu/distrib/binaries/charmdebug/charmdebug_6.2.0.tar.gz">CharmDebug(tar.gz)</a></li>
-			<li><a href="http://charm.cs.illinois.edu/software">Release Info</a></li>
-			</ul>
-			</div>
-		</li>
-		</ul>
-	</div>
-</div>
-
   </body>
 </html>

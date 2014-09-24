@@ -23,9 +23,6 @@ h4		{ padding: 3pt;  }
 
 /* Remove the annoying underlines, but still keep it accessible */
 a { text-decoration: none; }
-a:hover { color:#a00; border-bottom: 1px dotted #a00; }
-
-
 
 /* mathematics styles */
 DIV.displaymath		{ }	/* math displays */
@@ -38,8 +35,8 @@ h1, h2, h3 { font-family: Puritan, Verdana, Helvetica sans-serif; }
 code, pre { font-family: "Courier New" Courier monospace; }
 
 body {
-		background: #ffffff;
-		background: url(hatchbkgd.png) repeat;
+		background: #fdfdfd;
+		/*background: url(hatchbkgd.png) repeat; */
 		margin: 0; padding: 0;
 }
 
@@ -86,110 +83,7 @@ body {
 		border: 1px solid #ccc;
 }
 
-#navbar {
-		position: fixed;
-		top:0; left:0;
-		width: 100%;
-		text-align: left;
-		margin:0;
-		background: #2c2c2c;
-		color: #efefef;
-		font-size: 90%;
-}
 
-#navbar a { color: #88d6f9; }
-#navbar a:hover { color: #c4c4c4; border-color: #c4c4c4; }
-
-#nav-quicklinks {
-		display:inline-block;
-		padding: 0px 10px;
-		margin: 5px;
-		float: right;
-}
-
-#nav-quicklinks > li {
-		display: inline;
-		padding:0px 2px;
-		margin: 0px 1em;
-}
-
-#nav-quicklinks a { text-decoration: none; }
-#nav-quicklinks a:hover { color: #c4c4c4; }
-
-#navholder { float: right; }
-#menubutton {
-	width: 8em;
-	text-align: center;
-	vertical-align: bottom;
-	font-weight: bold;
-	display: block;
-	padding: 8px 5px 7px;
-	background: #a63400;
-	color: #efefef;
-}
-
-#navmenu {
-	position: absolute; right: 0px;
-	/* For css-only animation of menu upon hover */
-	top: -9999px;
-	margin: 0; padding: 1em 1em 0.5em;
-	border-bottom-right-radius: 10px;
-	border-bottom-left-radius: 10px;
-	list-style-type: none;
-	background: #000000;
-}
-/* For css-only animation of menu upon hover */
-/*
-#navholder:hover #navmenu { top: 2em; }
-#navholder:hover #menubutton { background: #000000; }
-*/
-
-#navmenu h6 { text-align: center; font-size: 120%; margin:3px auto; padding: 3px; }
-#navmenu > li {
-	display: inline-block;
-	vertical-align: top;
-}
-#navmenu > li > div {
-	margin: 5px 1.0em 1em;
-	background: #202020;
-	border-radius: 5px;
-}
-#navmenu > li ul { list-style-type: none; margin: 0; padding: 0; }
-#navmenu > li a,
-#navmenu > li a:visited {
-	border: none;
-	margin: 0; padding: 10px 20px;
-	display: inline-block;
-	width: 10em;
-}
-#navmenu > li a:hover,
-#navmenu > li a:active { background: #00a4e4; color: #2c2c2c; }
-#navmenu > li > div li { border-bottom: 1px dotted #999999; }
-#navmenu > li > div li:last-child { border-bottom: none; }
-#navmenu > li > div li:last-child > a {
-	border-bottom-right-radius: 4px;
-	border-bottom-left-radius: 4px;
-}
-#navgit {
-	background: #555555;
-	color: #efefef;
-	border: 1px solid #2c2c2c;
-	padding: 5px;
-	width: 7em;
-}
-#nav-ppl > a { border-radius: 4px; }
-#nav-explore,
-#nav-learn,
-#nav-follow
-{ 
-}
-
-
-.navsymbol {
-		font-weight:bold;
-		font-size: 130%;
-		line-height:70%;
-}
 
 .pagetitle {
 		display: inline-block;
@@ -197,14 +91,6 @@ body {
 		text-align: center;
 		font-weight: bold;
 }
-
-#homebutton {
-	display: inline-block;
-	padding: 6px;
-	background: #a63400;
-	color: #efefef;
-}
-#homebutton:hover { border: none; }
 
 #pulldowntab {
 	position: absolute;
@@ -255,7 +141,7 @@ span.textsf		{ font-style: italic  }
 	padding: 0 30px;
 	border: none;
 	line-height: normal;
-	font-size: 70%;
+	font-size: 85%;
 	font-weight: normal;
 	font-style: normal;
 	text-align: center;
@@ -299,14 +185,11 @@ p {
     border-top: 2px solid black;
 }
 
-@media only screen and (min-width: 700px) and (max-width:900px) {
-#menubutton { background: #f00; }
-#navmenu { font-size: 75%; }
-#navmenu > li a:visited { width: 7em; }
-#navgit { width: 5.5em; }
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-@media only screen and (max-width:700px) {
-#navmenu { height: 10em; overflow-y: auto; }
+.navbar {
+  margin-bottom: 20px;
 }
-
