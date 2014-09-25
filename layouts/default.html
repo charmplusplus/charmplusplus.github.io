@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Charm++: <%= @item[:title] %></title>
-		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
 		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
 		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
@@ -79,17 +79,7 @@
               </li>
 
               <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Downloads <span class="caret"></span></a>
-		<ul class="dropdown-menu" role="menu">
-		  	<li><a href="http://charm.cs.illinois.edu/distrib/charm-6.6.0.tar.gz">v6.6.0 (tar.gz)</a></li>
-      			<li><a href="http://charm.cs.illinois.edu/autobuild/cur/charm_src.tar.gz">latest dev (tar.gz)</a></li>
-      			<li>git clone
-      			<input type="text" id="navgit" class="giturl" readonly value="http://charm.cs.illinois.edu/gerrit/charm.git"></input>
-      			</li>
-      			<li><a href="http://charm.cs.illinois.edu/distrib/binaries/projections/projections_6.2.1.tar.gz">Projections (tar.gz)</a></li>
-      			<li><a href="http://charm.cs.illinois.edu/distrib/binaries/charmdebug/charmdebug_6.2.0.tar.gz">CharmDebug(tar.gz)</a></li>
-      			<li><a href="http://charm.cs.illinois.edu/software">Release Info</a></li>
-		</ul>
+		<a href="/download/">Downloads</a>
               </li>
 
 	    </ul>
@@ -104,11 +94,11 @@
 	</div><!-- /.container-fluid -->
       </nav>
 
-<!--      <div id="maincontainer">-->
-	<div id="content">
-          <%= yield %>
-	</div>
-<!--      </div>-->
+ <div id="maincontainer">
+   <div id="content">
+     <%= yield %>
+   </div>
+ </div>
       
       <div id="footer">
     	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
