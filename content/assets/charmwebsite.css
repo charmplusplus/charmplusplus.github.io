@@ -30,7 +30,7 @@ TD.eqno			{ }	/* equation-number cells */
 
 
 /* document-specific styles come next */
-body { font-family: Helvetica, Arial, sans-serif; }
+body { font-family: 'Droid Sans', Helvetica, Arial, sans-serif; }
 h1, h2, h3 { 
     font-family: Puritan, Verdana, Helvetica sans-serif; 
     font-weight: bold;
