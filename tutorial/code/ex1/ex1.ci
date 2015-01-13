@@ -1,11 +1,18 @@
+// The main module of the application.
 mainmodule ex1 {
 
+  // When the Charm++ RTS starts it creates a single instance of the mainchare.
   mainchare Main {
+    // The constructor of the mainchare is the entry point of the program and
+    // is passed any command line arguments used when running the program.
     entry Main(CkArgMsg*);
   };
 
+  // A regular chare declaration with a constructor and an entry method.
   chare Greeter {
     entry Greeter();
+    // The sayHello entry method may be invoked remotely on any instance of a
+    // Greeter chare.
     entry void sayHello();
   };
 };
