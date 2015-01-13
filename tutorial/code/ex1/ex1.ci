@@ -1,0 +1,11 @@
+mainmodule ex1 {
+
+  mainchare Main {
+    entry Main(CkArgMsg*);
+  };
+
+  chare Greeter {
+    entry Greeter();
+    entry void sayHello();
+  };
+};
