@@ -1,7 +1,10 @@
+// Only entry methods may be remotely invoked.  All entry methods must be
+// specified in an interface (.ci) file, such as this one.
+
 // The main module of the application.
 mainmodule ex1 {
 
-  // When the Charm++ RTS starts it creates a single instance of the mainchare.
+  // When the Charm++ RTS starts, it creates a single instance of the mainchare.
   mainchare Main {
     // The constructor of the mainchare is the entry point of the program and
     // is passed any command line arguments used when running the program.
@@ -10,6 +13,7 @@ mainmodule ex1 {
 
   // A regular chare declaration with a constructor and an entry method.
   chare Greeter {
+    // Constructor for the Greeter chare.
     entry Greeter();
     // The sayHello entry method may be invoked remotely on any instance of a
     // Greeter chare.
