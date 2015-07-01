@@ -127,15 +127,15 @@ a:hover {
   width: 143px;
 }
 
-.benchmarks {
-  background-image:url('images/benchmarks.png');
+.miniApps {
+  background-image:url('images/miniApps.png');
   background-repeat: no-repeat;
   background-size: 100%;
   width: 140px;
 }
 
-.benchmarks:hover, .benchmarksSelected {
-  background-image:url('images/benchmarks_over.png');
+.miniApps:hover, .miniAppsSelected {
+  background-image:url('images/miniApps_over.png');
   background-repeat: no-repeat;
   background-size: 100%;
   width: 140px;
