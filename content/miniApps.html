@@ -29,6 +29,7 @@ helpc: help
 <li><a href="#barnes">Barnes Hut - n-body problem</a></li>
 <li><a href="#denselu">DenseLU - matrix solver (HPC Challenge)</a></li>
 <li><a href="#hpccg">HPCCG - conjugant gradient (Mantevo)</a></li>
+<li><a href="#kripke">Kripke - discrete particle transport (LLNL)</a></li>
 <li><a href="#solver">TS - triangular solver</a></li>
 <li><a href="#fft">FFT - one dimensional FFT (HPC Challenge)</a></li>
 <li><a href="#random">RA - random access (HPC Challenge)</a></li>
@@ -227,9 +228,16 @@ helpc: help
 
 <a name="hpccg"></a>
 <div class="benchmark">
-  <h2>HPPCG</h2>
-  <p>HPCCG is Charm++ implementation of HPPCG mini-application in Mantevo Suite.
+  <h2>HPCCG</h2>
+  <p>HPCCG is Charm++ implementation of HPCCG mini-application in the Mantevo Suite. It was originally developed as the first Mantevo mini-app in order to be the best representation of an unstructured implicit finite element or finite volume application in 800 lines of code.
   <div class="giturl"><a href="http://charm.cs.uiuc.edu/gerrit/gitweb?p=users%2Flifflander%2Fhpccg.git">https://charm.cs.illinois.edu/gerrit/hpccg</a></div>
+</div>
+
+<a name="kripke"></a>
+<div class="benchmark">
+  <h2>Kripke</h2>
+  <p>Kripke is a proxy application from Lawrence Livermore National Laboratory (LLNL) for Sn discrete particle transport codes. Given a volume of interest, knowledge of its boundary conditions and the particle-generating sources within and outside the domain, Kripke solves for the flux of particles at every point in the domain at a subsequent time. It does so by decomposing the domain into 3-dimensional subdomains that we call zone sets, and then sweeps the over the zone sets for all energy group sets and angular direction sets. These parallel sweeps are all independent of each other, and so Kripke sweeps from all corners of the domain simultaneously and pipelines sweeps originating from the same domain corner. 
+  <div class="giturl"><a href="http://charm.cs.uiuc.edu/gerrit/gitweb?p=users%2Flifflander%2Fkripke.git">https://charm.cs.illinois.edu/gerrit/kripke</a></div>
 </div>
 
 <a name="solver"></a>
