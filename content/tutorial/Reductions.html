@@ -9,6 +9,8 @@ toolsc: tools
 helpc: help
 ---
 
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+  
   <h1>Reductions</h1>
 
 <p class="BasicParagraph"> By now, we've spent a lot of time in this tutorial talking about how to decompose problems into chares and distribute these chares across processors.  One these chares are distributed, you might need an efficient way to recombine the results of their computations on one processor. When you need to combine values from an array of chares, you can turn to one of the most important parallel programming tools: a <i>reduction</i>. </p>
@@ -59,7 +61,3 @@ contribute(sizeof(double), &amp;force, CkReduction::sum_double);</tt>
 
   <!--#include virtual="footer.html"-->
 
-
- </body>
-
-</html>
