@@ -56,8 +56,3 @@ contribute(sizeof(double), &amp;force, CkReduction::sum_double);</tt>
 
 <p class="BasicParagraph">Now look at pireduce, which replaces the direct messages to the main chare with a reduction. Now instead of invoking one of Main's entry methods directly, the chares contribute to a reduction whose client invokes one of Main's methods. Main's receive method extracts the result of the reduction, reports the result, and then exits. Thus with only minor changes to the program we have converted it to use Charm++ reductions. Reductions are a basic building-block of parallel applications, and they will quickly become second nature to you as you become and experienced Charm++ programmer.</p>
 
-
-
-
-  <!--#include virtual="footer.html"-->
-
