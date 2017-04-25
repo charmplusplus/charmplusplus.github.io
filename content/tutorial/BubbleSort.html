@@ -50,7 +50,7 @@ helpc: help
   <h3>Description of Bubble Sort</h3>
 
   <p class="BasicParagraph">
-   The bubble sort alogrithm is a fairly straight forward way of sorting an array of values.
+   The bubble sort algorithm is a fairly straight forward way of sorting an array of values.
    The goal of the calculation is to sort the contents of the array.
    For the purpose of example, lets say we wish to sort an array of integers values
    with length <i>N</i> so that the lowest values are at the beginning of the array (lowest index)
@@ -120,7 +120,7 @@ helpc: help
 
   <p class="BasicParagraph">
    Once the chare object at index <i>X</i> has received a reply from <i>X+1</i>, <i>X</i> will send
-   a message to the main chare object to indiciate that this pair (<i>X</i> and <i>X+1</i>) has finished the
+   a message to the main chare object to indicate that this pair (<i>X</i> and <i>X+1</i>) has finished the
    swap for this phase of this iteration.  Once all of the pairs have done this, the main chare object will
    start the next phase of the computation.  For now, this will serve as an implicit barrier which will
    reduce the number of race conditions that are possible and reduce the complexity of the code for the
@@ -213,7 +213,7 @@ helpc: help
    A simple solution for this program can be found
    <a href="examples/BubbleSort.tar.gz">here (BubbleSort.tar.gz)</a>.
    Please note, this solution does not just run for <i>N</i> iterations.  Instead, it exits after
-   there have been two consecutive phases with no swaps occuring (indicating that the array is
+   there have been two consecutive phases with no swaps occurring (indicating that the array is
    sorted).
   </p>
 
@@ -234,7 +234,7 @@ helpc: help
   <h3>No Need for Barriers</h3>
 
   <p class="BasicParagraph">
-   The presense of the implicit barriers reduces the efficiency of the calculation.  The barriers
+   The presence of the implicit barriers reduces the efficiency of the calculation.  The barriers
    are not actually required though.  Try writing an implementation that does not use any barriers.
    That is, have the main chare start the computation and then only be notified when the array is
    correctly sorted.  Additionally, no single chare object should act as a manager for any of the
@@ -255,8 +255,8 @@ helpc: help
    objects decide that they are finished (no chare needs to swap with any of its neighbors) then the
    overall array is sorted and all the chare objects are no longer sending/receiving any messages or
    executing any entry methods.  Here, something called quiescence detection can be used.  <i>Quiescence</i>
-   occurs when all of the following conditions are met: (1) no chare objects are currenly processing
-   a messsage (i.e. executing an entry method), (2) no chare object has a message queued for it by the
+   occurs when all of the following conditions are met: (1) no chare objects are currently processing
+   a message (i.e. executing an entry method), (2) no chare object has a message queued for it by the
    Charm++ Runtime System, and (3) no messages are <i>in-flight</i> in the interconnect.  For more
    information on quiescence detection, see
    <a href="http://charm.cs.uiuc.edu/manuals/html/charm++/3_13Quiescence_Detection.html">Section 3.13: Quiescence Detection</a> of the

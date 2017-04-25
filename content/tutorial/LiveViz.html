@@ -71,9 +71,9 @@ helpc: help
 
   <p class="BasicParagraph">
    First, a special entry method is declared for the chare array.  Specifically, an entry method that
-   takes a <i>liveVizRequestMsg</i> message.  This message contains various peices of information
+   takes a <i>liveVizRequestMsg</i> message.  This message contains various pieces of information
    including the size of the display area in the LiveViz client program (that is, the size of the area
-   where the chare array can draw to).  A callback object is created that points to this partictular
+   where the chare array can draw to).  A callback object is created that points to this particular
    entry method.
   </p>
 
@@ -87,7 +87,7 @@ helpc: help
 
   <p class="BasicParagraph">
    Third, LiveViz is then <i>initialized</i> for a chare array and configuration object pair.  Once this
-   occures, the chare array can create a LiveViz image which can give the user information related to
+   occurs, the chare array can create a LiveViz image which can give the user information related to
    its current state.
   </p>
 
@@ -155,7 +155,7 @@ helpc: help
   </p>
 
   <p class="BasicParagraph">
-   Third, LiveViz is initiallized with the chare array and configuration object pair.  The code for
+   Third, LiveViz is initialized with the chare array and configuration object pair.  The code for
    doing both the second and third steps can be found in <i>Main::Main()</i> in <i>main.C</i>.
   </p>
 
@@ -173,9 +173,9 @@ helpc: help
    Once the Charm++ program has been started, a
    LiveViz client program can attach to it.  One LiveViz client program can be found at
    <i>[charmDir]/java/bin/liveViz</i> where <i>[charmDir]</i> is the base directory for the Charm++
-   distribution.  This LiveViz client program expects two command line arguements: (1) <i>host</i> which
+   distribution.  This LiveViz client program expects two command line arguments: (1) <i>host</i> which
    is the name of the machine on which the <i>charmrun</i> command was executed and (2) <i>port</i> which is
-   the port number the Charm++ application is listening for CCS messsages on (should match the <i>xxxx</i>
+   the port number the Charm++ application is listening for CCS messages on (should match the <i>xxxx</i>
    specified for the <i>++server-port xxxx</i> command line option given to <i>charmrun</i>).
   </p>
 

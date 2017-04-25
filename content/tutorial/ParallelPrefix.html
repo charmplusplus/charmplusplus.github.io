@@ -112,7 +112,7 @@ helpc: help
    of operations that need to be performed increases as a function of <i>N <sup>2</sup></i>.
    The second method, which makes the observation that the previous <i>v_prime[]</i> value
    can be used to avoid duplicating calculations, takes <i>O(N)</i> operations.  This is a great
-   improvement over the first method and will run substatially faster for large values of <i>N</i>.
+   improvement over the first method and will run substantially faster for large values of <i>N</i>.
    However, it is not as easy to parallelize the second method.  Each iteration of the loop depends
    on the value calculated in the previous iteration creating a chain of data dependencies over the
    course of the entire calculation.  In the first method, each iteration of the outer-loop is independent
@@ -223,7 +223,7 @@ helpc: help
      <i>I = thisIndex + (1 << stepNum)</i> assuming <i>stepNum</i> is zero-based OR, if <i>I <= N</i>,
      then it directly checks in with the <i>main</i> chare).  Once, the receiving chare object in
      the chare array receives and adds the other chare object's value, have it check in with the
-     <i>main</i> chare.  Once the <i>main</i> chare has has received <i>N</i> check in messages,
+     <i>main</i> chare.  Once the <i>main</i> chare has received <i>N</i> check in messages,
      it can start the next step (or terminate if <i>O(log<sub>2</sub>(N))</i> steps have been completed).
      Alternatively, you can skip ahead in the tutorial a little bit and read about reductions.  However,
      a barrier is not needed (see <a href="#NoBarriers">No Need for Barriers</a> in the
@@ -480,7 +480,7 @@ helpc: help
    computation.  Instead, each chare object in the array would only need to send a single message to
    the <i>main</i> chare object after its stepCounter has reached
    <i>&lceil; log<sub>2</sub>(N) &rceil;</i>.  This helps reduce the required amount of communication
-   (assuming buffered messages, not re-sends).  It also alows each chare object to proceed with
+   (assuming buffered messages, not re-sends).  It also allows each chare object to proceed with
    computation based solely
    on data dependencies being met (i.e. it has the data it needs to move forward with its portion of the
    computation).  With the barriers, all chare objects have to wait for the slowest chare object to

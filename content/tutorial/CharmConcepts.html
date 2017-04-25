@@ -38,7 +38,7 @@ helpc: help
    execution is a sequence of sequential code (that is, code that executes in program
    order from start to finish without communicating with another thread of execution).  In
    terms of Charm++, the term parallel simply means that several <i>things</i> may be
-   occuring at any given moment (one or more chunks of code being executed, messages
+   occurring at any given moment (one or more chunks of code being executed, messages
    being passed between chares, and so on).
   </p>
  
@@ -59,11 +59,11 @@ helpc: help
    with the chare objects.  That is to say, if code operating on a chare object decides to send
    a message to another chare object, the sending of the message occurs in an asynchronous manner
    to the code execution (the code directly after the <i>send</i> immediately continues execution
-   while the message <i>travels</i> towards the target chare).  The oppisite is also true; a
+   while the message <i>travels</i> towards the target chare).  The opposite is also true; a
    chare object can receive a message from another chare object at any time regardless of what
    the receiving chare is doing at that particular moment.  How messages are passed, what code
    is executed, and so on will be discussed later in the tutorial.  It is worth noting that the
-   passing of messages is also refered to as <i>method invocation</i> or <i>remote method
+   passing of messages is also referred to as <i>method invocation</i> or <i>remote method
    invocation</i> since, from the perspective of the sending chare object, the code simply looks
    like the calling code is invoking a member function of the target chare.
   </p>
@@ -95,7 +95,7 @@ helpc: help
    overall application.  One chare sends a message to another chare, the receiving chare
    does some computation and then sends out more messages to other chares, and so on, and so on.
    Execution begins with a special chare called the <i>main chare</i> (similar to how execution
-   of a C++ program begins with the exection of a special function called <i>main</i>).
+   of a C++ program begins with the execution of a special function called <i>main</i>).
   </p>
 
   <p class="BasicParagraph">
@@ -106,7 +106,7 @@ helpc: help
    in terms of the chare objects.  The programmer does not have to worry about the number of
    processing elements that will be available when the program is executed or what type of
    interconnect (network) will be used to connect the processing elements together.  All of these
-   details are left to an intellegent runtime system called the Charm++ Runtime System.  The
+   details are left to an intelligent runtime system called the Charm++ Runtime System.  The
    Charm++ Runtime System takes care of mapping each of the chares to the physical processing
    elements, routing messages over the interconnect, and so on.
   </p>
@@ -119,16 +119,16 @@ helpc: help
    entities.  Each chare object has it's own state (that is, data local to it).  Chare
    objects in the application cannot directly access the state of another chare objects,
    however, any chare object can directly communicate with any other chare object.  The
-   overall set of chare objects in the application is commonly refered to as the
+   overall set of chare objects in the application is commonly referred to as the
    <i>global object space</i>.  Any chare object in the global object space can request
-   informtion on another chare object's state by sending the chare object a message
+   information on another chare object's state by sending the chare object a message
    requesting the information.
   </p>
  
   <p class="BasicParagraph">
    For the purposes of this tutorial, we will use two terms: <i>chare class</i> and
    <i>chare object</i>.  These terms have the same basic meaning as their C++
-   equivelants, <i>class</i> and <i>object</i>, respectively.  A chare class defines
+   equivalents, <i>class</i> and <i>object</i>, respectively.  A chare class defines
    a type of chare object (the blueprints of a chare object).  A chare object is a
    specific instance of a chare class.  Another term that will be used in this tutorial
    is <i>chare array</i>.  A chare array is simply an array of chare objects (just like
@@ -224,7 +224,7 @@ helpc: help
   <p class="BasicParagraph">
    In actual Charm++ applications, it is more common to see collections of chare objects
    rather than individual chare objects.  The collection of chare objects is spread out
-   across the processors and all memmber are commonly performing a similar operation on
+   across the processors and all members are commonly performing a similar operation on
    different pieces of data.  There are several types of chare collections.
   </p>
 
@@ -239,7 +239,7 @@ helpc: help
   <p class="BasicParagraph">
    As was previously mentioned, a chare array is simply an array of chare objects.  The
    array can indexed using a simple integer index similar to how C++ arrays are indexed
-   (int arrays, for example).  Chare arrays can be single or multidemensional (indexing
+   (int arrays, for example).  Chare arrays can be single or multidimensional (indexing
    schemes for 1D through 6D are provided).  Chare arrays can also be indexed using more
    complex schemes such as a bit vector or even use user defined objects to index into
    the array.

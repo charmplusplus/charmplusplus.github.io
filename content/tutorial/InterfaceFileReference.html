@@ -87,7 +87,7 @@ helpc: help
   <h3>Read-Only Messages</h3>
 
   <p class="BasicParagraph">
-   In some cases, it can be advantagous for the Charm++ Runtime System to <i>know</i> that a message
+   In some cases, it can be advantageous for the Charm++ Runtime System to <i>know</i> that a message
    and the data that it contains will be treated in a read-only manner.  The programmer can indicate
    this to the runtime system by marking the entry method with <i>nokeep</i> in the interface file.
    When this is done, the runtime system assumes that the message (and the data it contains) will not
@@ -148,7 +148,7 @@ helpc: help
    (CthAwaken()).  While the entry method is actively executing (i.e. is not currently suspended),
    it is still the only entry method executing on the processor.  If a threaded entry method
    suspends itself, other entry methods may be executed/scheduled by the Charm++ Runtime System.
-   Once the threaded entry method is re-awakened and scheduled, it will have execusive use of the
+   Once the threaded entry method is re-awakened and scheduled, it will have exclusive use of the
    processor again until it either re-suspends itself or completes.
   </p>
 
@@ -229,7 +229,7 @@ helpc: help
   <h3>Nodes</h3>
 
   <p class="BasicParagraph">
-   If a function is marked with the <i>initnode</i> heyword in the interface file, the function will
+   If a function is marked with the <i>initnode</i> keyword in the interface file, the function will
    be executed once on each node before the main chare is created.  See Figure 1 for examples of how
    to declare node initialization functions.
   </p>

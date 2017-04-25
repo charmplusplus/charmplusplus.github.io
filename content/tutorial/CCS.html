@@ -11,7 +11,7 @@ helpc: help
 
   <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
   
-    <h1>Converse Client-Server (CCS) - Stearing the 2D Jacobi Program</h1>
+    <h1>Converse Client-Server (CCS) - Steering the 2D Jacobi Program</h1>
 
     CCS is a protocol that enables any Charm++ program to act as a server, and
     respond to requests sent by a client. The server will export the actions
@@ -76,12 +76,12 @@ helpc: help
     where <i>handlerName</i> is the string identifier of the CCS request which
     will be sent by the client, and <i>cb</i> is the associated callback that
     will be invoked upon receipt of the request. This registration needs to be
-    performed only once in the entire system, therefore an intuitive location do
+    performed only once in the entire system, therefore an intuitive location to
     do it is inside the mainchare "main" method (the one receiving CkArgMsg as
     parameter). The maximum length of the handler name is 32 characters.
 
     <p>We can see in the example code, in main.C line 85 and 86, how this is
-    performed by registering a callback to the entire jacobi array when there is
+    performed by registering a callback to the entire Jacobi array when there is
     an incoming request named "changeValue", and a callback to the mainchare
     when there is an incoming request named "exit".
 
@@ -149,12 +149,12 @@ helpc: help
 
     <p>In the case of "exit" we have no desire to reply to the client, so we can
     simply ignore it. Nevertheless, in the case of "changeValue" we would like
-    to let the client know if the modification has succeded. In order to do
+    to let the client know if the modification has succeeded. In order to do
     this, we use the same structure of the request to send back a list of value
     change request that could not be applied by the server (clearly an empty
     list means that everything went ok).
 
-    <p>The only caviat to be careful when replying to the client, is that <b>only
+    <p>The only caveat to be careful when replying to the client, is that <b>only
     one single reply is allowed per request</b>. This implies that not every
     element of the chare array can respond to the client, but only one element
     can. In our example, the chare element with index (0, 0) will reply to the

@@ -44,7 +44,7 @@ helpc: help
    objects and how the chare objects communicate with one another through method invocation
    (or message passing).  Details such as the number of processors, types of processors, type
    of interconnect, and so on are not considered.  The programmer simply writes the application
-   as a collection of interacting objects.  This view of a Charm++ application is refered to as
+   as a collection of interacting objects.  This view of a Charm++ application is referred to as
    the <i>user's view of a Charm++ application</i> (see Figure 1).
   </p>
 
@@ -53,9 +53,9 @@ helpc: help
    including type of processor, type of interconnect, and so on.
    Additionally, when the application is executed, there is a specific set of <i>physical resources</i>
    that are made available to the application such as the number of physical processors, and so on.
-   The purpose of the Charm++ Runtime System is to manage as many of the details of the phyical
+   The purpose of the Charm++ Runtime System is to manage as many of the details of the physical
    resources on behalf of the application, and thus, on behalf of the programmer.  This view of the
-   Charm++ application is refered to as the <i>system's view of a Charm++ application</i> (see Figure
+   Charm++ application is referred to as the <i>system's view of a Charm++ application</i> (see Figure
    2).  Management decisions that the Charm++ Runtime System can make on behalf of the application
    include (but are not limited to):
   </p>
@@ -91,7 +91,7 @@ helpc: help
    <li style="{margin-bottom:20px;}">
     <b>Dynamic Re-Allocation of Physical Resources</b>:  A cluster being used to execute
        a Charm++ application may suddenly receives more jobs (or have several jobs finish).  The Charm++
-       Runtime System can dynamially migrate chare objects from (or to) physical processors allowing
+       Runtime System can dynamically migrate chare objects from (or to) physical processors allowing
        the application to dynamically shrink to use fewer physical processors (or expand to use more
        physical processors) based on the cluster's overall load.
    </li>
@@ -106,7 +106,7 @@ helpc: help
 
   <p class="BasicParagraph">
    In actuality, <i>Charm++ Runtime System</i> is a collective term used to describe a collection
-   of components (all of which provide certain functionallity).  The components of the Charm++
+   of components (all of which provide certain functionality).  The components of the Charm++
    Runtime System are discussed below (see Figure 2 above and Figure 3 below).
   </p>
 
@@ -147,8 +147,8 @@ helpc: help
   </p>
 
   <p class="BasicParagraph">
-   There are other types of messages that are supported by Charm++: expidited messages, immediate
-   messages, and messages with user defined priorties.  When theses types of messages are being
+   There are other types of messages that are supported by Charm++: expedited messages, immediate
+   messages, and messages with user defined priorities.  When theses types of messages are being
    used by a Charm++ program, the message queue does not act as a simple queue.  For more information
    on these types of messages, please see the Charm++ documentation.
   </p>
@@ -205,7 +205,7 @@ helpc: help
        fault tolerance, etc. capabilities of the Charm++ Runtime System.
    <li style="{margin-bottom:10px;}">
        <b>Charisma:</b>  Charisma is a high-level language that allows a programmer to clearly
-       specifiy the control flow of a Charm++ application.
+       specify the control flow of a Charm++ application.
    <li style="{margin-bottom:10px;}">
        <b>Structured Dagger (SDag):</b>  Like Charisma, Structured Dagger allows a programmer to specify
        the control flow in a Charm++ program at a high-level.  However, SDag code is specified directly

@@ -58,9 +58,9 @@ helpc: help
     dynamically by the Charm++ Runtime System while the Charm++ application continues to run.
 
    <li style="{margin-bottom:15px;}">
-    <b>Parameter Marshling:</b>  Generally speaking, an object (not just chare objects; C++ objects,
+    <b>Parameter Marshaling:</b>  Generally speaking, an object (not just chare objects; C++ objects,
     C structures, and so on) can have PUP routines.  Any object that has a PUP routine can then be
-    passed as an argument in an entry method invokation.
+    passed as an argument in an entry method invocation.
 
   </ul>
 
@@ -82,7 +82,7 @@ helpc: help
 
   <p class="BasicParagraph">
    What makes object migration possible is the ability to serialize the state of a chare object
-   into a contiguous peice of memory (i.e. a message, a file, and so on).  By seriallizing the
+   into a contiguous piece of memory (i.e. a message, a file, and so on).  By serializing the
    state of the chare object, the chare object can be recreated, along with its state, at a later
    time and potentially in a different location such as another processing element.  See the figure
    to the right.  For a chare
@@ -276,16 +276,16 @@ helpc: help
   <ul>
 
    <li style="{margin-bottom:15px; margin-left:15px;}">
-    <b>isSizing():</b> Returns true if the sizing step is occuring, false otherwise.
+    <b>isSizing():</b> Returns true if the sizing step is occurring, false otherwise.
 
    <li style="{margin-bottom:15px; margin-left:15px;}">
-    <b>isPacking():</b> Returns true if the packing step is occuring, false otherwise.
+    <b>isPacking():</b> Returns true if the packing step is occurring, false otherwise.
 
    <li style="{margin-bottom:15px; margin-left:15px;}">
-    <b>isDeleting():</b> Returns true if the packing step is occuring and the object
+    <b>isDeleting():</b> Returns true if the packing step is occurring and the object
     being PUP'ed will be <i>deleted</i> immediately afterwards, false otherwise.
 
    <li style="{margin-bottom:15px; margin-left:15px;}">
-    <b>isUnpacking():</b> Returns true if the unpacking step is occuring, false otherwise.
+    <b>isUnpacking():</b> Returns true if the unpacking step is occurring, false otherwise.
 
   </ul>

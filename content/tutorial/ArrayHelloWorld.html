@@ -46,7 +46,7 @@ helpc: help
    elements in a chare array: <i>thisProxy</i> and <i>thisIndex</i>.  Both of these variables
    are similar to the <i>this</i> keyword in C++.  The <i>thisProxy</i> variable points to the
    array that <i>this</i> chare object is in.  The <i>thisIndex</i> variable holds the index
-   in the the chare array that <i>this</i> chare object occupies (i.e. the first element is at
+   in the chare array that <i>this</i> chare object occupies (i.e. the first element is at
    index 0, the second at index 1, and so on).
   </p>
 
@@ -58,7 +58,7 @@ helpc: help
    constructor of the main chare object (<i>Main::Main()</i> in this example).  When the
    main chare's constructor executes, it should set the values for all of the readonly
    variables in the program.  Once the main chare's constructor has completed, the values
-   contained in the readonly variables are distributed to all of the the other processing
+   contained in the readonly variables are distributed to all of the other processing
    elements available to the application.  At this point, the values of the readonly
    variables should only be read since all of the processing elements have a <i>private</i>
    copy of the values (i.e. changing the value of a readonly on one processing element
@@ -135,7 +135,7 @@ helpc: help
    This example is just meant to demonstrate how a Charm++ program operates (how forward progression
    is made, how chare objects communicate by invoking entry methods, and so on).  This program, while
    it could be executed on multiple processing elements with the chare objects spread out across the
-   processing elements, does not have any inhierent parallelism in it.  The next "Hello World" program
+   processing elements, does not have any inherent parallelism in it.  The next "Hello World" program
    (the Broadcast "Hello World" Program) will actually exhibit parallelism.
   </p>
 
@@ -376,7 +376,7 @@ helpc: help
            &nbsp;&nbsp;numElements = 5;  <font class="codeComment">// Default numElements to 5</font><br>
            <br>
            <font class="codeComment">
-           &nbsp;&nbsp;// There should be 0 or 1 command line arguements.<br>
+           &nbsp;&nbsp;// There should be 0 or 1 command line arguments.<br>
            &nbsp;&nbsp;//   If there is one, it is the number of "Hello"<br>
            &nbsp;&nbsp;//   chares that should be created.<br>
            </font>
@@ -584,7 +584,7 @@ helpc: help
 
   <p class="BasicParagraph">
    This interleaving of tasks is a common issue in parallel programming in  general and
-   something that makes writing a parallel program more difficult than writting a serial program.
+   something that makes writing a parallel program more difficult than writing a serial program.
    By their very nature, parallel programs have multiple processing elements acting independently
    of one another.  When two or more processing elements have to perform a set of tasks in a particular
    order (i.e. task <i>A</i> must complete on processing element <i>X</i> before task <i>B</i> can
