@@ -78,11 +78,11 @@ helpc: help
   <h2>AMR</h2>
   <p>AMR is mesh restructuring algorithm for adaptive mesh refinement computations. 
   The parallel mesh restructuring algorithm operates in terms of near-neighbor 
-  communicatio  among individual blocks, and a single synchronization-only collective. 
+  communication  among individual blocks, and a single synchronization-only collective. 
   
   <p> Traditional AMR algorithms phrase the design in terms of processors that
   contain many blocks. Instead, we promote blocks to first-class entities that
-  act as a virtual pro- cessor. As the mesh is refined or coarsened in AMR, the
+  act as a virtual processor. As the mesh is refined or coarsened in AMR, the
   number of blocks will change and traditional algorithms require
   synchronization at these points. However, to enhance productively, we abstract
   the blocks as a collection that dynamically expands and contracts over time.
@@ -105,7 +105,7 @@ helpc: help
   location in the tree using bit vectors to represent quadrants recursively.
   It requires only O(#blocks/P) memory per process and O(1) lookup time. It also
   frees the programmer from having to know where the block lies; instead, the
-  underly- ing runtime system manages the physical locations of each block and
+  underlying runtime system manages the physical locations of each block and
   provides direct, efficient communication between them. The runtime system can
   then redistribute the blocks periodically without any change to the logic.
 
@@ -209,7 +209,7 @@ helpc: help
   high performance linear algebra library, typically a platform-specific
   implementation of BLAS and perform partial pivoting for each matrix column.
 
-  <div class="features"><p>Features: composable libary, flexible data placement,
+  <div class="features"><p>Features: composable library, flexible data placement,
   block-centric control flow, separation of concerns.
   <div class="giturl"><a href="http://charm.cs.illinois.edu/gerrit/gitweb?p=charmlu.git">http://charm.cs.illinois.edu/gerrit/charmlu.git</a></div>
 <center>
@@ -327,7 +327,7 @@ helpc: help
     <figure>
       <img src="../figs/ra_mesh.png" height=300>
       <img src="../figs/ra_perf.png" height=300>
-      <figcaption>Figure: Random access in Charm++. Left: message aggreation using TRAM. Right: performance of random access on Intrepid (IBM BG/P) and Vesta (IBM BG/Q).
+      <figcaption>Figure: Random access in Charm++. Left: message aggregation using TRAM. Right: performance of random access on Intrepid (IBM BG/P) and Vesta (IBM BG/Q).
     </figure>
   </div>
 </center>
