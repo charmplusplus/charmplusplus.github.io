@@ -7,6 +7,7 @@ miniAppsc: miniApps
 downloadc: download
 toolsc: tools
 helpc: help
+sidenav: sidenav
 ---
 
   <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
@@ -71,7 +72,7 @@ helpc: help
 
   <h3>Parallel Implementation of Bubble Sort</h3>
 
-  <p class="BasicParagraph">  
+  <p class="BasicParagraph">
    The first observation to make about bubble sort is that the order of the test/swap operations (that is,
    <i>if</i> statement in Figure 1) doesn't really matter.  It may make a slight difference on the total
    number of iterations for a value at a particular location to move a certain distance, but this is a minor
@@ -259,7 +260,7 @@ helpc: help
    a message (i.e. executing an entry method), (2) no chare object has a message queued for it by the
    Charm++ Runtime System, and (3) no messages are <i>in-flight</i> in the interconnect.  For more
    information on quiescence detection, see
-   <a href="http://charm.cs.uiuc.edu/manuals/html/charm++/3_13Quiescence_Detection.html">Section 3.13: Quiescence Detection</a> of the
+   <a href="http://charm.cs.uiuc.edu/manuals/html/charm++/12.html#SECTION02350000000000000000">Section 12.5: Quiescence Detection</a> of the
    <a href="http://charm.cs.uiuc.edu/manuals/html/charm++/manual.html">The Charm++ Programming Language Manual</a>.
    It might be easier to continue on with the tutorial and come back to this version of
    bubble sort after having become a bit more experienced with Charm++ (specifically

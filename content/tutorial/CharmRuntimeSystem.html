@@ -7,10 +7,11 @@ miniAppsc: miniApps
 downloadc: download
 toolsc: tools
 helpc: help
+sidenav: sidenav
 ---
 
   <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
-  
+
   <h1>Introduction to the Charm++ Runtime System</h1>
 
   <!-- Figure -->
@@ -27,7 +28,7 @@ helpc: help
 
    <tr><td align=center valign=middle>
     <a class="StandardFigure" href="images/Charm_SysView.jpg">
-     <img class="StandardFigure" src="images/Charm_SysView_sm.jpg" border=0 style="{margin-top:20px;}">
+     <img class="StandardFigure" src="images/Charm_SysView_sm.jpg" border=0 style="margin-top:20px;">
     </a>
    </td></tr>
    <tr><td align=center valign=middle>
@@ -45,7 +46,7 @@ helpc: help
    (or message passing).  Details such as the number of processors, types of processors, type
    of interconnect, and so on are not considered.  The programmer simply writes the application
    as a collection of interacting objects.  This view of a Charm++ application is referred to as
-   the <i>user's view of a Charm++ application</i> (see Figure 1).
+   the <i>user's view of a Charm++ application</i> (see <a href="CharmConcepts.html#figure1">Figure 1</a>).
   </p>
 
   <p class="BasicParagraph">
@@ -170,8 +171,17 @@ helpc: help
 
   <br clear=all>
 
+  <h2>How the Charm++ Runtime System Fits In</h2>
+
+  <p class="BasicParagraph">
+   Below is a simplified figure of various pieces of software related to Charm++ in some way.
+   At the bottom of the figure is the Charm++ Runtime System and the various software components that
+   it is comprised of.  Not mentioned above are the various modules that provide support for activities
+   such as load balancing, fault tolerance, communication optimization, projections, and so on.
+  </p>
+
   <!-- Figure -->
-  <table class="StandardFigure" align=right border=0>
+  <table class="StandardFigure" align=center border=0 style="margin-left:80px;">
    <tr><td align=center valign=middle>
     <a class="StandardFigure" href="images/CharmHierarchy.jpg">
      <img class="StandardFigure" src="images/CharmHierarchy_sm.jpg" border=0>
@@ -181,15 +191,6 @@ helpc: help
     <b>Figure 3:</b> A Simplified View of the Charm++ Universe
    </td></tr>
   </table>
-
-  <h2>How the Charm++ Runtime System Fits In</h2>
-
-  <p class="BasicParagraph">
-   To the right is a simplified figure of various pieces of software related to Charm++ in some way.
-   At the bottom of the figure is the Charm++ Runtime System and the various software components that
-   it is comprised of.  Not mentioned above are the various modules that provide support for activities
-   such as load balancing, fault tolerance, communication optimization, projections, and so on.
-  </p>
 
   <h3>Support for Other Languages / Models</h3>
 
@@ -222,7 +223,7 @@ helpc: help
   <h3>Frameworks</h3>
 
   <p class="BasicParagraph">
-   
+
   </p>
 
   <ul>
@@ -235,7 +236,7 @@ helpc: help
   <h3>Tools</h3>
 
   <p class="BasicParagraph">
-   
+
   </p>
 
   <ul>

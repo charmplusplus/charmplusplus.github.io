@@ -7,6 +7,7 @@ miniAppsc: miniApps
 downloadc: download
 toolsc: tools
 helpc: help
+sidenav: sidenav
 ---
 
   <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
@@ -14,11 +15,9 @@ helpc: help
   <h1>2D Jacobi Program</h1>
 
 
-  <table align=right border=0 cellpadding=0 cellspacing=0>
-   <tr><td align=center>
-  
+  <h2>The Jacobi Calculation</h2>
   <!-- Figure -->
-  <table class="StandardFigure" border=0>
+  <table class="StandardFigure" align=right border=0>
    <tr><td align=left valign=middle bgColor=bbbbbb>
     <div style="{margin:5px;}">
      <code>
@@ -69,40 +68,6 @@ helpc: help
    </td></tr>
   </table>
 
-   </td></tr>
-   <tr><td align=center>
-
-  <!-- Figure -->
-  <table class="StandardFigure" border=0>
-   <tr><td align=center valign=middle>
-    <img class="StandardFigure" src="images/2DJacobi_Decomposition.jpg" border=0o>
-   </td></tr>
-   <tr><td align=center valign=middle>
-    <b>Figure 2:</b> Decomposition of 2D Jacobi (Parallel Data Structure)
-   </td></tr>
-  </table>
-
-   </td></tr>
-   <tr><td align=center>
-
-  <!-- Figure -->
-  <table class="StandardFigure" border=0>
-   <tr><td valign=middle>
-    <a href="images/2DJacobi_NeighborComm.jpg">
-     <img class="StandardFigure" src="images/2DJacobi_NeighborComm_sm.jpg" border=0o>
-    </a>
-   </td></tr>
-   <tr><td align=center valign=middle>
-    <b>Figure 3:</b> Communication Pattern (Single Chare, Single Step)
-   </td></tr>
-  </table>
-
-   </td></tr>
-  </table>
-
-
-  <h2>The Jacobi Calculation</h2>
-
   <p class="BasicParagraph">
    The Jacobi calculation is another useful example.  The idea is simple.  There is some data
    set (1D, 2D, 3D, etc. array of values) which is updated in an iterative processes until some
@@ -115,8 +80,10 @@ helpc: help
    calculated across the entire 2D matrix.  If the maximum value change for a given iteration is
    below a given threshold, then the Jacobi calculation ends.  Otherwise, the next iteration starts.
    Figure 1 to the right has the C++ code for a serial version of the 2D Jacobi calculation
-   described above..
+   described above.
   </p>
+
+
 
 
   <h2>Parallelizing 2D Jacobi</h2>
@@ -143,8 +110,18 @@ helpc: help
    elements.  Figure 2 depicts this decomposition visually for the entire matrix.
   </p>
 
+  <!-- Figure -->
+  <table class="StandardFigure" border=0 style="margin-left:120px;">
+   <tr><td align=center valign=middle>
+    <img class="StandardFigure" src="images/2DJacobi_Decomposition.jpg" border=0o>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 2:</b> Decomposition of 2D Jacobi (Parallel Data Structure)
+   </td></tr>
+  </table>
+
   <p class="BasicParagraph">
-   Figure 3 zooms in on a single chare object and the eight surrounding chare objects (assuming the
+   Figure 3 (below) zooms in on a single chare object and the eight surrounding chare objects (assuming the
    center chare object is not one of the border elements).  The <i>jacobiArray</i> refers to a 2D array
    of Jacobi chare objects (the name used in the example code below).  Five <i>events</i> have to occur each
    step before the chare object can perform its local calculation.  They are as follows <i>(Please Note:
@@ -178,6 +155,18 @@ helpc: help
                a manner similar to how each of the incoming ghost data messages were sent.
    </li>
   </ul>
+
+  <!-- Figure -->
+  <table class="StandardFigure" border=0 style="margin-left:120px;">
+   <tr><td valign=middle>
+    <a href="images/2DJacobi_NeighborComm.jpg">
+     <img class="StandardFigure" src="images/2DJacobi_NeighborComm_sm.jpg" border=0o>
+    </a>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 3:</b> Communication Pattern (Single Chare, Single Step)
+   </td></tr>
+  </table>
 
   <p class="BasicParagraph">
    Once each of these events have occurred, the local chare object (x,y) is then ready to do the
@@ -222,7 +211,7 @@ helpc: help
    <ul>
     <li style="{margin-bottom:20px;}">
      <b>Makefile</b>:  The Makefile for this application should be very similar to the makefiles
-     used in the 
+     used in the
      <a href="ArrayHelloWorld.html">Array</a> and <a href="BroadcastHelloWorld.html">Broadcast</a>
      versions of the "Hello World" examples.
     </li>

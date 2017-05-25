@@ -7,16 +7,17 @@ miniAppsc: miniApps
 downloadc: download
 toolsc: tools
 helpc: help
+sidenav: sidenav
 ---
 
   <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
-  
-  <h1>Components of a Charm++ Program</h1>  
+
+  <h1>Components of a Charm++ Program</h1>
 
 
   <!-- Introduction -->
   <h2>Introduction</h2>
-  
+
 
   <!-- Figure -->
   <table class="StandardFigure" border=0 align=right>
@@ -48,7 +49,7 @@ helpc: help
     instead of the ".cpp" file extension for source files.  Using either extension is fine.
    </i></font>
   </p>
-   
+
   <p class="BasicParagraph">
    Chare classes need one additional piece of information, the interface definition.  The
    interface definition specifies which member functions can be remotely invoked by other
@@ -56,7 +57,7 @@ helpc: help
    interface file.
   </p>
 
-  
+
   <!-- Compilation Process -->
   <h2>Compilation Process</h2>
 
@@ -76,8 +77,22 @@ helpc: help
 
   <h3>Charmxi and the Interface File</h3>
 
+
+  <p class="BasicParagraph">
+   The interface file is processed by a Charm++ tool called <i>charmxi</i>
+   the result of which is a set of "decl.h" and "def.h" files.  These files contain
+   auto-generated code that <i>hooks</i> the programmer's application code to the Charm++
+   Runtime System.  This auto-generated code is then <i>included</i> into the associated
+   source file when the source file is compiled.  Figure 2 (below) shows the compilation
+   process for a single chare class.  First, the interface file is processed by the
+   charmxi tool which auto-generates some code needed by the Charm++ Runtime System.  Next,
+   the source file, with the associated #include lines for the generated files, is compiled
+   in a manner similar to a class in C++.  The result is an object file that contains the
+   chare class.
+  </p>
+
   <!-- Figure -->
-  <table class="StandardFigure" border=0 align=right>
+  <table class="StandardFigure" border=0 align=center style="margin-left:100px;">
    <tr><td align=center valign=middle>
     <a class="StandardFigure" href="images/ChareClassCompileProcess.jpg">
      <img class="StandardFigure" src="images/ChareClassCompileProcess_sm.jpg" border=0o>
@@ -89,27 +104,14 @@ helpc: help
   </table>
 
   <p class="BasicParagraph">
-   The interface file is processed by a Charm++ tool called <i>charmxi</i>
-   the result of which is a set of "decl.h" and "def.h" files.  These files contain
-   auto-generated code that <i>hooks</i> the programmer's application code to the Charm++
-   Runtime System.  This auto-generated code is then <i>included</i> into the associated
-   source file when the source file is compiled.  Figure 2 (to the right) shows the compilation
-   process for a single chare class.  First, the interface file is processed by the
-   charmxi tool which auto-generates some code needed by the Charm++ Runtime System.  Next,
-   the source file, with the associated #include lines for the generated files, is compiled
-   in a manner similar to a class in C++.  The result is an object file that contains the
-   chare class.
-  </p>
-
-  <p class="BasicParagraph">
    After all of the chare classes for an application have been compiled, charmc
    is once again used to link all of them together.  It is during this link step when the
    Charm++ Runtime System is also linked into the application.
   </p>
-  
-  
+
+
   <h2>Running a Charm++ Program</h2>
-     
+
   <p class="BasicParagraph">
    When charmc
    creates the final executable, another program called <i>charmrun</i> will also be created in
@@ -133,17 +135,17 @@ helpc: help
 
   <p class="BasicParagraph">
    More information on running Charm++ programs can be found in
-   <a href="http://charm.cs.uiuc.edu/manuals/html/install/4_1Command_Line_Options.html">
-    Section 4.1: Command Line Options</a>
+   <a href="http://charm.cs.illinois.edu/manuals/html/charm++/C.html#SECTION05320000000000000000">
+    Section C.2: Command Line Options</a>
    of the
-   <a href="http://charm.cs.uiuc.edu/manuals/html/install/manual.html">
-    Charm++/Converse Installation and Usage Manual</a>.
+   <a href="http://charm.cs.illinois.edu/manuals/html/charm++/manual.html">
+     The Charm++ Parallel Programming System Manual</a>.
   </p>
 
-  <a name="NodelistFile"></a>  
+  <a name="NodelistFile"></a>
   <h3>The Nodelist File</h3>
 
-   <table border=0 cellpadding=5 cellspacing=0 align=right>
+   <table border=0 cellpadding=5 cellspacing=0 align=right style="margin:10px;">
     <tr>
      <td align=left valign=middle bgColor=bbbbbb>
       <div class="code">
@@ -197,9 +199,9 @@ helpc: help
 
   <p class="BasicParagraph">
    More information on nodelist files can be found in
-   <a href="http://charm.cs.uiuc.edu/manuals/html/install/4_2Nodelist_file.html">
-    Section 4.2: Nodelist File</a>
+   <a href="http://charm.cs.illinois.edu/manuals/html/charm++/C.html#SECTION05330000000000000000">
+    Section C.3: Nodelist File</a>
    of the
-   <a href="http://charm.cs.uiuc.edu/manuals/html/install/manual.html">
-    Charm++/Converse Installation and Usage Manual</a>.
+   <a href="http://charm.cs.illinois.edu/manuals/html/charm++/manual.html">
+     The Charm++ Parallel Programming System Manual</a>.
   </p>

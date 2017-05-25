@@ -7,21 +7,22 @@ miniAppsc: miniApps
 downloadc: download
 toolsc: tools
 helpc: help
+sidenav: sidenav
 ---
 
   <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
-  
+
   <h1>Introduction to Charm++ Concepts</h1>
 
 
   <!-- Content -->
   <h2>What is Charm++?</h2>
-  
+
   <p class="BasicParagraph">
    Charm++ is an object-oriented asynchronous message passing parallel programming
    paradigm.  What does all that mean?
   </p>
-  
+
   <p class="BasicParagraph">
    Let's start with "programming paradigm."  By
    programming paradigm, we mean Charm++ is a way of writing a program (a programming model).
@@ -41,7 +42,7 @@ helpc: help
    occurring at any given moment (one or more chunks of code being executed, messages
    being passed between chares, and so on).
   </p>
- 
+
   <p class="BasicParagraph">
    "Object-oriented" basically means the same thing that it means in the C++ programming
    language.  The program is broken down into a logical collection of objects that interact with
@@ -51,7 +52,7 @@ helpc: help
    some <i>task</i> in response to receiving a message (that is, execute a special member
    function called an <i>entry method</i>).
   </p>
-  
+
   <p class="BasicParagraph">
    By "asynchronous message passing", we mean that the chare objects communicate with
    each other by sending messages to one another.  The asynchronous keyword means that the
@@ -67,28 +68,27 @@ helpc: help
    invocation</i> since, from the perspective of the sending chare object, the code simply looks
    like the calling code is invoking a member function of the target chare.
   </p>
- 
- 
+
+
   <h2>What is a Charm++ Program?</h2>
- 
+  <!-- Figure -->
+
+   <table class="StandardFigure" align=right border=0>
+    <tr><td align=center valign=middle>
+      <a class="StandardFigure" href="images/Charm_UserView.jpg">
+        <img class="StandardFigure" id="figure1" src="images/Charm_UserView_sm.jpg" border=0o>
+      </a>
+    </td></tr>
+    <tr><td align=center valign=middle>
+     <b>Figure 1:</b> User's View of a Charm++ Application
+    </td></tr>
+   </table>
+
   <p class="BasicParagraph">
    At a high-level, from the programmer's perspective, a Charm++ program is simply a
    collection of chare objects.  Each chare object has some state associated with it.  The
    chare objects communicate by sending messages to one another.  When a particular chare
    object receives a message, it will execute an entry method to processes the message.  This
-
-   <!-- Figure -->
-   <a class="StandardFigure" href="images/Charm_UserView.jpg">
-    <table class="StandardFigure" align=right border=0>
-     <tr><td align=center valign=middle>
-      <img class="StandardFigure" src="images/Charm_UserView_sm.jpg" border=0o>
-     </td></tr>
-     <tr><td align=center valign=middle>
-      <b>Figure 1:</b> User's View of a Charm++ Application
-     </td></tr>
-    </table>
-   </a>
- 
    entry method may perform one or more operations/calculations, it may <i>send</i>
    more messages to other chare objects, it may buffer the contents of the message for later
    processing, or it may do nothing at all.  This is how forward progression is made in the
@@ -102,7 +102,7 @@ helpc: help
    It is worth pointing out that the description of a Charm++ application does not involve
    the number of processing elements (i.e. one thread per processing element), what type of
    processing elements are involved, how many chares there are per processing element, or even
-   how data is transfered between processing elements.  Charm++ applications are simply written
+   how data is transferred between processing elements.  Charm++ applications are simply written
    in terms of the chare objects.  The programmer does not have to worry about the number of
    processing elements that will be available when the program is executed or what type of
    interconnect (network) will be used to connect the processing elements together.  All of these
@@ -110,10 +110,10 @@ helpc: help
    Charm++ Runtime System takes care of mapping each of the chares to the physical processing
    elements, routing messages over the interconnect, and so on.
   </p>
- 
- 
+
+
   <h3>Chare Objects</h3>
-  
+
   <p class="BasicParagraph">
    Each of the chare objects in the Charm++ application can be thought of as independent
    entities.  Each chare object has it's own state (that is, data local to it).  Chare
@@ -124,7 +124,7 @@ helpc: help
    information on another chare object's state by sending the chare object a message
    requesting the information.
   </p>
- 
+
   <p class="BasicParagraph">
    For the purposes of this tutorial, we will use two terms: <i>chare class</i> and
    <i>chare object</i>.  These terms have the same basic meaning as their C++
@@ -135,16 +135,16 @@ helpc: help
    an integer array is an array of integers in C++).  See the section on
    <a href="#chareCollections">Chare Collections</a> below.
   </p>
-  
+
   <p class="BasicParagraph">
    There is one special chare object in a Charm++ application, the <i>main chare
    object</i>.  The main chare object acts as the entry point of the Charm++ application
    in a similar manner to the main function in a C++ application (see Entry Methods below).
   </p>
- 
+
 
   <h3>Messages</h3>
-  
+
   <p class="BasicParagraph">
    The chare objects communicate with each other by sending messages to one another.
    In Charm++, this process is also referred to as <i>remote method invocation</i> since
@@ -152,10 +152,10 @@ helpc: help
    entry methods (more on entry methods later).  From the programmer's perspective, the
    code basically looks like it is calling a member function on the target chare object.
   </p>
- 
- 
+
+
   <h3>Entry Methods</h3>
-  
+
   <p class="BasicParagraph">
    Entry methods are special member functions of the chare class.  The difference between
    a normal C++ member function and a Charm++ entry methods is that Charm++ entry methods
@@ -167,7 +167,7 @@ helpc: help
    chare object is invoked (executed) and the data in the message is passed to that entry
    method.
   </p>
-  
+
   <p class="BasicParagraph">
    Each of the chare classes also has constructor entry methods (basically the same thing
    as a constructor in C++).  When a chare object is created, this constructor entry method is
@@ -175,7 +175,7 @@ helpc: help
    again, similar to what is done for an object in C++).  The execution of a Charm++
    application begins with the execution of the main chare object's constructor.
   </p>
- 
+
   <p class="BasicParagraph">
    There are two aspects of entry methods that make them different from standard C++ member
    functions.  First, entry methods do not have return values (i.e. they return void).
@@ -215,7 +215,7 @@ helpc: help
    on the proxy object as if the chare object itself were local to the current physical
    processor.  The Charm++ Runtime System takes care of locating the actual chare object in
    the global object space on behalf of the chare object.  See Figure 2.
-  </p> 
+  </p>
 
 
   <a name="chareCollections"></a>
@@ -230,7 +230,7 @@ helpc: help
 
   <p class="BasicParagraph">
    Each collection within a program is represented by a unique handle.  This handle is
-   visible to all processors (can be transfered between processors) and can be used to
+   visible to all processors (can be transferred between processors) and can be used to
    access the members of the collection.
   </p>
 

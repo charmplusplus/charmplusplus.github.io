@@ -18,6 +18,7 @@ compile '/' do
   layout 'homepage'
 end
 
+
 compile '*' do
   if item.binary?
     # don’t filter binary items

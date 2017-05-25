@@ -6,6 +6,8 @@
     <title>Charm++: <%= @item[:title] %></title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
     <link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
     <link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
     <link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
@@ -23,7 +25,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <!-- you don't need to keep this, but it's cool for stats! -->
-    <meta name="generator" content="nanoc <%= Nanoc::VERSION %>"> 
+    <meta name="generator" content="nanoc <%= Nanoc::VERSION %>">
   </head>
 
   <body>
@@ -156,13 +158,14 @@
       				</div>
       		</div>
       		</div>
+
       <div id="maincontainer">
 	<div id="content">
           <%= yield %>
 	</div>
       </div>
       <div id="footer">
-	&copy; <%= Time.now.year %> 
+	&copy; <%= Time.now.year %>
     	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
 	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
 	<a href="http://illinois.edu">University of Illinois</a>

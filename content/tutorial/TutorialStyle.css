@@ -1,4 +1,4 @@
-table.TOCBlock { 
+table.TOCBlock {
   margin:5px;
   border-left: 0px solid #000000;
 }
@@ -15,6 +15,16 @@ div.TOCSectionName {
   font-size:140%;
 }
 
+div.TOCSectionName a{
+  color:#7b2e2e;
+  text-decoration:none;
+}
+
+div.TOCSectionName a:hover{
+  color:#a26c6c;
+  text-decoration:none;
+}
+
 div.TOCSectionSubName {
   font-style:italic;
   font-size:100%;
@@ -22,7 +32,7 @@ div.TOCSectionSubName {
 }
 
 div.TOCSectionDescription {
-  color:888888;
+  color:#888888;
   font-style:italic;
   margin-left:25px;
 }
@@ -43,16 +53,161 @@ div.TOCSubSectionName {
   font-size:120%;
 }
 
+div.TOCSubSectionName a{
+  color:#7b2e2e;
+}
+
+div.TOCSubSectionName a:hover{
+  color: #a26c6c;
+  text-decoration:none;
+}
+
 div.TOCSubSectionSubName {
   font-style:italic;
   font-size:100%;
   text-decoration:none;
 }
 
+div.TOCSubSectionSubName a{
+  color:#7b2e2e;
+}
+
+div.TOCSubSectionSubName a:hover{
+  color: #a26c6c;
+  text-decoration:none;
+}
+
 div.TOCSubSectionDescription {
-  color:888888;
+  color:#888888;
   font-style:italic;
   margin-left:25px;
+}
+
+#sidenav{
+  float:left;
+  position:fixed;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 210px;
+  background-color:#FEFEFE;
+  margin-top:25px;
+  margin-left:5px;
+}
+
+#sidenav h4{
+  margin-left:35px;
+  color: #000;
+  font-size:16px;
+}
+
+#sidenav h5{
+  color:#7b2e2e;
+  margin-left:-5px;
+  font-size:15px;
+}
+
+#sidenav h5 a{
+  color:#7b2e2e;
+  text-decoration:none;
+}
+
+#sidenav h5 a:hover{
+  color:#a26c6c;
+  text-decoration:none;
+}
+
+
+#sidenav ol {
+  list-style-type: none;
+  counter-reset: item;
+  margin: 0;
+  padding: 0;
+}
+
+#sidenav ol > li {
+  display: table;
+  counter-increment: item;
+  margin-bottom: 0.6em;
+}
+
+#sidenav ol > li:before {
+  content: counters(item, ".") ". ";
+  display: table-cell;
+  padding-right: 0.6em;
+}
+
+#sidenav li ol > li {
+  margin: 0;
+}
+
+#sidenav li ol > li:before {
+  content: counters(item, ".") " ";
+}
+
+#sidenav ol a{
+  color:#D5A96A;
+  text-decoration:none!important;
+}
+
+#sidenav ol a:link{
+  color:#D5A96A;
+  text-decoration:none!important;
+}
+
+#sidenav ol a:hover{
+  color:#95764a;
+  text-decoration:none;
+}
+
+.header{
+  background-color:#262626;
+  color:#fff;
+  padding:5px 0px;
+}
+
+.header a{
+  color:#D5A96A;
+  text-decoration:none!important;
+}
+
+.header a:hover{
+  color:#95764a;
+  text-decoration:none;
+}
+
+/* desert scheme ported from vim to google prettify */
+pre.prettyprint { display: block; background-color: #333; margin:0;border:none;border-radius:0; }
+pre .nocode { background-color: none; color: #000 }
+pre .str { color: #ffa0a0 } /* string  - pink */
+pre .kwd { color: #f0e68c; font-weight: bold }
+pre .com { color: #87ceeb } /* comment - skyblue */
+pre .typ { color: #98fb98 } /* type    - lightgreen */
+pre .lit { color: #cd5c5c } /* literal - darkred */
+pre .pun { color: #fff }    /* punctuation */
+pre .pln { color: #fff }    /* plaintext */
+pre .tag { color: #f0e68c; font-weight: bold } /* html/xml tag    - lightyellow */
+pre .atn { color: #bdb76b; font-weight: bold } /* attribute name  - khaki */
+pre .atv { color: #ffa0a0 } /* attribute value - pink */
+pre .dec { color: #98fb98 } /* decimal         - lightgreen */
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE } /* IE indents via margin-left */
+li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: decimal!important; }
+/* Alternate shading for lines */
+li.L1,li.L3,li.L5,li.L7,li.L9 {background-color: #333; }
+
+@media print {
+  pre.prettyprint { background-color: none }
+  pre .str, code .str { color: #060 }
+  pre .kwd, code .kwd { color: #006; font-weight: bold }
+  pre .com, code .com { color: #600; font-style: italic }
+  pre .typ, code .typ { color: #404; font-weight: bold }
+  pre .lit, code .lit { color: #044 }
+  pre .pun, code .pun { color: #440 }
+  pre .pln, code .pln { color: #000 }
+  pre .tag, code .tag { color: #006; font-weight: bold }
+  pre .atn, code .atn { color: #404 }
+  pre .atv, code .atv { color: #060 }
 }
 
 p.BasicParagraph {
@@ -64,6 +219,15 @@ p.BasicParagraph {
   margin-left:20px;
 }
 
+p.BasicParagraph a{
+  color:#D5A96A;
+}
+
+p.BasicParagraph a:hover{
+  color:#95764a;
+  text-decoration:none;
+}
+
 a.StandardFigure {
   text-decoration:none;
 }
@@ -72,9 +236,15 @@ table.StandardFigure {
   margin:15px;
 }
 
+img.StandardFigure{
+  margin-bottom:15px;
+  border:1px solid black;
+}
+
 h1 {
   font-size:200%;
   font-weight:bold;
+  color:#000;
   margin-bottom:10px;
   margin-bottom:25px;
 }
@@ -139,6 +309,11 @@ a.HorzNavBar_Link {
  margin-left:10px;
  margin-right:10px;
 }
+
+ul{
+  padding-left:80px;
+}
+
 
 font.HorzNavBar_Link {
  color: #888888;

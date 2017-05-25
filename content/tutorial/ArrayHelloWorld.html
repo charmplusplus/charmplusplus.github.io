@@ -7,11 +7,12 @@ miniAppsc: miniApps
 downloadc: download
 toolsc: tools
 helpc: help
+sidenav: sidenav
 ---
 
   <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
 
-  <h1>Array "Hello World": A Slightly More Advanced "Hello World" Program</h1>  
+  <h1>Array "Hello World": A Slightly More Advanced "Hello World" Program</h1>
 
 
   <p class="BasicParagraph">
@@ -22,7 +23,7 @@ helpc: help
   <h2>Introduction to Chare Arrays and Readonly Variables</h2>
 
   <h3>Chare Arrays</h3>
-  
+
   <p class="BasicParagraph">
    It would be cumbersome to have to create many chare objects one by one (especially if
    a program needs to create several instances of the same chare class).  Because of this,
@@ -80,16 +81,17 @@ helpc: help
   <h2>How the Array "Hello World" Program Works</h2>
 
   <!-- Figure -->
-  <a class="StandardFigure" href="images/ArrayHelloWorld_ProgramFlow.jpg">
    <table class="StandardFigure" align=right border=0>
     <tr><td align=center valign=middle>
+      <a class="StandardFigure" href="images/ArrayHelloWorld_ProgramFlow.jpg">
      <img class="StandardFigure" src="images/ArrayHelloWorld_ProgramFlow_sm.jpg" border=0o>
+     </a>
     </td></tr>
     <tr><td align=center valign=middle>
-     <b>Figure:</b> Control Flow of the Array "Hello World" Program
+     <b>Figure 1:</b> Control Flow of the Array "Hello World" Program
     </td></tr>
    </table>
-  </a>
+
 
   <p class="BasicParagraph">
    There are two chare classes in this version of the "Hello World" program (aka. the Array
@@ -160,124 +162,112 @@ helpc: help
      <td align=center>
 
       <!-- Header File -->
-      <table border=0 cellspacing=0 cellpadding=5 style="{margin-bottom:15px;}">
+
+      <table border=0 cellspacing=0 cellpadding=5 style="margin-right:30px;" align=left>
        <tr>
-        <td align=center valign=middle bgColor=bbbbbb><b><u>Header File <i>(hello.h)</i></u></b></td>
+        <td align=center valign=middle class="header"><b>Header File <i>(hello.h)</i></b></td>
        </tr>
        <tr>
-        <td align=left valign=top bgColor=bbbbbb>
-         <div class="code">
-          <code>
-           #ifndef __HELLO_H__<br>
-           #define __HELLO_H__<br>
-           <br>
-           class Hello : public CBase_Hello {<br>
-           <br>
-           &nbsp;public:<br>
-           <br>
-           &nbsp;&nbsp;<font class="codeComment">/// Constructors ///</font><br>
-           &nbsp;&nbsp;Hello();<br>
-           &nbsp;&nbsp;Hello(CkMigrateMessage *msg);<br>
-           <br>
-           &nbsp;&nbsp;<font class="codeComment">/// Entry Methods ///</font><br>
-           &nbsp;&nbsp;void sayHi(int from);<br>
-           };<br>
-           <br>
-           #endif //__HELLO_H__
-          </code>
-         </div>
+        <td align=left valign=top bgColor=#3b3b3b>
+<pre class="prettyprint lang-cpp" style="width:325px;">
+#ifndef __HELLO_H__
+#define __HELLO_H__
+
+class Hello : public CBase_Hello {
+
+ public:
+
+  /// Constructors ///
+  Hello();
+  Hello(CkMigrateMessage *msg);
+
+  /// Entry Methods ///
+  void sayHi(int from);
+};
+
+#endif //__HELLO_H__
+ </pre>
+
         </td>
        </tr>
       </table>
 
       <!-- Interface File -->
-      <table border=0 cellspacing=0 cellpadding=5>
+      <table border=0 cellspacing=0 cellpadding=5 align=right>
        <tr>
-        <td align=center valign=middle bgColor=bbbbbb><b><u>Interface File <i>(hello.ci)</i></u></b></td>
+        <td align=center valign=middle class="header"><b>Interface File <i>(hello.ci)</i></b></td>
        </tr>
        <tr>
-        <td align=left valign=top bgColor=bbbbbb>
-         <div class="code">
-          <code>
-           module hello {<br>
-           <br>
-           &nbsp;&nbsp;array [1D] Hello {<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;entry Hello();<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;entry void sayHi(int);<br>
-           &nbsp;&nbsp;};<br>
-           <br>
-           };
-          </code>
-         </div>
+        <td align=left valign=top bgColor=#3b3b3b>
+<pre class="prettyprint lang-cpp" style="width:325px;">
+  module hello {
+
+    array [1D] Hello {
+      entry Hello();
+      entry void sayHi(int);
+    };
+
+  };
+ </pre>
         </td>
        </tr>
       </table>
 
      </td>
 
-     <td>
-
-      <!-- Source File -->
-      <table border=0 cellspacing=0 cellpadding=5>
-       <tr>
-        <td align=center valign=middle bgColor=bbbbbb><b><u>Source File <i>(hello.C)</i></u></b></td>
-       </tr>
-       <tr>
-        <td align=left valign=top bgColor=bbbbbb>
-         <div class="code">
-          <code>
-           #include "hello.decl.h"<br>
-           <br>
-           #include "hello.h"<br>
-           #include "main.decl.h"<br>
-           <br>
-           extern <font class="codeComment">/* readonly */</font> CProxy_Main mainProxy;<br>
-           extern <font class="codeComment">/* readonly */</font> int numElements;<br>
-           <br>
-           Hello::Hello() {<br>
-           <font class="codeComment">
-           &nbsp;&nbsp;// Nothing to do when the Hello chare object is created.<br>
-           &nbsp;&nbsp;//   This is where member variables would be initialized<br>
-           &nbsp;&nbsp;//   just like in a C++ class constructor.<br>
-           </font>
-           }<br>
-           <br>
-           <font class="codeComment">
-           // Constructor needed for chare object migration (ignore for now)<br>
-           // NOTE: This constructor does not need to appear in the ".ci" file<br>
-           </font>
-           Hello::Hello(CkMigrateMessage *msg) { }<br>
-           <br>
-           void Hello ::sayHi(int from) {<br>
-           <br>
-           &nbsp;&nbsp;<font class="codeComment">// Have this chare object say hello to the user.</font><br>
-           &nbsp;&nbsp;CkPrintf("\"Hello\" from Hello chare # %d on "<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"processor %d (told by %d).\n",<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;thisIndex, CkMyPe(), from);<br>
-           <br>
-           <font class="codeComment">
-           &nbsp;&nbsp;// Tell the next chare object in this array of chare objects<br>
-           &nbsp;&nbsp;//   to also say hello.  If this is the last chare object in<br>
-           &nbsp;&nbsp;//   the array of chare objects, then tell the main chare<br>
-           &nbsp;&nbsp;//   object to exit the program.<br>
-           </font>
-           &nbsp;&nbsp;if (thisIndex < (numElements - 1))<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;thisProxy[thisIndex + 1].sayHi(thisIndex);<br>
-           &nbsp;&nbsp;else<br>
-		      &nbsp;&nbsp;&nbsp;&nbsp;mainProxy.done();<br>
-           }<br>
-           <br>
-           #include "hello.def.h"
-          </code>
-         </div>
-        </td>
-       </tr>
-      </table>
-
-     </td>
 
     </tr>
    </table>
+
+   <!-- Source File -->
+   <table border=0 cellspacing=0 cellpadding=5 align=center>
+    <tr>
+     <td align=center valign=middle class="header" style="width:680px;"><b>Source File <i>(hello.C)</i></b></td>
+    </tr>
+    <tr>
+     <td align=left valign=top bgColor=bbbbbb>
+<pre class="prettyprint lang-cpp" style="width:680px;">
+#include "hello.decl.h"
+
+#include "hello.h"
+#include "main.decl.h"
+
+extern /* readonly */ CProxy_Main mainProxy;
+extern /* readonly */ int numElements;
+
+Hello::Hello() {
+  // Nothing to do when the Hello chare object is created.
+  // This is where member variables would be initialized
+  // just like in a C++ class constructor.
+}
+
+// Constructor needed for chare object migration (ignore for now)
+// NOTE: This constructor does not need to appear in the ".ci" file
+Hello::Hello(CkMigrateMessage *msg) { }
+
+void Hello ::sayHi(int from) {
+
+  // Have this chare object say hello to the user.
+  CkPrintf("\"Hello\" from Hello chare # %d on "
+           "processor %d (told by %d).\n",
+           thisIndex, CkMyPe(), from);
+
+  // Tell the next chare object in this array of chare objects
+  // to also say hello. If this is the last chare object in
+  // the array of chare objects, then tell the main chare
+  // object to exit the program.
+  if (thisIndex < (numElements - 1))
+    thisProxy[thisIndex + 1].sayHi(thisIndex);
+  else
+    mainProxy.done();
+}
+
+#include "hello.def.h"
+</pre>
+     </td>
+    </tr>
+   </table>
+
   </center>
 
 
@@ -291,164 +281,141 @@ helpc: help
      <td align=center>
 
       <!-- Header File -->
-      <table border=0 cellspacing=0 cellpadding=5 style="{margin-bottom:15px;}">
+      <table border=0 cellspacing=0 cellpadding=5 style="margin-right:30px;" align=left>
        <tr>
-        <td align=center valign=middle bgColor=bbbbbb><b><u>Header File <i>(main.h)</i></u></b></td>
+        <td align=center valign=middle class="header"><b>Header File <i>(main.h)</i></b></td>
        </tr>
        <tr>
         <td align=left valign=top bgColor=bbbbbb>
-         <div class="code">
-          <code>
-           #ifndef __MAIN_H__<br>
-           #define __MAIN_H__<br>
-           <br>
-           class Main : public CBase_Main {<br>
-           <br>
-           &nbsp;public:<br>
-           <br>
-           &nbsp;&nbsp;<font class="codeComment">/// Constructors ///</font><br>
-           &nbsp;&nbsp;Main(CkArgMsg* msg);<br>
-           &nbsp;&nbsp;Main(CkMigrateMessage* msg);<br>
-           <br>
-           &nbsp;&nbsp;<font class="codeComment">/// Entry Methods ///</font><br>
-           &nbsp;&nbsp;void done();<br>
-           };<br>
-           <br>
-           #endif //__MAIN_H__
-          </code>
-         </div>
+<pre class="prettyprint lang-cpp" style="width:325px;">
+  #ifndef __MAIN_H__
+  #define __MAIN_H__
+
+  class Main : public CBase_Main {
+
+   public:
+
+    /// Constructors ///
+    Main(CkArgMsg* msg);
+    Main(CkMigrateMessage* msg);
+
+    /// Entry Methods ///
+    void done();
+  };
+
+  #endif //__MAIN_H__
+  </pre>
         </td>
        </tr>
       </table>
 
       <!-- Interface File -->
-      <table border=0 cellspacing=0 cellpadding=5>
+      <table border=0 cellspacing=0 cellpadding=5 align=right>
        <tr>
-        <td align=center valign=middle bgColor=bbbbbb><b><u>Interface File <i>(main.ci)</i></u></b></td>
+        <td align=center valign=middle class="header"><b>Interface File <i>(main.ci)</i></b></td>
        </tr>
        <tr>
         <td align=left valign=top bgColor=bbbbbb>
-         <div class="code">
-          <code>
-           mainmodule main {<br>
-           <br>
-           &nbsp;&nbsp;readonly CProxy_Main mainProxy;<br>
-           &nbsp;&nbsp;readonly int numElements;<br>
-           <br>
-           &nbsp;&nbsp;extern module hello;<br>
-           <br>
-           &nbsp;&nbsp;mainchare Main {<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;entry Main(CkArgMsg* msg);<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;entry void done();<br>
-           &nbsp;&nbsp;};<br>
-           <br>
-           };
-          </code>
-         </div>
+<pre class="prettyprint lang-cpp" style="width:325px;">
+  mainmodule main {
+
+  readonly CProxy_Main mainProxy;
+  readonly int numElements;
+
+  extern module hello;
+
+  mainchare Main {
+    entry Main(CkArgMsg* msg);
+    entry void done();
+  };
+
+};
+  </pre>
         </td>
        </tr>
       </table>
 
      </td>
 
-     <td>
 
-      <!-- Source File -->
-      <table border=0 cellspacing=0 cellpadding=5>
-       <tr>
-        <td align=center valign=middle bgColor=bbbbbb><b><u>Source File <i>(main.C)</i></u></b></td>
-       </tr>
-       <tr>
-        <td align=left valign=top bgColor=bbbbbb>
-         <div class="code">
-          <code>
-           #include "main.decl.h"<br>
-           <br>
-           #include "main.h"<br>
-           #include "hello.decl.h"<br>
-           <br>
-           <font class="codeComment">/* readonly */</font> CProxy_Main mainProxy;<br>
-           <font class="codeComment">/* readonly */</font> int numElements;<br>
-           <br>
-           <font class="codeComment">// Entry point of Charm++ application</font><br>
-           Main::Main(CkArgMsg* msg) {<br>
-           <br>
-           &nbsp;&nbsp;numElements = 5;  <font class="codeComment">// Default numElements to 5</font><br>
-           <br>
-           <font class="codeComment">
-           &nbsp;&nbsp;// There should be 0 or 1 command line arguments.<br>
-           &nbsp;&nbsp;//   If there is one, it is the number of "Hello"<br>
-           &nbsp;&nbsp;//   chares that should be created.<br>
-           </font>
-           &nbsp;&nbsp;if (msg->argc > 1)<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;numElements = atoi(msg->argv[1]);<br>
-           <br>
-           <font class="codeComment">
-           &nbsp;&nbsp;// We are done with msg so delete it.<br>
-           </font>
-           &nbsp;&nbsp;delete msg;<br>
-           <br>
-           <font class="codeComment">
-           &nbsp;&nbsp;// Display some info about this execution<br>
-           &nbsp;&nbsp;//   for the user.<br>
-           </font>
-           &nbsp;&nbsp;CkPrintf("Running \"Hello World\" with %d elements "<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"using %d processors.\n",<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;numElements, CkNumPes());<br>
-           <br>
-           <font class="codeComment">
-           &nbsp;&nbsp;// Set the mainProxy readonly to point to a<br>
-           &nbsp;&nbsp;//   proxy for the Main chare object (this<br>
-           &nbsp;&nbsp;//   chare object).<br>
-           </font>
-           &nbsp;&nbsp;mainProxy = thisProxy;<br>
-           <br>
-           <font class="codeComment">
-           &nbsp;&nbsp;// Create the array of Hello chare objects.  NOTE: The<br>
-           &nbsp;&nbsp;//   'helloArray' object that is returned by 'ckNew()' is<br>
-           &nbsp;&nbsp;//   actually a Proxy object to the array.<br>
-           </font>
-           &nbsp;&nbsp;CProxy_Hello helloArray = CProxy_Hello::ckNew(numElements);<br>
-           <br>
-           <font class="codeComment">
-           &nbsp;&nbsp;// Invoke the "sayHi()" entry method on the first<br>
-           &nbsp;&nbsp;//   element of the helloArray array of chare objects.<br>
-           </font>
-           &nbsp;&nbsp;helloArray[0].sayHi(-1);<br>
-           }<br>
-           <br>
-           <font class="codeComment">
-           // Constructor needed for chare object migration (ignore for now)<br>
-           // NOTE: This constructor does not need to appear in the ".ci" file<br>
-           </font>
-           Main::Main(CkMigrateMessage* msg) { }<br>
-           <br>
-           <font class="codeComment">
-           // When called, the "done()" entry method will cause the program<br>
-           //   to exit.<br>
-           </font>
-           void Main::done() {<br>
-           &nbsp;&nbsp;CkExit();<br>
-           }<br>
-           <br>
-           #include "main.def.h"
-          </code>
-         </div>
-        </td>
-       </tr>
-      </table>
-
-     </td>
 
     </tr>
    </table>
+
+   <!-- Source File -->
+   <table border=0 cellspacing=0 cellpadding=5>
+    <tr>
+     <td align=center valign=middle class="header" style="width:680px;"><b>Source File <i>(main.C)</i></b></td>
+    </tr>
+    <tr>
+     <td align=left valign=top bgColor=bbbbbb>
+<pre class="prettyprint lang-cpp" style="width:680px;">
+#include "main.decl.h"
+
+#include "main.h"
+#include "hello.decl.h"
+
+/* readonly */ CProxy_Main mainProxy;
+/* readonly */ int numElements;
+
+// Entry point of Charm++ application
+Main::Main(CkArgMsg* msg) {
+
+  numElements = 5; // Default numElements to 5
+
+  // There should be 0 or 1 command line arguements.
+  // If there is one, it is the number of "Hello"
+  // chares that should be created.
+  if (msg->argc > 1)
+    numElements = atoi(msg->argv[1]);
+
+  // We are done with msg so delete it.
+  delete msg;
+
+  // Display some info about this execution
+  // for the user.
+  CkPrintf("Running \"Hello World\" with %d elements "
+           "using %d processors.\n",
+           numElements, CkNumPes());
+
+  // Set the mainProxy readonly to point to a
+  // proxy for the Main chare object (this
+  // chare object).
+  mainProxy = thisProxy;
+
+  // Create the array of Hello chare objects. NOTE: The
+  // 'helloArray' object that is returned by 'ckNew()' is
+  // actually a Proxy object to the array.
+  CProxy_Hello helloArray = CProxy_Hello::ckNew(numElements);
+
+  // Invoke the "sayHi()" entry method on the first
+  // element of the helloArray array of chare objects.
+  helloArray[0].sayHi(-1);
+}
+
+// Constructor needed for chare object migration (ignore for now)
+// NOTE: This constructor does not need to appear in the ".ci" file
+Main::Main(CkMigrateMessage* msg) { }
+
+// When called, the "done()" entry method will cause the program
+// to exit.
+void Main::done() {
+  CkExit();
+}
+
+#include "main.def.h"
+ </pre>
+     </td>
+    </tr>
+   </table>
+
   </center>
 
   <h3>Makefile</h3>
 
   <p class="BasicParagraph">
    For the most part, the Makefile is the same as the Basic "Hello World" program.  The only
-   difference is there are now two chare classes that need to be compiled (the addtional rules
+   difference is there are now two chare classes that need to be compiled (the additional rules
    and dependencies related to the Hello chare class).
   </p>
 
@@ -456,39 +423,38 @@ helpc: help
   <center>
    <table class="StandardFigure" border=0 cellspacing=0 cellpadding=5 style="{margin-bottom:15px;}">
     <tr>
-     <td align=center valign=middle bgColor=bbbbbb><b><u>Makefile</u></b></td>
+     <td align=center valign=middle class="header" style="width:600px;"><b>Makefile</b></td>
     </tr>
     <tr>
      <td align=left valign=top bgColor=bbbbbb>
-      <div class="code">
-       <code>
-        CHARMDIR = <font class="generalComment">[put Charm++ install directory here]</font><br>
-        CHARMC = $(CHARMDIR)/bin/charmc $(OPTS)<br>
-        <br>
-        default: all<br>
-        all: hello<br>
-        <br>
-        hello : main.o hello.o<br>
-        &nbsp;&nbsp;&nbsp;$(CHARMC) -language charm++ -o hello main.o hello.o<br>
-        <br>
-        main.o : main.C main.h main.decl.h main.def.h hello.decl.h<br>
-        &nbsp;&nbsp;&nbsp;$(CHARMC) -o main.o main.C<br>
-        <br>
-        main.decl.h main.def.h : main.ci<br>
-        &nbsp;&nbsp;&nbsp;$(CHARMC) main.ci<br>
-        <br>
-        hello.o : hello.C hello.h hello.decl.h hello.def.h main.decl.h<br>
-        &nbsp;&nbsp;&nbsp;$(CHARMC) -o hello.o hello.C<br>
-        <br>
-        hello.decl.h hello.def.h : hello.ci<br>
-        &nbsp;&nbsp;&nbsp;$(CHARMC) hello.ci<br>
-        <br>
-        clean:<br>
-        &nbsp;&nbsp;&nbsp;rm -f main.decl.h main.def.h main.o<br>
-        &nbsp;&nbsp;&nbsp;rm -f hello.decl.h hello.def.h hello.o<br>
-        &nbsp;&nbsp;&nbsp;rm -f hello charmrun
-       </code>
-      </div>
+       <pre class="prettyprint lang-cpp" style="width:600px;">
+ CHARMDIR = [put Charm++ install directory here]
+ CHARMC = $(CHARMDIR)/bin/charmc $(OPTS)
+
+ default: all
+ all: hello
+
+ hello : main.o hello.o
+    $(CHARMC) -language charm++ -o hello main.o hello.o
+
+ main.o : main.C main.h main.decl.h main.def.h hello.decl.h
+    $(CHARMC) -o main.o main.C
+
+ main.decl.h main.def.h : main.ci
+    $(CHARMC) main.ci
+
+ hello.o : hello.C hello.h hello.decl.h hello.def.h main.decl.h
+    $(CHARMC) -o hello.o hello.C
+
+ hello.decl.h hello.def.h : hello.ci
+    $(CHARMC) hello.ci
+
+ clean:
+    rm -f main.decl.h main.def.h main.o
+    rm -f hello.decl.h hello.def.h hello.o
+    rm -f hello charmrun
+
+       </pre>
      </td>
     </tr>
    </table>
@@ -558,7 +524,7 @@ helpc: help
 
    <tr>
     <td colspan=2 align=center valign=middle>
-     <b>Figure:</b> Output of the Array "Hello World" Program
+     <b>Figure 2:</b> Output of the Array "Hello World" Program
     </td>
    </tr>
   </table>

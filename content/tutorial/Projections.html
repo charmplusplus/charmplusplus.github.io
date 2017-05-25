@@ -7,14 +7,15 @@ miniAppsc: miniApps
 downloadc: download
 toolsc: tools
 helpc: help
+sidenav: sidenav
 ---
 
   <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
-  
+
   <h1>Projections</h1>
 
   <p class="BasicParagraph">
-   <i>Projections</i> is a performance visualization tool designed to work closely with the
+   <a href="http://charm.cs.illinois.edu/manuals/html/projections/manual.html"><i>Projections</i></a> is a performance visualization tool designed to work closely with the
    Charm++ Runtime System.  The Charm++ Runtime System collects performance data about the Charm++
    application during runtime.  This data is then analyzed by Projections.  Projections can
    present this data to the user using several different graphs/representations.
@@ -42,31 +43,31 @@ helpc: help
 
   <!-- Figure -->
   <center>
-  <table class="StandardFigure" border=0 width=1000 cellspacing=20>
+  <table class="StandardFigure" border=0 style="margin-left:60px;">
 
    <tr>
+    <td align=left valign=middle>
+     <b>Summary:</b>  When projections is initially opened, a summary graph (right) of the application execution
+     is presented to the user (assuming the summary module was linked to the application; see the
+     <a href="#CompileTimeOptions">Compile Time Options</a> section below).  The utilization is an
+     aggregate of all the processors.
+    </td>
     <td align=right valign=middle bgColor=ffffff>
      <a href="images/Projections_Summary.jpg">
       <img src="images/Projections_Summary_sm.jpg" border=0>
      </a>
     </td>
-    <td align=left valign=middle>
-     <b>Summary:</b>  When projections is initially opened, a summary graph of the application execution
-     is presented to the user (assuming the summary module was linked to the application; see the
-     <a href="#CompileTimeOptions">Compile Time Options</a> section below).  The utilization is an
-     aggregate of all the processors.
-    </td>
    </tr>
-
-
+</table>
+<table class="StandardFigure" style="margin-left:60px;">
    <tr>
-    <td align=right valign=middle bgColor=ffffff>
-     <a href="images/Projections_Overview.jpg">
-      <img src="images/Projections_Overview_sm.jpg" border=0>
-     </a>
-    </td>
-    <td align=left valign=middle>
-     <b>Overview:</b>  In the overview graph, each processor is represented by a horizontal bar
+     <td align=right valign=middle bgColor=ffffff>
+      <a href="images/Projections_Overview.jpg">
+       <img src="images/Projections_Overview_sm.jpg" border=0 width=500px>
+      </a>
+     </td>
+    <td align=left valign=middle style="padding-left:10px;">
+     <b>Overview:</b>  In the overview graph (left), each processor is represented by a horizontal bar
      with time increasing time from left to right.  The color of the bar at that point in time
      represents the utilization of that processor (see the color scale to the left of the overview
      graph).

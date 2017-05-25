@@ -7,13 +7,27 @@ miniAppsc: miniApps
 downloadc: download
 toolsc: tools
 helpc: help
+sidenav: sidenav
 ---
 
   <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
-  
+
   <h1>LiveViz <i>(using the 2D Jacobi Program)</i></h1>
 
-  <table cellpadding=0 cellspacing=0 align=right>
+
+
+
+  <h2>LiveViz</h2>
+
+  <p class="BasicParagraph">
+   <a href="http://charm.cs.illinois.edu/manuals/html/libraries/2.html">LiveViz</a> is a library (module) that enables a Charm++ application to present output to the user
+   in a graphical form as the program continues to execute.  More specifically, an image is created
+   for a chare array.  Each chare object in the chare array <i>contributes</i> to the image.  Once
+   all of the chare objects in the chare array have contributed their portion of the image, the combined
+   image is presented to the user via a LiveViz client application which displays the image.
+  </p>
+
+  <table cellpadding=0 cellspacing=0 align=center>
    <tr><td>
 
   <!-- Figure -->
@@ -54,18 +68,6 @@ helpc: help
 
    </td></tr>
   </table>
-
-
-  <h2>LiveViz</h2>
-
-  <p class="BasicParagraph">
-   LiveViz is a library (module) that enables a Charm++ application to present output to the user
-   in a graphical form as the program continues to execute.  More specifically, an image is created
-   for a chare array.  Each chare object in the chare array <i>contributes</i> to the image.  Once
-   all of the chare objects in the chare array have contributed their portion of the image, the combined
-   image is presented to the user via a LiveViz client application which displays the image.
-  </p>
-
 
   <h2>How to Use LiveViz</h2>
 
@@ -184,6 +186,6 @@ helpc: help
 
   <p class="BasicParagraph">
    For more information on LiveViz, please refer to
-   <a href="http://charm.cs.uiuc.edu/manuals/html/libraries/6_liveViz_Library.html">Section 6: LiveViz Library</a> in the
+   <a href="http://charm.cs.uiuc.edu/manuals/html/libraries/2.html">Section 2: LiveViz Library</a> in the
    <a href="http://charm.cs.uiuc.edu/manuals/html/libraries/manual.html">Converse and Charm++ Libraries Manual</a>.
   </p>

@@ -5,11 +5,15 @@
     <meta charset="utf-8">
     <title>Charm++: <%= @item[:title] %></title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
 		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
 		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
 		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
 		</script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="/assets/lang-ci.js"></script>
 		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
 		</script>
 		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
@@ -23,12 +27,104 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <!-- you don't need to keep this, but it's cool for stats! -->
-    <meta name="generator" content="nanoc <%= Nanoc::VERSION %>"> 
+    <meta name="generator" content="nanoc <%= Nanoc::VERSION %>">
+    <script language="javascript"><!--
+
+      function showHide(contentElemID) {
+        if ((document.getElementById(contentElemID).style.display == 'none')) {
+          document.getElementById(contentElemID).style.display = 'inline';
+          setCookieFlag(contentElemID);
+        } else {
+          document.getElementById(contentElemID).style.display = 'none';
+          clearCookieFlag(contentElemID);
+        }
+      }
+
+      function setCookie(name, value) {
+
+        // Create a date in the future
+        var date = new Date();
+        date.setTime( date.getTime() + (100*24*60*60*1000) );
+
+        // Set the cookie
+        document.cookie = name + '=' + value + '; expires=' + date.toGMTString() + '; path=/';
+      }
+
+      function getCookie(name) {
+
+        // Split the cookies up and search through them
+        var cookies = document.cookie.split(';');
+        var nameEqual = name + '=';
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i];
+          var startIndex = cookie.indexOf(nameEqual);
+          if (startIndex >= 0) {
+            var rtn = cookie.substring(nameEqual.length + startIndex, cookie.length);
+            return rtn;
+          }
+        }
+
+        // If execution reaches this point, the cookie was not found
+        return null;
+      }
+
+      function setCookieFlag(name) {
+        setCookie(name, '1');
+      }
+
+      function clearCookieFlag(name) {
+        setCookie(name, '0');
+      }
+
+      function getCookieFlag(name) {
+        var rtn = 0;
+        var cookieValue = getCookie(name);
+        if (cookieValue != null) {
+          if (cookieValue.charAt(0) == '1') {
+            rtn = 1;
+          }
+        }
+
+        return rtn;
+      }
+
+      var sections = new Array('BasicsOfCharmProgramming_SubSections',
+                               'BasicExamplePrograms_SubSections',
+                               'BasicCharmAbstractions_SubSections',
+                               'MoreExamplePrograms_SubSections',
+                               'Tools_SubSections',
+                               'AdvancedCharmAbstractions_SubSections',
+                               'ConverseFunctionality_SubSections',
+                               'LibrariesFrameworks_SubSections',
+                               'BeyondCharm_SubSections',
+                               'AMPI_SubSections',
+                               'Charisma_SubSections',
+                               'MSA_SubSections',
+                               'SDag_SubSections',
+                               'CharmApplications_SubSections',
+                               'Appendices_SubSections',
+                               'BroadcastHelloChareClass',
+                               'BroadcastMainChareClass',
+                               'BroadcastMakefile'
+                              );
+
+      function init() {
+
+        // Expand each section
+        for (var i = 0; i < sections.length; i++) {
+          var flag = getCookieFlag(sections[i]);
+          if (flag) {
+            showHide(sections[i]);
+          }
+        }
+      }
+
+     --></script>
   </head>
 
   <body>
     <div class="container">
-			
+
  <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 	  <!-- Brand and toggle get grouped for better mobile display -->
@@ -103,15 +199,78 @@
 	</div><!-- /.container-fluid -->
       </nav>
 
+      <% if @item[:sidenav] %>
+    <div id="sidenav">
+      <h4>Table of Contents</h4>
+      <ol style="margin-left:15px;">
+      <h5>Intro</h5>
+        <li><a href="/tutorial/preface.html">Preface</a></li>
+        <li><a href="/tutorial/CharmConcepts.html">Introduction to Charm++ Concepts</a></li>
+        <li><a href="/tutorial/CharmRuntimeSystem.html">Introduction to the Charm++ Runtime System</a></li>
+      <h5>Basic</h5>
+        <li><a href="JavaScript:showHide('BasicsOfCharmProgramming_SubSections');">
+         Basics of Charm++ Programming
+        </a>
+          <ol id="BasicsOfCharmProgramming_SubSections" style="display:none;">
+            <li><a href="/tutorial/CharmComponents.html">Components of a Charm++ Program</a></li>
+            <li><a href="/tutorial/BasicHelloWorld.html">Basic "Hello World" Program</a></li>
+            <li><a href="/tutorial/ArrayHelloWorld.html">Array "Hello World" Program</a></li>
+            <li><a href="/tutorial/BroadcastHelloWorld.html">Broadcast "Hello World": A Parallel "Hello World" Program</a></li>
+          </ol>
+        <li><a href="JavaScript:showHide('BasicExamplePrograms_SubSections');">
+         Basic Example Charm++ Programs
+        </a>
+          <ol id="BasicExamplePrograms_SubSections" style="display:none;">
+            <li><a href="/tutorial/ParallelPrefix.html">Parallel Prefix</a></li>
+            <li><a href="/tutorial/BubbleSort.html">Bubble Sort</a></li>
+            <li><a href="/tutorial/Basic2DJacobi.html">2D Jacobi (5-Point Stencil)</a></li>
+          </ol>
+        <li><a href="JavaScript:showHide('BasicCharmAbstractions_SubSections');">
+         Basic Charm++ Abstractions
+        </a>
+          <ol id="BasicCharmAbstractions_SubSections" style="display:none;">
+            <li><a href="/tutorial/PackUnPackRoutines.html">Pack-UnPack (PUP) Routines</a></li>
+            <li><a href="/tutorial/Callbacks.html">Callbacks</a></li>
+            <li><a href="/tutorial/Reductions.html">Reductions</a></li>
+          </ol>
+        <li><a href="JavaScript:showHide('MoreExamplePrograms_SubSections');">
+         More Example Charm++ Programs
+        </a>
+          <ol id="MoreExamplePrograms_SubSections" style="display:none;">
+            <li><a href="/tutorial/PiExample.html">PI Example</a></li>
+            <li><a href="/tutorial/ParticlesCode.html">Particles Code</a></li>
+            <li><a href="/tutorial/ParticlesCode_lb.html">Particles Code with Load Balancing</a></li>
+          </ol>
+      <h5 style="margin-left:-20px;">Advanced</h5>
+        <li><a href="JavaScript:showHide('Tools_SubSections');">
+         Tools Available to Charm++ Applications
+        </a>
+          <ol id="Tools_SubSections" style="display:none;">
+            <li><a href="/tutorial/Projections.html">Projections (Performance Analysis)</a></li>
+            <li><a href="/tutorial/LiveViz.html">LiveViz</a></li>
+          </ol>
+        <li><a href="JavaScript:showHide('AdvancedCharmAbstractions_SubSections');">
+         Advanced Charm++ Abstractions
+        </a>
+          <ol id="AdvancedCharmAbstractions_SubSections" style="display:none;">
+            <li><a href="/tutorial/ArrayMapping.html">Mapping Chare Array Elements to Physical Processors</a></li>
+            <li><a href="/tutorial/ShadowArrays.html">Shadow Arrays (AKA: Bound Arrays)</a></li>
+            <li><a href="/tutorial/ArraySections.html">Array Sections</a></li>
+          </ol>
+      </ol>
+      <h5 style="font-size:11px;text-align:center;"><a href="/tutorial/">Back to Tutorial Home</a></h5>
+    </div>
+      <% end %>
 
- <div id="maincontainer">
+
+ <div id="maincontainer" <%if @item[:sidenav]%>style="margin-left:235px;"<% end%>>
    <div id="content">
      <%= yield %>
    </div>
  </div>
-      
+
       <div id="footer">
-	&copy; <%= Time.now.year %> 
+	&copy; <%= Time.now.year %>
     	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
 	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
 	<a href="http://illinois.edu">University of Illinois</a>

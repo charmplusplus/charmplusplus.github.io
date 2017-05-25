@@ -7,11 +7,12 @@ miniAppsc: miniApps
 downloadc: download
 toolsc: tools
 helpc: help
+sidenav: sidenav
 ---
 
   <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
-  
-  <h1>Basic "Hello World" Program</h1>  
+
+  <h1>Basic "Hello World" Program</h1>
 
 
   <p class="BasicParagraph">
@@ -23,134 +24,165 @@ helpc: help
    <a href="examples/BasicHelloWorld.tar.gz">here (BasicHelloWorld.tar.gz)</a>.
    (Remember to set the CHARMDIR in the Makefile!)
   </p>
-  
+
   <!-- Figure -->
-   <table class="StandardFigure" border=0 cellspacing=0 cellpadding=5 align=right>
+<center>
+  <table class="StandardFigure" border=0 cellspacing=0 cellpadding=5>
+   <tr>
 
-    <tr>
-     <td align=center valign=middle bgColor=bbbbbb><b><u>Header File <i>(main.h)</i></u></b></td>
-     <td align=center valign=middle bgColor=cccccc><b><u>Source File <i>(main.C)</i></u></b></td>
-    </tr>
-
-    <tr>
+    <td align=center>
 
      <!-- Header File -->
-     <td align=left valign=top bgColor=bbbbbb>
-      <div class="code">
-       <code>
-        #ifndef __MAIN_H__<br>
-        #define __MAIN_H__<br>
-        <br>
-        class Main : public CBase_Main { <font class="generalComment">(1)</font><br>
-        <br>
-        &nbsp;public:<br>
-        &nbsp;&nbsp;Main(CkArgMsg* msg); <font class="generalComment">(2)</font><br>
-        &nbsp;&nbsp;Main(CkMigrateMessage* msg); <font class="generalComment">(3)</font><br>
-        <br>
-        };<br>
-        <br>
-        #endif <font class="codeComment">//__MAIN_H__</font>
-       </code>
-      </div>
-     </td>
+     <table border=0 cellspacing=0 cellpadding=5 style="margin-right:5px; margin-bottom:5px; margin-left:-30px;" align=left>
+      <tr>
+       <td align=center valign=middle class="header"><b>Header File <i>(main.h)</i></b></td>
+      </tr>
+      <tr>
+       <td align=left valign=top bgColor=bbbbbb>
+<pre class="prettyprint linenums lang-cpp" style="width:360px; height:384px;">
+#ifndef __MAIN_H__
+#define __MAIN_H__
 
-     <!-- Source File -->
-     <td align=left valign=top bgColor=cccccc>
-      <div class="code">
-       <code>
-        #include "main.decl.h"  <font class="generalComment">(6)</font><br>
-        #include "main.h"<br>
-        <br>
-        <font class="codeComment">// Entry point of Charm++ application</font><br>
-        Main::Main(CkArgMsg* msg) {<br>
-        <br>
-        &nbsp;&nbsp;<font class="codeComment">// Print a message for the user</font><br>
-        &nbsp;&nbsp;CkPrintf("Hello World!\n");  <font class="generalComment">(4)</font><br>
-        <br>
-        &nbsp;&nbsp;<font class="codeComment">// Exit the application</font>  <font class="generalComment">(5)</font><br>
-        &nbsp;&nbsp;CkExit();<br>
-        }<br>
-        <br>
-        <font class="codeComment">// Constructor needed for chare object migration (ignore</font><br>
-        <font class="codeComment">//   for now)  NOTE: This constructor does not need to</font><br>
-        <font class="codeComment">//   appear in the ".ci" file</font><br>
-        Main::Main(CkMigrateMessage* msg) { }<br>
-        <br>
-        #include "main.def.h"  <font class="generalComment">(6)</font>
-       </code>
-      </div>
-     </td>
-     
-    </tr>
+class Main : public CBase_Main { (1)
 
-    <tr>
-     <td align=center valign=middle bgColor=cccccc><b><u>Interface File <i>(main.ci)</i></u></b></td>
-     <td align=center valign=middle bgColor=bbbbbb><b><u>Makefile</u></b></td>
-    </tr>
+ public:
+  Main(CkArgMsg* msg); (2)
+  Main(CkMigrateMessage* msg); (3)
 
-    <tr>
+};
+
+#endif //__MAIN_H__
+
+
+
+
+
+
+
+</pre>
+       </td>
+      </tr>
+     </table>
 
      <!-- Interface File -->
-     <td align=left valign=top bgColor=cccccc>
-      <div class="code">
-       <code>
-        mainmodule main {  <font class="generalComment">(7)</font><br>
-        <br>
-        &nbsp;&nbsp;mainchare Main {  <font class="generalComment">(8)</font><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;entry Main(CkArgMsg* msg);  <font class="generalComment">(9)</font><br>
-        &nbsp;&nbsp;};<br>
-        <br>
-        };
-       </code>
-      </div>
-     </td>
+     <table border=0 cellspacing=0 cellpadding=5 align=right style="margin-right:-30px; margin-bottom:5px;">
+      <tr>
+       <td align=center valign=middle class="header"><b>Source File <i>(main.C)</i></b></td>
+      </tr>
+      <tr>
+       <td align=left valign=top bgColor=bbbbbb>
+<pre class="prettyprint linenums lang-cpp" style="width:500px;">
+#include "main.decl.h" (6)
+#include "main.h"
 
-     <!-- Makefile -->
-     <td align=left valign=top bgColor=bbbbbb>
-      <div class="code">
-       <code>
-        CHARMDIR = <font class="generalComment">[put Charm++ install directory here]</font>  <font class="generalComment">(10)</font><br>
-        CHARMC = $(CHARMDIR)/bin/charmc $(OPTS)  <font class="generalComment">(11)</font><br>
-        <br>
-        default: all<br>
-        all: hello<br>
-        <br>
-        hello : main.o<br>
-        &nbsp;&nbsp;&nbsp;$(CHARMC) -language charm++ -o hello main.o  <font class="generalComment">(12)</font><br>
-        <br>
-        main.o : main.C main.h main.decl.h main.def.h<br>
-        &nbsp;&nbsp;&nbsp;$(CHARMC) -o main.o main.C  <font class="generalComment">(13)</font><br>
-        <br>
-        main.decl.h main.def.h : main.ci<br>
-        &nbsp;&nbsp;&nbsp;$(CHARMC) main.ci  <font class="generalComment">(14)</font><br>
-        <br>
-        clean:<br>
-        &nbsp;&nbsp;&nbsp;rm -f main.decl.h main.def.h main.o hello charmrun
-       </code>
-      </div>
-     </td>
+// Entry point of Charm++ application
+Main::Main(CkArgMsg* msg) {
 
-    </tr>
-    
-    <tr>
-     <td colspan=2 align=center valign=middle>
-      <b>Figure 1:</b> Source code and Makefile for Basic "Hello World" Program
-     </td>
-    </tr>
-    
-   </table>
-  
-  
+  // Print a message for the user
+  CkPrintf("Hello World!\n"); (4)
+
+  // Exit the application (5)
+  CkExit();
+}
+
+// Constructor needed for chare object migration
+// (ignore for now) NOTE: This constructor does
+// not need to appear in the ".ci" file
+Main::Main(CkMigrateMessage* msg) { }
+
+#include "main.def.h" (6)
+</pre>
+       </td>
+      </tr>
+     </table>
+
+    </td>
+
+
+
+   </tr>
+   <tr>
+
+    <td align=center>
+
+     <!-- Source File -->
+     <table border=0 cellspacing=0 cellpadding=5 align=left style="margin-left:-30px;">
+      <tr>
+       <td align=center valign=middle class="header"><b>Interface File <i>(main.ci)</i></b></td>
+      </tr>
+      <tr>
+       <td align=left valign=top bgColor=bbbbbb>
+<pre class="prettyprint linenums lang-cpp" style="width:360px; height:344px;">
+ mainmodule main { (7)
+
+   mainchare Main { (8)
+     entry Main(CkArgMsg* msg); (9)
+   };
+
+ };
+
+
+
+
+
+
+
+
+
+
+</pre>
+       </td>
+      </tr>
+     </table>
+
+     <!-- Makefile File -->
+     <table border=0 cellspacing=0 cellpadding=5 align=right style="margin-right:-30px;">
+      <tr>
+       <td align=center valign=middle class="header"><b>Makefile</b></td>
+      </tr>
+      <tr>
+       <td align=left valign=top bgColor=bbbbbb>
+<pre class="prettyprint linenums lang-cpp" style="width:500px;">
+CHARMDIR = [put Charm++ install directory here] (10)
+CHARMC = $(CHARMDIR)/bin/charmc $(OPTS) (11)
+
+default: all
+all: hello
+
+hello : main.o
+   $(CHARMC) -language charm++ -o hello main.o (12)
+
+main.o : main.C main.h main.decl.h main.def.h
+   $(CHARMC) -o main.o main.C (13)
+
+main.decl.h main.def.h : main.ci
+   $(CHARMC) main.ci (14)
+
+clean:
+   rm -f main.decl.h main.def.h main.o hello charmrun
+</pre>
+       </td>
+      </tr>
+     </table>
+
+    </td>
+
+
+
+   </tr>
+  </table>
+</center>
+
   <h3>The Header File <i>(main.h)</i></h3>
-  
+
   <p class="BasicParagraph">
    The header file for a chare class in Charm++ is basically the same as it would be
    for a class in C++.  There are a few items that are worth mentioning though:
 
-   <table border=0 cellpadding=5 cellspacing=0>
+   <table border=0 cellpadding=5 cellspacing=0 style="margin-left:50px;">
 
     <tr>
-     <td align=center valign=middle><font class="generalComment">(1)</font></td>
+     <td align=center valign=top><font class="generalComment" style="margin:10px;">(1)</font></td>
      <td align=left valign=top>
       Chare classes inherit from parent classes which are auto-generated by the Charm++
       tools during compilation.  Also, there is nothing that forces the name of the
@@ -160,7 +192,7 @@ helpc: help
     </tr>
 
     <tr>
-     <td align=center valign=middle><font class="generalComment">(2)</font></td>
+     <td align=center valign=top><font class="generalComment">(2)</font></td>
      <td align=left valign=top>
       This is the entry point of the application.  This constructor is automatically
       called by the Charm++ Runtime System when the application starts.  The CkArgMsg
@@ -170,7 +202,7 @@ helpc: help
     </tr>
 
     <tr>
-     <td align=center valign=middle><font class="generalComment">(3)</font></td>
+     <td align=center valign=top><font class="generalComment">(3)</font></td>
      <td align=left valign=top>
       This is a constructor that is used for chare object migration (the Charm++
       Runtime System can dynamically migrate chare objects between processing elements).
@@ -181,18 +213,18 @@ helpc: help
    </table>
 
   </p>
-  
-  
+
+
   <h3>The Source File <i>(main.C)</i></h3>
-  
+
   <p class="BasicParagraph">
    The source file for a chare class in Charm++ is basically the same as it would be
    for a class in C++.
 
-   <table border=0 cellpadding=5 cellspacing=0>
+   <table border=0 cellpadding=5 cellspacing=0 style="margin-left:50px;">
 
     <tr>
-     <td align=center valign=middle><font class="generalComment">(4)</font></td>
+     <td align=center valign=top><font class="generalComment" style="margin:10px;">(4)</font></td>
      <td align=left valign=top>
       CkPrintf() is a special version of the printf() function provided by C/C++.  For
       the purpose of this example, the difference doesn't matter.  However, CkPrintf()
@@ -202,7 +234,7 @@ helpc: help
     </tr>
 
     <tr>
-     <td align=center valign=middle><font class="generalComment">(5)</font></td>
+     <td align=center valign=top><font class="generalComment">(5)</font></td>
      <td align=left valign=top>
       CkExit() is a special version of the exit() function provided by C/C++.  For
       Charm++ applications, this function <i>must</i> be called to cause the
@@ -214,7 +246,7 @@ helpc: help
     </tr>
 
     <tr>
-     <td align=center valign=middle><font class="generalComment">(6)</font></td>
+     <td align=center valign=top><font class="generalComment">(6)</font></td>
      <td align=left valign=top>
       The "main.decl.h" and "main.def.h" files are auto-generated by the Charm++
       tools during the compilation process.  They contain code that is used to
@@ -228,16 +260,16 @@ helpc: help
    </table>
 
   </p>
-  
+
 
   <h3>The Interface File <i>(main.ci)</i></h3>
-  
+
   <p class="BasicParagraph">
 
-   <table border=0 cellpadding=5 cellspacing=0>
+   <table border=0 cellpadding=5 cellspacing=0 style="margin-left:50px;">
 
     <tr>
-     <td align=center valign=middle><font class="generalComment">(7)</font></td>
+     <td align=center valign=top><font class="generalComment" style="margin:10px;">(7)</font></td>
      <td align=left valign=top>
       This declares the interface module.  For the purpose of this example, the important
       thing to know is that the "main" keyword is used to name the generated files (the
@@ -246,7 +278,7 @@ helpc: help
     </tr>
 
     <tr>
-     <td align=center valign=middle><font class="generalComment">(8)</font></td>
+     <td align=center valign=top><font class="generalComment">(8)</font></td>
      <td align=left valign=top>
       This line declares the main chare for the application.  In this example, the
       "Main" class is declared as the main chare class.  The Charm++ Runtime System
@@ -256,7 +288,7 @@ helpc: help
     </tr>
 
     <tr>
-     <td align=center valign=middle><font class="generalComment">(9)</font></td>
+     <td align=center valign=top><font class="generalComment">(9)</font></td>
      <td align=left valign=top>
       This line declares one of the member functions (in this case, a constructor) of
       the Main chare class as an entry method.  This means that other chare objects and
@@ -272,13 +304,13 @@ helpc: help
 
 
   <h3>Makefile</h3>
-  
+
   <p class="BasicParagraph">
 
-   <table border=0 cellpadding=5 cellspacing=0>
+   <table border=0 cellpadding=5 cellspacing=0 style="margin-left:40px;">
 
     <tr>
-     <td align=center valign=middle><font class="generalComment">(10)</font></td>
+     <td align=center valign=top><font class="generalComment" style="margin:10px;">(10)</font></td>
      <td align=left valign=top>
       The path to the root directory of an installation of the Charm++ distribution
       should be placed here.
@@ -286,7 +318,7 @@ helpc: help
     </tr>
 
     <tr>
-     <td align=center valign=middle><font class="generalComment">(11)</font></td>
+     <td align=center valign=top><font class="generalComment">(11)</font></td>
      <td align=left valign=top>
       Charmc is a tool specific to Charm++.  It serves as a <i>wrapper</i> for the
       native linker and compiler on a given system (along with providing some additional
@@ -298,7 +330,7 @@ helpc: help
     </tr>
 
     <tr>
-     <td align=center valign=middle><font class="generalComment">(12)</font></td>
+     <td align=center valign=top><font class="generalComment">(12)</font></td>
      <td align=left valign=top>
       In this case, charmc is being used as a linker.  There is only one programmer
       specified object file, however, the standard C/C++ libraries and the libraries
@@ -312,7 +344,7 @@ helpc: help
     </tr>
 
     <tr>
-     <td align=center valign=middle><font class="generalComment">(13)</font></td>
+     <td align=center valign=top><font class="generalComment">(13)</font></td>
      <td align=left valign=top>
       In this case, charmc is being used as a compiler.  Charmc will basically just
       call the native compiler on the system to create the object file from the
@@ -321,7 +353,7 @@ helpc: help
     </tr>
 
     <tr>
-     <td align=center valign=middle><font class="generalComment">(14)</font></td>
+     <td align=center valign=top><font class="generalComment">(14)</font></td>
      <td align=left valign=top>
       In this case, charmc is being used to auto-generate the "main.decl.h" and
       "main.def.h" files.  These files contain the <i>hooks</i> needed to allow the
@@ -333,9 +365,9 @@ helpc: help
 
   </p>
 
-  
+
   <h3>Output of the Basic "Hello World" Program</h3>
-  
+
   <p class="BasicParagraph">
 
    Below is the output of the basic "Hello World" example program.  The first line
@@ -366,7 +398,7 @@ helpc: help
     </tr>
     <tr>
      <td colspan=2 align=center valign=middle>
-      <b>Figure:</b> Output of the Basic "Hello World" Program
+      <b>Figure 2:</b> Output of the Basic "Hello World" Program
      </td>
     </tr>
    </table>

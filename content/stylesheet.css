@@ -24,6 +24,7 @@ a:visited {
 a:hover {
 }
 
+
 #main {
     margin: 0px auto;
     position: relative;
@@ -75,7 +76,7 @@ a:hover {
     padding-top: 75px;
 }
 
- 
+
 #header {
   background-image:url('images/header.png');
   background-repeat: no-repeat;
@@ -447,7 +448,7 @@ a:hover {
 #quicklist ul li {
     padding: 0px;
     margin-bottom: 5px;
-  
+
 }
 
 .quickitems{
@@ -536,15 +537,14 @@ a:hover {
 
 .multi_figure {
     text-align: center;
-    margin: 10px auto; 
+    margin: 10px auto;
 }
 
 figure {
     text-align: center;
-    margin: 10px auto; 
+    margin: 10px auto;
 }
 
 figcaption {
     font-weight: bold;
 }
-

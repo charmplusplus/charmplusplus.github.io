@@ -7,12 +7,13 @@ miniAppsc: miniApps
 downloadc: download
 toolsc: tools
 helpc: help
+sidenav: sidenav
 ---
   <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
-  
+
   <!-- Section Title -->
   <h1>Parallel Prefix Program</h1>
-  
+
   <h3>The Prefix Calculation</h3>
 
   <!-- Figure -->
@@ -117,7 +118,7 @@ helpc: help
    on the value calculated in the previous iteration creating a chain of data dependencies over the
    course of the entire calculation.  In the first method, each iteration of the outer-loop is independent
    of any other iteration of the outer-loop (they write to different elements of <i>v_prime[]</i> and
-   only read from <i>v[]</i>) and therefor could be executed in parallel.  However, the last outer-loop
+   only read from <i>v[]</i>) and therefore could be executed in parallel.  However, the last outer-loop
    iteration will perform <i>N</i> operations (N iterations of the inner-loop) and therefor, if each
    outer-loop iteration were executed on a different processor in parallel, at least one of the
    processors will take <i>O(N)</i> time to complete its iteration of the outer-loop.
@@ -135,20 +136,20 @@ helpc: help
   <h3>A Parallel Version of the Prefix Calculation</h3>
 
   <!-- Figure -->
-  <a class="StandardFigure" href="images/ParallelPrefixCalculation.jpg">
    <table class="StandardFigure" align=right border=0>
     <tr><td align=center valign=middle>
+    <a class="StandardFigure" href="images/ParallelPrefixCalculation.jpg">
      <img class="StandardFigure" src="images/ParallelPrefixCalculation_sm.jpg" border=0o>
+    </a>
     </td></tr>
     <tr><td align=center valign=middle>
      <b>Figure 3:</b> Overview of Parallel Prefix Calculation
     </td></tr>
    </table>
-  </a>
 
   <p class="BasicParagraph">
-   Since we are writing this program using Charm++, will setup the parallel version of this
-   calculation without a worrying about how many processors there are.  Instead, we will write
+   Since we are writing this program using Charm++, we will setup the parallel version of this
+   calculation without worrying about how many processors there are.  Instead, we will write
    the application in terms of chare objects and the length of the array over which the prefix
    calculation should be performed.  To keep things simple at first, we will create an array
    of chare objects where each chare object in the array only contains a single value of the
@@ -206,12 +207,12 @@ helpc: help
    <ul>
     <li style="{margin-bottom:20px;}">
      <b>Makefile</b>:  The Makefile for this application should be very similar to the makefiles
-     used in the 
+     used in the
      <a href="ArrayHelloWorld.html">Array</a> and <a href="BroadcastHelloWorld.html">Broadcast</a>
      versions of the "Hello World" examples.
     </li>
     <li style="{margin-bottom:20px;}">
-     <b>Initial Values</b>:  Create a chare array and have each chare object assign iself a random
+     <b>Initial Values</b>:  Create a chare array and have each chare object assign itself a random
      number in its constructor.
     </li>
     </li>
@@ -262,23 +263,26 @@ helpc: help
 
   <h3>Solution</h3>
 
+
+
+
+  <p class="BasicParagraph">
+   A simple solution for the parallel prefix calculation can be found
+   <a href="examples/ParallelPrefix.tar.gz">here (ParallelPrefix.tar.gz)</a>.
+   Figure 4 (below) shows the overall control flow of the solution.
+  </p>
+
   <!-- Figure -->
-  <a class="StandardFigure" href="images/ParallelPrefixSolution_ControlFlow.jpg">
-   <table class="StandardFigure" align=right border=0>
+   <table class="StandardFigure" align=center border=0 style="margin-left:70px;">
     <tr><td align=center valign=middle>
+      <a class="StandardFigure" href="images/ParallelPrefixSolution_ControlFlow.jpg">
      <img class="StandardFigure" src="images/ParallelPrefixSolution_ControlFlow_sm.jpg" border=0o>
+      </a>
     </td></tr>
     <tr><td align=center valign=middle>
      <b>Figure 4:</b> Control Flow for Parallel Prefix Solution
     </td></tr>
    </table>
-  </a>
-
-  <p class="BasicParagraph">
-   A simple solution for the parallel prefix calculation can be found
-   <a href="examples/ParallelPrefix.tar.gz">here (ParallelPrefix.tar.gz)</a>.
-   Figure 4 shows the overall control flow of the solution.
-  </p>
 
   <a name="Extensions">
   <h2>Extensions&nbsp;/&nbsp;Performance&nbsp;Considerations</h2>
@@ -294,7 +298,7 @@ helpc: help
    a message, it will preform many operations instead of just a single operation.
   </p>
 
-  <a name="NoBarriers">
+  <a name="NoBarriers" style="text-decoration:none;color:black;">
   <h3>No Need for Barriers</h3>
   </a>
 
@@ -370,7 +374,7 @@ helpc: help
     </li>
    </ul>
   </p>
-  
+
   <p class="BasicParagraph">
    The problem is cause by the fact that messages are not guaranteed to be delivered in the order
    in which they arrived.  If Chare 0, Chare 1, Chare 2, and Chare 3 are on different processors and
@@ -391,7 +395,7 @@ helpc: help
    the message has arrived in-order.  If not, it can resend the message to itself (which will cause
    the Charm++ Runtime System to re-queue the message).  Alternatively, the receiving chare object
    could buffer the message and processes it later after the message it was expecting arrives (this
-   would be prefered since resending-to-self could potentially occur several times and add significant
+   would be preferred since resending-to-self could potentially occur several times and add significant
    overhead to the program, i.e. resend to self many times and thus execute the <i>receiveValue()</i>
    entry method many times before expected message arrives).
 

@@ -7,10 +7,11 @@ miniAppsc: miniApps
 downloadc: download
 toolsc: tools
 helpc: help
+sidenav: sidenav
 ---
 
   <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
-  
+
   <h1>Pack-UnPack (PUP) Routines</h1>
 
 
@@ -64,18 +65,7 @@ helpc: help
 
   </ul>
 
-  <!-- Figure -->
-  <a class="StandardFigure" href="images/PackUnPackProcess.jpg">
-   <table class="StandardFigure" align=right border=0>
-    <tr><td align=center valign=middle>
-     <img class="StandardFigure" src="images/PackUnPackProcess_sm.jpg" border=0o>
-    </td></tr>
-    <tr><td align=center valign=middle>
-     <b>Figure:</b> Process of "Object Migration": A Chare Object Moving from One Processing<br>
-                    Element to Another Processing Element
-    </td></tr>
-   </table>
-  </a>
+
 
 
   <h2>Pack-UnPack (PUP) Routines</h2>
@@ -84,8 +74,7 @@ helpc: help
    What makes object migration possible is the ability to serialize the state of a chare object
    into a contiguous piece of memory (i.e. a message, a file, and so on).  By serializing the
    state of the chare object, the chare object can be recreated, along with its state, at a later
-   time and potentially in a different location such as another processing element.  See the figure
-   to the right.  For a chare
+   time and potentially in a different location such as another processing element.  See Figure 1 below.  For a chare
    object to be able to undergo object migration, it must have a <i>Pack-UnPack</i> or PUP routine.
    The PUP routine performs the tasks of <i>sizing</i>, <i>packing</i> (serializing), and <i>unpacking</i>
    (deserializing) the chare object.
@@ -115,6 +104,20 @@ helpc: help
 
   </ul>
 
+  <!-- Figure -->
+
+   <table class="StandardFigure" align=center border=0 style="margin-left:120px;">
+    <tr><td align=center valign=middle>
+      <a class="StandardFigure" href="images/PackUnPackProcess.jpg">
+        <img class="StandardFigure" src="images/PackUnPackProcess_sm.jpg" border=0o>
+      </a>
+    </td></tr>
+    <tr><td align=center valign=middle>
+     <b>Figure 1:</b> Process of "Object Migration": A Chare Object Moving from One Processing<br>
+                    Element to Another Processing Element
+    </td></tr>
+   </table>
+
   <p class="BasicParagraph">
    The process of object migration, can be controlled by the Charm++ application.  By default,
    the Charm++ Runtime System can initiate object migration for a chare object at any time (as
@@ -122,7 +125,7 @@ helpc: help
    for the Charm++ application to indicate that object migrations should only occur at specific
    times when it is safe to do so.
   </p>
-  
+
   <br clear=all>
 
 
