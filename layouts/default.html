@@ -12,7 +12,14 @@
 		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
 		</script>
-    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> <!--for code-->
+
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.7.5/release/featherlight.min.css" type="text/css" rel="stylesheet" />
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="//cdn.rawgit.com/noelboss/featherlight/1.7.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.7.5/release/featherlight.gallery.min.css" type="text/css" rel="stylesheet" />
+    <script src="//cdn.rawgit.com/noelboss/featherlight/1.7.5/release/featherlight.gallery.min.js" type="text/javascript" charset="utf-8"></script>
+
     <script src="/assets/lang-ci.js"></script>
 		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
 		</script>
@@ -262,13 +269,13 @@
     </div>
       <% end %>
 
-
+<section data-featherlight-gallery data-featherlight-filter="a.StandardFigure">
  <div id="maincontainer" <%if @item[:sidenav]%>style="margin-left:235px;"<% end%>>
    <div id="content">
      <%= yield %>
    </div>
  </div>
-
+</section>
       <div id="footer">
 	&copy; <%= Time.now.year %>
     	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
@@ -277,5 +284,12 @@
       </div>
     </div>
     <script src="/assets/hover.js" type="text/javascript"></script>
+    <script>
+      $.featherlightGallery.prototype.afterContent = function() {
+      var caption = this.$currentTarget.find('img').attr('alt');
+      this.$instance.find('.caption').remove();
+      $('<div class="caption" style="text-align:center; font-weight:bold; margin-top:-20px;">').text(caption).appendTo(this.$instance.find('.featherlight-content'));
+    };
+    </script>
   </body>
 </html>

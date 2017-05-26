@@ -13,6 +13,7 @@ div.TOCSectionName {
   font-weight:bold;
   font-style:none;
   font-size:140%;
+  -webkit-font-smoothing: antialiased;
 }
 
 div.TOCSectionName a{
@@ -51,6 +52,7 @@ div.TOCSubSectionName {
   font-weight:bold;
   font-style:italic;
   font-size:120%;
+  -webkit-font-smoothing: antialiased;
 }
 
 div.TOCSubSectionName a{
@@ -179,14 +181,14 @@ div.TOCSubSectionDescription {
 pre.prettyprint { display: block; background-color: #333; margin:0;border:none;border-radius:0; }
 pre .nocode { background-color: none; color: #000 }
 pre .str { color: #ffa0a0 } /* string  - pink */
-pre .kwd { color: #f0e68c; font-weight: bold }
+pre .kwd { color: #f0e68c; font-weight: bold; -webkit-font-smoothing: antialiased; }
 pre .com { color: #87ceeb } /* comment - skyblue */
 pre .typ { color: #98fb98 } /* type    - lightgreen */
 pre .lit { color: #cd5c5c } /* literal - darkred */
 pre .pun { color: #fff }    /* punctuation */
 pre .pln { color: #fff }    /* plaintext */
-pre .tag { color: #f0e68c; font-weight: bold } /* html/xml tag    - lightyellow */
-pre .atn { color: #bdb76b; font-weight: bold } /* attribute name  - khaki */
+pre .tag { color: #f0e68c; font-weight: bold; -webkit-font-smoothing: antialiased; } /* html/xml tag    - lightyellow */
+pre .atn { color: #bdb76b; font-weight: bold; -webkit-font-smoothing: antialiased; } /* attribute name  - khaki */
 pre .atv { color: #ffa0a0 } /* attribute value - pink */
 pre .dec { color: #98fb98 } /* decimal         - lightgreen */
 
@@ -199,15 +201,32 @@ li.L1,li.L3,li.L5,li.L7,li.L9 {background-color: #333; }
 @media print {
   pre.prettyprint { background-color: none }
   pre .str, code .str { color: #060 }
-  pre .kwd, code .kwd { color: #006; font-weight: bold }
+  pre .kwd, code .kwd { color: #006; font-weight: bold; -webkit-font-smoothing: antialiased;}
   pre .com, code .com { color: #600; font-style: italic }
-  pre .typ, code .typ { color: #404; font-weight: bold }
+  pre .typ, code .typ { color: #404; font-weight: bold; -webkit-font-smoothing: antialiased; }
   pre .lit, code .lit { color: #044 }
   pre .pun, code .pun { color: #440 }
   pre .pln, code .pln { color: #000 }
-  pre .tag, code .tag { color: #006; font-weight: bold }
+  pre .tag, code .tag { color: #006; font-weight: bold; -webkit-font-smoothing: antialiased; }
   pre .atn, code .atn { color: #404 }
   pre .atv, code .atv { color: #060 }
+}
+
+.featherlight .featherlight-content {
+    border: 0;
+    padding: 0;
+}
+
+.featherlight .featherlight-image {
+    border: 20px solid #fff;
+    max-width: 100%;
+    margin:auto;
+}
+
+@media only screen and (max-width: 1024px) {
+    .featherlight .featherlight-image {
+        border: 10px solid #fff;
+    }
 }
 
 p.BasicParagraph {
@@ -247,12 +266,14 @@ h1 {
   color:#000;
   margin-bottom:10px;
   margin-bottom:25px;
+  -webkit-font-smoothing: antialiased;
 }
 
 h2 {
   font-size:160%;
   font-weight:bold;
   margin-bottom:10px;
+  -webkit-font-smoothing: antialiased;
 }
 
 h3 {
@@ -261,6 +282,7 @@ h3 {
   margin:5px;
   margin-top:20px;
   margin-left:20px;
+  -webkit-font-smoothing: antialiased;
 }
 
 h4 {
@@ -269,6 +291,7 @@ h4 {
   margin:5px;
   margin-top:5px;
   margin-left:20px;
+  -webkit-font-smoothing: antialiased;
 }
 
 div.code {
@@ -278,11 +301,13 @@ div.code {
 font.codeComment {
   color:008800;
   font-weight:bold;
+  -webkit-font-smoothing: antialiased;
 }
 
 font.generalComment {
   color:0000cc;
   font-weight:bold;
+  -webkit-font-smoothing: antialiased;
 }
 
 
@@ -318,6 +343,7 @@ ul{
 font.HorzNavBar_Link {
  color: #888888;
  font-weight: bold;
+ -webkit-font-smoothing: antialiased;
 }
 
 body {

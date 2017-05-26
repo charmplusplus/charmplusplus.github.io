@@ -1,7 +1,7 @@
 /* Century Schoolbook font is very similar to Computer Modern Math: cmmi */
 .MATH    { font-family: "Century Schoolbook", serif; }
-.MATH I  { font-family: "Century Schoolbook", serif; font-style: italic }
-.BOLDMATH { font-family: "Century Schoolbook", serif; font-weight: bold }
+.MATH I  { font-family: "Century Schoolbook", serif; font-style: italic; -webkit-font-smoothing: antialiased; }
+.BOLDMATH { font-family: "Century Schoolbook", serif; font-weight: bold; -webkit-font-smoothing: antialiased;}
 
 /* implement both fixed-size and relative sizes */
 SMALL.XTINY		{ font-size : xx-small }
@@ -30,10 +30,11 @@ TD.eqno			{ }	/* equation-number cells */
 
 
 /* document-specific styles come next */
-body { font-family: 'Droid Sans', Helvetica, Arial, sans-serif; }
+body { font-family: 'Droid Sans', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;}
 h1, h2, h3 {
     font-family: Puritan, Verdana, Helvetica sans-serif;
     font-weight: bold;
+    -webkit-font-smoothing: antialiased;
 }
 code, pre { font-family: DroidSansMono, "Courier New", Courier, monospace; }
 
@@ -104,6 +105,7 @@ body {
 		margin: 5px;
 		text-align: center;
 		font-weight: bold;
+    -webkit-font-smoothing: antialiased;
 }
 
 #pulldowntab {
@@ -124,7 +126,7 @@ ul.manual-toc {
 		display: none;
 }
 
-ul.manual-toc > li { font-weight: bold; }
+ul.manual-toc > li { font-weight: bold; -webkit-font-smoothing: antialiased;}
 ul.manual-toc > li > ul { font-weight: normal; }
 ul.manual-toc,
 ul.manual-toc ul { list-style-type: none; }
@@ -147,7 +149,7 @@ pre {
 span.textit		{ font-style: italic  }
 span.textsl		{ font-style: italic  }
 span.arabic		{   }
-span.textbf		{ font-weight: bold  }
+span.textbf		{ font-weight: bold; -webkit-font-smoothing: antialiased;  }
 span.textsf		{ font-style: italic  }
 
 #footer {
