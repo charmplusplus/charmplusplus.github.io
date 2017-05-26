@@ -167,14 +167,20 @@ div.TOCSubSectionDescription {
   padding:5px 0px;
 }
 
-.header a{
+.header {
   color:#D5A96A;
   text-decoration:none!important;
 }
 
-.header a:hover{
+.header:hover{
   color:#95764a;
   text-decoration:none;
+}
+
+.subheader{
+  color:white;
+  background-color:#262626;
+  padding:5px 0px;
 }
 
 /* desert scheme ported from vim to google prettify */

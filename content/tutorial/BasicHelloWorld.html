@@ -27,17 +27,17 @@ sidenav: sidenav
 
   <!-- Figure -->
 <center>
-  <div class="header" style="width:721px; margin-bottom:1px;"><a href="JavaScript:showHide('BasicHelloWorld');">Show Code</a></div>
+  <div class="header" style="width:861px; margin-bottom:1px; margin-left:-11px; cursor:pointer;" onclick="JavaScript:showHide('BasicHelloWorld');">Show Code</div>
   <div class="codeblock" id="BasicHelloWorld" style="display:none;">
-  <table class="StandardFigure" border=0 cellspacing=0 cellpadding=5>
+  <table class="StandardFigure" border=0 cellspacing=0 cellpadding=5 style="margin-top:1px;">
    <tr>
 
     <td align=center>
 
      <!-- Header File -->
-     <table border=0 cellspacing=0 cellpadding=5 style="margin-right:5px; margin-bottom:5px; margin-left:-30px;" align=left>
+     <table border=0 cellspacing=0 cellpadding=5 style="margin-right:1px; margin-bottom:1px; margin-left:-30px;" align=left>
       <tr>
-       <td align=center valign=middle class="header"><b>Header File <i>(main.h)</i></b></td>
+       <td align=center valign=middle class="subheader"><b>Header File <i>(main.h)</i></b></td>
       </tr>
       <tr>
        <td align=left valign=top bgColor=bbbbbb>
@@ -61,9 +61,9 @@ class Main : public CBase_Main { (1)
      </table>
 
      <!-- Interface File -->
-     <table border=0 cellspacing=0 cellpadding=5 align=right style="margin-right:-30px; margin-bottom:5px;">
+     <table border=0 cellspacing=0 cellpadding=5 align=right style="margin-right:-30px; margin-bottom:1px;">
       <tr>
-       <td align=center valign=middle class="header"><b>Source File <i>(main.C)</i></b></td>
+       <td align=center valign=middle class="subheader"><b>Source File <i>(main.C)</i></b></td>
       </tr>
       <tr>
        <td align=left valign=top bgColor=bbbbbb>
@@ -104,7 +104,7 @@ Main::Main(CkMigrateMessage* msg) { }
      <!-- Source File -->
      <table border=0 cellspacing=0 cellpadding=5 align=left style="margin-left:-30px;">
       <tr>
-       <td align=center valign=middle class="header"><b>Interface File <i>(main.ci)</i></b></td>
+       <td align=center valign=middle class="subheader"><b>Interface File <i>(main.ci)</i></b></td>
       </tr>
       <tr>
        <td align=left valign=top bgColor=bbbbbb>
@@ -134,7 +134,7 @@ Main::Main(CkMigrateMessage* msg) { }
      <!-- Makefile File -->
      <table border=0 cellspacing=0 cellpadding=5 align=right style="margin-right:-30px;">
       <tr>
-       <td align=center valign=middle class="header"><b>Makefile</b></td>
+       <td align=center valign=middle class="subheader"><b>Makefile</b></td>
       </tr>
       <tr>
        <td align=left valign=top bgColor=bbbbbb>

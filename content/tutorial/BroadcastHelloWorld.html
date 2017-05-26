@@ -17,7 +17,7 @@ sidenav: sidenav
   <!-- Figure -->
    <table class="StandardFigure" align=right border=0>
     <tr><td align=center valign=middle>
-      <a class="lightbox" href="images/BroadcastHelloWorld_ProgramFlow.jpg">
+      <a class="StandardFigure" href="images/BroadcastHelloWorld_ProgramFlow.jpg">
      <img class="StandardFigure" src="images/BroadcastHelloWorld_ProgramFlow_sm.jpg" border=0o alt="Figure 1: Control Flow of the Broadcast &quot;Hello World&quot; Program">
      </a>
     </td></tr>
@@ -70,7 +70,7 @@ sidenav: sidenav
   <h3>The "Hello" Chare Class</h3>
   <!-- Figure -->
   <center>
-<div class="header" style="width:721px; margin-bottom:1px;"><a href="JavaScript:showHide('BroadcastHelloChareClass');">Show Code</a></div>
+<div class="header" style="width:721px; margin-bottom:1px; cursor:pointer;" onclick="JavaScript:showHide('BroadcastHelloChareClass');">Show Code</div>
 <div class="codeblock" id="BroadcastHelloChareClass" style="display:none;">
   <table>
     <tr>
@@ -78,7 +78,7 @@ sidenav: sidenav
       <!-- Header File -->
       <table border=0 cellspacing=0 cellpadding=5 style="margin-bottom:1px; margin-right:1px;">
        <tr>
-        <td align=center valign=middle class="header" style="width:360px;"><b>Header File <i>(hello.h)</i></b></td>
+        <td align=center valign=middle class="subheader" style="width:360px;"><b>Header File <i>(hello.h)</i></b></td>
        </tr>
        <tr>
         <td align=left valign=top >
@@ -109,7 +109,7 @@ class Hello : public CBase_Hello {
       <!-- Interface File -->
       <table border=0 cellspacing=0 cellpadding=5 style="margin-bottom:1px;">
        <tr>
-        <td align=center valign=middle bgColor=bbbbbb class="header" style="width:360px;"><b>Interface File <i>(hello.ci)</i></b></td>
+        <td align=center valign=middle bgColor=bbbbbb class="subheader" style="width:360px;"><b>Interface File <i>(hello.ci)</i></b></td>
        </tr>
        <tr>
         <td align=left valign=top bgColor=bbbbbb>
@@ -133,7 +133,7 @@ module hello {
       <!-- Source File -->
       <table border=0 cellspacing=0 cellpadding=5 align=center>
        <tr>
-        <td align=center valign=middle bgColor=bbbbbb class="header" style="width:721px;"><b>Source File <i>(hello.C)</i></b></td>
+        <td align=center valign=middle bgColor=bbbbbb class="subheader" style="width:721px;"><b>Source File <i>(hello.C)</i></b></td>
        </tr>
        <tr>
         <td align=left valign=top bgColor=bbbbbb>
@@ -174,7 +174,7 @@ void Hello ::sayHi(int from) {
         </td>
        </tr>
       </table>
- <div class="header" style="width:721px; margin-top:1px;"><a href="JavaScript:showHide('BroadcastHelloChareClass');">Hide Code</a></div>
+ <div class="header" style="width:721px; margin-top:1px; cursor:pointer;" onclick="JavaScript:showHide('BroadcastHelloChareClass');">Hide Code</div>
 </div>
   </center>
 
@@ -183,7 +183,7 @@ void Hello ::sayHi(int from) {
 
   <!-- Figure -->
   <center>
-    <div class="header" style="width:721px; margin-bottom:1px;"><a href="JavaScript:showHide('BroadcastMainChareClass');">Show Code</a></div>
+    <div class="header" style="width:721px; margin-bottom:1px; cursor:pointer;" onclick="JavaScript:showHide('BroadcastMainChareClass');">Show Code</div>
     <div class="codeblock" id="BroadcastMainChareClass" style="display:none;">
       <table>
         <tr>
@@ -191,7 +191,7 @@ void Hello ::sayHi(int from) {
           <!-- Header File -->
           <table border=0 cellspacing=0 cellpadding=5 style="margin-bottom:1px; margin-right:1px;">
            <tr>
-            <td align=center valign=middle class="header" style="width:360px;"><b>Header File <i>(hello.h)</i></b></td>
+            <td align=center valign=middle class="subheader" style="width:360px;"><b>Header File <i>(hello.h)</i></b></td>
            </tr>
            <tr>
             <td align=left valign=top >
@@ -227,7 +227,7 @@ class Main : public CBase_Main {
           <!-- Interface File -->
           <table border=0 cellspacing=0 cellpadding=5 style="margin-bottom:1px;">
            <tr>
-            <td align=center valign=middle bgColor=bbbbbb class="header" style="width:360px;"><b>Interface File <i>(hello.ci)</i></b></td>
+            <td align=center valign=middle bgColor=bbbbbb class="subheader" style="width:360px;"><b>Interface File <i>(hello.ci)</i></b></td>
            </tr>
            <tr>
             <td align=left valign=top bgColor=bbbbbb>
@@ -255,7 +255,7 @@ mainmodule main {
           <!-- Source File -->
           <table border=0 cellspacing=0 cellpadding=5 align=center>
            <tr>
-            <td align=center valign=middle bgColor=bbbbbb class="header" style="width:721px;"><b>Source File <i>(hello.C)</i></b></td>
+            <td align=center valign=middle bgColor=bbbbbb class="subheader" style="width:721px;"><b>Source File <i>(hello.C)</i></b></td>
            </tr>
            <tr>
             <td align=left valign=top bgColor=bbbbbb>
@@ -323,7 +323,7 @@ void Main::done() {
             </td>
            </tr>
           </table>
-          <div class="header" style="width:721px; margin-top:1px;"><a href="JavaScript:showHide('BroadcastMainChareClass');">Hide Code</a></div>
+          <div class="header" style="width:721px; margin-top:1px; cursor:pointer;" onclick="JavaScript:showHide('BroadcastMainChareClass');">Hide Code</div>
     </div>
   </center>
 
@@ -335,13 +335,13 @@ void Main::done() {
 
   <!-- Figure -->
   <center>
-    <div class="header" style="width:721px; margin-bottom:1px;"><a href="JavaScript:showHide('BroadcastMakefile');">Show Code</a></div>
+    <div class="header" style="width:721px; margin-bottom:1px; cursor:pointer;" onclick="JavaScript:showHide('BroadcastMakefile');">Show Code</div>
     <div class="codeblock" id="BroadcastMakefile" style="display:none;">
 
           <!-- Makefile -->
           <table border=0 cellspacing=0 cellpadding=5 align=center>
            <tr>
-            <td align=center valign=middle bgColor=bbbbbb class="header" style="width:721px;"><b>Makefile</i></b></td>
+            <td align=center valign=middle bgColor=bbbbbb class="subheader" style="width:721px;"><b>Makefile</i></b></td>
            </tr>
            <tr>
             <td align=left valign=top bgColor=bbbbbb>
@@ -375,7 +375,7 @@ clean:
             </td>
            </tr>
           </table>
-          <div class="header" style="width:721px; margin-top:1px;"><a href="JavaScript:showHide('BroadcastMakefile');">Hide Code</a></div>
+          <div class="header" style="width:721px; margin-top:1px; cursor:pointer;" onclick="JavaScript:showHide('BroadcastMakefile');">Hide Code</div>
     </div>
   </center>
 

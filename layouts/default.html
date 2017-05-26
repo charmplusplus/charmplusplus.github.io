@@ -270,13 +270,14 @@
     </div>
       <% end %>
 
-<!--lightbox code currently not working <section data-featherlight-gallery data-featherlight-filter="a.lightbox">-->
+<% if @item[:sidenav] %><section data-featherlight-gallery data-featherlight-filter="a.StandardFigure"><% end%>
  <div id="maincontainer" <%if @item[:sidenav]%>style="margin-left:235px;"<% end%>>
    <div id="content">
      <%= yield %>
    </div>
  </div>
-<!--</section>-->
+
+<% if @item[:sidenav] %></section><% end%>
 
       <div id="footer">
 	&copy; <%= Time.now.year %>
