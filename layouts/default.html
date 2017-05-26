@@ -112,7 +112,8 @@
                                'Appendices_SubSections',
                                'BroadcastHelloChareClass',
                                'BroadcastMainChareClass',
-                               'BroadcastMakefile'
+                               'BroadcastMakefile',
+                               'BasicHelloWorld'
                               );
 
       function init() {
@@ -269,13 +270,14 @@
     </div>
       <% end %>
 
-<section data-featherlight-gallery data-featherlight-filter="a.StandardFigure">
+<!--lightbox code currently not working <section data-featherlight-gallery data-featherlight-filter="a.lightbox">-->
  <div id="maincontainer" <%if @item[:sidenav]%>style="margin-left:235px;"<% end%>>
    <div id="content">
      <%= yield %>
    </div>
  </div>
-</section>
+<!--</section>-->
+
       <div id="footer">
 	&copy; <%= Time.now.year %>
     	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
