@@ -1,0 +1,90 @@
+--- 
+title: Basic Chares Primality Testing Exercise
+homec: home 
+tutorialc: tutorial 
+applicationsc: applications 
+miniAppsc: miniApps 
+downloadc: download
+toolsc: tools 
+helpc: help
+---
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+
+<h1>Basic Chares: Primality Testing Exercise</h1>
+<center><em>(testing with a chare for each number being tested)</em></center>
+
+<h2>Part A</h2>
+<p>Write a program based on the outline below.
+<i>(Note that the program has a few artificial restrictions/elements that
+are meant to teach you specific concepts. So, please follow the
+instructions to the letter.)</i></p>
+
+<p>The main chare generates K random integers, and fires a
+checkPrimality  chare for each.
+The chare checks if the number given to it is a prime using a variant of the function
+below, and returns the result to the main chare. The main chare
+maintains an array of pairs: &lt;number, Boolean&gt;, and prints it at the
+end. An entry should be added to this array (with the number being tested, and a
+default value such as "False") as soon as the chare is fired. In
+particular, you are not allowed to delay adding the entry after the
+result is returned by the chare.
+Make sure that your program does not search the array when a response
+comes. So, figure out a bookkeeping scheme to avoid it.</p>
+ 
+<p>Obtain K from a command line argument. You may use rand() from
+the math library for generating random integers.</p>
+ 
+<p>For testing primality, use the following function. For extra credit,
+modify it so that it is not
+testing for every <i>i</i>, but (a) avoids testing even numbers except 2 and
+(b) don’t let the loop run all the way to “number-1”).</p>
+
+<p>
+<code>
+int isPrime(const long number)<br>
+{<br>
+&nbsp;&nbsp;if(number&lt;=1)   return 0;<br>
+&nbsp;&nbsp;for(int i=2; i&lt;number; i++)<br>
+&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(0 == number%i)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return 1;<br>
+}<br>
+</code>
+</p>
+<!--%\noindent Instead of creating a
+%chare for each number to be tested, give each chare G numbers to test,
+% where 
+-->
+
+<!--
+%\subsubsection{Testing Primality with grainsize control} -->
+<h2>Part B (grainsize control)</h2>
+
+<p><em>Measuring performance and improving it via grainsize control:</em></p>
+
+<p>Grainsize control
+is a way to improve performance of the above program. 
+Use information from the Charm++ manual about how to pass
+arrays of data to entry methods, and send a bunch (M) of numbers to be
+tested to each
+new Chare, and experiment with different values of M to get good
+performance. 
+You may wish to read M as a command line parameter, for ease of experimentation.
+Measure
+performance by adding two calls to CkTimer() in the main chare, one
+just before
+starting creation of checkPrimality chares, and the other after all
+the results have been returned (but before they are printed), and
+printing the difference between the timers.  You may
+omit (and probably should omit) printing primality results for performance runs.
+Vary M and report smallest G for
+which performance was within 5% infinite grainsize (i.e. $G == K$). 
+Again, make sure our artificial restriction is obeyed: do not send
+back the numbers the number being tested (because you are not allowed
+to search for it anyway).</p>
+
+<h2>Part C:</h2>
+<p>Let the numbers being tested be 64 bit random numbers. For simplicity,
+generate them by concatenating 2 32 bit random numbers.</p>
