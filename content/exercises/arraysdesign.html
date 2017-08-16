@@ -8,7 +8,44 @@ downloadc: download
 toolsc: tools 
 helpc: help
 ---
-  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+  <link rel="stylesheet" type="text/css" href="../../tutorial/TutorialStyle.css">
 
 <h1>Chare Arrays: Design Exercise</h1>
 
+<h2> Data Balancing:</h2>
+
+<!--\comment{
+I have a design problem for you. I want you to run your solution by me
+(.ci file and pseudocode, for example) before implementing it. Or even
+just the idea for the algorithm:
+} -->
+<p>Assume you have a 1D chare array
+A. Each chare (say A[i]) in it holds a vector of numbers. The size of
+this vector is different on different chares (say <i>size<sub>i</sub></i> on
+A[i]). Your task is to equalize the load on all processors by
+exchanging the numbers. It is not necessary to do minimal data
+movement, but it is desirable. The balance at the end needs to be
+almost exact. If there are a total of N numbers, and v chares, there
+should be between floor (N/v): ceil(N/v) items on each chare. Note
+that the only way to send information to another chare is by sending
+an (entry) method invocation to it.</p>
+
+<p>There are many distinct algorithms possible. Sketch the
+alternatives without coding them, and write cost estimates for them. 
+Keep in mind that the simplest (i.e. approximate) cost model in
+Charm++: entry methods invocation's cost  <i><span lang="latex">\alpha + n . {\beta}</span></i>, where
+<i>&alpha;</i> is a fixed cost, and <i>&beta;</i> is a per-byte cost. For the sake of
+intuition, you may assume <i>&alpha;</i> is about a thousand times larger than
+<i>&beta;</i>, say a microsecond vs a nanosecond. 
+Reductions and broadcasts of size <i>N</i> data on <i>P</i> processors cost <i><span lang="latex">\alpha log (P) +
+N \beta</i>.
+Keep in mind that many
+(but not all)
+of the algorithms for this problem have two phases: first phase to identify who
+should send how many numbers to whom, and second to actually do the
+data exchange. Make sure to write your time estimates for both phases.
+Compare two of the interesting algorithms in terms of cost, performance
+tradeoffs if any (e.g. is each algorithm better in different
+scenarios), scalability and coding complexity. 
+By scalability, here, we mean how well the algorithm behaves with a
+large number of chares and/or a large number of physical processors.</p>

@@ -8,7 +8,59 @@ downloadc: download
 toolsc: tools 
 helpc: help
 ---
-  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+  <link rel="stylesheet" type="text/css" href="../../tutorial/TutorialStyle.css">
 
 <h1>Chare Arrays: Particle Exercise</h1>
+  
+	<!-- Figure -->
+  <table class="StandardFigure" align=right border=0>
+   <tr><td align=center valign=middle>
+    <a href="../images/particlescode.png">
+     <img class="StandardFigure" src="../images/particlescode.png" border=0 width=375>
+    </a>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 1</b>
+   </td></tr>
+  </table>
+	
+<h2>Random Migrating Particles</h2>
 
+<p>For this exercise, you will write code that simulates a set of particles moving
+	randomly in a 2-dimensional space within a bounding box. The coordinates of the
+	overall simulation box are between 0.0 and 100.0 along each dimension. The particles
+	are divided among chares based on their coordinates. The chares should be organized
+	in a 2-dimensional array of chares (using a chare array) of size <span lang="latex">k \times k</span>. So, each
+	chare owns a bounding box of its own with size <span lang="latex">100.0/k</span>. The particles in each chare
+	can be stored as a vector.</p>
+	
+<p>Your program should generate <i>n</i> particles per chare during construction with a
+		random (but valid, i.e. within the chare) position for particles. Your program
+		should accept the number of particles per cell <i>n</i>, and <i>k</i> as command line parameters
+		in that sequence.</p>
+		
+<p><u>Expected Output</u>: Your program should calculate and print to screen the maximum and
+	total number of particles every 10 iterations. Additionally, the simulation should
+	not be delayed by this calculation (i.e. you should use reductions).</p>
+
+<p>For testing your program, you can use 10000 (=<i>n</i>) particles per chare, simulated over 100 steps
+	and a chare array of size <span lang="latex">16 \times 16</span> (<i>k</i>=16).  Experiment with different number of particles and
+	chare array sizes.</p>
+
+<p><u>Note</u>: There might be multiple particles having the same <i>x</i> and <i>y</i> coordinates, especially
+	if you increase the density of each cell. You do not need to handle this case separately;
+	it is a valid case assumption.</p>
+
+<ul>
+	<li>The pseudocode for the overall algorithm is:</li>
+	<code>for(iteration=0; iteration&lt;ITERATION; iteration++){</code>
+		<ul>
+			<li>For each of the particles that belong to my chare: change its <i>x</i> and <i>y</i> coordinate by a small random amount.</li>
+			<li>Move all the particles that do not belong to a chare's bounding box to their correct homes. Since the movement is small, this will mean communication to the eight near neighbor chares. Some of these messages may contain no particles.</li>
+			<li><code>if(iteration%10 == 0)</code></li>
+			<ul>
+				<li>Do reductions to calculate average and max number of particles</li>
+			</ul>
+		</ul>
+	<code>}</code>
+</ul>
