@@ -45,12 +45,14 @@ module has little work to do or is idle, another module can fill the gap. Becaus
 work can be prioritized in Charm++, the user can specify which objects have
 priority and they will be treated accordingly by the Charm++ scheduler</p>
 
-<h3>Interoperable with MPI and OpenMP</h3>
+<h3>Interoperable with MPI, OpenMP and CUDA</h3>
 
-<p>When Charm++ is compiled with the MPI machine layer, it can be easily
-combined with MPI code to assist porting codes. Charm++ supports time and space
-sharing, allowing MPI to execute with Charm++ code in phases or partitioned
-by processors.</p>
+<p>
+Charm++ supports time and space sharing with MPI, allowing MPI to execute with Charm++ code either
+in phases or partitioned by processors. Charm++ comes with its own OpenMP runtime which can be used
+with Clang, GCC, and ICC compilers and which allows co-scheduling OpenMP tasks and Charm++ entry methods.
+Charm++ also provides support for asynchronously executing CUDA kernels on the GPU and for orchestrating
+data movement between hosts and devices.</p>
 
 <h3>Ecosystem of Tools</h3>
 
