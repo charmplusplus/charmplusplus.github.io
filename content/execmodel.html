@@ -4,7 +4,7 @@ title: Execution Model
 
 <h1>Execution Model</h1>
 
-
+<p>
 A basic unit of parallel computation in Charm++ programs is a chare. A chare
 is similar to a process, an actor, an ADA task, etc. At its most basic level,
 it is just a C++ object. A Charm++ computation consists of a large number of
@@ -14,7 +14,8 @@ method on a remote object can also be thought of as sending a “message” to i
 So, these method invocations are sometimes referred to as messages. (besides,
 in the implementation, the method invocations are packaged as messages
 anyway). Chares can be created dynamically.
-
+</p>
+<p>
 Conceptually, the system maintains a “work-pool” consisting of seeds for new
 chares, and messages for existing chares. The Charm++ runtime system ( Charm
 RTS) may pick multiple items, non-deterministically, from this pool and
@@ -33,25 +34,29 @@ scheduler picks a message, creates a new chare if the message is a seed (i.e.
 a constructor invocation) for a new Chare, and invokes the method specified by
 the message. When the method returns control back to the scheduler, it repeats
 the cycle. I.e. there is no pre-emptive scheduling of other invocations.
-
+</p>
+<p>
 When a chare method executes, it may create method invocations for other
 chares. The Charm Runtime System (RTS, sometimes referred to as the Chare
 Kernel in the manual) locates the PE where the targeted chare resides, and
 delivers the invocation to the scheduler on that PE.
-
+</p>
+<p>
 Methods of a chare that can be remotely invoked are called entry methods.
 Entry methods may take serializable parameters, or a pointer to a message
 object. Since chares can be created on remote processors, obviously some
 constructor of a chare needs to be an entry method. Ordinary entry methods [1]
 are completely non-preemptive- Charm++ will not interrupt an executing method
 to start any other work, and all calls made are asynchronous.
-
+</p>
+<p>
 Charm++ provides dynamic seed-based load balancing. Thus location (processor
 number) need not be specified while creating a remote chare. The Charm RTS
 will then place the remote chare on a suitable processor. Thus one can imagine
 chare creation as generating only a seed for the new chare, which may take
 root on some specific processor at a later time.
-
+</p>
+<p>
 Chares can be grouped into collections. The types of collections of chares
 supported in Charm++ are: chare-arrays, chare-groups, and chare-nodegroups,
 referred to as arrays, groups, and nodegroups throughout this manual for
@@ -59,12 +64,14 @@ brevity. A Chare-array is a collection of an arbitrary number of migratable
 chares, indexed by some index type, and mapped to processors according to a
 user-defined map group. A group (nodegroup) is a collection of chares, with
 exactly one member element on each PE (“node”).
-
+</p>
+<p>
 Charm++ does not allow global variables, except readonly variables. A chare
 can normally only access its own data directly. However, each chare is
 accessible by a globally valid name. So, one can think of Charm++ as
 supporting a global object space.
-
+</p>
+<p>
 Every Charm++ program must have at least one mainchare. Each mainchare is
 created by the system on processor 0 when the Charm++ program starts up.
 Execution of a Charm++ program begins with the Charm Kernel constructing all
@@ -72,7 +79,8 @@ the designated mainchares. For a mainchare named X, execution starts at
 constructor X() or X(CkArgMsg *) which are equivalent. Typically, the
 mainchare constructor starts the computation by creating arrays, other chares,
 and groups. It can also be used to initialize shared readonly objects.
-
+</p>
+<p>
 Charm++ program execution is terminated by the CkExit call. Like the exit
 system call, CkExit never returns, and it optionally accepts an integer value
 to specify the exit code that is returned to the calling shell. If no exit
@@ -81,7 +89,8 @@ returned. The Charm RTS ensures that no more messages are processed and no
 entry methods are called after a CkExit. CkExit need not be called on all
 processors; it is enough to call it from just one processor at the end of the
 computation.
-
+</p>
+<p>
 As described so far, the execution of individual Chares is “reactive”: When
 method A is invoked the chare executes this code, and so on. But very often,
 chares have specific life-cycles, and the sequence of entry methods they
@@ -95,8 +104,10 @@ threaded entry methods, in combination with futures and sync methods. The
 threaded methods run in light-weight user-level threads, and can block waiting
 for data in a variety of ways. Again, only the particular thread of a
 particular chare is blocked, while the PE continues executing other chares.
-
+</p>
+<p>
 The normal entry methods, being asynchronous, are not allowed to return any
 value, and are declared with a void return type. However, the sync methods are
 an exception to this. They must be called from a threaded method, and so are
 allowed to return (certain types of) values.
+</p>
