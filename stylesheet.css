@@ -1,0 +1,550 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  font-family: Verdana, Georgia, Palatino, Times, 'Times New Roman', sans-serif;
+}
+
+body {
+  background: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+    padding-bottom: 10px;
+}
+
+a:link,
+a:visited {
+}
+
+a:hover {
+}
+
+#main {
+    margin: 0px auto;
+    position: relative;
+    top: -10px;
+    left: -1px;
+    width: 974px;
+    min-height: 900px;
+    background-image:url('images/sides.png');
+    background-repeat: repeat-y;
+    background-size: 100%;
+}
+
+#menu ul {
+    position: relative;
+    list-style: none;
+    padding: 0px;
+    top: 128px;
+    left: 65px;
+    margin: 0px auto;
+    float: left;
+    /*border: 1px solid green;*/
+}
+
+.headerLink {
+    /*border: 1px solid yellow;*/
+    height: 36px;
+    display: block;
+}
+
+#menu ul li {
+    list-style-type: none;
+    /*border: 1px solid blue;*/
+    display: block;
+    padding: 0px;
+    height: 36px;
+    float: left;
+    margin-right: 25px;
+}
+
+#menu ul li:hover, .selected {
+    background-color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+}
+
+#maintext {
+    font-size: 30pt;
+    text-align: center;
+    padding-top: 75px;
+}
+
+ 
+#header {
+  background-image:url('images/header.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 984px;
+  height: 165px;
+  margin: 0px auto 5px auto;
+}
+
+.home {
+  background-image:url('images/home.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 75px;
+}
+
+.home:hover, .homeSelected {
+  background-image:url('images/home_over.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 75px;
+}
+
+.tutorial {
+  background-image:url('images/tutorial.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 91px;
+}
+
+.tutorial:hover, .tutorialSelected {
+  background-image:url('images/tutorial_over.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 91px;
+}
+
+.applications {
+  background-image:url('images/applications.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 143px;
+}
+
+.applications:hover, .applicationsSelected {
+  background-image:url('images/applications_over.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 143px;
+}
+
+.miniApps {
+  background-image:url('images/miniApps.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 140px;
+}
+
+.miniApps:hover, .miniAppsSelected {
+  background-image:url('images/miniApps_over.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 140px;
+}
+
+.download {
+  background-image:url('images/download.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 119px;
+}
+
+.download:hover, .downloadSelected {
+  background-image:url('images/download_over.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 119px;
+}
+
+.tools {
+  background-image:url('images/tools.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 66px;
+}
+
+.tools:hover, .toolsSelected {
+  background-image:url('images/tools_over.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 66px;
+}
+
+.help {
+  background-image:url('images/help.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 60px;
+}
+
+.help:hover, .helpSelected {
+  background-image:url('images/help_over.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 60px;
+}
+
+#footer {
+  background-image:url('images/footer.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 988px;
+  height: 150px;
+  position: relative;
+  top: -20px;
+  left: 0px;
+  margin: 0px auto;
+  padding-top: 10px;
+  text-align: center;
+  color: white;
+}
+
+#leftPanel {
+    /*border: 1px solid red;*/
+    border-right: 1px solid #c1272d;
+    height: 880px;
+    width: 780px;
+    float: left;
+}
+
+#rightPanel {
+    /*border: 1px solid green;*/
+    position: relative;
+    left: 5px;
+    height: 850px;
+    width: 150px;
+    float: left;
+}
+
+#container {
+    padding-top: 10px;
+    margin-left: 20px;
+    width: 980px;
+}
+
+#newsFeed {
+    /*border: 1px solid blue;*/
+    width: 125px;
+    height: 325px;
+}
+
+#quickLinks {
+    /*border: 1px solid yellow;*/
+    width: 150px;
+    border-bottom: 1px solid #c1272d;
+    height: 325px;
+}
+
+#blurb {
+    /*border: 1px solid black;*/
+    border-bottom: 1px solid #c1272d;
+    width: 700px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    height: 410px;
+    background-image:url('images/blurb_back.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#buttonLinks {
+    /*border: 1px solid green;*/
+    border-right: 1px solid #c1272d;
+    width: 600px;
+    margin-left: 10px;
+    margin-top: 10px;
+    height: 415px;
+    float: left;
+}
+
+#archs {
+    /*border: 1px solid red;*/
+    width: 150px;
+    height: 450px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#archs ul {
+    padding-left: 25px;
+    margin-top: 10px;
+}
+
+#archs ul li {
+    padding-bottom: 10px;
+}
+
+#buttons {
+    /*border: 1px solid blue;*/
+    width: 610px;
+    height: 230px;
+    margin-top: 5px;
+}
+
+.button {
+    background-image:url('images/button_back.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    /*border: 1px solid red;*/
+    width: 270px;
+    height: 55px;
+    font-size: 17pt;
+    font-weight: bold;
+    padding-left: 20px;
+    float: left;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#startedIcon {
+    background-image:url('images/started_icon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 40px;
+    height: 40px;
+    float: left;
+    position: relative;
+    top: 7px;
+}
+
+#modelIcon {
+    background-image:url('images/model_icon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 40px;
+    height: 40px;
+    float: left;
+    position: relative;
+    top: 8px;
+}
+
+#manualIcon {
+    background-image:url('images/manual_icon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 40px;
+    height: 45px;
+    float: left;
+    position: relative;
+    top: 5px;
+}
+
+#downloadIcon {
+    background-image:url('images/download_icon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 32px;
+    height: 45px;
+    float: left;
+    position: relative;
+    top: 5px;
+    margin-right: 8px;
+}
+
+#publicationsIcon {
+    background-image:url('images/publication_icon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 43px;
+    height: 45px;
+    float: left;
+    position: relative;
+    top: 10px;
+}
+
+#contactIcon {
+    background-image:url('images/contact_icon.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 43px;
+    height: 45px;
+    float: left;
+    position: relative;
+    top: 5px;
+}
+
+.buttonText {
+    position: relative;
+    top: 12px;
+    left: 5px;
+}
+
+#apps {
+    border-top: 1px solid #c1272d;
+    width: 590px;
+    height: 130px;
+    padding-top: 20px;
+}
+
+#appButtonNAMD {
+    background-image:url('images/namd_app.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 140px;
+    height: 140px;
+    float: left;
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+#appButtonOpenAtom {
+    background-image:url('images/openatom_app.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 140px;
+    height: 140px;
+    float: left;
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+#appButtonChanga {
+    background-image:url('images/changa_app.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 140px;
+    height: 140px;
+    float: left;
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+#appButtonBigsim {
+    background-image:url('images/bigsim_app.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 140px;
+    height: 140px;
+    float: left;
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.quicktext {
+    position: relative;
+    font-size: 18px;
+    left: 10px;
+    top: 10px;
+    text-align: left;
+    color: red;
+    font-family: sans-serif
+}
+
+#quicklist ul {
+    position: relative;
+    top: 28px;
+    padding: 0px;
+    margin: 0px;
+    float: left;
+    left: 30px;
+}
+
+#quicklist ul li {
+    padding: 0px;
+    margin-bottom: 5px;
+  
+}
+
+.quickitems{
+    font-size: 15px;
+    color: green;
+    font-family: sans-serif;
+}
+
+.newsitems{
+    font-size: 15px;
+    color: blue;
+    font-family: sans-serif;
+}
+
+.charmbox {
+  position: relative;
+  float: left;
+  left: 20px;
+  width: 220px;
+  height: 75px;
+  background: #D0BBC0;
+  font-size: 24px;
+  border-radius: 10px;
+  border: 5px solid #303030;
+  text-align: center;
+}
+
+#toolsContainer,#applicationContainer {
+    padding-top: 10px;
+    margin-left: 20px;
+    padding-right: 30px;
+    margin-bottom: 5px;
+}
+
+#downloadtext {
+  position: relative;
+  float: left;
+  font-size: 18px;
+  top:  20px;
+  left: 20px;
+  width: 900px;
+  text-align: left;
+  font-family: sans-serif
+}
+
+#content {
+/*    padding: 20px 30px;*/
+}
+
+#contactContainer,#startedContainer,#downloadContainer {
+    padding: 40px;
+}
+
+#startedContainer {
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 40px;
+}
+
+#startedContainer ol li {
+    padding: 10px;
+}
+
+.app h2,.benchmark h2,#startedContainer h2 {
+    color: #555555;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.app,.benchmark {
+    padding: 40px;
+    border-bottom: 2px solid red;
+}
+
+.app p,.benchmark p {
+    text-align: justify;
+}
+
+.features {
+    text-align: justify;
+}
+
+.giturl {
+    color: blue;
+}
+
+.multi_figure {
+    text-align: center;
+    margin: 10px auto; 
+}
+
+figure {
+    text-align: center;
+    margin: 10px auto; 
+}
+
+figcaption {
+    font-weight: bold;
+}
+

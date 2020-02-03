@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>Charm++: Tutorial</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		</script>
+		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
+		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
+		<script src="/assets/prettify.js" type="text/javascript">
+		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!-- for equations from LaTeX to appear correctly-->
+		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+		
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.7.5"> 
+  </head>
+
+  <body>
+    <div class="container">
+			
+ <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+
+<!-- Charm++ Button textformatted placeholder for logo button
+		<div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="/"><b>Charm++</b></a>
+	  </div>
+-->
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="/capabilities/">Capabilities</a></li>
+		  <li><a href="/progmodel/">Programming Model</a></li>
+		  <li><a href="/execmodel/">Execution Model</a></li>
+		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
+		  <li><a href="/history/">History</a></li>
+		</ul>
+              </li>
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
+      		  <li><a href="/tutorial/">Tutorial</a></li>
+						<li><a href="/exercises/">Exercises</a></li>
+      		  <li><a href="/help/">Manual</a></li>
+      		  <li><a href="/tools/">Tools</a></li>
+      		  <li><a href="/othermedia/">Other Media</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://github.com/UIUC-PPL/charm/commits/master">Recent Commits</a></li>
+      	  <li><a href="https://github.com/UIUC-PPL/charm/issues">Issue Tracker</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+      	  <li><a href="https://lists.cs.illinois.edu/lists/info/charm">Mailing Lists</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/gerrit/#/admin/projects/">Other Repositories</a></li>
+      	  <li><a href="http://ppl.cs.illinois.edu">PPL Website</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="/download/">Downloads</a>
+              </li>
+
+              <li class="dropdown">
+		<a href="/miniApps/">Mini-Apps</a>
+              </li>
+
+	    </ul>
+	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
+              <div class="form-group">
+		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
+		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+
+
+ <div id="maincontainer">
+   <div id="content">
+     
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+  
+  <h1>Introduction to the Charm++ Runtime System</h1>
+
+  <!-- Figure -->
+  <table class="StandardFigure" align=right border=0>
+
+   <tr><td align=center valign=middle>
+    <a class="StandardFigure" href="images/Charm_UserView.jpg">
+     <img class="StandardFigure" src="images/Charm_UserView_sm.jpg" border=0o>
+    </a>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 1:</b> User's View of a Charm++ Application
+   </td></tr>
+
+   <tr><td align=center valign=middle>
+    <a class="StandardFigure" href="images/Charm_SysView.jpg">
+     <img class="StandardFigure" src="images/Charm_SysView_sm.jpg" border=0 style="{margin-top:20px;}">
+    </a>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 2:</b> System's View of a Charm++ Application
+   </td></tr>
+
+  </table>
+
+
+  <h2>What is the Charm++ Runtime System?</h2>
+
+  <p class="BasicParagraph">
+   When a programmer writes a Charm++ application, they write it in terms of chare
+   objects and how the chare objects communicate with one another through method invocation
+   (or message passing).  Details such as the number of processors, types of processors, type
+   of interconnect, and so on are not considered.  The programmer simply writes the application
+   as a collection of interacting objects.  This view of a Charm++ application is referred to as
+   the <i>user's view of a Charm++ application</i> (see Figure 1).
+  </p>
+
+  <p class="BasicParagraph">
+   Alternatively, when the application is actually compiled there is a specific <i>target platform</i>
+   including type of processor, type of interconnect, and so on.
+   Additionally, when the application is executed, there is a specific set of <i>physical resources</i>
+   that are made available to the application such as the number of physical processors, and so on.
+   The purpose of the Charm++ Runtime System is to manage as many of the details of the physical
+   resources on behalf of the application, and thus, on behalf of the programmer.  This view of the
+   Charm++ application is referred to as the <i>system's view of a Charm++ application</i> (see Figure
+   2).  Management decisions that the Charm++ Runtime System can make on behalf of the application
+   include (but are not limited to):
+  </p>
+
+  <ul>
+   <li style="{margin-bottom:20px;}">
+    <b>Mapping Chare Objects to Physical Processors</b>:  Through various methods, the Charm++
+       Runtime System can assign the chare objects to physical processors.
+   </li>
+   <li style="{margin-bottom:20px;}">
+    <b>Load-Balancing Chare Objects</b>:  The Charm++ Runtime System can dynamically migrate
+       chare objects between physical processors as the application executes allowing the
+       application to utilize the physical processors more efficiently.
+   </li>
+   <li style="{margin-bottom:20px;}">
+    <b>Routing of Messages</b>:  As chare objects are assigned to physical processors and
+       migrated between physical processors, the Charm++ Runtime System keeps track of where
+       the chare objects <i>live</i>.  Messages being sent to a chare object are dynamically
+       routed to the physical processor containing the chare object.  The code sending the
+       message is not aware in any way (even if the target chare object migrates to a different
+       physical processor).
+   </li>
+   <li style="{margin-bottom:20px;}">
+    <b>Checkpointing</b>:  Because the Charm++ Runtime System, through the use of PUP Routines, can
+       migrate a chare object's state between physical processors, checkpointing is fairly trivial.
+       The Charm++ Runtime System can simply migrate all of the chare objects' states to disk.
+   </li>
+   <li style="{margin-bottom:20px;}">
+    <b>Fault-Tolerance</b>:  If a physical processor is experiencing problems or has already
+       <i>crashed</i>, the Charm++ Runtime System can dynamically recreate the chare objects
+       on the failed physical processor on the remaining physical processors.
+   </li>
+   <li style="{margin-bottom:20px;}">
+    <b>Dynamic Re-Allocation of Physical Resources</b>:  A cluster being used to execute
+       a Charm++ application may suddenly receives more jobs (or have several jobs finish).  The Charm++
+       Runtime System can dynamically migrate chare objects from (or to) physical processors allowing
+       the application to dynamically shrink to use fewer physical processors (or expand to use more
+       physical processors) based on the cluster's overall load.
+   </li>
+  </ul>
+
+  <p class="BasicParagraph">
+   Each processing element has its own Charm++ Runtime System running on it.  They various instances
+   of the Charm++ Runtime Systems are responsible for their local processing element.  They may also
+   communicate with one another for collective operations (such as checkpointing, fault-recovery,
+   load-balancing, and so on).
+  </p>
+
+  <p class="BasicParagraph">
+   In actuality, <i>Charm++ Runtime System</i> is a collective term used to describe a collection
+   of components (all of which provide certain functionality).  The components of the Charm++
+   Runtime System are discussed below (see Figure 2 above and Figure 3 below).
+  </p>
+
+  <h3>The Machine Layer</h3>
+
+  <p class="BasicParagraph">
+   At the lowest layer of the Charm++ Runtime System is the <i>machine layer</i>.  The machine layer
+   contains system specific code that the higher levels of the Charm++ Runtime System use to perform
+   basic tasks such as sending messages, and so on.  When the Charm++ Runtime System is built, the
+   user needs to specify which machine layer is to be used (more information on building the Charm++
+   Runtime System can be found <a href="BuildingTheCharmRuntimeSystem.html">here</a>).
+  </p>
+
+  <h3>Converse</h3>
+
+  <p class="BasicParagraph">
+   The layer above the machine layer is called <i>Converse</i>.  Converse abstracts the capabilities
+   of the machine layer from the higher layers of the Charm++ Runtime System.  It also provides any
+   general functionality not supported by a particular machine layer.  For example, if one machine
+   layer has direct support for broadcasts then the machine layer's version of broadcast will be used.
+   However, if the machine layer does not directly support broadcasts, then the general implementation
+   provided by Converse will be used.
+  </p>
+
+  <p class="BasicParagraph">
+   In addition to abstracting the machine layers, Converse also contains the Charm++ <i>scheduler</i>
+   and <i>message queue</i> (as shown in Figure 2).
+  </p>
+
+  <h3>Message Queue</h3>
+
+  <p class="BasicParagraph">
+   The message queue acts as the collection point for messages arriving to a particular processing
+   element.  The message queue is shared for all chares that are located on the processing element.
+   For basic messages, the message queue can be thought of as a simple queue (incoming messages are
+   place at the end of the queue; eventually messages work either way to the head of the queue and
+   are processed one-by-one).
+  </p>
+
+  <p class="BasicParagraph">
+   There are other types of messages that are supported by Charm++: expedited messages, immediate
+   messages, and messages with user defined priorities.  When theses types of messages are being
+   used by a Charm++ program, the message queue does not act as a simple queue.  For more information
+   on these types of messages, please see the Charm++ documentation.
+  </p>
+
+  <h3>Scheduler</h3>
+
+  <p class="BasicParagraph">
+   The scheduler is the component in Converse that takes care of selecting a message from the message
+   queue and executing it.  The message entry in the message queue represents a triplet (message data,
+   chare object to operate on, and entry method to execute).  Once the scheduler has chosen a message
+   to process, it begins execution of the associated entry method.  This entry method continues to
+   execute until either it completes or releases control back to the Charm++ Runtime System (i.e. a
+   threaded entry method that calls <i>CkSuspend()</i>).  Because of this, the user application code
+   is guaranteed that only a single entry method is executing at any given moment on a particular
+   processing element.  One advantage of this approach is that the user's application code to avoid
+   having to use locks to protect variable accessed by multiple entry methods.
+  </p>
+
+
+  <br clear=all>
+
+  <!-- Figure -->
+  <table class="StandardFigure" align=right border=0>
+   <tr><td align=center valign=middle>
+    <a class="StandardFigure" href="images/CharmHierarchy.jpg">
+     <img class="StandardFigure" src="images/CharmHierarchy_sm.jpg" border=0>
+    </a>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 3:</b> A Simplified View of the Charm++ Universe
+   </td></tr>
+  </table>
+
+  <h2>How the Charm++ Runtime System Fits In</h2>
+
+  <p class="BasicParagraph">
+   To the right is a simplified figure of various pieces of software related to Charm++ in some way.
+   At the bottom of the figure is the Charm++ Runtime System and the various software components that
+   it is comprised of.  Not mentioned above are the various modules that provide support for activities
+   such as load balancing, fault tolerance, communication optimization, projections, and so on.
+  </p>
+
+  <h3>Support for Other Languages / Models</h3>
+
+  <p class="BasicParagraph">
+   In addition to being able to write Charm++ applications using the Charm++ Runtime System, programs
+   that are written using other supported programming models can also take advantage of the features
+   provided by the Charm++ Runtime System.
+  </p>
+
+  <ul>
+   <li style="{margin-bottom:10px;}">
+       <b>Adaptive MPI:</b>  MPI programs can take advantage of the virtualization, load balancing,
+       fault tolerance, etc. capabilities of the Charm++ Runtime System.
+   <li style="{margin-bottom:10px;}">
+       <b>Charisma:</b>  Charisma is a high-level language that allows a programmer to clearly
+       specify the control flow of a Charm++ application.
+   <li style="{margin-bottom:10px;}">
+       <b>Structured Dagger (SDag):</b>  Like Charisma, Structured Dagger allows a programmer to specify
+       the control flow in a Charm++ program at a high-level.  However, SDag code is specified directly
+       in a chare object's interface file and has a scope local to the object (i.e. it can be used to
+       specify the control flow for a particular chare class).
+   <li style="{margin-bottom:10px;}">
+       <b>Multiphase Shared Arrays (MSA):</b>  MSAs are data arrays that can be placed into one
+       of many access modes (read-only, write-once, accumulate).  The idea is to reduce pressure on
+       the memory system with programmer provided knowledge of the data access patterns.
+   <li style="{margin-bottom:10px;}">
+       <b>Threaded Charm (TCharm):</b> <font color=ff0000><i>... fill me in ...</i></font>
+  </ul>
+
+  <h3>Frameworks</h3>
+
+  <p class="BasicParagraph">
+   
+  </p>
+
+  <ul>
+   <li style="{margin-bottom:10px;}">
+       <b>ParFUM:</b>  ParFUM is an adaptive unstructured mesh framework.
+   <li style="{margin-bottom:10px;}">
+       <b>POSE:</b>  POSE is a PDES (Parallel Discrete Event Simulation) framework.
+  </ul>
+
+  <h3>Tools</h3>
+
+  <p class="BasicParagraph">
+   
+  </p>
+
+  <ul>
+   <li style="{margin-bottom:10px;}">
+       <b>Projections:</b>  Performance analysis tool.
+   <li style="{margin-bottom:10px;}">
+       <b>Faucets:</b>  Job submission tool.
+   <li style="{margin-bottom:10px;}">
+       <b>CharmDebug:</b>  Debugging tool for Charm++ programs.
+  </ul>
+
+   </div>
+ </div>
+      
+      <div id="footer">
+	&copy; 2020 
+    	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
+	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
+	<a href="http://illinois.edu">University of Illinois</a>
+      </div>
+    </div>
+    <script src="/assets/hover.js" type="text/javascript"></script>
+  </body>
+</html>

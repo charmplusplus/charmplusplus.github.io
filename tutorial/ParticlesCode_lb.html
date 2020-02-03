@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>Charm++: Tutorial</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		</script>
+		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
+		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
+		<script src="/assets/prettify.js" type="text/javascript">
+		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!-- for equations from LaTeX to appear correctly-->
+		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+		
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.7.5"> 
+  </head>
+
+  <body>
+    <div class="container">
+			
+ <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+
+<!-- Charm++ Button textformatted placeholder for logo button
+		<div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="/"><b>Charm++</b></a>
+	  </div>
+-->
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="/capabilities/">Capabilities</a></li>
+		  <li><a href="/progmodel/">Programming Model</a></li>
+		  <li><a href="/execmodel/">Execution Model</a></li>
+		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
+		  <li><a href="/history/">History</a></li>
+		</ul>
+              </li>
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
+      		  <li><a href="/tutorial/">Tutorial</a></li>
+						<li><a href="/exercises/">Exercises</a></li>
+      		  <li><a href="/help/">Manual</a></li>
+      		  <li><a href="/tools/">Tools</a></li>
+      		  <li><a href="/othermedia/">Other Media</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://github.com/UIUC-PPL/charm/commits/master">Recent Commits</a></li>
+      	  <li><a href="https://github.com/UIUC-PPL/charm/issues">Issue Tracker</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+      	  <li><a href="https://lists.cs.illinois.edu/lists/info/charm">Mailing Lists</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/gerrit/#/admin/projects/">Other Repositories</a></li>
+      	  <li><a href="http://ppl.cs.illinois.edu">PPL Website</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="/download/">Downloads</a>
+              </li>
+
+              <li class="dropdown">
+		<a href="/miniApps/">Mini-Apps</a>
+              </li>
+
+	    </ul>
+	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
+              <div class="form-group">
+		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
+		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+
+
+ <div id="maincontainer">
+   <div id="content">
+     
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+  
+  <h1>Particles Code with Load Balancing and Performance Analysis</h1>
+  
+  <!-- Figure -->
+  <table class="StandardFigure" align=right border=0>
+   <tr><td align=center valign=middle>
+    <a href="images/particlescode_lb.png">
+     <img class="StandardFigure" src="images/particlescode_lb.png" border=0>
+    </a>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 1</b>
+   </td></tr>
+  </table>
+    
+  <h3>Description</h3>
+  
+  <p class="BasicParagraph">
+  This assignment is an extension of <a href="ParticlesCode.htm">Particles Code</a>. You will use your code from Particles Code and extend it to do load balancing and visualization using LiveViz.
+</p>
+
+<p class="BasicParagraph">
+  In Particles Code, the particles moved randomly. There was no prominent load imbalance between chare array elements. Now we will create load imbalance between chares by coloring the particles, moving them at different speeds, and changing their initial distribution.
+  </p>
+  
+  <ul>
+	  <li>The particles will have three colors: blue, red, and green. To represent this, you need to add a variable to the Particle object.</li>
+	  <li>To make particles move at different speeds, add a constant speed factor to the <i>perturb</i> function depending on the color of the objects. Change the range of blue particles to half, red particles will have the full range (so they will move faster), and green particles will move at one-quarter speed.</li>
+	  <li>You are also required to change the initial distribution of the particles depending on the color. In the beginning green particles will be distributed to the right upper triangle, blue particles will be on the left lower triangle of the cell, and red particles will be in the middle square. Chare array elements having red particles will have <i>2*particlesPerCell</i> number of particles per cell and the rest of the chare array elements will have <i>particlesPerCell</i> number of elements where <i>particlesPerCell</i> is a command line argument as in Particles Code.</li>
+	  <li>This will result in chares along the diagonal generating both green and blue particles in their bounding box. Thus, they will have 2*particlesPerCell. Additionally, chares along the diagonal inside the red box will generate red particles in addition to the green and blue chares. In total they will have 4 * particlesPerCell (1 (for Green) + 1 (for Blue) + 2 (for Red) * particlesPerCell). The other chares in the red box not on the diagonal will generate both red and green or blue particles. Their total will be 3 * particlesPerCell (2 (Red) + 1 (Green or Blue) * particlesPerCell). See Figure 1.</li>
+  </ul>
+  
+  <h3>Part A) Load Balancing and Projections:</h3>
+  
+  <p class="BasicParagraph">
+	  In this part, you'll try 3 different load balancing strategies and comment on the behavior you observe. The first two load balancing strategies you will use are <i>GreedyLB</i> and <i>RefineLB</i>. For the third strategy, you will get to choose one of the other load balancing strategies. Observe the effect of load balancing (overhead and benefit) on the total execution time of the application using <i>Projections</i>.  Are they beneficial? Why or why not? How much is the overhead? Which strategy is the best for this Particle application? etc. 
+  </p>
+  
+  <h3>Part B) Visualization using LiveViz:</h3>
+  
+  <p class="BasicParagraph">
+	  In this part you will visualize the 2-D grid with moving particles using LiveViz. Particles should be shown in color. You need to submit two images from the visualization: one in the beginning showing the initial particle distribution and one when the application is more advanced (after the particles are moved and intermixed).
+  </p>
+  
+  <p class="BasicParagraph">
+	  Please read the <a href="http://charm.cs.illinois.edu/manuals/html/libraries/2.html">LiveViz manual</a> for details about LiveViz setup and usage. You can also look at the Wave2D application for an example code that uses LiveViz. It's located in <i>charm/examples/charm++/wave2d</i>.
+  </p>
+
+
+   </div>
+ </div>
+      
+      <div id="footer">
+	&copy; 2020 
+    	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
+	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
+	<a href="http://illinois.edu">University of Illinois</a>
+      </div>
+    </div>
+    <script src="/assets/hover.js" type="text/javascript"></script>
+  </body>
+</html>

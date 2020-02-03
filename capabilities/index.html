@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>Charm++: Capabilities</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		</script>
+		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
+		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
+		<script src="/assets/prettify.js" type="text/javascript">
+		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!-- for equations from LaTeX to appear correctly-->
+		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+		
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.7.5"> 
+  </head>
+
+  <body>
+    <div class="container">
+			
+ <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+
+<!-- Charm++ Button textformatted placeholder for logo button
+		<div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="/"><b>Charm++</b></a>
+	  </div>
+-->
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="/capabilities/">Capabilities</a></li>
+		  <li><a href="/progmodel/">Programming Model</a></li>
+		  <li><a href="/execmodel/">Execution Model</a></li>
+		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
+		  <li><a href="/history/">History</a></li>
+		</ul>
+              </li>
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
+      		  <li><a href="/tutorial/">Tutorial</a></li>
+						<li><a href="/exercises/">Exercises</a></li>
+      		  <li><a href="/help/">Manual</a></li>
+      		  <li><a href="/tools/">Tools</a></li>
+      		  <li><a href="/othermedia/">Other Media</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://github.com/UIUC-PPL/charm/commits/master">Recent Commits</a></li>
+      	  <li><a href="https://github.com/UIUC-PPL/charm/issues">Issue Tracker</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+      	  <li><a href="https://lists.cs.illinois.edu/lists/info/charm">Mailing Lists</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/gerrit/#/admin/projects/">Other Repositories</a></li>
+      	  <li><a href="http://ppl.cs.illinois.edu">PPL Website</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="/download/">Downloads</a>
+              </li>
+
+              <li class="dropdown">
+		<a href="/miniApps/">Mini-Apps</a>
+              </li>
+
+	    </ul>
+	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
+              <div class="form-group">
+		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
+		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+
+
+ <div id="maincontainer">
+   <div id="content">
+     
+<h1>Capabilities</h1>
+
+<h3>Automatic Overlap</h3>
+
+<p>Because parallelism in Charm++ is expressed via interacting parallel objects
+instead of processors, the runtime system can seamlessly provide overlap of
+communication and computation as an application runs.</p>
+
+<h3>Automatic Load Balancing</h3>
+
+<p>Charm++ ships with an entire suite of load balancers, which can be selected
+at runtime. All the application must do is provide a hint on when it is a good
+time to synchronize for load balancing. </p>
+
+<h3>Automatic Checkpointing and Fault Tolerance</h3>
+
+<p>Charm++ can easily checkpoint an application's data to disk or to the memory
+of a buddy node. If a fault occurs and the job persists, Charm++ will detect a
+hard node failure and automatically continue execution from the previous
+in-memory checkpoint. The programmer simply specifies the data to checkpoint
+using a clean interface that is used for load balancing to serialize the
+data.</p>
+
+<h3>Power/Energy Optimization</h3>
+
+<p>Charm++ runtime can reduce total energy consumption i.e. both
+machine and cooling energy consumptions, by combining control over the 
+processor operating frequency/voltage with object migration. It also enables
+restraining core temperatures to save cooling energy.</p>
+
+<h3>Portable Code</h3>
+
+<p>Charm++ comes pre-packaged with many machine layers that are tuned to the
+latest supercomputer architectures, ranging from Blue Gene/Q to Cray XK6.</p>
+
+<h3>Independent Modules, Interleaved Execution</h3>
+
+<p>Because Charm++ programs are written in terms of a set of modules that
+define parallel objects, multiple modules can execute concurrently. When one
+module has little work to do or is idle, another module can fill the gap. Because
+work can be prioritized in Charm++, the user can specify which objects have
+priority and they will be treated accordingly by the Charm++ scheduler</p>
+
+<h3>Interoperable with MPI, OpenMP and CUDA</h3>
+
+<p>
+Charm++ supports time and space sharing with MPI, allowing MPI to execute with Charm++ code either
+in phases or partitioned by processors. Charm++ comes with its own OpenMP runtime which can be used
+with Clang, GCC, and ICC compilers and which allows co-scheduling OpenMP tasks and Charm++ entry methods.
+Charm++ also provides support for asynchronously executing CUDA kernels on the GPU and for orchestrating
+data movement between hosts and devices.</p>
+
+<h3>Ecosystem of Tools</h3>
+
+<p>Charm++ is not just a programming language or runtime system; it also comes with a
+full suite of tools, ranging from a parallel debugger to performance
+visualization. You can even inject python code on the fly as your application
+runs using the CCS tool.</p>
+
+   </div>
+ </div>
+      
+      <div id="footer">
+	&copy; 2020 
+    	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
+	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
+	<a href="http://illinois.edu">University of Illinois</a>
+      </div>
+    </div>
+    <script src="/assets/hover.js" type="text/javascript"></script>
+  </body>
+</html>

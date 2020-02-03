@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>Charm++: Tools</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		</script>
+		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
+		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
+		<script src="/assets/prettify.js" type="text/javascript">
+		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!-- for equations from LaTeX to appear correctly-->
+		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+		
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.7.5"> 
+  </head>
+
+  <body>
+    <div class="container">
+			
+ <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+
+<!-- Charm++ Button textformatted placeholder for logo button
+		<div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="/"><b>Charm++</b></a>
+	  </div>
+-->
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="/capabilities/">Capabilities</a></li>
+		  <li><a href="/progmodel/">Programming Model</a></li>
+		  <li><a href="/execmodel/">Execution Model</a></li>
+		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
+		  <li><a href="/history/">History</a></li>
+		</ul>
+              </li>
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
+      		  <li><a href="/tutorial/">Tutorial</a></li>
+						<li><a href="/exercises/">Exercises</a></li>
+      		  <li><a href="/help/">Manual</a></li>
+      		  <li><a href="/tools/">Tools</a></li>
+      		  <li><a href="/othermedia/">Other Media</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://github.com/UIUC-PPL/charm/commits/master">Recent Commits</a></li>
+      	  <li><a href="https://github.com/UIUC-PPL/charm/issues">Issue Tracker</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+      	  <li><a href="https://lists.cs.illinois.edu/lists/info/charm">Mailing Lists</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/gerrit/#/admin/projects/">Other Repositories</a></li>
+      	  <li><a href="http://ppl.cs.illinois.edu">PPL Website</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="/download/">Downloads</a>
+              </li>
+
+              <li class="dropdown">
+		<a href="/miniApps/">Mini-Apps</a>
+              </li>
+
+	    </ul>
+	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
+              <div class="form-group">
+		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
+		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+
+
+ <div id="maincontainer">
+   <div id="content">
+     <div id="toolsContainer">
+<h1>Tools</h1>
+<div id="Projections">
+	<br/>
+	<div id="research_header"><h2>Parallel Performance Analysis: Projections</h2></div>
+	<br/>
+	<div id="projectionResearchPage">
+	Projections is a performance analysis/visualization framework that helps you understand and investigate performance-related problems in your parallel (CHARM++) application. It is a framework with an event tracing component with features that allow you to control the amount of information generated and to a lesser degree the amount of perturbation the tracing activities introduce into the application. It also has a Java-based visualization and analysis component with various views that will help present the performance information in a visually useful manner. The research page can be found <a href="https://charm.cs.illinois.edu/research/parallel_perf">here</a>.
+        <figure>
+        <img src="../figs/timeline.png" width=830>
+        <img src="../figs/time-profile.png" height=300 width=830>
+        </figure>
+
+        The above two figures show the timeline and time-profile view in Projections.  In the timeline view, user can see the messages between processors. In the time-profile view, user can observe the usage of the application as time goes by.
+	<br/> 
+	</div>
+	<br/>
+	<br />
+	<div id="projectionGit">
+		<p>The latest development version of Projections can be downloaded directly from our source archive. The Git version control system is used, which is available from <a href="http://git-scm.com">here</a>.</p>
+		<ol>
+			<li>
+			<p>Check out Projections from the repository:</p>
+			<pre>git clone https://github.com/UIUC-PPL/projections</pre>
+			</li>
+			<li>
+			<p>This will create a directory named <tt>projections</tt>. Move to this directory:</p>
+			<pre>cd projections</pre>
+			</li>
+			<li>
+			<p>And now build Projections:</p>
+			<pre>make</pre>
+			</li>
+		</ol>	
+	</div>
+	<br />
+	<div id="projectionManual">
+	 The manual can be found <a href="https://charm.readthedocs.io/en/latest/projections/manual.html">here</a>.
+	</div>
+</div>
+
+<div id="debugger">
+	<br/>
+	<div id="research_header"><h2>Parallel Debugging: Charm Debug</h2></div>
+	<br/>
+    <div>Charm++ offers a variety of parallel debugging options, from the extremely basic to the extremely sophisticated. The traditional debugging methods, such as logging (via the CkPrintf routine) and interactive debugging (via the "++debug" command line option) are supported under Charm++.
+	<br />
+	<br />
+	In addition, Charm++ offers several additional features designed to simplify application development. Linking with "-memory paranoid" checks all dynamic heap allocation calls for common errors, such as double-delete, random-delete, read-after-delete, buffer over- and under-write errors. Charm++, when compiled without "-DCMK_OPTIMIZE", contains hundreds of assertions to catch invalid parameters and uninitialized data passed to API routines.
+	<br />
+	<br />
+	Charm Debug is a sophisticated parallel debugger, with the ability to
+        set breakpoints, examine variables, objects, and messages across the
+        entire machine. The design of this debugger is described in the <a href="https://charm.cs.illinois.edu/research/parallel_debug">research page</a>.
+	 </div>
+	<br />
+	<br />
+
+	 <div id="charmDebugGit">
+		<p>The latest development version of Charm Debug can be downloaded directly from our source archive. The Git version control system is used, which is available from <a href="http://git-scm.com">here</a>.</p>
+		<ol>
+			<li>
+			<p>Check out Charm Debug from the repository:</p>
+			<pre>git clone https://github.com/UIUC-PPL/ccs_tools</pre>
+			</li>
+			<li>
+			<p>This will create a directory named <tt>ccs_tools</tt>. Move to this directory:</p>
+			<pre>cd ccs_tools</pre>
+			</li>
+			<li>
+			<p>And now build Charm Debug:</p>
+			<pre>ant</pre>
+			</li>
+		</ol>	
+	</div>
+	<br />
+	<div id="charmDebugManual">
+	 The manual can be found <a href="https://charm.readthedocs.io/en/latest/debugger/manual.html">here</a>.
+	</div>
+</div>
+</div>
+
+   </div>
+ </div>
+      
+      <div id="footer">
+	&copy; 2020 
+    	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
+	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
+	<a href="http://illinois.edu">University of Illinois</a>
+      </div>
+    </div>
+    <script src="/assets/hover.js" type="text/javascript"></script>
+  </body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>Charm++: Tutorial</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		</script>
+		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
+		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
+		<script src="/assets/prettify.js" type="text/javascript">
+		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!-- for equations from LaTeX to appear correctly-->
+		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+		
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.7.5"> 
+  </head>
+
+  <body>
+    <div class="container">
+			
+ <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+
+<!-- Charm++ Button textformatted placeholder for logo button
+		<div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="/"><b>Charm++</b></a>
+	  </div>
+-->
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="/capabilities/">Capabilities</a></li>
+		  <li><a href="/progmodel/">Programming Model</a></li>
+		  <li><a href="/execmodel/">Execution Model</a></li>
+		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
+		  <li><a href="/history/">History</a></li>
+		</ul>
+              </li>
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
+      		  <li><a href="/tutorial/">Tutorial</a></li>
+						<li><a href="/exercises/">Exercises</a></li>
+      		  <li><a href="/help/">Manual</a></li>
+      		  <li><a href="/tools/">Tools</a></li>
+      		  <li><a href="/othermedia/">Other Media</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://github.com/UIUC-PPL/charm/commits/master">Recent Commits</a></li>
+      	  <li><a href="https://github.com/UIUC-PPL/charm/issues">Issue Tracker</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+      	  <li><a href="https://lists.cs.illinois.edu/lists/info/charm">Mailing Lists</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/gerrit/#/admin/projects/">Other Repositories</a></li>
+      	  <li><a href="http://ppl.cs.illinois.edu">PPL Website</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="/download/">Downloads</a>
+              </li>
+
+              <li class="dropdown">
+		<a href="/miniApps/">Mini-Apps</a>
+              </li>
+
+	    </ul>
+	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
+              <div class="form-group">
+		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
+		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+
+
+ <div id="maincontainer">
+   <div id="content">
+     
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+  
+  <h1>Components of a Charm++ Program</h1>  
+
+
+  <!-- Introduction -->
+  <h2>Introduction</h2>
+  
+
+  <!-- Figure -->
+  <table class="StandardFigure" border=0 align=right>
+   <tr><td align=center valign=middle>
+    <a class="StandardFigure" href="images/CharmFiles.jpg">
+     <img class="StandardFigure" src="images/CharmFiles_sm.jpg" border=0o>
+    </a>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 1:</b> Files Needed by C++ and by Charm++
+   </td></tr>
+  </table>
+
+  <p class="BasicParagraph">
+   Remember that Charm++ is based on the C++ programming language and uses an object-oriented
+   style of programming.  With this in mind, let's recap on what is needed for a basic C++
+   application.  Each class in the C++ program needs two things, a class definition and
+   function bodies for all it's member functions.  The class definition defines what member
+   functions the class has along with what state the class has (member variables).   The
+   function bodies contain the code that is executed when one of the member functions is
+   invoked.  Traditionally, these two items are kept in separate files (the class definition
+   in the ".h" or header file and the function bodies in the ".cpp" or source file).  Keep in
+   mind that having these items in separate files is just common practice.  It is possible to
+   have function bodies contained in the class definition, to have the class definition
+   in the source file, and so on.  Presenting these items in this manner is only meant to give
+   the reader a clear idea of the components needed.
+   <font color=ff0000><i>
+    Please note: For Charm++ programs, it is common to see the ".C" file extension used
+    instead of the ".cpp" file extension for source files.  Using either extension is fine.
+   </i></font>
+  </p>
+   
+  <p class="BasicParagraph">
+   Chare classes need one additional piece of information, the interface definition.  The
+   interface definition specifies which member functions can be remotely invoked by other
+   chare objects in the global object space.  This information is contained in a ".ci" or
+   interface file.
+  </p>
+
+  
+  <!-- Compilation Process -->
+  <h2>Compilation Process</h2>
+
+  <h3>Charmc</h3>
+
+  <p class="BasicParagraph">
+   Charmc is a Charm++ tool that <i>wraps</i> the native compiler.  By <i>native compiler</i>
+   we mean whatever compiler happens to be installed on the machine where the Charm++
+   application is being compiled.  The purpose of charmc is to allow the makefiles used to
+   compile Charm++ programs as portable as the Charm++ programs themselves.  The
+   programmer writes the Makefile files using the charmc command instead of directly
+   calling the native C++ compiler.  Charmc is available on all platforms that the Charm++
+   Runtime System is also available on.  Charmc also provides some additional capability
+   beyond just wrapping the native C++ compiler (such as wrapping the charmxi tool described
+   below, and so on) but this will not be covered here.
+  </p>
+
+  <h3>Charmxi and the Interface File</h3>
+
+  <!-- Figure -->
+  <table class="StandardFigure" border=0 align=right>
+   <tr><td align=center valign=middle>
+    <a class="StandardFigure" href="images/ChareClassCompileProcess.jpg">
+     <img class="StandardFigure" src="images/ChareClassCompileProcess_sm.jpg" border=0o>
+    </a>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 2:</b> Compilation Process for a Chare Class
+   </td></tr>
+  </table>
+
+  <p class="BasicParagraph">
+   The interface file is processed by a Charm++ tool called <i>charmxi</i>
+   the result of which is a set of "decl.h" and "def.h" files.  These files contain
+   auto-generated code that <i>hooks</i> the programmer's application code to the Charm++
+   Runtime System.  This auto-generated code is then <i>included</i> into the associated
+   source file when the source file is compiled.  Figure 2 (to the right) shows the compilation
+   process for a single chare class.  First, the interface file is processed by the
+   charmxi tool which auto-generates some code needed by the Charm++ Runtime System.  Next,
+   the source file, with the associated #include lines for the generated files, is compiled
+   in a manner similar to a class in C++.  The result is an object file that contains the
+   chare class.
+  </p>
+
+  <p class="BasicParagraph">
+   After all of the chare classes for an application have been compiled, charmc
+   is once again used to link all of them together.  It is during this link step when the
+   Charm++ Runtime System is also linked into the application.
+  </p>
+  
+  
+  <h2>Running a Charm++ Program</h2>
+     
+  <p class="BasicParagraph">
+   When charmc
+   creates the final executable, another program called <i>charmrun</i> will also be created in
+   the same directory as the executable.  Charm++ applications can be executed in two ways.
+   The first is to simply run the executable.  This is referred to as <i>standalone mode</i>
+   which means that the program is only being executed on the local machine using a single
+   processor.  The second is way to run a Charm++ program is to launch it using the
+   charmrun program.
+  </p>
+
+  <h3>Charmrun</h3>
+
+  <p class="BasicParagraph">
+   When a Charm++ program is launched using the charmrun program, the number of processors to
+   use, amongst other things, is specified by using the <i>+p#</i> command line argument (
+   where the <i>#</i> is replaced by the actual number of processors to use).  For example,
+   one might use the command "charmrun +p4 ./myProgram" to launch the Charm++ program called
+   <i>myProgram</i> on four processors.  The processors available for use by charmrun are
+   specified in a <i>nodelist</i> file.
+  </p>
+
+  <p class="BasicParagraph">
+   More information on running Charm++ programs can be found in
+   <a href="http://charm.cs.uiuc.edu/manuals/html/install/4_1Command_Line_Options.html">
+    Section 4.1: Command Line Options</a>
+   of the
+   <a href="http://charm.cs.uiuc.edu/manuals/html/install/manual.html">
+    Charm++/Converse Installation and Usage Manual</a>.
+  </p>
+
+  <a name="NodelistFile"></a>  
+  <h3>The Nodelist File</h3>
+
+   <table border=0 cellpadding=5 cellspacing=0 align=right>
+    <tr>
+     <td align=left valign=middle bgColor=bbbbbb>
+      <div class="code">
+       <code>
+        group main ++shell ssh<br>
+        host alpha<br>
+        host bravo<br>
+        host charlie<br>
+        host delta<br>
+        host alpha<br>
+        host bravo
+       </code>
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td colspan=2 align=center valign=middle>
+      <b>Figure 3:</b> Example Nodelist File
+     </td>
+    </tr>
+   </table>
+
+  <p class="BasicParagraph">
+   The nodelist file specifies what processors are available to a Charm++ program when it
+   is launched using charmrun.  Figure 3 contains an example nodelist file.  The lines
+   beginning with <i>host</i> specify what processors are available for use by
+   charmrun.  The processors are used in-order by the charmrun.  For example, if charmrun is
+   used to launch a Charm++ program using two processors, then a single process will be launched
+   on each of the hosts <i>alpha</i> and <i>bravo</i>.  If four processors are needed, then
+   all of the hosts in this example nodelist file (<i>alpha</i>, <i>bravo</i>, <i>charlie</i>,
+   and <i>delta</i>) will have a single process running on them.  If a single
+   machine/node has more than one processor, it can be listed multiple times in the nodelist
+   file, however, the hosts are still used in order from the nodelist file.  In this example,
+   the machines <i>alpha</i> and <i>bravo</i> have two processors each.  If five processors
+   are needed by charmrun, all of the hosts will have a single process running on them
+   except for <i>alpha</i> which will have two processes running on it.
+   <font color=ff0000><i>
+    Please Note: If number of processors used by charmrun is greater than the number of
+    <i>host</i> lines specified in the nodelist file, charmrun will loop around on the list and
+    start using host lines from the beginning of the list.  Additionally, some target platforms
+    do not require the user to specify a nodelist file since the processors are dynamically
+    assigned upon job creation.
+   </i></font>
+  </p>
+
+  <p class="BasicParagraph">
+   The <i>++nodelist</i> command line option can be used to specify the nodelist
+   file to use when executing a Charm++ program using charmrun.  If this command line options
+   is not specified, charmrun defaults to using "~/.nodelist" for the nodelist file.
+  </p>
+
+  <p class="BasicParagraph">
+   More information on nodelist files can be found in
+   <a href="http://charm.cs.uiuc.edu/manuals/html/install/4_2Nodelist_file.html">
+    Section 4.2: Nodelist File</a>
+   of the
+   <a href="http://charm.cs.uiuc.edu/manuals/html/install/manual.html">
+    Charm++/Converse Installation and Usage Manual</a>.
+  </p>
+
+   </div>
+ </div>
+      
+      <div id="footer">
+	&copy; 2020 
+    	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
+	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
+	<a href="http://illinois.edu">University of Illinois</a>
+      </div>
+    </div>
+    <script src="/assets/hover.js" type="text/javascript"></script>
+  </body>
+</html>

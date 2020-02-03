@@ -1,0 +1,469 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>Charm++: News</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		</script>
+		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
+		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
+		<script src="/assets/prettify.js" type="text/javascript">
+		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!-- for equations from LaTeX to appear correctly-->
+		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+		
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.7.5"> 
+  </head>
+
+  <body>
+    <div class="container">
+			
+ <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+
+<!-- Charm++ Button textformatted placeholder for logo button
+		<div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="/"><b>Charm++</b></a>
+	  </div>
+-->
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="/capabilities/">Capabilities</a></li>
+		  <li><a href="/progmodel/">Programming Model</a></li>
+		  <li><a href="/execmodel/">Execution Model</a></li>
+		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
+		  <li><a href="/history/">History</a></li>
+		</ul>
+              </li>
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
+      		  <li><a href="/tutorial/">Tutorial</a></li>
+						<li><a href="/exercises/">Exercises</a></li>
+      		  <li><a href="/help/">Manual</a></li>
+      		  <li><a href="/tools/">Tools</a></li>
+      		  <li><a href="/othermedia/">Other Media</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://github.com/UIUC-PPL/charm/commits/master">Recent Commits</a></li>
+      	  <li><a href="https://github.com/UIUC-PPL/charm/issues">Issue Tracker</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+      	  <li><a href="https://lists.cs.illinois.edu/lists/info/charm">Mailing Lists</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/gerrit/#/admin/projects/">Other Repositories</a></li>
+      	  <li><a href="http://ppl.cs.illinois.edu">PPL Website</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="/download/">Downloads</a>
+              </li>
+
+              <li class="dropdown">
+		<a href="/miniApps/">Mini-Apps</a>
+              </li>
+
+	    </ul>
+	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
+              <div class="form-group">
+		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
+		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+
+
+ <div id="maincontainer">
+   <div id="content">
+     
+<h3><a name="charm690"></a>Charm++ Release 6.9.0</h3>
+11/12/2018
+      <ul>
+					<li>The Parallel Programming Laboratory is pleased to announce the next stable version fo Charm++, 6.9.0, has been released!</li>
+				<li>This release contains many new features, bug fixes, and performance enhancements.</li>
+      </ul>
+			<p>You can view the release notes and find the source code and binaries for download <a href="https://charm.cs.illinois.edu/software">here</a>.
+
+<h3><a name="sc2018"></a>Charm++ at SuperComputing 2018</h3>
+11/07/2018
+<p>
+There are several Charm++ related talks and events at SuperComputing 2018,
+including a Birds of a Feather session.
+
+You can find a list of PPL and Charm++ talks
+<a href="https://charm.cs.illinois.edu/supercomputing">here</a>.
+
+<h3><a name="charm682"></a>Charm++ Release 6.8.2</h3>
+10/26/2017
+      <ul>
+				<li>This is a backwards-compatible patch/bug-fix release, containing just a few changes.</li>
+				<li>Users of Intel OmniPath and IBM POWER systems are especially recommended to upgrade.</li>
+      </ul>
+			<p>More release notes can be found <a href="https://charm.cs.illinois.edu/software">here</a>.
+
+<h3><a name="sc2017"></a>Charm++ at SuperComputing 2017</h3>
+
+10/22/2017
+<p>
+There are multiple Charm++ related talks and events at SuperComputing 2017,
+including a Tutorial and a Birds of a Feather session.
+
+You can find a list of PPL and Charm++ talks
+<a href="https://charm.cs.illinois.edu/supercomputing">here</a>.
+
+<h3><a name="charm681"></a>Charm++ Release 6.8.1</h3>
+
+10/13/2017
+<p>
+The Parallel Programming Laboratory is pleased to
+announce the stable release of Charm++ version 6.8.1.
+
+In depth release notes as well as full version control change logs can
+be found <a href="http://charm.cs.illinois.edu/gerrit/gitweb?p=charm.git;a=blob;f=CHANGES;hb=v6.8.1">here</a>.
+
+<h3><a name="charm680"></a>Charm++ Release 6.8.0</h3>
+<p>Over 900 commits (bugfixes + improvements + cleanups) have been applied
+across the entire system. Major changes are described below:</p>
+	<ul>
+		<li><b>Charm++ Features</b></li>
+		<ol>
+			<li>Calls to entry methods taking a single fixed-size parameter can now
+  automatically be aggregated and routed through the TRAM library by
+  marking them with the [aggregate] attribute.</li>
+			<li>Calls to parameter-marshalled entry methods with large array
+  arguments can ask for asynchronous zero-copy send behavior with a
+  'nocopy' tag in the parameter's declaration.</li>
+			<li>The runtime system now integrates an OpenMP runtime library so that
+  code using OpenMP parallelism will dispatch work to idle worker
+  threads within the Charm++ process.</li>
+			<li>Applications can ask the runtime system to perform automatic
+  high-level end-of-run performance analysis by linking with the
+  '-tracemode perfReport' option.</li>
+			<li>Added a new dynamic remapping/load-balancing strategy,
+  GreedyRefineLB, that offers high result quality and well bounded
+  execution time.</li>
+			<li>Improved and expanded topology-aware spanning tree generation
+  strategies, including support for runs on a torus with holes, such
+  as Blue Waters and other Cray XE/XK systems.</li>
+			<li>Charm++ programs can now define their own main() function, rather
+  than using a generated implementation from a mainmodule/mainchare
+  combination. This extends the existing Charm++/MPI interoperation
+  feature.</li>
+			<li>Improvements to Sections:</li>
+			<ol>
+				<li>Array sections API has been simplified, with array sections being
+  automatically delegated to CkMulticastMgr (the most efficient implementation
+  in Charm++). Changes are reflected in Chapter 14 of the manual.</li>
+				<li>Group sections can now be delegated to CkMulticastMgr (improved performance compared to default implementation). Note that they have to be manually delegated. Documentation is in Chapter 14 of Charm++ manual.</li>
+				<li>Group section reductions are now supported for delegated sections
+  via CkMulticastMgr.</li>
+				<li>Improved performance of section creation in CkMulticastMgr.</li>
+				<li>CkMulticastMgr uses the improved spanning tree strategies. See above.</li>
+			</ol>
+			<li>GPU manager now creates one instance per OS process and scales the
+  pre-allocated memory pool size according to the GPU memory size and
+  number of GPU manager instances on a physical node.</li>
+			<li>Several GPU Manager API changes including:</li>
+			<ol>
+				<li>Replaced references to global variables in the GPU manager API with calls to
+  functions.</li>
+				<li>The user is no longer required to specify a bufferID in dataInfo struct.</li>
+				<li>Replaced calls to kernelSelect with direct invocation of functions passed
+  via the work request object (allows CUDA to be built with all programs).</li>
+			</ol>
+			<li>Added support for malleable jobs that can dynamically shrink and
+  expand the set of compute nodes hosting Charm++ processes.</li>
+			<li>Greatly expanded and improved reduction operations:</li>
+			<ol>
+				<li>Added built-in reductions for all logical and bitwise operations
+  on integer and boolean input.</li>
+				<li>Reductions over groups and chare arrays that apply commutative,
+  associative operations (e.g. MIN, MAX, SUM, AND, OR, XOR) are now
+  processed in a streaming fashion. This reduces the memory footprint of
+  reductions. User-defined reductions can opt into this mode as well.</li>
+				<li>Added a new 'Tuple' reducer that allows combining multiple reductions
+  of different input data and operations from a common set of source
+  objects to a single target callback.</li>
+				<li>Added a new 'Summary Statistics' reducer that provides count, mean,
+  and standard deviation using a numerically-stable streaming algorithm.</li>
+			</ol>
+			<li>Added a '++quiet' option to suppress charmrun and charm++ non-error
+  messages at startup.</li>
+			<li>Calls to chare array element entry methods with the [inline] tag now
+  avoid copying their arguments when the called method takes its
+  parameters by const&amp;, offering a substantial reduction in overhead in
+  those cases.</li>
+			<li>Synchronous entry methods that block until completion (marked with
+  the [sync] attribute) can now return any type that defines a PUP
+  method, rather than only message types.</li>
+		</ol>
+		<li><b>AMPI Features</b></li>
+		<ol>
+			<li>More efficient implementations of message matching infrastructure, multiple completion routines, and all varieties of reductions and gathers.</li>
+			<li>Support for user-defined non-commutative reductions, MPI_BOTTOM, cancelling receive requests, MPI_THREAD_FUNNELED, PSCW synchronization for RMA, and more.</li>
+			<li>Fixes to AMPI's extensions for load balancing and to Isomalloc on SMP builds.</li>
+			<li>More robust derived datatype support, optimizations for truly contiguous types.</li>
+			<li>ROMIO is now built on AMPI and linked in by ampicc by default.</li>
+			<li>A version of HDF5 v1.10.1 that builds and runs on AMPI with virtualization
+  is now available at <a href="https://charm.cs.illinois.edu/gerrit/#/admin/projects/hdf5-ampi">https://charm.cs.illinois.edu/gerrit/#/admin/projects/hdf5-ampi</a></li>
+			<li>Improved support for performance analysis and visualization with Projections.</li>
+		</ol>
+		<li><b>Platforms and Portability</b></li>
+		<ol>
+			<li>The runtime system code now requires compiler support for C++11
+  R-value references and move constructors. This is not expected to be
+  incompatible with any currently supported compilers.</li>
+			<li>The next feature release (anticipated to be 6.9.0 or 7.0) will require
+  full C++11 support from the compiler and standard library.</li>
+			<li>Added support for IBM POWER8 systems with the PAMI communication API,
+  such as development/test platforms for the upcoming Sierra and Summit
+  supercomputers at LLNL and ORNL. Contributed by Sameer Kumar of IBM.</li>
+			<li>Mac OS (darwin) builds now default to the modern libc++ standard
+  library instead of the older libstdc++.</li>
+			<li>Blue Gene/Q build targets have been added for the 'bgclang' compiler.</li>
+			<li>Charm++ can now be built on Cray's CCE 8.5.4+.</li>
+			<li>Charm++ will now build without custom configuration on Arch Linux</li>
+			<li>Charmrun can automatically detect rank and node count from
+  Slurm/srun environment variables.</li>
+		</ol>
+	</ul>
+<p>The complete list of issues that have been merged/resolved in 6.8.0 can be found <a href="https://charm.cs.illinois.edu/redmine/projects/charm/issues">here</a>. The associated git commits can be viewed <a href="https://charm.cs.illinois.edu/gerrit/gitweb?p=charm.git;a=shortlog;h=refs/heads/charm-6.8">here</a>.</p>
+
+<h3><a name="workshop2017"></a>The 15th Annual Workshop on Charm++ and its Applications (2017)</h3>
+
+4/5/2017
+<p>
+The Parallel Programming Laboratory is hosting the 15th Annual Workshop
+on Charm++ and its Applications April 17-19, 2017.
+
+The workshop will be streamed live. You can find the list of talks and webcast
+<a href="http://charm.cs.illinois.edu/workshops/charmWorkshop2017/index.php">here</a>.
+
+<h3><a name="sc2016"></a>Charm++ at SuperComputing 2016</h3>
+
+11/14/2016
+<p>
+There are multiple Charm++ related talks and events at SuperComputing 2016 this week,
+including a Birds of a Feather session titled Adaptive and Asynchronous
+Parallel Programming with Charm++ and AMPI.
+
+You can find a list of PPL and Charm++ talks
+<a href="https://charm.cs.illinois.edu/supercomputing">here</a>.
+
+<h3><a name="charm671"></a>Stable release of Charm++ version 6.7.1</h3>
+
+4/20/2016
+<p>
+The Parallel Programming Laboratory is pleased to
+announce the stable release of Charm++ version 6.7.1.
+
+In depth release notes as well as full version control change logs can
+be found <a href="http://charm.cs.illinois.edu/gerrit/gitweb?p=charm.git;a=blob;f=CHANGES;hb=v6.7.1">here</a>.
+
+The source code for this release can be <a href="http://charm.cs.illinois.edu/distrib/charm-6.7.1.tar.gz">downloaded here</a>
+
+<h3><a name="workshop2016"></a>The 14th Annual Workshop on Charm++ and its Applications (2016)</h3>
+
+4/19/2016
+<p>
+The Parallel Programming Laboratory hosted the 14th Annual Workshop
+on Charm++ and its Applications.
+
+You can find the list of talks and their slides
+<a href="http://charm.cs.illinois.edu/workshops/charmWorkshop2016/index.php">here</a>.
+
+<h3><a name="charm67"></a>Stable release of Charm++ version 6.7.0</h3>
+
+12/22/2015
+<p>  
+The Parallel Programming Laboratory is pleased to
+announce the stable release of Charm++ version 6.7.0.
+
+In depth release notes as well as full version control change logs can
+be found <a href="http://charm.cs.illinois.edu/gerrit/gitweb?p=charm.git;a=blob;f=CHANGES;hb=v6.7.0">here</a>.
+
+The source code for this release can be <a href="http://charm.cs.illinois.edu/distrib/charm-6.7.0.tar.gz">downloaded here</a>
+
+
+<h3><a name="charm66"></a>Stable release of Charm++ version 6.6.0</h3>
+
+09/06/2014
+<p>  
+The Parallel Programming Laboratory is pleased to
+announce the stable release of Charm++ version 6.6.0.
+
+In depth release notes as well as full version control change logs can
+be found <a href="http://charm.cs.illinois.edu/gerrit/gitweb?p=charm.git;a=blob;f=CHANGES;hb=v6.6.0">here</a>.
+
+The source code for this release can be <a href="http://charm.cs.illinois.edu/distrib/charm-6.6.0.tar.gz">downloaded here</a>
+
+<h3><a name="charm651"></a>Stable release of Charm++ version 6.5.1</h3>
+
+07/01/2013
+<p>  
+The Parallel Programming Laboratory is pleased to announce the stable release
+of Charm++ version 6.5.1. This release offers several bug fixes, especially on
+the Cray Gemini and IBM Blue Gene Q architectures, and a new port to the Cray
+Cascade (XC-30) systems. The list of bugs fixed by this release can be found in
+<a href="https://charm.cs.illinois.edu/redmine/versions/3">Redmine</a>. Release
+notes and full version control change logs can be found in our Git
+<a href="http://charm.cs.illinois.edu/gerrit/gitweb?p=charm.git;a=log;h=v6.5.1">repository</a>.
+The source code for this release can be downloaded
+<a href="http://charm.cs.illinois.edu/distrib/">here</a>. This stable release
+will be precompiled and offered for use on various major supercomputer
+installations, including systems at Argonne National Lab, NERSC, NCSA, NICS,
+Oak Ridge National Lab, SDSC, and TACC.
+</p>
+
+<h3><a name="namdhiv"></a>Charm++ application results featured in Nature</h3>
+05/30/2013
+
+<p>
+NAMD, an application developed using Charm++, was recently used in an all-atom
+molecular dynamics simulation to determine the chemical structure of the HIV
+Capsid, as reported in a Nature research <a
+href="http://dx.doi.org/10.1038/nature12162">article</a>.  The simulation
+involving about 64 million atoms, was carried out on the Blue Waters system at
+the University of Illinois, and benefited from many features and
+performance optimizations implemented in Charm++. Results from the simulation
+were also featured on the
+<a href="http://www.nature.com/nature/journal/v497/n7451/index.html">cover</a> of
+the magazine. More information about the research and results can be found in
+the university
+<a href="http://news.illinois.edu/news/13/0529HIVcapsid_KlausSchulten.html">news
+release</a> featuring this study of the HIV capsid.
+</p>
+
+<p>
+NAMD is a biomolecular dynamics simulation software developed using Charm++. It
+is the result of an long standing, ongoing, collaboration between two research groups
+at the Illinois: the Parallel Programming Lab led by Prof. Kale and the
+Theoretical and Computational Biophysics Group led by Prof. Klaus Schulten.
+</p>
+
+<h3><a name="redmine"></a>Charm++ issue tracker now publicly accessible. </h3>
+04/03/2013
+<p>  
+   
+<a href ="https://charm.cs.illinois.edu/redmine/projects/charm/roadmap">Charm++ issue tracker</a> is now publicly accessible.
+</p>
+
+
+<h3><a name="charm650"></a>Stable release of Charm++ version 6.5.0</h3>
+
+03/29/2013
+<p>  
+The Parallel Programming Laboratory is pleased to
+announce the stable release of Charm++ version 6.5.0. This release
+offers substantially increased performance on the Cray Gemini and IBM
+Blue Gene Q architectures, revamped developer and user documentation,
+and numerous performance and usability improvements across the
+runtime.
+
+In depth release notes as well as full version control change logs can
+be found <a href="http://charm.cs.illinois.edu/gerrit/gitweb2.cgi?p=charm.git;a=blob;f=CHANGES;hb=v6.5.0">here</a>.
+
+The source code for this release can be <a href="http://charm.cs.illinois.edu/distrib/charm-6.5.0.tar.bz2">downloaded here</a>
+
+This stable release will be precompiled and offered for use on various
+major supercomputer installations, including systems at Argonne
+National Lab, NERSC, NCSA, NICS, Oak Ridge National Lab, SDSC, and
+TACC.
+
+<h3><a name="fernbach"></a>Fernbach Award for Profs. Kale, Schulten</h3>
+
+10/10/2012
+<p>      
+Profs. Kale was named one of the winners of the Sidney Fernbach Award, to be presented at Supercomputing 2012.
+
+
+<h3><a name="SIAM"></a>Local SIAM chapter hosting Charm++ Tutorial</h3>
+
+04/27/2012
+<p>
+      
+On Tuesday, May 1, 2012, the UIUC chapter of SIAM will host a Charm++ tutorial given by PPL'r Phil Miller.  The tutorial will start at 4:00 p.m. in 4403 Siebel Center.  Registration is required. For more information, please visit siam.cs.illinois.edu or register here.
+
+
+
+The tutorial will present Charm++, which is a portable  parallel programming system designed with programmer productivity as a major goal. Attendees will become familiar with the asynchronous, object-based programming model of Charm++ and the capabilities its adaptive runtime system offers.
+
+
+
+Developed by the Parallel Programming Laboratory over the last 20 years, Charm++ is a portable, mature environment that provides the foundation for several highly scalable and widely used applications in science and engineering, including NAMD, ChaNGa, and OpenAtom. Charm++ runs the same application code on multicore desktops with shared memory, clusters of all sizes, and IBM and Cray supercomputers (such as the upcoming NSF-sponsored Blue Waters), and efficiently supports GPU accelerators where available.
+
+
+
+The following week, the Parallel Programming Lab will host its 10th Annual Workshop on Charm++ and its Applications May 7-9 at the Siebel Center, bringing together the Charm++ community and showcasing leading-edge developments in parallel computing.
+
+
+
+The target audience for this tutorial is programmers and researchers with any sort of parallel programming experience and basic knowledge of C or C++.
+
+
+
+<h3><a name="Charm64"></a> First Beta of Charm++ version 6.4.0 released </h3>
+
+03/12/2012
+<p>
+
+      
+The Parallel Programming Laboratory is pleased to announce the release of a first beta for Charm++ version 6.4.0.
+
+A list of advances in this release can be found in
+gitweb.
+
+Please test your applications for bugs and performance regressions, and post your results on the mailing list.
+
+A tarball of the source can be found 
+here, and compiled binaries for our autobuild platforms can be found here.
+
+
+
+   </div>
+ </div>
+      
+      <div id="footer">
+	&copy; 2020 
+    	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
+	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
+	<a href="http://illinois.edu">University of Illinois</a>
+      </div>
+    </div>
+    <script src="/assets/hover.js" type="text/javascript"></script>
+  </body>
+</html>

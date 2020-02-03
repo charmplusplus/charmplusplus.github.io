@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>Charm++: Execution Model</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		</script>
+		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
+		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
+		<script src="/assets/prettify.js" type="text/javascript">
+		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!-- for equations from LaTeX to appear correctly-->
+		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+		
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.7.5"> 
+  </head>
+
+  <body>
+    <div class="container">
+			
+ <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+
+<!-- Charm++ Button textformatted placeholder for logo button
+		<div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="/"><b>Charm++</b></a>
+	  </div>
+-->
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="/capabilities/">Capabilities</a></li>
+		  <li><a href="/progmodel/">Programming Model</a></li>
+		  <li><a href="/execmodel/">Execution Model</a></li>
+		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
+		  <li><a href="/history/">History</a></li>
+		</ul>
+              </li>
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
+      		  <li><a href="/tutorial/">Tutorial</a></li>
+						<li><a href="/exercises/">Exercises</a></li>
+      		  <li><a href="/help/">Manual</a></li>
+      		  <li><a href="/tools/">Tools</a></li>
+      		  <li><a href="/othermedia/">Other Media</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://github.com/UIUC-PPL/charm/commits/master">Recent Commits</a></li>
+      	  <li><a href="https://github.com/UIUC-PPL/charm/issues">Issue Tracker</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+      	  <li><a href="https://lists.cs.illinois.edu/lists/info/charm">Mailing Lists</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/gerrit/#/admin/projects/">Other Repositories</a></li>
+      	  <li><a href="http://ppl.cs.illinois.edu">PPL Website</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="/download/">Downloads</a>
+              </li>
+
+              <li class="dropdown">
+		<a href="/miniApps/">Mini-Apps</a>
+              </li>
+
+	    </ul>
+	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
+              <div class="form-group">
+		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
+		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+
+
+ <div id="maincontainer">
+   <div id="content">
+     
+<h1>Execution Model</h1>
+
+<p>
+A basic unit of parallel computation in Charm++ programs is a chare. A chare
+is similar to a process, an actor, an ADA task, etc. At its most basic level,
+it is just a C++ object. A Charm++ computation consists of a large number of
+chares distributed on available processors of the system, and interacting with
+each other via asynchronous method invocations. Asynchronously invoking a
+method on a remote object can also be thought of as sending a “message” to it.
+So, these method invocations are sometimes referred to as messages. (besides,
+in the implementation, the method invocations are packaged as messages
+anyway). Chares can be created dynamically.
+</p>
+<p>
+Conceptually, the system maintains a “work-pool” consisting of seeds for new
+chares, and messages for existing chares. The Charm++ runtime system ( Charm
+RTS) may pick multiple items, non-deterministically, from this pool and
+execute them, with the proviso that two different methods cannot be
+simultaneously executing on the same chare object (say, on different
+processors). Although one can define a reasonable theoretical operational
+semantics of Charm++ in this fashion, a more practical description of
+execution is useful to understand Charm++. A Charm++ application’s execution
+is distributed among Processing Elements (PEs), which are OS threads or
+processes depending on the selected Charm++ build options. On each PE, there
+is a scheduler operating with its own private pool of messages. Each
+instantiated chare has one PE which is where it currently resides. The pool on
+each PE includes messages meant for Chares residing on that PE, and seeds for
+new Chares that are tentatively meant to be instantiated on that PE. The
+scheduler picks a message, creates a new chare if the message is a seed (i.e.
+a constructor invocation) for a new Chare, and invokes the method specified by
+the message. When the method returns control back to the scheduler, it repeats
+the cycle. I.e. there is no pre-emptive scheduling of other invocations.
+</p>
+<p>
+When a chare method executes, it may create method invocations for other
+chares. The Charm Runtime System (RTS, sometimes referred to as the Chare
+Kernel in the manual) locates the PE where the targeted chare resides, and
+delivers the invocation to the scheduler on that PE.
+</p>
+<p>
+Methods of a chare that can be remotely invoked are called entry methods.
+Entry methods may take serializable parameters, or a pointer to a message
+object. Since chares can be created on remote processors, obviously some
+constructor of a chare needs to be an entry method. Ordinary entry methods [1]
+are completely non-preemptive- Charm++ will not interrupt an executing method
+to start any other work, and all calls made are asynchronous.
+</p>
+<p>
+Charm++ provides dynamic seed-based load balancing. Thus location (processor
+number) need not be specified while creating a remote chare. The Charm RTS
+will then place the remote chare on a suitable processor. Thus one can imagine
+chare creation as generating only a seed for the new chare, which may take
+root on some specific processor at a later time.
+</p>
+<p>
+Chares can be grouped into collections. The types of collections of chares
+supported in Charm++ are: chare-arrays, chare-groups, and chare-nodegroups,
+referred to as arrays, groups, and nodegroups throughout this manual for
+brevity. A Chare-array is a collection of an arbitrary number of migratable
+chares, indexed by some index type, and mapped to processors according to a
+user-defined map group. A group (nodegroup) is a collection of chares, with
+exactly one member element on each PE (“node”).
+</p>
+<p>
+Charm++ does not allow global variables, except readonly variables. A chare
+can normally only access its own data directly. However, each chare is
+accessible by a globally valid name. So, one can think of Charm++ as
+supporting a global object space.
+</p>
+<p>
+Every Charm++ program must have at least one mainchare. Each mainchare is
+created by the system on processor 0 when the Charm++ program starts up.
+Execution of a Charm++ program begins with the Charm Kernel constructing all
+the designated mainchares. For a mainchare named X, execution starts at
+constructor X() or X(CkArgMsg *) which are equivalent. Typically, the
+mainchare constructor starts the computation by creating arrays, other chares,
+and groups. It can also be used to initialize shared readonly objects.
+</p>
+<p>
+Charm++ program execution is terminated by the CkExit call. Like the exit
+system call, CkExit never returns, and it optionally accepts an integer value
+to specify the exit code that is returned to the calling shell. If no exit
+code is specified, a value of zero (indicating successful execution) is
+returned. The Charm RTS ensures that no more messages are processed and no
+entry methods are called after a CkExit. CkExit need not be called on all
+processors; it is enough to call it from just one processor at the end of the
+computation.
+</p>
+<p>
+As described so far, the execution of individual Chares is “reactive”: When
+method A is invoked the chare executes this code, and so on. But very often,
+chares have specific life-cycles, and the sequence of entry methods they
+execute can be specified in a structured manner, while allowing for some
+localized non-determinism (e.g. a pair of methods may execute in any order,
+but when they both finish, the execution continues in a pre-determined manner,
+say executing a 3rd entry method). To simplify expression of such control
+structures, Charm++ provides two methods: the structured dagger notation,
+which is the main notation we recommend you use. Alternatively, you may use
+threaded entry methods, in combination with futures and sync methods. The
+threaded methods run in light-weight user-level threads, and can block waiting
+for data in a variety of ways. Again, only the particular thread of a
+particular chare is blocked, while the PE continues executing other chares.
+</p>
+<p>
+The normal entry methods, being asynchronous, are not allowed to return any
+value, and are declared with a void return type. However, the sync methods are
+an exception to this. They must be called from a threaded method, and so are
+allowed to return (certain types of) values.
+</p>
+
+   </div>
+ </div>
+      
+      <div id="footer">
+	&copy; 2020 
+    	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
+	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
+	<a href="http://illinois.edu">University of Illinois</a>
+      </div>
+    </div>
+    <script src="/assets/hover.js" type="text/javascript"></script>
+  </body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>Charm++: Tutorial</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		</script>
+		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
+		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
+		<script src="/assets/prettify.js" type="text/javascript">
+		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!-- for equations from LaTeX to appear correctly-->
+		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+		
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.7.5"> 
+  </head>
+
+  <body>
+    <div class="container">
+			
+ <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+
+<!-- Charm++ Button textformatted placeholder for logo button
+		<div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="/"><b>Charm++</b></a>
+	  </div>
+-->
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="/capabilities/">Capabilities</a></li>
+		  <li><a href="/progmodel/">Programming Model</a></li>
+		  <li><a href="/execmodel/">Execution Model</a></li>
+		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
+		  <li><a href="/history/">History</a></li>
+		</ul>
+              </li>
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
+      		  <li><a href="/tutorial/">Tutorial</a></li>
+						<li><a href="/exercises/">Exercises</a></li>
+      		  <li><a href="/help/">Manual</a></li>
+      		  <li><a href="/tools/">Tools</a></li>
+      		  <li><a href="/othermedia/">Other Media</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://github.com/UIUC-PPL/charm/commits/master">Recent Commits</a></li>
+      	  <li><a href="https://github.com/UIUC-PPL/charm/issues">Issue Tracker</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+      	  <li><a href="https://lists.cs.illinois.edu/lists/info/charm">Mailing Lists</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/gerrit/#/admin/projects/">Other Repositories</a></li>
+      	  <li><a href="http://ppl.cs.illinois.edu">PPL Website</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="/download/">Downloads</a>
+              </li>
+
+              <li class="dropdown">
+		<a href="/miniApps/">Mini-Apps</a>
+              </li>
+
+	    </ul>
+	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
+              <div class="form-group">
+		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
+		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+
+
+ <div id="maincontainer">
+   <div id="content">
+     
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+  
+  <h1>Array Sections</h1>
+
+  <p class="BasicParagraph">
+   Sometimes only certain elements of a chare array need to have messages sent to them (i.e. their entry
+   methods invoked).  Furthermore, sometimes the same subset of chares in the chare array may need to
+   have this occur many times throughout the course of the application execution.
+   Array sections are a way of specifying a arbitrary subset of elements in a chare array.  Once the
+   array section has been defined, it can be used to multicast a message to the members of the chare
+   array subset.
+  </p>
+
+
+  <h2>Defining and Using Chare Array Sections</h2>
+
+  <p class="BasicParagraph">
+   The first way of creating array sections is to specify a triplet of numbers to the constructor of the
+   array section proxy's constructor.  The triplet contains three values: the starting index, the ending
+   index, and a stride.  One triplet can be given for each dimension of the array.  For example, consider
+   a 1D chare array.  To create array sections, one containing all of the even numbered indexes (including
+   index 0) and one containing all the odd numbered indexes, the following code could be used.
+  </p>
+
+  <center>
+  <table border=0 class="StandardFigure">
+
+   <tr>
+    <td align=left valign=middle>
+     <code>
+      <font class="codeComment">// Create a chare array</font><br>
+      int arrayLength = ...;<br>
+      CProxy_myArrayClass arrayProxy = CProxy_myArrayClass::ckNew(arrayLength);<br>
+      <br>
+      <font class="codeComment">// Create the array section proxies</font><br>
+      CProxySection_myArrayClass arraySectionProxy_even =<br>
+      &nbsp;&nbsp;CProxySection_myArrayClass::ckNew(arrayProxy, 0, arrayLength - 1, 2);<br>
+      CProxySection_myArrayClass arraySectionProxy_odd =<br>
+      &nbsp;&nbsp;CProxySection_myArrayClass::ckNew(arrayProxy, 1, arrayLength - 1, 2);<br>
+      <br>
+      <font class="codeComment">// Invoked entry methods on all of the members of the array sections of myArray</font><br>
+      arraySectionProxy_even.myEntryMethod(...); <font class="codeComment">// Invoke myEntryMethod() on the <i>even</i> members</font><br>
+      arraySectionProxy_odd.myEntryMethod1(...); <font class="codeComment">// Invoke myEntryMethod1() on the <i>odd</i> members</font><br>
+     </code>
+    </td>
+   </tr>
+
+   <tr><td align=center valign=middle>
+    <b>Figure 1:</b> Code to create <i>even</i> and <i>odd</i> array sections for a 1D chare array
+   </td></tr>
+
+  </table>
+  </center>
+
+  <p class="BasicParagraph">
+   While the triplet method is a quick and easy way of quickly defining large subsets of chare array elements,
+   the subsets need to be regular.  This is not always sufficient to identify useful subsets.  Another method
+   of defining a subset of elements is to create a vector of indexes and then create the array section using
+   the vector of indexes.  For example, the following code will also create an array section containing all of
+   the odd index elements in the chare array, however, it will do it by creating a vector with all the odd
+   indexes.
+  </p>
+
+  <center>
+  <table border=0 class="StandardFigure">
+
+   <tr>
+    <td align=left valign=middle>
+     <code>
+      <font class="codeComment">// Create a chare array</font><br>
+      int arrayLength = ...;<br>
+      CProxy_myArrayClass arrayProxy = CProxy_myArrayClass::ckNew(arrayLength);<br>
+      <br>
+      <font class="codeComment">// Create the vector of odd indexes</font><br>
+      CkVec&lt;CkArrayIndex1D&gt; indexVector;<br>
+      for (int i = 0; i < arrayLength; i++)<br>
+      &nbsp;&nbsp;if (i % 2 == 1) <font class="codeComment">// If an odd index, add it to the vector</font><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;indexVector.push_back(CkArrayIndex1D(i));<br>
+      <br>
+      <font class="codeComment">// Create the array section from the vector of indexes</font><br>
+      CProxySection_myArrayClass arraySectionProxy_odd =<br>
+      &nbsp;&nbsp;CProxySection_myArrayClass::ckNew(arrayProxy, indexVector.getVec(), indexVector.size());<br>
+      <br>
+      <font class="codeComment">// Invoke myEntryMethod1() on all of the <i>odd</i> members of myArray</font><br>
+      arraySectionProxy_odd.myEntryMethod1(...);<br>
+     </code>
+    </td>
+   </tr>
+
+   <tr><td align=center valign=middle>
+    <b>Figure 2:</b> Code to create an <i>odd</i> array section for a 1D chare array using a vector of indexes
+   </td></tr>
+
+  </table>
+  </center>
+
+
+  <table align=right class="StandardFigure">
+   <tr><td valign=middle align=center>
+    <a class="StandardFigure" href="images/ArrayProxyIndexing.jpg">
+     <img src="images/ArrayProxyIndexing_sm.jpg" border=0>
+    </a>
+   </td></tr>
+   <tr><td valign=middle align=center>
+    <b>Figure 3:</b> Indexing scheme for array proxies and array section proxies
+   </td></tr>
+  </table>
+
+  <h2>Indexing for Individual Elements of Array Sections</h2>
+
+  <p class="BasicParagraph">
+   The individual elements in the array section can be index individually.  Starting with index zero, each
+   member of the subset of elements (i.e. the array section members) can be individually indexed according
+   to the scheme presented in Figure 3.
+  </p>
+
+
+  <h2>More Information</h2>
+
+  <p class="BasicParagraph">
+   For more information on callbacks, please see
+   <a href="http://charm.cs.uiuc.edu/manuals/html/charm++/3_8Advanced_Arrays.html#SECTION000381300000000000000">Section 3.8.13: Array Section</a> of the
+   <a href="http://charm.cs.uiuc.edu/manuals/html/charm++/manual.html">The Charm++ Programming Language Manual</a>
+  </p>
+
+   </div>
+ </div>
+      
+      <div id="footer">
+	&copy; 2020 
+    	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
+	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
+	<a href="http://illinois.edu">University of Illinois</a>
+      </div>
+    </div>
+    <script src="/assets/hover.js" type="text/javascript"></script>
+  </body>
+</html>

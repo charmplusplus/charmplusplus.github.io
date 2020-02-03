@@ -1,0 +1,150 @@
+table.TOCBlock { 
+  margin:5px;
+  border-left: 0px solid #000000;
+}
+
+div.TOCSection {
+  margin:10px;
+  margin-left:25px;
+  margin-bottom:10px;
+}
+
+div.TOCSectionName {
+  font-weight:bold;
+  font-style:none;
+  font-size:140%;
+}
+
+div.TOCSectionSubName {
+  font-style:italic;
+  font-size:100%;
+  text-decoration:none;
+}
+
+div.TOCSectionDescription {
+  color:888888;
+  font-style:italic;
+  margin-left:25px;
+}
+
+div.TOCSectionContents {
+  margin-top:15px;
+  margin-bottom:15px;
+}
+
+div.TOCSubSection {
+  margin:10px;
+  margin-left:25px;
+}
+
+div.TOCSubSectionName {
+  font-weight:bold;
+  font-style:italic;
+  font-size:120%;
+}
+
+div.TOCSubSectionSubName {
+  font-style:italic;
+  font-size:100%;
+  text-decoration:none;
+}
+
+div.TOCSubSectionDescription {
+  color:888888;
+  font-style:italic;
+  margin-left:25px;
+}
+
+p.BasicParagraph {
+  color:000000;
+  font-size:100%;
+  margin:5px;
+  margin-top:20px;
+  margin-bottom:20px;
+  margin-left:20px;
+}
+
+a.StandardFigure {
+  text-decoration:none;
+}
+
+table.StandardFigure {
+  margin:15px;
+}
+
+h1 {
+  font-size:200%;
+  font-weight:bold;
+  margin-bottom:10px;
+  margin-bottom:25px;
+}
+
+h2 {
+  font-size:160%;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+h3 {
+  font-size:120%;
+  font-weight:bold;
+  margin:5px;
+  margin-top:20px;
+  margin-left:20px;
+}
+
+h4 {
+  font-size:100%;
+  font-weight:bold;
+  margin:5px;
+  margin-top:5px;
+  margin-left:20px;
+}
+
+div.code {
+  margin:10px;
+}
+
+font.codeComment {
+  color:008800;
+  font-weight:bold;
+}
+
+font.generalComment {
+  color:0000cc;
+  font-weight:bold;
+}
+
+
+table.HorzNavBar {
+  background-color: #eeeeee;
+}
+
+td.HorzNavBar_First {
+  border:none;
+  border-right: 1px dotted #cccccc;
+}
+
+td.HorzNavBar_Middle {
+  border:none;
+  border-right: 1px dotted #cccccc;
+}
+
+td.HorzNavBar_Last {
+  border:none;
+}
+
+a.HorzNavBar_Link {
+ text-decoration: none;
+ margin-left:10px;
+ margin-right:10px;
+}
+
+font.HorzNavBar_Link {
+ color: #888888;
+ font-weight: bold;
+}
+
+body {
+  background-color:#ffffff;
+}

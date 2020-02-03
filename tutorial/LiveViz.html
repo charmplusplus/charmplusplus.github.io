@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>Charm++: Tutorial</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		</script>
+		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
+		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
+		<script src="/assets/prettify.js" type="text/javascript">
+		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!-- for equations from LaTeX to appear correctly-->
+		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+		
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.7.5"> 
+  </head>
+
+  <body>
+    <div class="container">
+			
+ <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+
+<!-- Charm++ Button textformatted placeholder for logo button
+		<div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="/"><b>Charm++</b></a>
+	  </div>
+-->
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="/capabilities/">Capabilities</a></li>
+		  <li><a href="/progmodel/">Programming Model</a></li>
+		  <li><a href="/execmodel/">Execution Model</a></li>
+		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
+		  <li><a href="/history/">History</a></li>
+		</ul>
+              </li>
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
+      		  <li><a href="/tutorial/">Tutorial</a></li>
+						<li><a href="/exercises/">Exercises</a></li>
+      		  <li><a href="/help/">Manual</a></li>
+      		  <li><a href="/tools/">Tools</a></li>
+      		  <li><a href="/othermedia/">Other Media</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://github.com/UIUC-PPL/charm/commits/master">Recent Commits</a></li>
+      	  <li><a href="https://github.com/UIUC-PPL/charm/issues">Issue Tracker</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+      	  <li><a href="https://lists.cs.illinois.edu/lists/info/charm">Mailing Lists</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/gerrit/#/admin/projects/">Other Repositories</a></li>
+      	  <li><a href="http://ppl.cs.illinois.edu">PPL Website</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="/download/">Downloads</a>
+              </li>
+
+              <li class="dropdown">
+		<a href="/miniApps/">Mini-Apps</a>
+              </li>
+
+	    </ul>
+	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
+              <div class="form-group">
+		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
+		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+
+
+ <div id="maincontainer">
+   <div id="content">
+     
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+  
+  <h1>LiveViz <i>(using the 2D Jacobi Program)</i></h1>
+
+  <table cellpadding=0 cellspacing=0 align=right>
+   <tr><td>
+
+  <!-- Figure -->
+  <table class="StandardFigure" border=0 width=610 cellpadding=0 cellspacing=10>
+   <tr>
+    <td colspan=3 align=center valign=middle>
+     <img src="images/LiveViz_2DJacobiExample_BeforeAfter.jpg">
+    </td>
+   </tr>
+   <tr>
+    <td align=center valign=middle width=300>(<i>Before</i>: Only a few outer-loop iterations)</td>
+    <td align=center valign=middle width=10>&nbsp;</td>
+    <td align=center valign=middle width=300>(<i>After</i>: After many outer-loop iterations)</td>
+   </tr>
+   <tr>
+    <td colspan=3 align=center valign=middle>
+     <b>Figure 1:</b> Before and after screenshots of LiveViz output.  If the data values are
+     thought of as temperature.  Red represents <i>hot (value near 1.0)</i>.  Blue represents
+     <i>cold (value near 0.0)</i>.  Black is a <i>middle temperature (value near 0.5)</i>.
+    </td>
+   </tr>
+  </table>
+
+   </td></tr>
+   <tr><td>
+
+  <!-- Figure -->
+  <table class="StandardFigure" border=0 width=610 cellpadding=0 cellspacing=10>
+   <tr>
+    <td align=center valign=middle><img src="images/LiveViz_2DJacobiExample_ColorScale.jpg"></td>
+   </tr>
+   <tr>
+    <td align=center valign=middle>
+     <b>Figure 2:</b> Color Scale
+    </td>
+   </tr>
+  </table>
+
+   </td></tr>
+  </table>
+
+
+  <h2>LiveViz</h2>
+
+  <p class="BasicParagraph">
+   LiveViz is a library (module) that enables a Charm++ application to present output to the user
+   in a graphical form as the program continues to execute.  More specifically, an image is created
+   for a chare array.  Each chare object in the chare array <i>contributes</i> to the image.  Once
+   all of the chare objects in the chare array have contributed their portion of the image, the combined
+   image is presented to the user via a LiveViz client application which displays the image.
+  </p>
+
+
+  <h2>How to Use LiveViz</h2>
+
+  <p class="BasicParagraph">
+   First, a special entry method is declared for the chare array.  Specifically, an entry method that
+   takes a <i>liveVizRequestMsg</i> message.  This message contains various pieces of information
+   including the size of the display area in the LiveViz client program (that is, the size of the area
+   where the chare array can draw to).  A callback object is created that points to this particular
+   entry method.
+  </p>
+
+  <p class="BasicParagraph">
+   Second, after the chare array is created, LiveViz must be configured.  LiveViz can
+   be configured to create both grayscale and color images (and floating-point <i>images</i> which will be
+   converted to a color images).  LiveViz can also be configured to control when the image is updated:
+   when the program triggers it, when the client triggers it, or to be continuously updated.  The
+   configuration is contained in an object called a <i>liveVizConfig</i> object.
+  </p>
+
+  <p class="BasicParagraph">
+   Third, LiveViz is then <i>initialized</i> for a chare array and configuration object pair.  Once this
+   occurs, the chare array can create a LiveViz image which can give the user information related to
+   its current state.
+  </p>
+
+
+  <h2>Revisiting the Basic 2D Jacobi Program</h2>
+
+  <p class="BasicParagraph">
+   The Basic 2D Jacobi program (which was originally presented <a href="Basic2DJacobi.html">here</a>)
+   will be extended to provide LiveViz support.  In the original Basic 2D Jacobi program, there was
+   only a single point being held constant over the entire value matrix.  To make the LiveViz output
+   more interesting, the Basic 2D Jacobi program has been modified to have several areas held constant.
+   In particular, every chare object (except for the first row of chare objects) will hold the
+   first row of its local value sub-matrix at a constant value.  The constant values will alternate
+   for neighboring chare objects (to create a checkerboard like pattern).
+  </p>
+
+  <p class="BasicParagraph">
+   The values in the value matrix fall between the values of 0.0 and 1.0.  If we imagine
+   that they represent a temperature value on a 2D surface, with 0.0 being <i>cold</i> and 1.0 being
+   <i>hot</i>, then the resulting image will be a temperature image of the 2D surface.
+  </p>
+
+  <h3>Modifying the Basic 2D Jacobi Program</h3>
+
+  <p class="BasicParagraph">
+   A modified version of the Basic 2D Jacobi program can be found
+   <a href="examples/Basic2DJacobi_LiveViz.tar.gz">here (Basic2DJacobi_LiveViz.tar.gz)</a>.
+   In addition to changing which value
+   elements are held constant, several <i>sleep</i> calls have been added to slow the code down so
+   user can both have time to connect the LiveViz client and time to see the image change slowly.
+  </p>
+
+  <p class="BasicParagraph">
+   First, as is described above, an entry method that takes a <i>liveVizRequestMsg</i> message must be
+   created.  The prototype for this function should fit the form
+   <b><code>void MyChareClass::myLiveVizEntryMethod(liveVizRequestMsg* msg)</code></b> where
+   <i>MyChareClass</i> is the name of the chare class and <i>myLiveVizEntryMethod</i> is the name of
+   the entry method.  At some point in this function, a call to the <i>liveVizDeposit</i> function.
+   The prototype for the <i>liveVizDeposit</i> function is
+   <b><code>liveVizDeposit(msg, startX, startY, width, height, imageBuff, this, max_image_data)</code></b>.
+   The important parameters are as follows: <i>msg</i> is a pointer to the <i>liveVizRequestMsg</i> that
+   was passed to the entry method, <i>startX</i> and <i>startY</i> are the X and Y coordinates of the upper
+   left corner of the sub-image contributed by this chare object, <i>width</i> and <i>height</i> are the
+   width and height of the sub-image contributed by this chare object, <i>imageBuff</i> is a pointer to
+   a data buffer containing the image data for the sub-image (the format of which depends on the type of
+   image being produced), and <i>this</i> is the special C++ <i>this</i> pointer.  The final parameter,
+   in this case <i>max_image_data</i>, is used to control how image data is combined when multiple chare
+   objects product data to overlapping areas of the image (that is, when one or more sub-images created by
+   chare objects overlap with one another).
+  </p>
+
+  <p class="BasicParagraph">
+   In the case of the Basic 2D Jacobi program, each of the Jacobi chare objects in the 2D chare array
+   have an independent, non-overlapping portion of the overall value matrix (their local sub-matrix).
+   Because of this, none of the sub-images create by the chare objects will overlap with one another.
+   To keep the code simple, the resulting image will have a single pixel per element in the value matrix.
+   The width and height of the client's drawing area will be ignored to keep the code simple and straight
+   forward.  In the example code, the name of the entry method is
+   <i>Jacobi::liveVizFunc()</i> and the code for it can be found in <i>jacobi.C</i>.
+  </p>
+
+  <p class="BasicParagraph">
+   Second, a <i>liveVizConfig</i> object containing configuration data for LiveViz must be created.
+   For this example, a color image is created and will be continuously updated.
+  </p>
+
+  <p class="BasicParagraph">
+   Third, LiveViz is initialized with the chare array and configuration object pair.  The code for
+   doing both the second and third steps can be found in <i>Main::Main()</i> in <i>main.C</i>.
+  </p>
+
+  <h3>Running the Basic 2D Jacobi Program</h3>
+
+  <p class="BasicParagraph">
+   When the Charm++ program is started, it must
+   specify that it will act as a <i>CCS server</i>.  To do this add the following options to the
+   command line used to launch the Charm++ program: <b><code>++server ++server-port xxxx</code></b> where
+   <i>xxxx</i> is the port number where the Charm++ application will listen for CCS messages.  LiveViz
+   uses CCS to communicate with the Charm++ application.
+  </p>
+
+  <p class="BasicParagraph">
+   Once the Charm++ program has been started, a
+   LiveViz client program can attach to it.  One LiveViz client program can be found at
+   <i>[charmDir]/java/bin/liveViz</i> where <i>[charmDir]</i> is the base directory for the Charm++
+   distribution.  This LiveViz client program expects two command line arguments: (1) <i>host</i> which
+   is the name of the machine on which the <i>charmrun</i> command was executed and (2) <i>port</i> which is
+   the port number the Charm++ application is listening for CCS messages on (should match the <i>xxxx</i>
+   specified for the <i>++server-port xxxx</i> command line option given to <i>charmrun</i>).
+  </p>
+
+
+  <h2>More on LiveViz</h2>
+
+  <p class="BasicParagraph">
+   For more information on LiveViz, please refer to
+   <a href="http://charm.cs.uiuc.edu/manuals/html/libraries/6_liveViz_Library.html">Section 6: LiveViz Library</a> in the
+   <a href="http://charm.cs.uiuc.edu/manuals/html/libraries/manual.html">Converse and Charm++ Libraries Manual</a>.
+  </p>
+
+   </div>
+ </div>
+      
+      <div id="footer">
+	&copy; 2020 
+    	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
+	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
+	<a href="http://illinois.edu">University of Illinois</a>
+      </div>
+    </div>
+    <script src="/assets/hover.js" type="text/javascript"></script>
+  </body>
+</html>

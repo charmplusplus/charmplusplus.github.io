@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>Charm++: Tutorial</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		</script>
+		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
+		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
+		<script src="/assets/prettify.js" type="text/javascript">
+		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!-- for equations from LaTeX to appear correctly-->
+		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+		
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.7.5"> 
+  </head>
+
+  <body>
+    <div class="container">
+			
+ <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+
+<!-- Charm++ Button textformatted placeholder for logo button
+		<div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="/"><b>Charm++</b></a>
+	  </div>
+-->
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="/capabilities/">Capabilities</a></li>
+		  <li><a href="/progmodel/">Programming Model</a></li>
+		  <li><a href="/execmodel/">Execution Model</a></li>
+		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
+		  <li><a href="/history/">History</a></li>
+		</ul>
+              </li>
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
+      		  <li><a href="/tutorial/">Tutorial</a></li>
+						<li><a href="/exercises/">Exercises</a></li>
+      		  <li><a href="/help/">Manual</a></li>
+      		  <li><a href="/tools/">Tools</a></li>
+      		  <li><a href="/othermedia/">Other Media</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://github.com/UIUC-PPL/charm/commits/master">Recent Commits</a></li>
+      	  <li><a href="https://github.com/UIUC-PPL/charm/issues">Issue Tracker</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+      	  <li><a href="https://lists.cs.illinois.edu/lists/info/charm">Mailing Lists</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/gerrit/#/admin/projects/">Other Repositories</a></li>
+      	  <li><a href="http://ppl.cs.illinois.edu">PPL Website</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="/download/">Downloads</a>
+              </li>
+
+              <li class="dropdown">
+		<a href="/miniApps/">Mini-Apps</a>
+              </li>
+
+	    </ul>
+	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
+              <div class="form-group">
+		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
+		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+
+
+ <div id="maincontainer">
+   <div id="content">
+     
+  <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+  
+  <h1>Building the Charm++ Runtime System</h1>
+
+  <p class="BasicParagraph">
+   In the root directory of the Charm++ distribution is a <i>build</i> script.  This build script
+   is used to compile the Charm++ Runtime System for a particular platform.  The exact platform that
+   should be used depends on the setup of the machine being used by the user.  For the sake of this
+   example, we will assume that the target platform is a cluster of Linux workstations.
+   <font color=ff0000><i>
+    Please Note:  If the build script is executed with the "--help" command-line argument
+    (i.e. the command "./build --help"), it will print out a usage message which includes a list
+    of platforms available.
+   </i></font>
+  </p>
+
+  <p class="BasicParagraph">
+   The general usage form of the build script is:<br><br>
+  </p>
+
+   <center><b><code>
+    build &lt;target&gt; &lt;version&gt; &lt;options&gt; [ charmc-options ... ]
+   </code></b></center>
+
+  <p class="BasicParagraph">
+   where:
+  </p>
+
+  <ul>
+   <li style="{margin-bottom:10px;}">
+       <b>&lt;target&gt;:</b> This indicates which portion of the Charm++ distribution should be
+       built.  Because there are many components to the Charm++ distribution this allows the user
+       to only build the portions that are needed for their purpose.  Targets include: charm++, AMPI,
+       FEM, LIBS, bigemulator, pose, jade, and msa.  For example, the charm++ target builds the
+       basic Charm++ Runtime System. The LIBS target builds additional libraries with various
+       functionality (also builds the charm++ target on which it depends).  If the pose target is
+       used, both charm++ and LIBS targets will be built followed
+       by the pose target.  The pose target will create the required libraries needed for applications
+       that will use its PDES functionality.
+   <li style="{margin-bottom:10px;}">
+       <b>&lt;version&gt;:</b> This is one of the available platforms.  For a cluster of linux
+       workstations connected using an Ethernet network, the target platform is <i>net-linux</i>.
+       For the full list of supported platforms, use "./build --help".
+   <li style="{margin-bottom:10px;}">
+       <b>&lt;options&gt;</b> <i>(Optional)</i><b>:</b> This is where platform specific options
+       should be specified.  For example, multiple compilers are supported for various platforms.
+       If the user wishes to use a compiler different from the default compiler for the platform,
+       this would be specified here.  Other platform specific options can include options for the
+       type of network, SMP-mode, PAPI support, and so on.
+   <li style="{margin-bottom:10px;}">
+       <b>[ charmc-options ... ]</b> <i>(Optional)</i><b>:</b> This is where compiler specific
+       options can be specified.  The compiler wrapper charmc will use the options specified here
+       by default when it is used to compile Charm++ programs.  The compiler that it wraps is
+       either the default compiler for the platform or the user defined compiler specified in
+       the <i>&lt;options&gt;</i> portion of the build command.
+  </ul> </body> </html>
+
+  <h3>Examples</h3>
+
+  <p class="BasicParagraph">
+   <b>(1)</b> For a cluster of Linux workstations connected by an Ethernet network (32-bit x86 architecture):
+   <code><b>./build charm++ net-linux</b></code><br>
+
+   <b>(2)</b> 1 with SMP support:
+   <code><b>./build charm++ net-linux smp</b></code><br>
+
+   <b>(3)</b> 1 with the "-O3" compiler option on by default for charmc:
+   <code><b>./build charm++ net-linux "-O3"</b></code><br>
+
+   <b>(4)</b> 1 with both SMP support and the "-O3" compiler option on by default for charmc:
+   <code><b>./build charm++ net-linux smp "-O3"</b></code><br>
+
+  </p>
+
+  <p class="BasicParagraph">
+   <font color=ff0000><i>
+    WARNING:  Depending on the speed of the machine being used and the options specified, the build
+    process of the Charm++ Runtime System can take several minutes (as high as 10-20 minutes for
+    older machines).
+   </i></font>
+  </p>
+
+   </div>
+ </div>
+      
+      <div id="footer">
+	&copy; 2020 
+    	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
+	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
+	<a href="http://illinois.edu">University of Illinois</a>
+      </div>
+    </div>
+    <script src="/assets/hover.js" type="text/javascript"></script>
+  </body>
+</html>

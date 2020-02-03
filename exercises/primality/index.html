@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>Charm++: Basic Chares Primality Testing Exercise</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		</script>
+		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
+		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
+		<script src="/assets/prettify.js" type="text/javascript">
+		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!-- for equations from LaTeX to appear correctly-->
+		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+		
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.7.5"> 
+  </head>
+
+  <body>
+    <div class="container">
+			
+ <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+
+<!-- Charm++ Button textformatted placeholder for logo button
+		<div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="/"><b>Charm++</b></a>
+	  </div>
+-->
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="/capabilities/">Capabilities</a></li>
+		  <li><a href="/progmodel/">Programming Model</a></li>
+		  <li><a href="/execmodel/">Execution Model</a></li>
+		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
+		  <li><a href="/history/">History</a></li>
+		</ul>
+              </li>
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
+      		  <li><a href="/tutorial/">Tutorial</a></li>
+						<li><a href="/exercises/">Exercises</a></li>
+      		  <li><a href="/help/">Manual</a></li>
+      		  <li><a href="/tools/">Tools</a></li>
+      		  <li><a href="/othermedia/">Other Media</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://github.com/UIUC-PPL/charm/commits/master">Recent Commits</a></li>
+      	  <li><a href="https://github.com/UIUC-PPL/charm/issues">Issue Tracker</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+      	  <li><a href="https://lists.cs.illinois.edu/lists/info/charm">Mailing Lists</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/gerrit/#/admin/projects/">Other Repositories</a></li>
+      	  <li><a href="http://ppl.cs.illinois.edu">PPL Website</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="/download/">Downloads</a>
+              </li>
+
+              <li class="dropdown">
+		<a href="/miniApps/">Mini-Apps</a>
+              </li>
+
+	    </ul>
+	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
+              <div class="form-group">
+		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
+		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+
+
+ <div id="maincontainer">
+   <div id="content">
+       <link rel="stylesheet" type="text/css" href="../../tutorial/TutorialStyle.css">
+
+<h1>Basic Chares: Primality Testing Exercise</h1>
+<center><em>(testing with a chare for each number being tested)</em></center>
+
+<h2>Part A</h2>
+<p>Write a program based on the outline below.
+<i>(Note that the program has a few artificial restrictions/elements that
+are meant to teach you specific concepts. So, please follow the
+instructions to the letter.)</i></p>
+
+<p>The main chare generates K random integers, and fires a
+checkPrimality  chare for each.
+The chare checks if the number given to it is a prime using a variant of the function
+below, and returns the result to the main chare. The main chare
+maintains an array of pairs: &lt;number, Boolean&gt;, and prints it at the
+end. An entry should be added to this array (with the number being tested, and a
+default value such as "False") as soon as the chare is fired. In
+particular, you are not allowed to delay adding the entry after the
+result is returned by the chare.
+Make sure that your program does not search the array when a response
+comes. So, figure out a bookkeeping scheme to avoid it.</p>
+ 
+<p>Obtain K from a command line argument. You may use rand() from
+the math library for generating random integers.</p>
+ 
+<p>For testing primality, use the following function. For extra credit,
+modify it so that it is not
+testing for every <i>i</i>, but (a) avoids testing even numbers except 2 and
+(b) don’t let the loop run all the way to “number-1”).</p>
+
+<p>
+<code>
+int isPrime(const long number)<br>
+{<br>
+&nbsp;&nbsp;if(number&lt;=1)   return 0;<br>
+&nbsp;&nbsp;for(int i=2; i&lt;number; i++)<br>
+&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(0 == number%i)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return 1;<br>
+}<br>
+</code>
+</p>
+<!--%\noindent Instead of creating a
+%chare for each number to be tested, give each chare G numbers to test,
+% where 
+-->
+
+<!--
+%\subsubsection{Testing Primality with grainsize control} -->
+<h2>Part B (grainsize control)</h2>
+
+<p><em>Measuring performance and improving it via grainsize control:</em></p>
+
+<p>Grainsize control
+is a way to improve performance of the above program. 
+Use information from the Charm++ manual about how to pass
+arrays of data to entry methods, and send a bunch (M) of numbers to be
+tested to each
+new Chare, and experiment with different values of M to get good
+performance. 
+You may wish to read M as a command line parameter, for ease of experimentation.
+Measure
+performance by adding two calls to CkTimer() in the main chare, one
+just before
+starting creation of checkPrimality chares, and the other after all
+the results have been returned (but before they are printed), and
+printing the difference between the timers.  You may
+omit (and probably should omit) printing primality results for performance runs.
+Vary M and report smallest G for
+which performance was within 5% infinite grainsize (i.e. $G == K$). 
+Again, make sure our artificial restriction is obeyed: do not send
+back the numbers the number being tested (because you are not allowed
+to search for it anyway).</p>
+
+<h2>Part C:</h2>
+<p>Let the numbers being tested be 64 bit random numbers. For simplicity,
+generate them by concatenating 2 32 bit random numbers.</p>
+   </div>
+ </div>
+      
+      <div id="footer">
+	&copy; 2020 
+    	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
+	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
+	<a href="http://illinois.edu">University of Illinois</a>
+      </div>
+    </div>
+    <script src="/assets/hover.js" type="text/javascript"></script>
+  </body>
+</html>

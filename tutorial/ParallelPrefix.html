@@ -1,0 +1,617 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>Charm++: Tutorial</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
+		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		</script>
+		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		</script>
+		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
+		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
+		<script src="/assets/prettify.js" type="text/javascript">
+		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<!-- for equations from LaTeX to appear correctly-->
+		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+		
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.7.5"> 
+  </head>
+
+  <body>
+    <div class="container">
+			
+ <nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+
+<!-- Charm++ Button textformatted placeholder for logo button
+		<div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="/"><b>Charm++</b></a>
+	  </div>
+-->
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="/capabilities/">Capabilities</a></li>
+		  <li><a href="/progmodel/">Programming Model</a></li>
+		  <li><a href="/execmodel/">Execution Model</a></li>
+		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
+		  <li><a href="/history/">History</a></li>
+		</ul>
+              </li>
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
+      		  <li><a href="/tutorial/">Tutorial</a></li>
+						<li><a href="/exercises/">Exercises</a></li>
+      		  <li><a href="/help/">Manual</a></li>
+      		  <li><a href="/tools/">Tools</a></li>
+      		  <li><a href="/othermedia/">Other Media</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="https://github.com/UIUC-PPL/charm/commits/master">Recent Commits</a></li>
+      	  <li><a href="https://github.com/UIUC-PPL/charm/issues">Issue Tracker</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/autobuild/cur/">Nightly Tests</a></li>
+      	  <li><a href="https://lists.cs.illinois.edu/lists/info/charm">Mailing Lists</a></li>
+      	  <li><a href="http://charm.cs.illinois.edu/gerrit/#/admin/projects/">Other Repositories</a></li>
+      	  <li><a href="http://ppl.cs.illinois.edu">PPL Website</a></li>
+		</ul>
+              </li>
+
+              <li class="dropdown">
+		<a href="/download/">Downloads</a>
+              </li>
+
+              <li class="dropdown">
+		<a href="/miniApps/">Mini-Apps</a>
+              </li>
+
+	    </ul>
+	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
+              <div class="form-group">
+		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
+		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+
+
+ <div id="maincontainer">
+   <div id="content">
+       <link rel="stylesheet" type="text/css" href="TutorialStyle.css">
+  
+  <!-- Section Title -->
+  <h1>Parallel Prefix Program</h1>
+  
+  <h3>The Prefix Calculation</h3>
+
+  <!-- Figure -->
+  <table class="StandardFigure" align=right border=0>
+   <tr><td align=left valign=middle bgColor=bbbbbb>
+    <div style="{margin:5px;}">
+     <code>
+      <font class="codeComment">// Assumed variable declarations for both methods</font><br>
+      #define N <font class="generalComment">...</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">// Size of array</font><br>
+      double v[N];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">// Contains input values</font><br>
+      double v_prime[N];&nbsp;&nbsp;<font class="codeComment">// Will contain output values</font><br>
+      <br>
+      <font class="codeComment">// Method 1 - Straight Forward - O(N<sup>2</sup>)</font><br>
+      for (int k = 0; k < N; k++) {<br>
+      &nbsp;&nbsp;v_prime[k] = 0;<br>
+      &nbsp;&nbsp;for (int i = 0; i <= k; i++) {<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;v_prime[k] = v_prime[k] + v[i];<br>
+      &nbsp;&nbsp;}<br>
+      }<br>
+      <br>
+      <font class="codeComment">// Method 2 - Running Sum - O(N)</font><br>
+      v_prime[0] = v[0];<br>
+      for (int k = 1; k < N; k++) {<br>
+      &nbsp;&nbsp;v_prime[k] = v_prime[k - 1] + v[k];<br>
+      }
+     </code>
+    </div>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 2:</b> C++ Code for Prefix Calculation
+   </td></tr>
+  </table>
+
+  <!-- Figure -->
+  <table class="StandardFigure" align=right border=0>
+   <tr><td align=center valign=middle>
+    <img class="StandardFigure" src="images/ParallelPrefixFormula.jpg" border=0>
+   </td></tr>
+   <tr><td align=center valign=middle>
+    <b>Figure 1:</b> Parallel Prefix Formula
+   </td></tr>
+  </table>
+
+  <p class="BasicParagraph">
+   It is often useful to perform an operation on an array of values where each value is the sum
+   of all the array elements before it.  For example, consider an array <i>V</i> of length <i>N</i>
+   with values
+   <i>{ v<sub>0</sub>, v<sub>1</sub>, v<sub>2</sub>, v<sub>3</sub>, ... , v<sub>N-1</sub> }.</i>
+   We would like to calculate another array <i>V'</i> (also of length <i>N</i>) with the values
+   <i>{ v<sub>0</sub>, v<sub>0</sub>+v<sub>1</sub>, v<sub>0</sub>+v<sub>1</sub>+v<sub>2</sub>,
+   v<sub>0</sub>+v<sub>1</sub>+v<sub>2</sub>+v<sub>3</sub>, ... }</i>.
+   The equation to the right (in Figure 1) shows the resulting value for the
+   <i>k<sup>th</sup></i> element where <i>v'<sub>x</sub></i> represents the <i>x<sup>th</sup></i> element
+   in the <i>V'</i> array and <i>v<sub>y</sub></i> represents the <i>y<sup>th</sup></i> element in the
+   <i>V</i> array.
+  </p>
+
+  <p class="BasicParagraph">
+   To make the above a bit more concrete, below is an example set of arrays.  The <i>V</i> array
+   is the input array.  The <i>V'</i> array is the output array (result of the calculation.<br>
+
+   <center>
+    <table cellpadding=0 cellspacing=8>
+     <tr><td align=center valign=middle>V</td>
+         <td align=center valign=middle>= {</td>
+         <td align=center valign=middle>3,</td>
+         <td align=center valign=middle>4,</td>
+         <td align=center valign=middle>1,</td>
+         <td align=center valign=middle>0,</td>
+         <td align=center valign=middle>3,</td>
+         <td align=center valign=middle>2,</td>
+         <td align=center valign=middle>8</td>
+         <td align=center valign=middle>}</td>
+     </tr>
+     <tr><td align=center valign=middle>V'</td>
+         <td align=center valign=middle>= {</td>
+         <td align=center valign=middle>3,</td>
+         <td align=center valign=middle>7,</td>
+         <td align=center valign=middle>8,</td>
+         <td align=center valign=middle>8,</td>
+         <td align=center valign=middle>11,</td>
+         <td align=center valign=middle>13,</td>
+         <td align=center valign=middle>21</td>
+         <td align=center valign=middle>}</td>
+     </tr>
+    </table>
+   </center>
+
+  <p class="BasicParagraph">
+   There are multiple ways in which the code for the prefix calculation can be written.
+   Figure 2 shows two methods of writing the prefix calculation in serial C++ code.  The first
+   method is slower but can be parallelized.  The second method is faster (does less overall work)
+   but cannot be parallelized because of data dependencies.  The number of
+   operations (in this case, additions) that need to be performed in the first method is
+   <i>O(N <sup>2</sup>)</i>.  If the value of <i>N</i> is low, doing this calculation
+   in serial is not a big deal and will not take long.  However, as <i>N</i> increases, the number
+   of operations that need to be performed increases as a function of <i>N <sup>2</sup></i>.
+   The second method, which makes the observation that the previous <i>v_prime[]</i> value
+   can be used to avoid duplicating calculations, takes <i>O(N)</i> operations.  This is a great
+   improvement over the first method and will run substantially faster for large values of <i>N</i>.
+   However, it is not as easy to parallelize the second method.  Each iteration of the loop depends
+   on the value calculated in the previous iteration creating a chain of data dependencies over the
+   course of the entire calculation.  In the first method, each iteration of the outer-loop is independent
+   of any other iteration of the outer-loop (they write to different elements of <i>v_prime[]</i> and
+   only read from <i>v[]</i>) and therefor could be executed in parallel.  However, the last outer-loop
+   iteration will perform <i>N</i> operations (N iterations of the inner-loop) and therefor, if each
+   outer-loop iteration were executed on a different processor in parallel, at least one of the
+   processors will take <i>O(N)</i> time to complete its iteration of the outer-loop.
+  </p>
+
+  <p class="BasicParagraph">
+   How to perform this calculation in parallel may not be immediately evident.  Before continuing with
+   this example, the reader is encouraged to take a few minutes to think about various ways in which
+   this calculation could be parallelized.  There are multiple ways in which this calculation can be
+   parallelized and only a single method is outlined below.
+  </p>
+
+  <br clear="all">
+
+  <h3>A Parallel Version of the Prefix Calculation</h3>
+
+  <!-- Figure -->
+  <a class="StandardFigure" href="images/ParallelPrefixCalculation.jpg">
+   <table class="StandardFigure" align=right border=0>
+    <tr><td align=center valign=middle>
+     <img class="StandardFigure" src="images/ParallelPrefixCalculation_sm.jpg" border=0o>
+    </td></tr>
+    <tr><td align=center valign=middle>
+     <b>Figure 3:</b> Overview of Parallel Prefix Calculation
+    </td></tr>
+   </table>
+  </a>
+
+  <p class="BasicParagraph">
+   Since we are writing this program using Charm++, will setup the parallel version of this
+   calculation without a worrying about how many processors there are.  Instead, we will write
+   the application in terms of chare objects and the length of the array over which the prefix
+   calculation should be performed.  To keep things simple at first, we will create an array
+   of chare objects where each chare object in the array only contains a single value of the
+   array of values.  Initially, each chare object will contain only its corresponding value from
+   the array of values.  That is, the chare object at index <i>k</i> in the chare array will
+   hold value <i>v<sub>k</sub></i>.  This is shown visually in the first row in Figure 3 and
+   represents the initial condition of the chare array.  Note that the first chare object (index 0)
+   has the correct final result.
+  </p>
+
+  <p class="BasicParagraph">
+   First, let start by describing the first step of the calculation.  In the first step of the
+   calculation, each chare object in the chare array will simply send a message to its
+   neighbor to the right (i.e. send to <i>thisIndex + 1</i>).  The last chare object in the
+   chare array, since it has no neighbor to the right, will not send a message.  The sending
+   chare object will place its value into the message.  The receiving chare, once it receives
+   this message, will add the contained value to it's own.  The resulting state of the chare
+   array is shown in Figure 3 as the second row.  Each chare object (except for the first at
+   index 0) will now contain a value that is a sum of two values from the original array
+   (<i>V</i>).  Once this step has completed, the first and second chare objects (indexes 0
+   and 1) will have the correct final results.
+  </p>
+
+  <p class="BasicParagraph">
+   The second step of the calculation is almost identical to the first.  The only difference is
+   that each chare object in the chare array will now send its value to the chare object that
+   is two indexes higher than its own (second neighbor to the right).  Because each value contained
+   by a chare object is the sum of two values when this step begins, the result will be that each
+   chare object will be the sum of four values (2 values sent to it + the two it contains).  Once
+   this step has completed, the first four chare objects (indexes 0 through 3) will have the
+   correct final results.
+  </p>
+
+  <p class="BasicParagraph">
+   This process continues until all chare objects have correct final results.  For a given step
+   <i>X</i>, each chare object will send a message to the chare object at
+   <i>thisIndex + 2<sup>X-1</sup></i>.  After step X has completed, the first <i>2<sup>X</sup></i>
+   chare objects in the chare array will have correct final results.  If we set
+   <i>2<sup>X</sup> = N</i>, we can conclude that <i>&lceil; log<sub>2</sub>(N) &rceil;</i> overall steps
+   in the calculation will be needed.  If we assume that each chare object is on a different
+   processor, the overall calculation will take <i>O(log<sub>2</sub>(N))</i> time.
+   <font color=ff0000>
+    Note:  If we assume that communication costs are small and constant, then this parallel version
+    of prefix is faster than either of the serial methods described above for large values of <i>N</i>.
+   </font>
+  </p>
+
+  <a name="Implement"></a>
+  <h3>Implement It</h3>
+
+  <p class="BasicParagraph">
+   Try implementing the parallel prefix calculation in Charm++.  To get you started, here are some
+   hints that you might find useful:
+
+   <ul>
+    <li style="{margin-bottom:20px;}">
+     <b>Makefile</b>:  The Makefile for this application should be very similar to the makefiles
+     used in the 
+     <a href="ArrayHelloWorld.html">Array</a> and <a href="BroadcastHelloWorld.html">Broadcast</a>
+     versions of the "Hello World" examples.
+    </li>
+    <li style="{margin-bottom:20px;}">
+     <b>Initial Values</b>:  Create a chare array and have each chare object assign iself a random
+     number in its constructor.
+    </li>
+    </li>
+    <li style="{margin-bottom:20px;}">
+     <b>Data Dependencies</b>:  The most straight forward method of ensuring data dependencies are
+     met is to create a barrier between the steps.  That is, tell each chare object in the array
+     of chare objects to perform a single step of the calculation (e.g.
+     <i>PrefixChareClass::doStep(int stepNum)</i> which will send a message to its neighbor at
+     <i>I = thisIndex + (1 << stepNum)</i> assuming <i>stepNum</i> is zero-based OR, if <i>I <= N</i>,
+     then it directly checks in with the <i>main</i> chare).  Once, the receiving chare object in
+     the chare array receives and adds the other chare object's value, have it check in with the
+     <i>main</i> chare.  Once the <i>main</i> chare has received <i>N</i> check in messages,
+     it can start the next step (or terminate if <i>O(log<sub>2</sub>(N))</i> steps have been completed).
+     Alternatively, you can skip ahead in the tutorial a little bit and read about reductions.  However,
+     a barrier is not needed (see <a href="#NoBarriers">No Need for Barriers</a> in the
+     <a href="#Extensions">Extensions</a> below).
+    </li>
+    <li style="{margin-bottom:20px;}">
+     <b>Checking Correctness</b>:  The methods used to <i>sayHi()</i> in both the
+     <a href="ArrayHelloWorld.html">Array</a> and <a href="BroadcastHelloWorld.html">Broadcast</a>
+     versions of the "Hello World" example can be used to display the values before and after the
+     prefix calculation to verify correctness.  Using a small value of N, have each chare object
+     display its value before the prefix calculation with an output similar to
+     "Before: Value[%d] = %lf".  After the prefix calculation, have each chare object display its
+     value with an output similar to "After: Value[%d] = %lf".  When you run the program, redirect
+     the output to a file, say <i>out.txt</i> and then look at the file using sort (i.e.
+     <i>sort out.txt | less</i>).  Regardless of the order in which the CkPrintf()s occur to standard
+     output, this will allow you to view the array contents in the proper order.  Once it is working
+     for smaller values of <i>N</i>, try larger values.<br><br>
+
+     <center>
+      <table>
+       <tr><td><b>Example <i>sorted</i> Output (N=3):</b></td></tr>
+       <tr><td>After: Value[0] = 1</td></tr>
+       <tr><td>After: Value[1] = 6</td></tr>
+       <tr><td>After: Value[2] = 8</td></tr>
+       <tr><td>Before: Value[0] = 1</td></tr>
+       <tr><td>Before: Value[1] = 5</td></tr>
+       <tr><td>Before: Value[2] = 2</td></tr>
+      </table>
+     </center>
+
+
+    </li>
+   </ul>
+
+  </p>
+
+  <h3>Solution</h3>
+
+  <!-- Figure -->
+  <a class="StandardFigure" href="images/ParallelPrefixSolution_ControlFlow.jpg">
+   <table class="StandardFigure" align=right border=0>
+    <tr><td align=center valign=middle>
+     <img class="StandardFigure" src="images/ParallelPrefixSolution_ControlFlow_sm.jpg" border=0o>
+    </td></tr>
+    <tr><td align=center valign=middle>
+     <b>Figure 4:</b> Control Flow for Parallel Prefix Solution
+    </td></tr>
+   </table>
+  </a>
+
+  <p class="BasicParagraph">
+   A simple solution for the parallel prefix calculation can be found
+   <a href="examples/ParallelPrefix.tar.gz">here (ParallelPrefix.tar.gz)</a>.
+   Figure 4 shows the overall control flow of the solution.
+  </p>
+
+  <a name="Extensions">
+  <h2>Extensions&nbsp;/&nbsp;Performance&nbsp;Considerations</h2>
+  </a>
+
+  <h3>Multiple Values per Chare Object</h3>
+
+  <p class="BasicParagraph">
+   With only a single value being processes each to a message is sent/received, the overhead of
+   performing communication will be much greater than the cost of performing the actual computation.
+   Modify the program so that each chare object hold a portion of the <i>V</i> array (i.e. several
+   consecutive values instead of just a single value).  This way, each time a chare object receives
+   a message, it will preform many operations instead of just a single operation.
+  </p>
+
+  <a name="NoBarriers">
+  <h3>No Need for Barriers</h3>
+  </a>
+
+  <p class="BasicParagraph">
+   Without the barrier between steps, there is the possibility of a data race to occur and cause
+   your program to produce incorrect results.  Take another look at Figure 3 above.  Lets assume
+   that each chare object keeps a counter (<i>stepCounter</i>) which indicates which step that chare
+   object is currently in.  Further assume that the entry method which receives values for a chare object
+   (<i>receiveValue()</i>) only takes a single
+   parameter (the value that is being passed).  In response to receiving the value, this entry
+   methods adds the incoming value to its own value, passes the sum onto the next chare object, and
+   then increments the step counter which moves this chare object into the next step.  With barriers,
+   this would be fine.  However, without the barriers ensuring that all the chare objects are working on
+   the same step at any given moment, bad things can happen.  The steps are illustrated below.  Starting at
+   initial conditions and assuming that each chare object is on a different processor, a possible
+   race condition is as follows (remember, assuming no barriers between steps):
+
+   <ul>
+    <li style="{margin-bottom:20px;}">
+     <b>Initially</b>:
+      <br><br>State:<br>
+      &nbsp;&nbsp;Chare 0 : stepCounter = 0, value = v<sub>0</sub><br>
+      &nbsp;&nbsp;Chare 1 : stepCounter = 0, value = v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 : stepCounter = 0, value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 : stepCounter = 0, value = v<sub>3</sub><br>
+      <br>Messages In-Flight:<br>
+      &nbsp;&nbsp;<i>none</i><br>
+    </li>
+
+    <li style="{margin-bottom:20px;}">
+     <b>First</b>:  All chare objects send their messages for step 1.
+      <br><br>State:<br>
+      &nbsp;&nbsp;Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
+      &nbsp;&nbsp;Chare 1 : stepCounter = 1, value = v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 : stepCounter = 1, value = v<sub>3</sub><br>
+      <br>Messages In-Flight:<br>
+      &nbsp;&nbsp;Chare 0 -> Chare 1 : value = v<sub>0</sub><br>
+      &nbsp;&nbsp;Chare 1 -> Chare 2 : value = v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 -> Chare 3 : value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 -> Chare 4 : value = v<sub>3</sub><br>
+    </li>
+
+    <li style="{margin-bottom:20px;}">
+     <b>Second</b>:  Chare 1 receives it's message from Chare 0.  <i>receiveValue()</i> is executed
+     for Chare 1 (the incoming value is added, the sum is passed to Chare 3, and Chare 1's
+     stepCounter is incremented).
+      <br><br>State:<br>
+      &nbsp;&nbsp;Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
+      &nbsp;&nbsp;Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 : stepCounter = 1, value = v<sub>3</sub><br>
+      <br>Messages In-Flight:<br>
+      &nbsp;&nbsp;Chare 1 -> Chare 2 : value = v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 -> Chare 3 : value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 -> Chare 4 : value = v<sub>3</sub><br>
+      &nbsp;&nbsp;Chare 1 -> Chare 3 : value = v<sub>0</sub>+v<sub>1</sub><br>
+    </li>
+
+    <li style="{margin-bottom:20px;}">
+     <b>Third</b>:  Chare 3 receives the message from Chare 1 before it receives the message
+      from  Chare 2.
+      <br><br>State:<br>
+      &nbsp;&nbsp;Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
+      &nbsp;&nbsp;Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub>+v<sub>3</sub> <font color=ff0000><b>!!! INCORRECT !!!</b></font><br>
+      <br>Messages In-Flight:<br>
+      &nbsp;&nbsp;Chare 1 -> Chare 2 : value = v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 -> Chare 3 : value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 -> Chare 4 : value = v<sub>3</sub><br>
+      &nbsp;&nbsp;Chare 3 -> Chare 5 : value = v<sub>0</sub>+v<sub>1</sub>+v<sub>3</sub> <font color=ff0000><b>!!! INCORRECT !!!</b></font><br>
+    </li>
+   </ul>
+  </p>
+  
+  <p class="BasicParagraph">
+   The problem is cause by the fact that messages are not guaranteed to be delivered in the order
+   in which they arrived.  If Chare 0, Chare 1, Chare 2, and Chare 3 are on different processors and
+   the processor that Chare 2 is located on is slow for some reason (operating system swapped out
+   the process, for example) and falls a little behind, then the above sequence of events could easily
+   occur.  The barrier would have prevented the chare objects from being in different steps of the
+   computation, but without it, race conditions can occur as some chare objects get ahead of other
+   chare objects (for whatever reason).
+  </p>
+
+  <p class="BasicParagraph">
+   As a useful exercise, try extending this program to not use barriers.  Instead, modify the
+   <i>receiveValue()</i> entry methods so it takes two parameters: <i>stepFrom</i> and <i>value</i>.
+   The value parameter is the same as before.  The <i>stepFrom</i> parameter indicates in which step
+   the message was sent (from the point-of-view of the sending chare object; alternatively, the index
+   of the sending chare object could be used).  Since each chare object is in a particular step at
+   any given moment, when it receives a message, it can check the <i>stepFrom</i> value to see if
+   the message has arrived in-order.  If not, it can resend the message to itself (which will cause
+   the Charm++ Runtime System to re-queue the message).  Alternatively, the receiving chare object
+   could buffer the message and processes it later after the message it was expecting arrives (this
+   would be prefered since resending-to-self could potentially occur several times and add significant
+   overhead to the program, i.e. resend to self many times and thus execute the <i>receiveValue()</i>
+   entry method many times before expected message arrives).
+
+   <ul>
+    <li style="{margin-bottom:20px;}">
+     <b>Initially</b>:
+      <br><br>State:<br>
+      &nbsp;&nbsp;Chare 0 : stepCounter = 0, value = v<sub>0</sub><br>
+      &nbsp;&nbsp;Chare 1 : stepCounter = 0, value = v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 : stepCounter = 0, value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 : stepCounter = 0, value = v<sub>3</sub><br>
+      <br>Messages In-Flight:<br>
+      &nbsp;&nbsp;<i>none</i><br>
+    </li>
+
+    <li style="{margin-bottom:20px;}">
+     <b>First</b>:  All chare objects send their messages for step 1.
+      <br><br>State:<br>
+      &nbsp;&nbsp;Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
+      &nbsp;&nbsp;Chare 1 : stepCounter = 1, value = v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 : stepCounter = 1, value = v<sub>3</sub><br>
+      <br>Messages In-Flight:<br>
+      &nbsp;&nbsp;Chare 0 -> Chare 1 : fromStep = 1, value = v<sub>0</sub><br>
+      &nbsp;&nbsp;Chare 1 -> Chare 2 : fromStep = 1, value = v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 -> Chare 3 : fromStep = 1, value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 -> Chare 4 : fromStep = 1, value = v<sub>3</sub><br>
+    </li>
+
+    <li style="{margin-bottom:20px;}">
+     <b>Second</b>:  Chare 1 receives it's message from Chare 0.  <i>receiveValue()</i> is executed
+     for Chare 1 (the incoming value is added, the sum is passed to Chare 3, and Chare 1's
+     stepCounter is incremented).
+      <br><br>State:<br>
+      &nbsp;&nbsp;Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
+      &nbsp;&nbsp;Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 : stepCounter = 1, value = v<sub>3</sub><br>
+      <br>Messages In-Flight:<br>
+      &nbsp;&nbsp;Chare 1 -> Chare 2 : fromStep = 1, value = v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 -> Chare 3 : fromStep = 1, value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 -> Chare 4 : fromStep = 1, value = v<sub>3</sub><br>
+      &nbsp;&nbsp;Chare 1 -> Chare 3 : fromStep = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
+    </li>
+
+    <li style="{margin-bottom:20px;}">
+     <b>Third</b>:  Chare 3 receives the message from Chare 1 before it receives the message
+      from  Chare 2.  Chare 3 notices that this message is out of order (it was in step 1 and is
+      expecting a message with <i>fromState</i> = 1 but this message has <i>fromState</i> = 2).
+      <br><br>State:<br>
+      &nbsp;&nbsp;Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
+      &nbsp;&nbsp;Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 : stepCounter = 1, value = v<sub>3</sub>, <i>buffered message(s) = { (fromStep = 2, value = v<sub>0</sub>+v<sub>1</sub>) }</i><br>
+      <br>Messages In-Flight:<br>
+      &nbsp;&nbsp;Chare 1 -> Chare 2 : fromStep = 1, value = v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 -> Chare 3 : fromStep = 1, value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 -> Chare 4 : fromStep = 1, value = v<sub>3</sub><br>
+    </li>
+
+    <li style="{margin-bottom:20px;}">
+     <b>Fourth</b>:  Chare 3 receives the message from Chare 2 and processes it since its
+      <i>fromState</i> value matches its own <i>stepCounter</i> value.  Once it processes this
+      message, it checks to see if any buffered messages need processing also (i.e the next
+      <i>fromState</i> value).  In this case, there is one, so it processes the buffered message
+      also (advancing Chare 3 through two steps).
+      <br><br>State:<br>
+      &nbsp;&nbsp;Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
+      &nbsp;&nbsp;Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 : stepCounter = 3, value = v<sub>0</sub>+v<sub>1</sub>+v<sub>2</sub>+v<sub>3</sub><br>
+      <br>Messages In-Flight:<br>
+      &nbsp;&nbsp;Chare 1 -> Chare 2 : fromStep = 1, value = v<sub>1</sub><br>
+      &nbsp;&nbsp;Chare 2 -> Chare 3 : fromStep = 1, value = v<sub>2</sub><br>
+      &nbsp;&nbsp;Chare 3 -> Chare 4 : fromStep = 1, value = v<sub>3</sub><br>
+      &nbsp;&nbsp;Chare 3 -> Chare 5 : fromStep = 2, value = v<sub>2</sub>+v<sub>3</sub><br>
+      &nbsp;&nbsp;Chare 3 -> Chare 7 : fromStep = 3, value = v<sub>0</sub>+v<sub>1</sub>+v<sub>2</sub>+v<sub>3</sub><br>
+    </li>
+   </ul>
+
+  </p>
+
+  <p class="BasicParagraph">
+   With this change in place (modification to chare array objects so they don't need to wait for a
+   barrier), interaction with the <i>main</i> chare object is no longer needed during the prefix
+   computation.  Instead, each chare object in the array would only need to send a single message to
+   the <i>main</i> chare object after its stepCounter has reached
+   <i>&lceil; log<sub>2</sub>(N) &rceil;</i>.  This helps reduce the required amount of communication
+   (assuming buffered messages, not re-sends).  It also allows each chare object to proceed with
+   computation based solely
+   on data dependencies being met (i.e. it has the data it needs to move forward with its portion of the
+   computation).  With the barriers, all chare objects have to wait for the slowest chare object to
+   complete the current step before they can move onto the next step even if they already have the data
+   they need to continue.
+   <font color=ff0000>
+    In simple example programs like this, this effect may not give a large speedup
+    (in fact, the additional overhead compared to the tiny amount of work being done, a single addition,
+    may even cause a slowdown), however, in actual applications, this can prove quite useful and give
+    significant boosts to performance.
+   </font>
+  </p>
+
+  <p class="BasicParagraph">
+   A modified version of the previous parallel prefix solution presented above can be found
+   <a href="examples/ParallelPrefix_NoBarrier.tar.gz">here (ParallelPrefix_NoBarrier.tar.gz)</a>.
+   This version of the solution does not have implicit barriers while the prefix calculation
+   itself is being preformed.
+  </p>
+
+   </div>
+ </div>
+      
+      <div id="footer">
+	&copy; 2020 
+    	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
+	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
+	<a href="http://illinois.edu">University of Illinois</a>
+      </div>
+    </div>
+    <script src="/assets/hover.js" type="text/javascript"></script>
+  </body>
+</html>
