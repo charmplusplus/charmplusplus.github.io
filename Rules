@@ -16,6 +16,7 @@
 compile '/' do
   filter :erb
   layout 'homepage'
+  filter :relativize_paths, :type => :html
 end
 
 compile '*' do
@@ -29,7 +30,7 @@ compile '*' do
             # Run the laid out content through erb to run embedded function calls etc
             filter :erb
             #Convert resource links to use relative paths
-            #filter :relativize_paths,:type => :html
+            filter :relativize_paths, :type => :html
         when 'css'
             filter :relativize_paths,:type => :css
         when 'js'
