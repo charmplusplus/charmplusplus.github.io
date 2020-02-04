@@ -1,24 +1,25 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8">
     <title>Charm++: Chare Arrays Method 1 Exercise</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
-		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
-		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<link href="../../assets/charmwebsite.css" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Droid%20Sans" rel="stylesheet" type="text/css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		<script src="../../codemirror/lib/codemirror.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		<script src="../../codemirror/mode/clike/clike.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		<script src="../../codemirror/lib/util/runmode.js" type="text/javascript">
 		</script>
-		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
-		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
-		<script src="/assets/prettify.js" type="text/javascript">
+		<link href="../../codemirror/lib/codemirror.css" rel="stylesheet" type="text/css">
+		<link href="../../codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css">
+		<script src="../../assets/prettify.js" type="text/javascript">
 		</script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<!-- for equations from LaTeX to appear correctly-->
@@ -34,7 +35,7 @@
  <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 	  <!-- Brand and toggle get grouped for better mobile display -->
-		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+		<div id="logo"><a href="../../"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
 
 <!-- Charm++ Button textformatted placeholder for logo button
 		<div class="navbar-header">
@@ -54,23 +55,23 @@
               <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
-		  <li><a href="/capabilities/">Capabilities</a></li>
-		  <li><a href="/progmodel/">Programming Model</a></li>
-		  <li><a href="/execmodel/">Execution Model</a></li>
-		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="../../capabilities/">Capabilities</a></li>
+		  <li><a href="../../progmodel/">Programming Model</a></li>
+		  <li><a href="../../execmodel/">Execution Model</a></li>
+		  <li><a href="../../applications/">Applications</a></li>
 		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
-		  <li><a href="/history/">History</a></li>
+		  <li><a href="../../history/">History</a></li>
 		</ul>
               </li>
               <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
 		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
-      		  <li><a href="/tutorial/">Tutorial</a></li>
-						<li><a href="/exercises/">Exercises</a></li>
-      		  <li><a href="/help/">Manual</a></li>
-      		  <li><a href="/tools/">Tools</a></li>
-      		  <li><a href="/othermedia/">Other Media</a></li>
+      		  <li><a href="../../tutorial/">Tutorial</a></li>
+						<li><a href="../">Exercises</a></li>
+      		  <li><a href="../../help/">Manual</a></li>
+      		  <li><a href="../../tools/">Tools</a></li>
+      		  <li><a href="../../othermedia/">Other Media</a></li>
 		</ul>
               </li>
 
@@ -87,23 +88,25 @@
               </li>
 
               <li class="dropdown">
-		<a href="/download/">Downloads</a>
+		<a href="../../download/">Downloads</a>
               </li>
 
               <li class="dropdown">
-		<a href="/miniApps/">Mini-Apps</a>
+		<a href="../../miniApps/">Mini-Apps</a>
               </li>
 
 	    </ul>
 	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
               <div class="form-group">
-		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
-		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+		<input type="hidden" name="sitesearch" value="charmplusplus.org">
+		<input type="text" class="form-control" name="q" placeholder="Search">
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
 	    </form>
-	  </div><!-- /.navbar-collapse -->
-	</div><!-- /.container-fluid -->
+	  </div>
+<!-- /.navbar-collapse -->
+	</div>
+<!-- /.container-fluid -->
       </nav>
 
 
@@ -118,12 +121,12 @@
  </div>
       
       <div id="footer">
-	&copy; 2020 
+	© 2020 
     	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
 	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
 	<a href="http://illinois.edu">University of Illinois</a>
       </div>
     </div>
-    <script src="/assets/hover.js" type="text/javascript"></script>
+    <script src="../../assets/hover.js" type="text/javascript"></script>
   </body>
 </html>

@@ -1,14 +1,15 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8">
     <title>Charm++: Parallel Programming Framework</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
-    <link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
-    <link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+    <link href="assets/charmwebsite.css" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Droid%20Sans" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
     </script>
     <script src="http://charm.cs.illinois.edu/codemirror/lib/codemirror.js" type="text/javascript">
@@ -17,9 +18,9 @@
     </script>
     <script src="http://charm.cs.illinois.edu/codemirror/lib/util/runmode.js" type="text/javascript">
     </script>
-    <link href="http://charm.cs.illinois.edu/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
-    <link href="http://charm.cs.illinois.edu/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
-    <script src="/assets/prettify.js" type="text/javascript"></script>
+    <link href="http://charm.cs.illinois.edu/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css">
+    <link href="http://charm.cs.illinois.edu/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css">
+    <script src="assets/prettify.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<!-- for equations from LaTeX to appear correctly-->
 		<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
@@ -34,7 +35,7 @@
       <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 	  <!-- Brand and toggle get grouped for better mobile display -->
-		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+		<div id="logo"><a href="./"><img class="img-responsive" src="images/charm_logo.jpg"></a></div>
 
 <!-- Charm++ Button textformatted placeholder for logo button
 		<div class="navbar-header">
@@ -54,23 +55,23 @@
               <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
-		  <li><a href="/capabilities/">Capabilities</a></li>
-		  <li><a href="/progmodel/">Programming Model</a></li>
-		  <li><a href="/execmodel/">Execution Model</a></li>
-		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="capabilities/">Capabilities</a></li>
+		  <li><a href="progmodel/">Programming Model</a></li>
+		  <li><a href="execmodel/">Execution Model</a></li>
+		  <li><a href="applications/">Applications</a></li>
 		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
-		  <li><a href="/history/">History</a></li>
+		  <li><a href="history/">History</a></li>
 		</ul>
               </li>
               <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
 		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
-      		  <li><a href="/tutorial/">Tutorial</a></li>
-						<li><a href="/exercises/">Exercises</a></li>
-      		  <li><a href="/help/">Manual</a></li>
-      		  <li><a href="/tools/">Tools</a></li>
-      		  <li><a href="/othermedia/">Other Media</a></li>
+      		  <li><a href="tutorial/">Tutorial</a></li>
+						<li><a href="exercises/">Exercises</a></li>
+      		  <li><a href="help/">Manual</a></li>
+      		  <li><a href="tools/">Tools</a></li>
+      		  <li><a href="othermedia/">Other Media</a></li>
 		</ul>
               </li>
 
@@ -91,19 +92,21 @@
               </li>
 
               <li class="dropdown">
-		<a href="/miniApps/">Mini-Apps</a>
+		<a href="miniApps/">Mini-Apps</a>
               </li>
 
 	    </ul>
 	    <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
               <div class="form-group">
-		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
-		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+		<input type="hidden" name="sitesearch" value="charmplusplus.org">
+		<input type="text" class="form-control" name="q" placeholder="Search">
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
 	    </form>
-	  </div><!-- /.navbar-collapse -->
-	</div><!-- /.container-fluid -->
+	  </div>
+<!-- /.navbar-collapse -->
+	</div>
+<!-- /.container-fluid -->
       </nav>
 
 
@@ -141,7 +144,7 @@
       						productivity and portable performance. -->
       						</p>
       						</li>
-      				<a href="/progmodel/" style="float: right">more...</a>
+      				<a href="progmodel/" style="float: right">more...</a>
       				</ul>
       				<div id="capabilities">
       					<h3>capabilities</h3>
@@ -155,7 +158,7 @@
       						<li>Interoperable with MPI and OpenMP</li>
       						<li title="debugging, performance visualization, performance prediction">Ecosystem of tools</li>
       					</ul>
-      					<a href="/capabilities/" style="float: right">more...</a>
+      					<a href="capabilities/" style="float: right">more...</a>
       				</div>
       		</div>
       		</div>
@@ -166,21 +169,21 @@
 		<div id="newsfeed">
 				<h6>News</h6>
 				<ul>
-				  <li><a class="newsitem" href="/news#charm690">Charm++ Release 6.9.0</a></li>
-				  <li><a class="newsitem" href="/news#sc2018">Charm++ at SuperComputing 2018</a></li>
-				  <li><a class="newsitem" href="/news#charm682">Charm++ Release 6.8.2</a></li>
-				  <li><a class="newsitem" href="/news#sc2017">Charm++ at SuperComputing 2017</a></li>
-				  <li><a class="newsitem" href="/news#charm681">Charm++ Release 6.8.1</a></li>
-				  <li><a class="newsitem" href="/news#charm680">Charm++ Release 6.8.0</a></li>
-				  <li><a class="newsitem" href="/news#workshop2017">The 15th Annual Workshop on Charm++ and its Applications</a></li>
-				  <li><a class="newsitem" href="/news#sc2016">Charm++ at SuperComputing 2016</a></li>
-				  <li><a class="newsitem" href="/news#charm671">Stable release of Charm++ version 6.7.1</a></li>
-				  <li><a class="newsitem" href="/news#workshop2016">The 14th Annual Workshop on Charm++ and its Applications</a></li>
-				  <li><a class="newsitem" href="/news#charm67">Stable release of Charm++ version 6.7.0 </a></li>  		
-				  <li><a class="newsitem" href="/news#charm66">Stable release of Charm++ version 6.6.0 </a></li>  		
-          <li><a class="newsitem" href="/news#redmine">Charm++ issue tracker now publicly accessible </a></li>  
-				  <li><a class="newsitem" href="/news#SIAM">Local SIAM chapter hosted Charm++ Tutorial</a></li>  
-          <li><a class="newsitem" href="/news#fernbach">Fernbach Award for Profs. Kale, Schulten</a></li>
+				  <li><a class="newsitem" href="news#charm690">Charm++ Release 6.9.0</a></li>
+				  <li><a class="newsitem" href="news#sc2018">Charm++ at SuperComputing 2018</a></li>
+				  <li><a class="newsitem" href="news#charm682">Charm++ Release 6.8.2</a></li>
+				  <li><a class="newsitem" href="news#sc2017">Charm++ at SuperComputing 2017</a></li>
+				  <li><a class="newsitem" href="news#charm681">Charm++ Release 6.8.1</a></li>
+				  <li><a class="newsitem" href="news#charm680">Charm++ Release 6.8.0</a></li>
+				  <li><a class="newsitem" href="news#workshop2017">The 15th Annual Workshop on Charm++ and its Applications</a></li>
+				  <li><a class="newsitem" href="news#sc2016">Charm++ at SuperComputing 2016</a></li>
+				  <li><a class="newsitem" href="news#charm671">Stable release of Charm++ version 6.7.1</a></li>
+				  <li><a class="newsitem" href="news#workshop2016">The 14th Annual Workshop on Charm++ and its Applications</a></li>
+				  <li><a class="newsitem" href="news#charm67">Stable release of Charm++ version 6.7.0 </a></li>  		
+				  <li><a class="newsitem" href="news#charm66">Stable release of Charm++ version 6.6.0 </a></li>  		
+          <li><a class="newsitem" href="news#redmine">Charm++ issue tracker now publicly accessible </a></li>  
+				  <li><a class="newsitem" href="news#SIAM">Local SIAM chapter hosted Charm++ Tutorial</a></li>  
+          <li><a class="newsitem" href="news#fernbach">Fernbach Award for Profs. Kale, Schulten</a></li>
 				</ul>
 		</div>
     <div id="blurb">
@@ -272,12 +275,12 @@
 	</div>
       </div>
       <div id="footer">
-	&copy; 2020 
+	© 2020 
     	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
 	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
 	<a href="http://illinois.edu">University of Illinois</a>
       </div>
     </div>
-    <script src="/assets/hover.js" type="text/javascript"></script>
+    <script src="assets/hover.js" type="text/javascript"></script>
   </body>
 </html>

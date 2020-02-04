@@ -1,24 +1,25 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8">
     <title>Charm++: Tutorial</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
-		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
-		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<link href="../assets/charmwebsite.css" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Droid%20Sans" rel="stylesheet" type="text/css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		<script src="../codemirror/lib/codemirror.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		<script src="../codemirror/mode/clike/clike.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		<script src="../codemirror/lib/util/runmode.js" type="text/javascript">
 		</script>
-		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
-		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
-		<script src="/assets/prettify.js" type="text/javascript">
+		<link href="../codemirror/lib/codemirror.css" rel="stylesheet" type="text/css">
+		<link href="../codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css">
+		<script src="../assets/prettify.js" type="text/javascript">
 		</script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<!-- for equations from LaTeX to appear correctly-->
@@ -34,7 +35,7 @@
  <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 	  <!-- Brand and toggle get grouped for better mobile display -->
-		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+		<div id="logo"><a href="../"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
 
 <!-- Charm++ Button textformatted placeholder for logo button
 		<div class="navbar-header">
@@ -54,23 +55,23 @@
               <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
-		  <li><a href="/capabilities/">Capabilities</a></li>
-		  <li><a href="/progmodel/">Programming Model</a></li>
-		  <li><a href="/execmodel/">Execution Model</a></li>
-		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="../capabilities/">Capabilities</a></li>
+		  <li><a href="../progmodel/">Programming Model</a></li>
+		  <li><a href="../execmodel/">Execution Model</a></li>
+		  <li><a href="../applications/">Applications</a></li>
 		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
-		  <li><a href="/history/">History</a></li>
+		  <li><a href="../history/">History</a></li>
 		</ul>
               </li>
               <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
 		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
-      		  <li><a href="/tutorial/">Tutorial</a></li>
-						<li><a href="/exercises/">Exercises</a></li>
-      		  <li><a href="/help/">Manual</a></li>
-      		  <li><a href="/tools/">Tools</a></li>
-      		  <li><a href="/othermedia/">Other Media</a></li>
+      		  <li><a href="./">Tutorial</a></li>
+						<li><a href="../exercises/">Exercises</a></li>
+      		  <li><a href="../help/">Manual</a></li>
+      		  <li><a href="../tools/">Tools</a></li>
+      		  <li><a href="../othermedia/">Other Media</a></li>
 		</ul>
               </li>
 
@@ -87,23 +88,25 @@
               </li>
 
               <li class="dropdown">
-		<a href="/download/">Downloads</a>
+		<a href="../download/">Downloads</a>
               </li>
 
               <li class="dropdown">
-		<a href="/miniApps/">Mini-Apps</a>
+		<a href="../miniApps/">Mini-Apps</a>
               </li>
 
 	    </ul>
 	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
               <div class="form-group">
-		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
-		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+		<input type="hidden" name="sitesearch" value="charmplusplus.org">
+		<input type="text" class="form-control" name="q" placeholder="Search">
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
 	    </form>
-	  </div><!-- /.navbar-collapse -->
-	</div><!-- /.container-fluid -->
+	  </div>
+<!-- /.navbar-collapse -->
+	</div>
+<!-- /.container-fluid -->
       </nav>
 
 
@@ -117,42 +120,42 @@
   <h3>The Prefix Calculation</h3>
 
   <!-- Figure -->
-  <table class="StandardFigure" align=right border=0>
-   <tr><td align=left valign=middle bgColor=bbbbbb>
+  <table class="StandardFigure" align="right" border="0">
+   <tr><td align="left" valign="middle" bgcolor="bbbbbb">
     <div style="{margin:5px;}">
      <code>
       <font class="codeComment">// Assumed variable declarations for both methods</font><br>
-      #define N <font class="generalComment">...</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">// Size of array</font><br>
-      double v[N];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">// Contains input values</font><br>
-      double v_prime[N];&nbsp;&nbsp;<font class="codeComment">// Will contain output values</font><br>
+      #define N <font class="generalComment">...</font>       <font class="codeComment">// Size of array</font><br>
+      double v[N];        <font class="codeComment">// Contains input values</font><br>
+      double v_prime[N];  <font class="codeComment">// Will contain output values</font><br>
       <br>
       <font class="codeComment">// Method 1 - Straight Forward - O(N<sup>2</sup>)</font><br>
-      for (int k = 0; k < N; k++) {<br>
-      &nbsp;&nbsp;v_prime[k] = 0;<br>
-      &nbsp;&nbsp;for (int i = 0; i <= k; i++) {<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;v_prime[k] = v_prime[k] + v[i];<br>
-      &nbsp;&nbsp;}<br>
+      for (int k = 0; k &lt; N; k++) {<br>
+        v_prime[k] = 0;<br>
+        for (int i = 0; i &lt;= k; i++) {<br>
+          v_prime[k] = v_prime[k] + v[i];<br>
+        }<br>
       }<br>
       <br>
       <font class="codeComment">// Method 2 - Running Sum - O(N)</font><br>
       v_prime[0] = v[0];<br>
-      for (int k = 1; k < N; k++) {<br>
-      &nbsp;&nbsp;v_prime[k] = v_prime[k - 1] + v[k];<br>
+      for (int k = 1; k &lt; N; k++) {<br>
+        v_prime[k] = v_prime[k - 1] + v[k];<br>
       }
      </code>
     </div>
    </td></tr>
-   <tr><td align=center valign=middle>
+   <tr><td align="center" valign="middle">
     <b>Figure 2:</b> C++ Code for Prefix Calculation
    </td></tr>
   </table>
 
   <!-- Figure -->
-  <table class="StandardFigure" align=right border=0>
-   <tr><td align=center valign=middle>
-    <img class="StandardFigure" src="images/ParallelPrefixFormula.jpg" border=0>
+  <table class="StandardFigure" align="right" border="0">
+   <tr><td align="center" valign="middle">
+    <img class="StandardFigure" src="images/ParallelPrefixFormula.jpg" border="0">
    </td></tr>
-   <tr><td align=center valign=middle>
+   <tr><td align="center" valign="middle">
     <b>Figure 1:</b> Parallel Prefix Formula
    </td></tr>
   </table>
@@ -175,29 +178,32 @@
    To make the above a bit more concrete, below is an example set of arrays.  The <i>V</i> array
    is the input array.  The <i>V'</i> array is the output array (result of the calculation.<br>
 
-   <center>
-    <table cellpadding=0 cellspacing=8>
-     <tr><td align=center valign=middle>V</td>
-         <td align=center valign=middle>= {</td>
-         <td align=center valign=middle>3,</td>
-         <td align=center valign=middle>4,</td>
-         <td align=center valign=middle>1,</td>
-         <td align=center valign=middle>0,</td>
-         <td align=center valign=middle>3,</td>
-         <td align=center valign=middle>2,</td>
-         <td align=center valign=middle>8</td>
-         <td align=center valign=middle>}</td>
+   </p>
+<center>
+    <table cellpadding="0" cellspacing="8">
+     <tr>
+<td align="center" valign="middle">V</td>
+         <td align="center" valign="middle">= {</td>
+         <td align="center" valign="middle">3,</td>
+         <td align="center" valign="middle">4,</td>
+         <td align="center" valign="middle">1,</td>
+         <td align="center" valign="middle">0,</td>
+         <td align="center" valign="middle">3,</td>
+         <td align="center" valign="middle">2,</td>
+         <td align="center" valign="middle">8</td>
+         <td align="center" valign="middle">}</td>
      </tr>
-     <tr><td align=center valign=middle>V'</td>
-         <td align=center valign=middle>= {</td>
-         <td align=center valign=middle>3,</td>
-         <td align=center valign=middle>7,</td>
-         <td align=center valign=middle>8,</td>
-         <td align=center valign=middle>8,</td>
-         <td align=center valign=middle>11,</td>
-         <td align=center valign=middle>13,</td>
-         <td align=center valign=middle>21</td>
-         <td align=center valign=middle>}</td>
+     <tr>
+<td align="center" valign="middle">V'</td>
+         <td align="center" valign="middle">= {</td>
+         <td align="center" valign="middle">3,</td>
+         <td align="center" valign="middle">7,</td>
+         <td align="center" valign="middle">8,</td>
+         <td align="center" valign="middle">8,</td>
+         <td align="center" valign="middle">11,</td>
+         <td align="center" valign="middle">13,</td>
+         <td align="center" valign="middle">21</td>
+         <td align="center" valign="middle">}</td>
      </tr>
     </table>
    </center>
@@ -237,15 +243,15 @@
 
   <!-- Figure -->
   <a class="StandardFigure" href="images/ParallelPrefixCalculation.jpg">
-   <table class="StandardFigure" align=right border=0>
-    <tr><td align=center valign=middle>
-     <img class="StandardFigure" src="images/ParallelPrefixCalculation_sm.jpg" border=0o>
+   </a><table class="StandardFigure" align="right" border="0">
+    <tr><td align="center" valign="middle">
+     <img class="StandardFigure" src="images/ParallelPrefixCalculation_sm.jpg" border="0o">
     </td></tr>
-    <tr><td align=center valign=middle>
+    <tr><td align="center" valign="middle">
      <b>Figure 3:</b> Overview of Parallel Prefix Calculation
     </td></tr>
    </table>
-  </a>
+  
 
   <p class="BasicParagraph">
    Since we are writing this program using Charm++, will setup the parallel version of this
@@ -288,10 +294,10 @@
    <i>X</i>, each chare object will send a message to the chare object at
    <i>thisIndex + 2<sup>X-1</sup></i>.  After step X has completed, the first <i>2<sup>X</sup></i>
    chare objects in the chare array will have correct final results.  If we set
-   <i>2<sup>X</sup> = N</i>, we can conclude that <i>&lceil; log<sub>2</sub>(N) &rceil;</i> overall steps
+   <i>2<sup>X</sup> = N</i>, we can conclude that <i>⌈ log<sub>2</sub>(N) ⌉</i> overall steps
    in the calculation will be needed.  If we assume that each chare object is on a different
    processor, the overall calculation will take <i>O(log<sub>2</sub>(N))</i> time.
-   <font color=ff0000>
+   <font color="ff0000">
     Note:  If we assume that communication costs are small and constant, then this parallel version
     of prefix is faster than either of the serial methods described above for large values of <i>N</i>.
    </font>
@@ -304,7 +310,8 @@
    Try implementing the parallel prefix calculation in Charm++.  To get you started, here are some
    hints that you might find useful:
 
-   <ul>
+   </p>
+<ul>
     <li style="{margin-bottom:20px;}">
      <b>Makefile</b>:  The Makefile for this application should be very similar to the makefiles
      used in the 
@@ -315,13 +322,13 @@
      <b>Initial Values</b>:  Create a chare array and have each chare object assign iself a random
      number in its constructor.
     </li>
-    </li>
+    
     <li style="{margin-bottom:20px;}">
      <b>Data Dependencies</b>:  The most straight forward method of ensuring data dependencies are
      met is to create a barrier between the steps.  That is, tell each chare object in the array
      of chare objects to perform a single step of the calculation (e.g.
      <i>PrefixChareClass::doStep(int stepNum)</i> which will send a message to its neighbor at
-     <i>I = thisIndex + (1 << stepNum)</i> assuming <i>stepNum</i> is zero-based OR, if <i>I <= N</i>,
+     <i>I = thisIndex + (1 &lt;&lt; stepNum)</i> assuming <i>stepNum</i> is zero-based OR, if <i>I &lt;= N</i>,
      then it directly checks in with the <i>main</i> chare).  Once, the receiving chare object in
      the chare array receives and adds the other chare object's value, have it check in with the
      <i>main</i> chare.  Once the <i>main</i> chare has received <i>N</i> check in messages,
@@ -359,21 +366,21 @@
     </li>
    </ul>
 
-  </p>
+  
 
   <h3>Solution</h3>
 
   <!-- Figure -->
   <a class="StandardFigure" href="images/ParallelPrefixSolution_ControlFlow.jpg">
-   <table class="StandardFigure" align=right border=0>
-    <tr><td align=center valign=middle>
-     <img class="StandardFigure" src="images/ParallelPrefixSolution_ControlFlow_sm.jpg" border=0o>
+   </a><table class="StandardFigure" align="right" border="0">
+    <tr><td align="center" valign="middle">
+     <img class="StandardFigure" src="images/ParallelPrefixSolution_ControlFlow_sm.jpg" border="0o">
     </td></tr>
-    <tr><td align=center valign=middle>
+    <tr><td align="center" valign="middle">
      <b>Figure 4:</b> Control Flow for Parallel Prefix Solution
     </td></tr>
    </table>
-  </a>
+  
 
   <p class="BasicParagraph">
    A simple solution for the parallel prefix calculation can be found
@@ -382,7 +389,7 @@
   </p>
 
   <a name="Extensions">
-  <h2>Extensions&nbsp;/&nbsp;Performance&nbsp;Considerations</h2>
+  <h2>Extensions / Performance Considerations</h2>
   </a>
 
   <h3>Multiple Values per Chare Object</h3>
@@ -413,30 +420,31 @@
    initial conditions and assuming that each chare object is on a different processor, a possible
    race condition is as follows (remember, assuming no barriers between steps):
 
-   <ul>
+   </p>
+<ul>
     <li style="{margin-bottom:20px;}">
      <b>Initially</b>:
       <br><br>State:<br>
-      &nbsp;&nbsp;Chare 0 : stepCounter = 0, value = v<sub>0</sub><br>
-      &nbsp;&nbsp;Chare 1 : stepCounter = 0, value = v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 : stepCounter = 0, value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 : stepCounter = 0, value = v<sub>3</sub><br>
+        Chare 0 : stepCounter = 0, value = v<sub>0</sub><br>
+        Chare 1 : stepCounter = 0, value = v<sub>1</sub><br>
+        Chare 2 : stepCounter = 0, value = v<sub>2</sub><br>
+        Chare 3 : stepCounter = 0, value = v<sub>3</sub><br>
       <br>Messages In-Flight:<br>
-      &nbsp;&nbsp;<i>none</i><br>
+        <i>none</i><br>
     </li>
 
     <li style="{margin-bottom:20px;}">
      <b>First</b>:  All chare objects send their messages for step 1.
       <br><br>State:<br>
-      &nbsp;&nbsp;Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
-      &nbsp;&nbsp;Chare 1 : stepCounter = 1, value = v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 : stepCounter = 1, value = v<sub>3</sub><br>
+        Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
+        Chare 1 : stepCounter = 1, value = v<sub>1</sub><br>
+        Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
+        Chare 3 : stepCounter = 1, value = v<sub>3</sub><br>
       <br>Messages In-Flight:<br>
-      &nbsp;&nbsp;Chare 0 -> Chare 1 : value = v<sub>0</sub><br>
-      &nbsp;&nbsp;Chare 1 -> Chare 2 : value = v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 -> Chare 3 : value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 -> Chare 4 : value = v<sub>3</sub><br>
+        Chare 0 -&gt; Chare 1 : value = v<sub>0</sub><br>
+        Chare 1 -&gt; Chare 2 : value = v<sub>1</sub><br>
+        Chare 2 -&gt; Chare 3 : value = v<sub>2</sub><br>
+        Chare 3 -&gt; Chare 4 : value = v<sub>3</sub><br>
     </li>
 
     <li style="{margin-bottom:20px;}">
@@ -444,33 +452,33 @@
      for Chare 1 (the incoming value is added, the sum is passed to Chare 3, and Chare 1's
      stepCounter is incremented).
       <br><br>State:<br>
-      &nbsp;&nbsp;Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
-      &nbsp;&nbsp;Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 : stepCounter = 1, value = v<sub>3</sub><br>
+        Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
+        Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
+        Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
+        Chare 3 : stepCounter = 1, value = v<sub>3</sub><br>
       <br>Messages In-Flight:<br>
-      &nbsp;&nbsp;Chare 1 -> Chare 2 : value = v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 -> Chare 3 : value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 -> Chare 4 : value = v<sub>3</sub><br>
-      &nbsp;&nbsp;Chare 1 -> Chare 3 : value = v<sub>0</sub>+v<sub>1</sub><br>
+        Chare 1 -&gt; Chare 2 : value = v<sub>1</sub><br>
+        Chare 2 -&gt; Chare 3 : value = v<sub>2</sub><br>
+        Chare 3 -&gt; Chare 4 : value = v<sub>3</sub><br>
+        Chare 1 -&gt; Chare 3 : value = v<sub>0</sub>+v<sub>1</sub><br>
     </li>
 
     <li style="{margin-bottom:20px;}">
      <b>Third</b>:  Chare 3 receives the message from Chare 1 before it receives the message
       from  Chare 2.
       <br><br>State:<br>
-      &nbsp;&nbsp;Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
-      &nbsp;&nbsp;Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub>+v<sub>3</sub> <font color=ff0000><b>!!! INCORRECT !!!</b></font><br>
+        Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
+        Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
+        Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
+        Chare 3 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub>+v<sub>3</sub> <font color="ff0000"><b>!!! INCORRECT !!!</b></font><br>
       <br>Messages In-Flight:<br>
-      &nbsp;&nbsp;Chare 1 -> Chare 2 : value = v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 -> Chare 3 : value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 -> Chare 4 : value = v<sub>3</sub><br>
-      &nbsp;&nbsp;Chare 3 -> Chare 5 : value = v<sub>0</sub>+v<sub>1</sub>+v<sub>3</sub> <font color=ff0000><b>!!! INCORRECT !!!</b></font><br>
+        Chare 1 -&gt; Chare 2 : value = v<sub>1</sub><br>
+        Chare 2 -&gt; Chare 3 : value = v<sub>2</sub><br>
+        Chare 3 -&gt; Chare 4 : value = v<sub>3</sub><br>
+        Chare 3 -&gt; Chare 5 : value = v<sub>0</sub>+v<sub>1</sub>+v<sub>3</sub> <font color="ff0000"><b>!!! INCORRECT !!!</b></font><br>
     </li>
    </ul>
-  </p>
+  
   
   <p class="BasicParagraph">
    The problem is cause by the fact that messages are not guaranteed to be delivered in the order
@@ -496,30 +504,31 @@
    overhead to the program, i.e. resend to self many times and thus execute the <i>receiveValue()</i>
    entry method many times before expected message arrives).
 
-   <ul>
+   </p>
+<ul>
     <li style="{margin-bottom:20px;}">
      <b>Initially</b>:
       <br><br>State:<br>
-      &nbsp;&nbsp;Chare 0 : stepCounter = 0, value = v<sub>0</sub><br>
-      &nbsp;&nbsp;Chare 1 : stepCounter = 0, value = v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 : stepCounter = 0, value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 : stepCounter = 0, value = v<sub>3</sub><br>
+        Chare 0 : stepCounter = 0, value = v<sub>0</sub><br>
+        Chare 1 : stepCounter = 0, value = v<sub>1</sub><br>
+        Chare 2 : stepCounter = 0, value = v<sub>2</sub><br>
+        Chare 3 : stepCounter = 0, value = v<sub>3</sub><br>
       <br>Messages In-Flight:<br>
-      &nbsp;&nbsp;<i>none</i><br>
+        <i>none</i><br>
     </li>
 
     <li style="{margin-bottom:20px;}">
      <b>First</b>:  All chare objects send their messages for step 1.
       <br><br>State:<br>
-      &nbsp;&nbsp;Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
-      &nbsp;&nbsp;Chare 1 : stepCounter = 1, value = v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 : stepCounter = 1, value = v<sub>3</sub><br>
+        Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
+        Chare 1 : stepCounter = 1, value = v<sub>1</sub><br>
+        Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
+        Chare 3 : stepCounter = 1, value = v<sub>3</sub><br>
       <br>Messages In-Flight:<br>
-      &nbsp;&nbsp;Chare 0 -> Chare 1 : fromStep = 1, value = v<sub>0</sub><br>
-      &nbsp;&nbsp;Chare 1 -> Chare 2 : fromStep = 1, value = v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 -> Chare 3 : fromStep = 1, value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 -> Chare 4 : fromStep = 1, value = v<sub>3</sub><br>
+        Chare 0 -&gt; Chare 1 : fromStep = 1, value = v<sub>0</sub><br>
+        Chare 1 -&gt; Chare 2 : fromStep = 1, value = v<sub>1</sub><br>
+        Chare 2 -&gt; Chare 3 : fromStep = 1, value = v<sub>2</sub><br>
+        Chare 3 -&gt; Chare 4 : fromStep = 1, value = v<sub>3</sub><br>
     </li>
 
     <li style="{margin-bottom:20px;}">
@@ -527,15 +536,15 @@
      for Chare 1 (the incoming value is added, the sum is passed to Chare 3, and Chare 1's
      stepCounter is incremented).
       <br><br>State:<br>
-      &nbsp;&nbsp;Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
-      &nbsp;&nbsp;Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 : stepCounter = 1, value = v<sub>3</sub><br>
+        Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
+        Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
+        Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
+        Chare 3 : stepCounter = 1, value = v<sub>3</sub><br>
       <br>Messages In-Flight:<br>
-      &nbsp;&nbsp;Chare 1 -> Chare 2 : fromStep = 1, value = v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 -> Chare 3 : fromStep = 1, value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 -> Chare 4 : fromStep = 1, value = v<sub>3</sub><br>
-      &nbsp;&nbsp;Chare 1 -> Chare 3 : fromStep = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
+        Chare 1 -&gt; Chare 2 : fromStep = 1, value = v<sub>1</sub><br>
+        Chare 2 -&gt; Chare 3 : fromStep = 1, value = v<sub>2</sub><br>
+        Chare 3 -&gt; Chare 4 : fromStep = 1, value = v<sub>3</sub><br>
+        Chare 1 -&gt; Chare 3 : fromStep = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
     </li>
 
     <li style="{margin-bottom:20px;}">
@@ -543,14 +552,14 @@
       from  Chare 2.  Chare 3 notices that this message is out of order (it was in step 1 and is
       expecting a message with <i>fromState</i> = 1 but this message has <i>fromState</i> = 2).
       <br><br>State:<br>
-      &nbsp;&nbsp;Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
-      &nbsp;&nbsp;Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 : stepCounter = 1, value = v<sub>3</sub>, <i>buffered message(s) = { (fromStep = 2, value = v<sub>0</sub>+v<sub>1</sub>) }</i><br>
+        Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
+        Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
+        Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
+        Chare 3 : stepCounter = 1, value = v<sub>3</sub>, <i>buffered message(s) = { (fromStep = 2, value = v<sub>0</sub>+v<sub>1</sub>) }</i><br>
       <br>Messages In-Flight:<br>
-      &nbsp;&nbsp;Chare 1 -> Chare 2 : fromStep = 1, value = v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 -> Chare 3 : fromStep = 1, value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 -> Chare 4 : fromStep = 1, value = v<sub>3</sub><br>
+        Chare 1 -&gt; Chare 2 : fromStep = 1, value = v<sub>1</sub><br>
+        Chare 2 -&gt; Chare 3 : fromStep = 1, value = v<sub>2</sub><br>
+        Chare 3 -&gt; Chare 4 : fromStep = 1, value = v<sub>3</sub><br>
     </li>
 
     <li style="{margin-bottom:20px;}">
@@ -560,34 +569,34 @@
       <i>fromState</i> value).  In this case, there is one, so it processes the buffered message
       also (advancing Chare 3 through two steps).
       <br><br>State:<br>
-      &nbsp;&nbsp;Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
-      &nbsp;&nbsp;Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 : stepCounter = 3, value = v<sub>0</sub>+v<sub>1</sub>+v<sub>2</sub>+v<sub>3</sub><br>
+        Chare 0 : stepCounter = 1, value = v<sub>0</sub><br>
+        Chare 1 : stepCounter = 2, value = v<sub>0</sub>+v<sub>1</sub><br>
+        Chare 2 : stepCounter = 1, value = v<sub>2</sub><br>
+        Chare 3 : stepCounter = 3, value = v<sub>0</sub>+v<sub>1</sub>+v<sub>2</sub>+v<sub>3</sub><br>
       <br>Messages In-Flight:<br>
-      &nbsp;&nbsp;Chare 1 -> Chare 2 : fromStep = 1, value = v<sub>1</sub><br>
-      &nbsp;&nbsp;Chare 2 -> Chare 3 : fromStep = 1, value = v<sub>2</sub><br>
-      &nbsp;&nbsp;Chare 3 -> Chare 4 : fromStep = 1, value = v<sub>3</sub><br>
-      &nbsp;&nbsp;Chare 3 -> Chare 5 : fromStep = 2, value = v<sub>2</sub>+v<sub>3</sub><br>
-      &nbsp;&nbsp;Chare 3 -> Chare 7 : fromStep = 3, value = v<sub>0</sub>+v<sub>1</sub>+v<sub>2</sub>+v<sub>3</sub><br>
+        Chare 1 -&gt; Chare 2 : fromStep = 1, value = v<sub>1</sub><br>
+        Chare 2 -&gt; Chare 3 : fromStep = 1, value = v<sub>2</sub><br>
+        Chare 3 -&gt; Chare 4 : fromStep = 1, value = v<sub>3</sub><br>
+        Chare 3 -&gt; Chare 5 : fromStep = 2, value = v<sub>2</sub>+v<sub>3</sub><br>
+        Chare 3 -&gt; Chare 7 : fromStep = 3, value = v<sub>0</sub>+v<sub>1</sub>+v<sub>2</sub>+v<sub>3</sub><br>
     </li>
    </ul>
 
-  </p>
+  
 
   <p class="BasicParagraph">
    With this change in place (modification to chare array objects so they don't need to wait for a
    barrier), interaction with the <i>main</i> chare object is no longer needed during the prefix
    computation.  Instead, each chare object in the array would only need to send a single message to
    the <i>main</i> chare object after its stepCounter has reached
-   <i>&lceil; log<sub>2</sub>(N) &rceil;</i>.  This helps reduce the required amount of communication
+   <i>⌈ log<sub>2</sub>(N) ⌉</i>.  This helps reduce the required amount of communication
    (assuming buffered messages, not re-sends).  It also allows each chare object to proceed with
    computation based solely
    on data dependencies being met (i.e. it has the data it needs to move forward with its portion of the
    computation).  With the barriers, all chare objects have to wait for the slowest chare object to
    complete the current step before they can move onto the next step even if they already have the data
    they need to continue.
-   <font color=ff0000>
+   <font color="ff0000">
     In simple example programs like this, this effect may not give a large speedup
     (in fact, the additional overhead compared to the tiny amount of work being done, a single addition,
     may even cause a slowdown), however, in actual applications, this can prove quite useful and give
@@ -606,12 +615,12 @@
  </div>
       
       <div id="footer">
-	&copy; 2020 
+	© 2020 
     	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
 	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
 	<a href="http://illinois.edu">University of Illinois</a>
       </div>
     </div>
-    <script src="/assets/hover.js" type="text/javascript"></script>
+    <script src="../assets/hover.js" type="text/javascript"></script>
   </body>
 </html>

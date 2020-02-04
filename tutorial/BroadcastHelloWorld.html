@@ -1,24 +1,25 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8">
     <title>Charm++: Tutorial</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
-		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
-		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<link href="../assets/charmwebsite.css" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Droid%20Sans" rel="stylesheet" type="text/css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		<script src="../codemirror/lib/codemirror.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		<script src="../codemirror/mode/clike/clike.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		<script src="../codemirror/lib/util/runmode.js" type="text/javascript">
 		</script>
-		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
-		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
-		<script src="/assets/prettify.js" type="text/javascript">
+		<link href="../codemirror/lib/codemirror.css" rel="stylesheet" type="text/css">
+		<link href="../codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css">
+		<script src="../assets/prettify.js" type="text/javascript">
 		</script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<!-- for equations from LaTeX to appear correctly-->
@@ -34,7 +35,7 @@
  <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 	  <!-- Brand and toggle get grouped for better mobile display -->
-		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+		<div id="logo"><a href="../"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
 
 <!-- Charm++ Button textformatted placeholder for logo button
 		<div class="navbar-header">
@@ -54,23 +55,23 @@
               <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
-		  <li><a href="/capabilities/">Capabilities</a></li>
-		  <li><a href="/progmodel/">Programming Model</a></li>
-		  <li><a href="/execmodel/">Execution Model</a></li>
-		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="../capabilities/">Capabilities</a></li>
+		  <li><a href="../progmodel/">Programming Model</a></li>
+		  <li><a href="../execmodel/">Execution Model</a></li>
+		  <li><a href="../applications/">Applications</a></li>
 		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
-		  <li><a href="/history/">History</a></li>
+		  <li><a href="../history/">History</a></li>
 		</ul>
               </li>
               <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
 		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
-      		  <li><a href="/tutorial/">Tutorial</a></li>
-						<li><a href="/exercises/">Exercises</a></li>
-      		  <li><a href="/help/">Manual</a></li>
-      		  <li><a href="/tools/">Tools</a></li>
-      		  <li><a href="/othermedia/">Other Media</a></li>
+      		  <li><a href="./">Tutorial</a></li>
+						<li><a href="../exercises/">Exercises</a></li>
+      		  <li><a href="../help/">Manual</a></li>
+      		  <li><a href="../tools/">Tools</a></li>
+      		  <li><a href="../othermedia/">Other Media</a></li>
 		</ul>
               </li>
 
@@ -87,23 +88,25 @@
               </li>
 
               <li class="dropdown">
-		<a href="/download/">Downloads</a>
+		<a href="../download/">Downloads</a>
               </li>
 
               <li class="dropdown">
-		<a href="/miniApps/">Mini-Apps</a>
+		<a href="../miniApps/">Mini-Apps</a>
               </li>
 
 	    </ul>
 	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
               <div class="form-group">
-		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
-		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+		<input type="hidden" name="sitesearch" value="charmplusplus.org">
+		<input type="text" class="form-control" name="q" placeholder="Search">
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
 	    </form>
-	  </div><!-- /.navbar-collapse -->
-	</div><!-- /.container-fluid -->
+	  </div>
+<!-- /.navbar-collapse -->
+	</div>
+<!-- /.container-fluid -->
       </nav>
 
 
@@ -116,15 +119,15 @@
 
   <!-- Figure -->
   <a class="StandardFigure" href="images/BroadcastHelloWorld_ProgramFlow.jpg">
-   <table class="StandardFigure" align=right border=0>
-    <tr><td align=center valign=middle>
-     <img class="StandardFigure" src="images/BroadcastHelloWorld_ProgramFlow_sm.jpg" border=0o>
+   </a><table class="StandardFigure" align="right" border="0">
+    <tr><td align="center" valign="middle">
+     <img class="StandardFigure" src="images/BroadcastHelloWorld_ProgramFlow_sm.jpg" border="0o">
     </td></tr>
-    <tr><td align=center valign=middle>
+    <tr><td align="center" valign="middle">
      <b>Figure:</b> Control Flow of the Broadcast "Hello World" Program
     </td></tr>
    </table>
-  </a>
+  
 
   <p class="BasicParagraph">
    This version of "Hello World" is basically the same as the Array "Hello World" program
@@ -141,21 +144,25 @@
        In this version of "Hello World," <i>Main::Main</i> tells the <i>entire</i> array of Hello chare
        objects to <i>sayHi()</i>.  This is done by calling <i>Hello::sayHi()</i> on the array
        itself (instead of just a single element of the array).
-   <li style="{margin-bottom:15px;}">
+   </li>
+<li style="{margin-bottom:15px;}">
        <b>sayHi():</b>  The <i>Hello::sayHi()</i> entry method no longer has the if statement that
        tests if the object is the last object in the chare array.  Instead, every element of the
        chare arrays invokes <i>done()</i> on the Main chare object (sends a message).
-   <li style="{margin-bottom:15px;}">
+   </li>
+<li style="{margin-bottom:15px;}">
        <b>done():</b>  The <i>Main::done()</i> entry method is now invoked multiple times.  The
        Main chare object has a counter, <i>doneCount</i>, that counts the number of times
        <i>Main::done()</i> has been called.  Once this count reaches the number of elements in
        the Hello chare array, the program exits.
-   <li style="{margin-bottom:15px;}">
+   </li>
+<li style="{margin-bottom:15px;}">
        <b>numElements:</b>  Since the Main chare object is the only object that needs access
        to the numElements value, it has been made into a member variable of the Main chare class.
-  </ul>
+  </li>
+</ul>
 
-  <br clear=all>
+  <br clear="all">
 
 
   <h2>Broadcast "Hello World" Code</h2>
@@ -170,18 +177,18 @@
 
   <!-- Figure -->
   <center>
-   <table class="StandardFigure" border=0 cellspacing=0 cellpadding=5>
+   <table class="StandardFigure" border="0" cellspacing="0" cellpadding="5">
     <tr>
 
-     <td align=center>
+     <td align="center">
 
       <!-- Header File -->
-      <table border=0 cellspacing=0 cellpadding=5 style="{margin-bottom:15px;}">
+      <table border="0" cellspacing="0" cellpadding="5" style="{margin-bottom:15px;}">
        <tr>
-        <td align=center valign=middle bgColor=bbbbbb><b><u>Header File <i>(hello.h)</i></u></b></td>
+        <td align="center" valign="middle" bgcolor="bbbbbb"><b><u>Header File <i>(hello.h)</i></u></b></td>
        </tr>
        <tr>
-        <td align=left valign=top bgColor=bbbbbb>
+        <td align="left" valign="top" bgcolor="bbbbbb">
          <div class="code">
           <code>
            #ifndef __HELLO_H__<br>
@@ -189,14 +196,14 @@
            <br>
            class Hello : public CBase_Hello {<br>
            <br>
-           &nbsp;public:<br>
+            public:<br>
            <br>
-           &nbsp;&nbsp;<font class="codeComment">/// Constructors ///</font><br>
-           &nbsp;&nbsp;Hello();<br>
-           &nbsp;&nbsp;Hello(CkMigrateMessage *msg);<br>
+             <font class="codeComment">/// Constructors ///</font><br>
+             Hello();<br>
+             Hello(CkMigrateMessage *msg);<br>
            <br>
-           &nbsp;&nbsp;<font class="codeComment">/// Entry Methods ///</font><br>
-           &nbsp;&nbsp;void sayHi(int from);<br>
+             <font class="codeComment">/// Entry Methods ///</font><br>
+             void sayHi(int from);<br>
            };<br>
            <br>
            #endif //__HELLO_H__
@@ -207,20 +214,20 @@
       </table>
 
       <!-- Interface File -->
-      <table border=0 cellspacing=0 cellpadding=5>
+      <table border="0" cellspacing="0" cellpadding="5">
        <tr>
-        <td align=center valign=middle bgColor=bbbbbb><b><u>Interface File <i>(hello.ci)</i></u></b></td>
+        <td align="center" valign="middle" bgcolor="bbbbbb"><b><u>Interface File <i>(hello.ci)</i></u></b></td>
        </tr>
        <tr>
-        <td align=left valign=top bgColor=bbbbbb>
+        <td align="left" valign="top" bgcolor="bbbbbb">
          <div class="code">
           <code>
            module hello {<br>
            <br>
-           &nbsp;&nbsp;array [1D] Hello {<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;entry Hello();<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;entry void sayHi(int);<br>
-           &nbsp;&nbsp;};<br>
+             array [1D] Hello {<br>
+               entry Hello();<br>
+               entry void sayHi(int);<br>
+             };<br>
            <br>
            };
           </code>
@@ -234,12 +241,12 @@
      <td>
 
       <!-- Source File -->
-      <table border=0 cellspacing=0 cellpadding=5>
+      <table border="0" cellspacing="0" cellpadding="5">
        <tr>
-        <td align=center valign=middle bgColor=bbbbbb><b><u>Source File <i>(hello.C)</i></u></b></td>
+        <td align="center" valign="middle" bgcolor="bbbbbb"><b><u>Source File <i>(hello.C)</i></u></b></td>
        </tr>
        <tr>
-        <td align=left valign=top bgColor=bbbbbb>
+        <td align="left" valign="top" bgcolor="bbbbbb">
          <div class="code">
           <code>
            #include "hello.decl.h"<br>
@@ -251,9 +258,9 @@
            <br>
            Hello::Hello() {<br>
            <font class="codeComment">
-           &nbsp;&nbsp;// Nothing to do when the Hello chare object is created.<br>
-           &nbsp;&nbsp;//   This is where member variables would be initialized<br>
-           &nbsp;&nbsp;//   just like in a C++ class constructor.<br>
+             // Nothing to do when the Hello chare object is created.<br>
+             //   This is where member variables would be initialized<br>
+             //   just like in a C++ class constructor.<br>
            </font>
            }<br>
            <br>
@@ -265,16 +272,16 @@
            <br>
            void Hello ::sayHi(int from) {<br>
            <br>
-           &nbsp;&nbsp;<font class="codeComment">// Have this chare object say hello to the user.</font><br>
-           &nbsp;&nbsp;CkPrintf("\"Hello\" from Hello chare # %d on "<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"processor %d (told by %d).\n",<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;thisIndex, CkMyPe(), from);<br>
+             <font class="codeComment">// Have this chare object say hello to the user.</font><br>
+             CkPrintf("\"Hello\" from Hello chare # %d on "<br>
+                      "processor %d (told by %d).\n",<br>
+                      thisIndex, CkMyPe(), from);<br>
            <br>
            <font class="codeComment">
-           &nbsp;&nbsp;// Report to the Main chare object that this chare object<br>
-           &nbsp;&nbsp;//   has completed its task.<br>
+             // Report to the Main chare object that this chare object<br>
+             //   has completed its task.<br>
            </font>
-           &nbsp;&nbsp;mainProxy.done();<br>
+             mainProxy.done();<br>
            }<br>
            <br>
            #include "hello.def.h"
@@ -295,18 +302,18 @@
 
   <!-- Figure -->
   <center>
-   <table class="StandardFigure" border=0 cellspacing=0 cellpadding=5>
+   <table class="StandardFigure" border="0" cellspacing="0" cellpadding="5">
     <tr>
 
-     <td align=center>
+     <td align="center">
 
       <!-- Header File -->
-      <table border=0 cellspacing=0 cellpadding=5 style="{margin-bottom:15px;}">
+      <table border="0" cellspacing="0" cellpadding="5" style="{margin-bottom:15px;}">
        <tr>
-        <td align=center valign=middle bgColor=bbbbbb><b><u>Header File <i>(main.h)</i></u></b></td>
+        <td align="center" valign="middle" bgcolor="bbbbbb"><b><u>Header File <i>(main.h)</i></u></b></td>
        </tr>
        <tr>
-        <td align=left valign=top bgColor=bbbbbb>
+        <td align="left" valign="top" bgcolor="bbbbbb">
          <div class="code">
           <code>
            #ifndef __MAIN_H__<br>
@@ -314,18 +321,18 @@
            <br>
            class Main : public CBase_Main {<br>
            <br>
-           &nbsp;private:<br>
-           &nbsp;&nbsp;<font class="codeComment">/// Member Variables (Object State) ///</font><br>
-           &nbsp;&nbsp;int numElements;<br>
-           &nbsp;&nbsp;int doneCount;<br>
+            private:<br>
+             <font class="codeComment">/// Member Variables (Object State) ///</font><br>
+             int numElements;<br>
+             int doneCount;<br>
            <br>
-           &nbsp;public:<br>
-           &nbsp;&nbsp;<font class="codeComment">/// Constructors ///</font><br>
-           &nbsp;&nbsp;Main(CkArgMsg* msg);<br>
-           &nbsp;&nbsp;Main(CkMigrateMessage* msg);<br>
+            public:<br>
+             <font class="codeComment">/// Constructors ///</font><br>
+             Main(CkArgMsg* msg);<br>
+             Main(CkMigrateMessage* msg);<br>
            <br>
-           &nbsp;&nbsp;<font class="codeComment">/// Entry Methods ///</font><br>
-           &nbsp;&nbsp;void done();<br>
+             <font class="codeComment">/// Entry Methods ///</font><br>
+             void done();<br>
            };<br>
            <br>
            #endif //__MAIN_H__
@@ -336,24 +343,24 @@
       </table>
 
       <!-- Interface File -->
-      <table border=0 cellspacing=0 cellpadding=5>
+      <table border="0" cellspacing="0" cellpadding="5">
        <tr>
-        <td align=center valign=middle bgColor=bbbbbb><b><u>Interface File <i>(main.ci)</i></u></b></td>
+        <td align="center" valign="middle" bgcolor="bbbbbb"><b><u>Interface File <i>(main.ci)</i></u></b></td>
        </tr>
        <tr>
-        <td align=left valign=top bgColor=bbbbbb>
+        <td align="left" valign="top" bgcolor="bbbbbb">
          <div class="code">
           <code>
            mainmodule main {<br>
            <br>
-           &nbsp;&nbsp;readonly CProxy_Main mainProxy;<br>
+             readonly CProxy_Main mainProxy;<br>
            <br>
-           &nbsp;&nbsp;extern module hello;<br>
+             extern module hello;<br>
            <br>
-           &nbsp;&nbsp;mainchare Main {<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;entry Main(CkArgMsg* msg);<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;entry void done();<br>
-           &nbsp;&nbsp;};<br>
+             mainchare Main {<br>
+               entry Main(CkArgMsg* msg);<br>
+               entry void done();<br>
+             };<br>
            <br>
            };
           </code>
@@ -367,12 +374,12 @@
      <td>
 
       <!-- Source File -->
-      <table border=0 cellspacing=0 cellpadding=5>
+      <table border="0" cellspacing="0" cellpadding="5">
        <tr>
-        <td align=center valign=middle bgColor=bbbbbb><b><u>Source File <i>(main.C)</i></u></b></td>
+        <td align="center" valign="middle" bgcolor="bbbbbb"><b><u>Source File <i>(main.C)</i></u></b></td>
        </tr>
        <tr>
-        <td align=left valign=top bgColor=bbbbbb>
+        <td align="left" valign="top" bgcolor="bbbbbb">
          <div class="code">
           <code>
            #include "main.decl.h"<br>
@@ -385,48 +392,48 @@
            <font class="codeComment">// Entry point of Charm++ application</font><br>
            Main::Main(CkArgMsg* msg) {<br>
            <br>
-           &nbsp;&nbsp;<font class="codeComment">// Initialize the local member variables </font><br>
-           &nbsp;&nbsp;doneCount = 0;&nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">// Set doneCount to 0</font><br>
-           &nbsp;&nbsp;numElements = 5;&nbsp;&nbsp;<font class="codeComment">// Default numElements to 5</font><br>
+             <font class="codeComment">// Initialize the local member variables </font><br>
+             doneCount = 0;    <font class="codeComment">// Set doneCount to 0</font><br>
+             numElements = 5;  <font class="codeComment">// Default numElements to 5</font><br>
            <br>
            <font class="codeComment">
-           &nbsp;&nbsp;// There should be 0 or 1 command line arguments.<br>
-           &nbsp;&nbsp;//   If there is one, it is the number of "Hello"<br>
-           &nbsp;&nbsp;//   chares that should be created.<br>
+             // There should be 0 or 1 command line arguments.<br>
+             //   If there is one, it is the number of "Hello"<br>
+             //   chares that should be created.<br>
            </font>
-           &nbsp;&nbsp;if (msg->argc > 1)<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;numElements = atoi(msg->argv[1]);<br>
+             if (msg-&gt;argc &gt; 1)<br>
+               numElements = atoi(msg-&gt;argv[1]);<br>
            <br>
            <font class="codeComment">
-           &nbsp;&nbsp;// We are done with msg so delete it.<br>
+             // We are done with msg so delete it.<br>
            </font>
-           &nbsp;&nbsp;delete msg;<br>
+             delete msg;<br>
            <br>
            <font class="codeComment">
-           &nbsp;&nbsp;// Display some info about this execution<br>
-           &nbsp;&nbsp;//   for the user.<br>
+             // Display some info about this execution<br>
+             //   for the user.<br>
            </font>
-           &nbsp;&nbsp;CkPrintf("Running \"Hello World\" with %d elements "<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"using %d processors.\n",<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;numElements, CkNumPes());<br>
+             CkPrintf("Running \"Hello World\" with %d elements "<br>
+                      "using %d processors.\n",<br>
+                      numElements, CkNumPes());<br>
            <br>
            <font class="codeComment">
-           &nbsp;&nbsp;// Set the mainProxy readonly to point to a<br>
-           &nbsp;&nbsp;//   proxy for the Main chare object (this<br>
-           &nbsp;&nbsp;//   chare object).<br>
+             // Set the mainProxy readonly to point to a<br>
+             //   proxy for the Main chare object (this<br>
+             //   chare object).<br>
            </font>
-           &nbsp;&nbsp;mainProxy = thisProxy;<br>
+             mainProxy = thisProxy;<br>
            <br>
            <font class="codeComment">
-           &nbsp;&nbsp;// Create the array of Hello chare objects.<br>
+             // Create the array of Hello chare objects.<br>
            </font>
-           &nbsp;&nbsp;CProxy_Hello helloArray = CProxy_Hello::ckNew(numElements);<br>
+             CProxy_Hello helloArray = CProxy_Hello::ckNew(numElements);<br>
            <br>
            <font class="codeComment">
-           &nbsp;&nbsp;// Invoke the "sayHi()" entry method on all of the<br>
-           &nbsp;&nbsp;//   elements in the helloArray array of chare objects.<br>
+             // Invoke the "sayHi()" entry method on all of the<br>
+             //   elements in the helloArray array of chare objects.<br>
            </font>
-           &nbsp;&nbsp;helloArray.sayHi(-1);<br>
+             helloArray.sayHi(-1);<br>
            }<br>
            <br>
            <font class="codeComment">
@@ -442,13 +449,13 @@
            </font>
            void Main::done() {<br>
            <font class="codeComment">
-           &nbsp;&nbsp;// Increment the doneCount.   If all of the Hello chare<br>
-           &nbsp;&nbsp;//   objects have indicated that they are done, then exit.<br>
-           &nbsp;&nbsp;//   Otherwise, continue waiting for the Hello chare objects.<br>
+             // Increment the doneCount.   If all of the Hello chare<br>
+             //   objects have indicated that they are done, then exit.<br>
+             //   Otherwise, continue waiting for the Hello chare objects.<br>
            </font>
-           &nbsp;&nbsp;doneCount++;<br>
-           &nbsp;&nbsp;if (doneCount >= numElements)<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;CkExit();<br>
+             doneCount++;<br>
+             if (doneCount &gt;= numElements)<br>
+               CkExit();<br>
            }<br>
            <br>
            #include "main.def.h"
@@ -472,12 +479,12 @@
 
   <!-- Figure -->
   <center>
-   <table class="StandardFigure" border=0 cellspacing=0 cellpadding=5 style="{margin-bottom:15px;}">
+   <table class="StandardFigure" border="0" cellspacing="0" cellpadding="5" style="{margin-bottom:15px;}">
     <tr>
-     <td align=center valign=middle bgColor=bbbbbb><b><u>Makefile</u></b></td>
+     <td align="center" valign="middle" bgcolor="bbbbbb"><b><u>Makefile</u></b></td>
     </tr>
     <tr>
-     <td align=left valign=top bgColor=bbbbbb>
+     <td align="left" valign="top" bgcolor="bbbbbb">
       <div class="code">
        <code>
         CHARMDIR = <font class="generalComment">[put Charm++ install directory here]</font><br>
@@ -487,24 +494,24 @@
         all: hello<br>
         <br>
         hello : main.o hello.o<br>
-        &nbsp;&nbsp;&nbsp;$(CHARMC) -language charm++ -o hello main.o hello.o<br>
+           $(CHARMC) -language charm++ -o hello main.o hello.o<br>
         <br>
         main.o : main.C main.h main.decl.h main.def.h hello.decl.h<br>
-        &nbsp;&nbsp;&nbsp;$(CHARMC) -o main.o main.C<br>
+           $(CHARMC) -o main.o main.C<br>
         <br>
         main.decl.h main.def.h : main.ci<br>
-        &nbsp;&nbsp;&nbsp;$(CHARMC) main.ci<br>
+           $(CHARMC) main.ci<br>
         <br>
         hello.o : hello.C hello.h hello.decl.h hello.def.h main.decl.h<br>
-        &nbsp;&nbsp;&nbsp;$(CHARMC) -o hello.o hello.C<br>
+           $(CHARMC) -o hello.o hello.C<br>
         <br>
         hello.decl.h hello.def.h : hello.ci<br>
-        &nbsp;&nbsp;&nbsp;$(CHARMC) hello.ci<br>
+           $(CHARMC) hello.ci<br>
         <br>
         clean:<br>
-        &nbsp;&nbsp;&nbsp;rm -f main.decl.h main.def.h main.o<br>
-        &nbsp;&nbsp;&nbsp;rm -f hello.decl.h hello.def.h hello.o<br>
-        &nbsp;&nbsp;&nbsp;rm -f hello charmrun
+           rm -f main.decl.h main.def.h main.o<br>
+           rm -f hello.decl.h hello.def.h hello.o<br>
+           rm -f hello charmrun
        </code>
       </div>
      </td>
@@ -524,10 +531,10 @@
 
   <!-- Figure -->
   <center>
-  <table border=0 cellpadding=5 cellspacing=0>
+  <table border="0" cellpadding="5" cellspacing="0">
 
    <tr>
-    <td align=left valign=middle>
+    <td align="left" valign="middle">
      <div class="code">
       <code>
        $ ./charmrun +p3 ./hello 10<br>
@@ -548,7 +555,7 @@
    </tr>
 
    <tr>
-    <td align=center valign=middle>
+    <td align="center" valign="middle">
      <b>Figure:</b> Output of the Broadcast "Hello World" Program
     </td>
    </tr>
@@ -560,12 +567,12 @@
  </div>
       
       <div id="footer">
-	&copy; 2020 
+	© 2020 
     	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
 	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
 	<a href="http://illinois.edu">University of Illinois</a>
       </div>
     </div>
-    <script src="/assets/hover.js" type="text/javascript"></script>
+    <script src="../assets/hover.js" type="text/javascript"></script>
   </body>
 </html>

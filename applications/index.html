@@ -1,24 +1,25 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8">
     <title>Charm++: Applications</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
-		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
-		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<link href="../assets/charmwebsite.css" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Droid%20Sans" rel="stylesheet" type="text/css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		<script src="../codemirror/lib/codemirror.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		<script src="../codemirror/mode/clike/clike.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		<script src="../codemirror/lib/util/runmode.js" type="text/javascript">
 		</script>
-		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
-		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
-		<script src="/assets/prettify.js" type="text/javascript">
+		<link href="../codemirror/lib/codemirror.css" rel="stylesheet" type="text/css">
+		<link href="../codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css">
+		<script src="../assets/prettify.js" type="text/javascript">
 		</script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<!-- for equations from LaTeX to appear correctly-->
@@ -34,7 +35,7 @@
  <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 	  <!-- Brand and toggle get grouped for better mobile display -->
-		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+		<div id="logo"><a href="../"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
 
 <!-- Charm++ Button textformatted placeholder for logo button
 		<div class="navbar-header">
@@ -54,23 +55,23 @@
               <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
-		  <li><a href="/capabilities/">Capabilities</a></li>
-		  <li><a href="/progmodel/">Programming Model</a></li>
-		  <li><a href="/execmodel/">Execution Model</a></li>
-		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="../capabilities/">Capabilities</a></li>
+		  <li><a href="../progmodel/">Programming Model</a></li>
+		  <li><a href="../execmodel/">Execution Model</a></li>
+		  <li><a href="./">Applications</a></li>
 		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
-		  <li><a href="/history/">History</a></li>
+		  <li><a href="../history/">History</a></li>
 		</ul>
               </li>
               <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
 		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
-      		  <li><a href="/tutorial/">Tutorial</a></li>
-						<li><a href="/exercises/">Exercises</a></li>
-      		  <li><a href="/help/">Manual</a></li>
-      		  <li><a href="/tools/">Tools</a></li>
-      		  <li><a href="/othermedia/">Other Media</a></li>
+      		  <li><a href="../tutorial/">Tutorial</a></li>
+						<li><a href="../exercises/">Exercises</a></li>
+      		  <li><a href="../help/">Manual</a></li>
+      		  <li><a href="../tools/">Tools</a></li>
+      		  <li><a href="../othermedia/">Other Media</a></li>
 		</ul>
               </li>
 
@@ -87,23 +88,25 @@
               </li>
 
               <li class="dropdown">
-		<a href="/download/">Downloads</a>
+		<a href="../download/">Downloads</a>
               </li>
 
               <li class="dropdown">
-		<a href="/miniApps/">Mini-Apps</a>
+		<a href="../miniApps/">Mini-Apps</a>
               </li>
 
 	    </ul>
 	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
               <div class="form-group">
-		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
-		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+		<input type="hidden" name="sitesearch" value="charmplusplus.org">
+		<input type="text" class="form-control" name="q" placeholder="Search">
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
 	    </form>
-	  </div><!-- /.navbar-collapse -->
-	</div><!-- /.container-fluid -->
+	  </div>
+<!-- /.navbar-collapse -->
+	</div>
+<!-- /.container-fluid -->
       </nav>
 
 
@@ -124,7 +127,8 @@
 <div id="applicationContainer">
 
 <a name="NAMD"></a>
-<div id="NAMD" class="app"><h2>Molecular Dynamics - NAMD</h2>
+<div id="NAMD" class="app">
+<h2>Molecular Dynamics - NAMD</h2>
 <p align="justify"> NAMD, recipient of a <b>2002 Gordon Bell Award</b>, is a parallel molecular
 dynamics application designed for high-performance simulation of large biomolecular
 systems. NAMD is a result of many years of collaboration between Prof.
@@ -160,8 +164,9 @@ page for more details. </p>
 </div>
 
 <a name="ChaNGa"></a>
-<hr />
-<div id="ChaNGa" class="app"><h2>N-Body Cosmological Simulations - ChaNGa</h2>
+<hr>
+<div id="ChaNGa" class="app">
+<h2>N-Body Cosmological Simulations - ChaNGa</h2>
 
 <figure>
 	<img src="../images/changa_app.png" alt="ChaNGa" align="right">
@@ -209,19 +214,18 @@ parallel program.-->
 GPU clusters. Over time, ChaNGa is being actively developed and improved, with an eye
 for efficient utilization and scaling of current and future supercomputing
 systems.
-See <a
-href="http://librarian.phys.washington.edu/astro/index.php/Research:ChaNGa">ChaNGa</a> web
+See <a href="http://librarian.phys.washington.edu/astro/index.php/Research:ChaNGa">ChaNGa</a> web
 site for download and instructions. 
 </p>
 
 
 <a name="CharmEpisimdemics"></a>
-<hr />
-<div id="CharmEpisimdemics" class="app"><h2>Contagion in Social Networks - Episimdemics </h2>
+<hr>
+<div id="CharmEpisimdemics" class="app">
+<h2>Contagion in Social Networks - Episimdemics </h2>
 
 <figure>
-	<img src="../images/episimdemics_app.jpg" alt="episims"
-	Hspace="10" Vspace="10" align="left">
+	<img src="../images/episimdemics_app.jpg" alt="episims" hspace="10" vspace="10" align="left">
 	<!--<figcaption>Image courtesy SDSC</figcaption>-->
 </figure>
 
@@ -250,12 +254,12 @@ Gene/Q.
 </div>
 
 <a name="OpenAtom"></a>
-<hr />
-<div id="OpenAtom" class="app"><h2>Ab initio Molecular Dynamics - OpenAtom</h2>
+<hr>
+<div id="OpenAtom" class="app">
+<h2>Ab initio Molecular Dynamics - OpenAtom</h2>
 
 <figure>
-	<img src="../images/openatom_app.png" alt="OpenAtom" width="250"
-	align="right">
+	<img src="../images/openatom_app.png" alt="OpenAtom" width="250" align="right">
 </figure>
 <p align="justify"> Many important problems in material science, chemistry, solid-state
 physics, and biophysics require a modeling approach based on fundamental
@@ -268,13 +272,16 @@ problems. We have parallelized CPAIMD using Charm++. The computation is modeled
 using a large number of virtual processors, which are mapped flexibly to
 available processors with assistance from the Charm++ runtime system.  See
 the <a href="http://charm.cs.uiuc.edu/OpenAtom/">OpenAtom</a> web site for more
-details.<p>
+details.</p>
+<p>
 <br>
+</p>
 </div>
 
 <a name="CSE"></a>
-<hr />
-<div id="CSE" class="app"><h2>Computational Science and Engineering Applications - CSE</h2>
+<hr>
+<div id="CSE" class="app">
+<h2>Computational Science and Engineering Applications - CSE</h2>
 <p align="justify">Professor P. Geubelle and S. Breitenfeld of
 the <a href="http://ssm7.ae.uiuc.edu/PHG_GROUP/"> Computational Solid Mechanics
 Group</a> have developed CrackProp, an explicit Finite Element method
@@ -285,8 +292,7 @@ Element Framework</a>.
 </p>
 
 <figure>
-	<img src="../images/cse_dendrites_app.jpg" alt="CSE" width="314"
-	Hspace="10" Vspace="10"align="left">
+	<img src="../images/cse_dendrites_app.jpg" alt="CSE" width="314" hspace="10" vspace="10" align="left">
 </figure>
 
 <p align="justify">Professor J. Dantzig and Jun-Ho Jeong of the Solidification Processing Lab
@@ -305,12 +311,12 @@ method, which solves a global matrix using local operations.</p>
 </div>
 
 <a name="CSAR"></a>
-<hr />
-<div id="CSAR" class="app"><h2>Advanced Rocket Simulation</h2>
+<hr>
+<div id="CSAR" class="app">
+<h2>Advanced Rocket Simulation</h2>
 
 <figure>
-	<img src="../images/rsrm_ignition_app.jpg" alt="CSE" width="250"
-	Hspace="10" Vspace="10"align="right">
+	<img src="../images/rsrm_ignition_app.jpg" alt="CSE" width="250" hspace="10" vspace="10" align="right">
 </figure>
 
 <p align="justify">
@@ -339,11 +345,11 @@ care of by the framework.
 </div>
 
 <a name="PSTIP"></a>
-<hr />
-<div id="pstip" class="app"><h2>PSTIP - Parallel Stochastic Integer Programming</h2>
+<hr>
+<div id="pstip" class="app">
+<h2>PSTIP - Parallel Stochastic Integer Programming</h2>
 <figure>
-	<img src="../images/jetalloc.png" alt="CSE" width="400"
-	Hspace="10" Vspace="10"align="left">
+	<img src="../images/jetalloc.png" alt="CSE" width="400" hspace="10" vspace="10" align="left">
 </figure>
 
 <p align="justify">Stochastic optimization is used for optimal resource allocation under 
@@ -372,7 +378,7 @@ on two different fronts - parallel exploration of the branch-and-bound tree vert
 tree and parallel evaluation of scenarios. Our designs show strong scaling to
 hundreds of cores. See the <a href="http://charm.cs.illinois.edu/newPapers/13-08/paper.pdf">report</a> 
 for more details. </p>
-</p>
+
 
 </div>
 
@@ -380,12 +386,13 @@ for more details. </p>
  </div>
       
       <div id="footer">
-	&copy; 2020 
+	© 2020 
     	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
 	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
 	<a href="http://illinois.edu">University of Illinois</a>
       </div>
     </div>
-    <script src="/assets/hover.js" type="text/javascript"></script>
-  </body>
+    <script src="../assets/hover.js" type="text/javascript"></script>
+  </div>
+</body>
 </html>

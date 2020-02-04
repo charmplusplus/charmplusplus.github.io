@@ -1,24 +1,25 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8">
     <title>Charm++: Tutorial</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
-		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
-		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<link href="../assets/charmwebsite.css" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Droid%20Sans" rel="stylesheet" type="text/css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		<script src="../codemirror/lib/codemirror.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		<script src="../codemirror/mode/clike/clike.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		<script src="../codemirror/lib/util/runmode.js" type="text/javascript">
 		</script>
-		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
-		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
-		<script src="/assets/prettify.js" type="text/javascript">
+		<link href="../codemirror/lib/codemirror.css" rel="stylesheet" type="text/css">
+		<link href="../codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css">
+		<script src="../assets/prettify.js" type="text/javascript">
 		</script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<!-- for equations from LaTeX to appear correctly-->
@@ -34,7 +35,7 @@
  <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 	  <!-- Brand and toggle get grouped for better mobile display -->
-		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+		<div id="logo"><a href="../"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
 
 <!-- Charm++ Button textformatted placeholder for logo button
 		<div class="navbar-header">
@@ -54,23 +55,23 @@
               <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
-		  <li><a href="/capabilities/">Capabilities</a></li>
-		  <li><a href="/progmodel/">Programming Model</a></li>
-		  <li><a href="/execmodel/">Execution Model</a></li>
-		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="../capabilities/">Capabilities</a></li>
+		  <li><a href="../progmodel/">Programming Model</a></li>
+		  <li><a href="../execmodel/">Execution Model</a></li>
+		  <li><a href="../applications/">Applications</a></li>
 		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
-		  <li><a href="/history/">History</a></li>
+		  <li><a href="../history/">History</a></li>
 		</ul>
               </li>
               <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
 		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
-      		  <li><a href="/tutorial/">Tutorial</a></li>
-						<li><a href="/exercises/">Exercises</a></li>
-      		  <li><a href="/help/">Manual</a></li>
-      		  <li><a href="/tools/">Tools</a></li>
-      		  <li><a href="/othermedia/">Other Media</a></li>
+      		  <li><a href="./">Tutorial</a></li>
+						<li><a href="../exercises/">Exercises</a></li>
+      		  <li><a href="../help/">Manual</a></li>
+      		  <li><a href="../tools/">Tools</a></li>
+      		  <li><a href="../othermedia/">Other Media</a></li>
 		</ul>
               </li>
 
@@ -87,23 +88,25 @@
               </li>
 
               <li class="dropdown">
-		<a href="/download/">Downloads</a>
+		<a href="../download/">Downloads</a>
               </li>
 
               <li class="dropdown">
-		<a href="/miniApps/">Mini-Apps</a>
+		<a href="../miniApps/">Mini-Apps</a>
               </li>
 
 	    </ul>
 	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
               <div class="form-group">
-		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
-		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+		<input type="hidden" name="sitesearch" value="charmplusplus.org">
+		<input type="text" class="form-control" name="q" placeholder="Search">
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
 	    </form>
-	  </div><!-- /.navbar-collapse -->
-	</div><!-- /.container-fluid -->
+	  </div>
+<!-- /.navbar-collapse -->
+	</div>
+<!-- /.container-fluid -->
       </nav>
 
 
@@ -137,7 +140,8 @@
     of the processing elements based on actual runtime data so that all of the processing elements
     are being fully utilized.
 
-   <li style="{margin-bottom:15px;}">
+   </li>
+<li style="{margin-bottom:15px;}">
     <b>Fault Tolerance:</b>  Another benefit of being able to migrate objects is being able to
     duplicate objects (either on disk for a checkpoint or in-memory to enabling dynamic fault
     recovery).  If one of the processing elements were to fail/crash during the execution
@@ -148,7 +152,8 @@
     (e.g. temperature sensor warning), the chare objects on that particular processing element(s)
     can be migrated away from the defective hardware in an attempt to avoid the fault altogether.
 
-   <li style="{margin-bottom:15px;}">
+   </li>
+<li style="{margin-bottom:15px;}">
     <b>Shrinking/Growing Executions:</b>  As a Charm++ application is executing, the load of the overall
     cluster may changed (i.e. another job is launched, a more important job is launched, another
     job may complete freeing processing elements, and so on).  Because the chare objects can be
@@ -158,25 +163,27 @@
     <i>migrate</i> work onto newly available processing elements.  Once again, this can be done
     dynamically by the Charm++ Runtime System while the Charm++ application continues to run.
 
-   <li style="{margin-bottom:15px;}">
+   </li>
+<li style="{margin-bottom:15px;}">
     <b>Parameter Marshaling:</b>  Generally speaking, an object (not just chare objects; C++ objects,
     C structures, and so on) can have PUP routines.  Any object that has a PUP routine can then be
     passed as an argument in an entry method invocation.
 
-  </ul>
+  </li>
+</ul>
 
   <!-- Figure -->
   <a class="StandardFigure" href="images/PackUnPackProcess.jpg">
-   <table class="StandardFigure" align=right border=0>
-    <tr><td align=center valign=middle>
-     <img class="StandardFigure" src="images/PackUnPackProcess_sm.jpg" border=0o>
+   </a><table class="StandardFigure" align="right" border="0">
+    <tr><td align="center" valign="middle">
+     <img class="StandardFigure" src="images/PackUnPackProcess_sm.jpg" border="0o">
     </td></tr>
-    <tr><td align=center valign=middle>
+    <tr><td align="center" valign="middle">
      <b>Figure:</b> Process of "Object Migration": A Chare Object Moving from One Processing<br>
                     Element to Another Processing Element
     </td></tr>
    </table>
-  </a>
+  
 
 
   <h2>Pack-UnPack (PUP) Routines</h2>
@@ -200,21 +207,25 @@
     to encapsulate the state of the chare object.  Once the size of the buffer is known, the buffer
     is allocated by the Charm++ Runtime System.
 
-   <li style="{margin-bottom:15px;}">
+   </li>
+<li style="{margin-bottom:15px;}">
     <b>Packing:</b> <i>(On source processing element)</i> Second, the PUP routine is called again
     to actually pack the state of the chare object into the buffer.
 
-   <li style="{margin-bottom:15px;}">
+   </li>
+<li style="{margin-bottom:15px;}">
     <b>Migration:</b> At this point, the buffer can be sent to another processing element via a
     message, it can be stored into a file on a hard disk for later use (checkpoint), and so on.
 
-   <li style="{margin-bottom:15px;}">
+   </li>
+<li style="{margin-bottom:15px;}">
     <b>Unpacking:</b> <i>(On target processing element)</i> Finally, once the buffer arrives to
     its target processing element, the PUP routine is called again to unpack the state of the
     chare object thus recreating the chare object that was originally packed on the source
     processing element.
 
-  </ul>
+  </li>
+</ul>
 
   <p class="BasicParagraph">
    The process of object migration, can be controlled by the Charm++ application.  By default,
@@ -224,70 +235,70 @@
    times when it is safe to do so.
   </p>
   
-  <br clear=all>
+  <br clear="all">
 
 
   <h2>PUP Routine Example</h2>
 
   <!-- Figure -->
   <center>
-   <table class="StandardFigure" border=0 cellspacing=0 cellpadding=5 align=right>
+   <table class="StandardFigure" border="0" cellspacing="0" cellpadding="5" align="right">
     <tr>
 
-     <td align=center>
+     <td align="center">
 
       <!-- Header File -->
-      <table border=0 cellspacing=0 cellpadding=5 style="{margin-bottom:15px;}">
+      <table border="0" cellspacing="0" cellpadding="5" style="{margin-bottom:15px;}">
        <tr>
-        <td align=center valign=middle bgColor=bbbbbb><b><u>Header File</u></b></td>
+        <td align="center" valign="middle" bgcolor="bbbbbb"><b><u>Header File</u></b></td>
        </tr>
        <tr>
-        <td align=left valign=top bgColor=bbbbbb>
+        <td align="left" valign="top" bgcolor="bbbbbb">
          <div class="code">
           <code>
            class MyChare : public CBase_MyChare {<br>
            <br>
-           &nbsp;private:<br>
-           &nbsp;&nbsp;<font class="codeComment">/// Member Variables ///</font><br>
-           &nbsp;&nbsp;int a;<br>
-           &nbsp;&nbsp;float b;<br>
-           &nbsp;&nbsp;char c;<br>
-           &nbsp;&nbsp;float localArray[LOCAL_SIZE];<br>
-           &nbsp;&nbsp;int heapArraySize;  <font class="codeComment">// length of heapArray array</font><br>
-           &nbsp;&nbsp;float* heapArray;<br>
+            private:<br>
+             <font class="codeComment">/// Member Variables ///</font><br>
+             int a;<br>
+             float b;<br>
+             char c;<br>
+             float localArray[LOCAL_SIZE];<br>
+             int heapArraySize;  <font class="codeComment">// length of heapArray array</font><br>
+             float* heapArray;<br>
            <br>
-           &nbsp;public:<br>
-           &nbsp;&nbsp;<font class="codeComment">/// Constructor(s)/Destructor ///</font><br>
-           &nbsp;&nbsp;MyChare();<br>
-           &nbsp;&nbsp;MyChare(CkMigrateMessage *msg);<br>
-           &nbsp;&nbsp;~MyChare() {<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;if (heapArray != NULL) {<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delete [] heapArray;<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;heapArray = NULL;<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-           &nbsp;&nbsp;}<br>
+            public:<br>
+             <font class="codeComment">/// Constructor(s)/Destructor ///</font><br>
+             MyChare();<br>
+             MyChare(CkMigrateMessage *msg);<br>
+             ~MyChare() {<br>
+               if (heapArray != NULL) {<br>
+                 delete [] heapArray;<br>
+                 heapArray = NULL;<br>
+               }<br>
+             }<br>
            <br>
-           &nbsp;&nbsp;<font class="codeComment">/// PUP Routine ///</font><br>
-           &nbsp;&nbsp;void pup(PUP::er &p) {<br>
+             <font class="codeComment">/// PUP Routine ///</font><br>
+             void pup(PUP::er &amp;p) {<br>
            <br>
-           &nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">// Call PUP Routine for superclass</font><br>
-           &nbsp;&nbsp;&nbsp;&nbsp;CBase_MyChare::pup(p);<br>
+               <font class="codeComment">// Call PUP Routine for superclass</font><br>
+               CBase_MyChare::pup(p);<br>
            <br>
-           &nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">// Basic primitives</font><br>
-           &nbsp;&nbsp;&nbsp;&nbsp;p | a;<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;p | b;<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;p | c;<br>
+               <font class="codeComment">// Basic primitives</font><br>
+               p | a;<br>
+               p | b;<br>
+               p | c;<br>
            <br>
-           &nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">// Member Arrays</font><br>
-           &nbsp;&nbsp;&nbsp;&nbsp;p(localArray, LOCAL_SIZE);<br>
+               <font class="codeComment">// Member Arrays</font><br>
+               p(localArray, LOCAL_SIZE);<br>
            <br>
-           &nbsp;&nbsp;&nbsp;&nbsp;<font class="codeComment">// Heap-Allocated Data Array</font><br>
-           &nbsp;&nbsp;&nbsp;&nbsp;p | heapArraySize;<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;if (p.isUnpacking()) {<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;heapArray = new float[heapArraySize];<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-           &nbsp;&nbsp;&nbsp;&nbsp;p(heapArray, heapArraySize);<br>
-           &nbsp;&nbsp;}<br>
+               <font class="codeComment">// Heap-Allocated Data Array</font><br>
+               p | heapArraySize;<br>
+               if (p.isUnpacking()) {<br>
+                 heapArray = new float[heapArraySize];<br>
+               }<br>
+               p(heapArray, heapArraySize);<br>
+             }<br>
            };<br>
           </code>
          </div>
@@ -364,7 +375,7 @@
   </ul>
 
   <p class="BasicParagraph">
-   <font color=ff0000>Please Note: The code to the right assumes that (1) the migration constructor,
+   <font color="ff0000">Please Note: The code to the right assumes that (1) the migration constructor,
    <i>MyChare::MyChare(CkMigrateMessage *msg)</i>, does not allocate memory for heapArray and that
    (2) the heapArray pointer points to something by the time the object migration process begins.
    A similar technique, as was used for heapArray in this example, can be used for handling the opening
@@ -379,28 +390,32 @@
    <li style="{margin-bottom:15px; margin-left:15px;}">
     <b>isSizing():</b> Returns true if the sizing step is occurring, false otherwise.
 
-   <li style="{margin-bottom:15px; margin-left:15px;}">
+   </li>
+<li style="{margin-bottom:15px; margin-left:15px;}">
     <b>isPacking():</b> Returns true if the packing step is occurring, false otherwise.
 
-   <li style="{margin-bottom:15px; margin-left:15px;}">
+   </li>
+<li style="{margin-bottom:15px; margin-left:15px;}">
     <b>isDeleting():</b> Returns true if the packing step is occurring and the object
     being PUP'ed will be <i>deleted</i> immediately afterwards, false otherwise.
 
-   <li style="{margin-bottom:15px; margin-left:15px;}">
+   </li>
+<li style="{margin-bottom:15px; margin-left:15px;}">
     <b>isUnpacking():</b> Returns true if the unpacking step is occurring, false otherwise.
 
-  </ul>
+  </li>
+</ul>
 
    </div>
  </div>
       
       <div id="footer">
-	&copy; 2020 
+	© 2020 
     	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
 	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
 	<a href="http://illinois.edu">University of Illinois</a>
       </div>
     </div>
-    <script src="/assets/hover.js" type="text/javascript"></script>
+    <script src="../assets/hover.js" type="text/javascript"></script>
   </body>
 </html>

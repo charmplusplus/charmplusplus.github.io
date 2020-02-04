@@ -1,24 +1,25 @@
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8">
     <title>Charm++: Tutorial</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link href="/assets/charmwebsite.css" rel="stylesheet" type="text/css"/>
-		<link href="http://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css"/>
-		<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css"/>
+		<link href="../assets/charmwebsite.css" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Puritan" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Droid%20Sans" rel="stylesheet" type="text/css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/lib/codemirror.js" type="text/javascript">
+		<script src="../codemirror/lib/codemirror.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/mode/clike/clike.js" type="text/javascript">
+		<script src="../codemirror/mode/clike/clike.js" type="text/javascript">
 		</script>
-		<script src="/codemirror/lib/util/runmode.js" type="text/javascript">
+		<script src="../codemirror/lib/util/runmode.js" type="text/javascript">
 		</script>
-		<link href="/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css"/>
-		<link href="/codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css"/>
-		<script src="/assets/prettify.js" type="text/javascript">
+		<link href="../codemirror/lib/codemirror.css" rel="stylesheet" type="text/css">
+		<link href="../codemirror/theme/lesser-dark.css" rel="stylesheet" type="text/css">
+		<script src="../assets/prettify.js" type="text/javascript">
 		</script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<!-- for equations from LaTeX to appear correctly-->
@@ -34,7 +35,7 @@
  <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 	  <!-- Brand and toggle get grouped for better mobile display -->
-		<div id="logo"><a href="/"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
+		<div id="logo"><a href="../"><img class="img-responsive" src="../images/charm_logo.jpg"></a></div>
 
 <!-- Charm++ Button textformatted placeholder for logo button
 		<div class="navbar-header">
@@ -54,23 +55,23 @@
               <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore<span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
-		  <li><a href="/capabilities/">Capabilities</a></li>
-		  <li><a href="/progmodel/">Programming Model</a></li>
-		  <li><a href="/execmodel/">Execution Model</a></li>
-		  <li><a href="/applications/">Applications</a></li>
+		  <li><a href="../capabilities/">Capabilities</a></li>
+		  <li><a href="../progmodel/">Programming Model</a></li>
+		  <li><a href="../execmodel/">Execution Model</a></li>
+		  <li><a href="../applications/">Applications</a></li>
 		  <li><a href="http://charm.cs.illinois.edu/papers/">Publications</a></li>
-		  <li><a href="/history/">History</a></li>
+		  <li><a href="../history/">History</a></li>
 		</ul>
               </li>
               <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
 		  <li><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#installing-charm">Installation</a></li>
-      		  <li><a href="/tutorial/">Tutorial</a></li>
-						<li><a href="/exercises/">Exercises</a></li>
-      		  <li><a href="/help/">Manual</a></li>
-      		  <li><a href="/tools/">Tools</a></li>
-      		  <li><a href="/othermedia/">Other Media</a></li>
+      		  <li><a href="./">Tutorial</a></li>
+						<li><a href="../exercises/">Exercises</a></li>
+      		  <li><a href="../help/">Manual</a></li>
+      		  <li><a href="../tools/">Tools</a></li>
+      		  <li><a href="../othermedia/">Other Media</a></li>
 		</ul>
               </li>
 
@@ -87,23 +88,25 @@
               </li>
 
               <li class="dropdown">
-		<a href="/download/">Downloads</a>
+		<a href="../download/">Downloads</a>
               </li>
 
               <li class="dropdown">
-		<a href="/miniApps/">Mini-Apps</a>
+		<a href="../miniApps/">Mini-Apps</a>
               </li>
 
 	    </ul>
 	  <form class="navbar-form navbar-right" role="search" method="get" action="http://www.google.com/search">
               <div class="form-group">
-		<input type="hidden" name="sitesearch" value="charmplusplus.org"></input>
-		<input type="text" class="form-control" name="q" placeholder="Search"></input>
+		<input type="hidden" name="sitesearch" value="charmplusplus.org">
+		<input type="text" class="form-control" name="q" placeholder="Search">
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
 	    </form>
-	  </div><!-- /.navbar-collapse -->
-	</div><!-- /.container-fluid -->
+	  </div>
+<!-- /.navbar-collapse -->
+	</div>
+<!-- /.container-fluid -->
       </nav>
 
 
@@ -127,9 +130,11 @@
       <li>Modify a Charm++ program to add the methods that will perform the
       required operations, and register them to the system;
 
-      <li>Create a client program with the desired user interface to use the
+      </li>
+<li>Create a client program with the desired user interface to use the
       features exported by the server.
-    </ol>
+    </li>
+</ol>
 
     The server, when launched, will need to be instructed to listen for incoming
     requests. This is performed with the option <b>++server</b>. The option
@@ -138,9 +143,9 @@
     necessary for the client to connect: IP and port number. Following is an
     example:
 
-    <table class="StandardFigure" border=0 cellspacing=0 cellpaddin=5>
+    <table class="StandardFigure" border="0" cellspacing="0" cellpaddin="5">
         <tr>
-          <td align=left valign=top bgColor=bbbbbb>
+          <td align="left" valign="top" bgcolor="bbbbbb">
             <div class="code">
               <code>
                   ccs: Server IP = 192.168.3.23, Server port = 15763
@@ -158,13 +163,12 @@
     modify the value and proceed to evolve the system until a new equilibrium is
     reached.
 
-    In Charm++ CCS requests can be mapped to callbacks (see <a
-    href="Callbacks.html">here</a> for more info on callbacks). The main function
+    In Charm++ CCS requests can be mapped to callbacks (see <a href="Callbacks.html">here</a> for more info on callbacks). The main function
     to register callbacks to CCS is:
 
-    <table class="StandardFigure" border=0 cellspacing=0 cellpaddin=5>
+    <table class="StandardFigure" border="0" cellspacing="0" cellpaddin="5">
         <tr>
-          <td align=left valign=top bgColor=bbbbbb>
+          <td align="left" valign="top" bgcolor="bbbbbb">
             <div class="code">
               <code>
                  void CcsRegisterHandler(const char *handlerName, const CkCallback &amp;cb);
@@ -186,9 +190,10 @@
     an incoming request named "changeValue", and a callback to the mainchare
     when there is an incoming request named "exit".
 
-    <table class="StandardFigure" border=0 cellspacing=0 cellpaddin=5>
+    </p>
+<table class="StandardFigure" border="0" cellspacing="0" cellpaddin="5">
         <tr>
-          <td align=left valign=top bgColor=bbbbbb>
+          <td align="left" valign="top" bgcolor="bbbbbb">
             <div class="code">
               <code>
                   <font class="codeComment">// Register the callbacks for CCS</font><br>
@@ -200,18 +205,17 @@
         </tr>
     </table>
 
-    <table class="StandardFigure" border=0 cellspacing=0 cellpaddin=5
-      align=right>
+    <table class="StandardFigure" border="0" cellspacing="0" cellpaddin="5" align="right">
         <tr>
-          <td align=left valign=top bgColor=bbbbbb>
+          <td align="left" valign="top" bgcolor="bbbbbb">
             <div class="code">
               <code>
                 struct CkCcsRequestMsg {<br>
-                &nbsp;&nbsp;CcsDelayedReply reply;
+                  CcsDelayedReply reply;
                 <font class="codeComment">//Object to send reply to.</font><br>
-                &nbsp;&nbsp;int length;
+                  int length;
                 <font class="codeComment">//Number of bytes of request data.</font><br>
-                &nbsp;&nbsp;char *data;
+                  char *data;
                 <font class="codeComment">//Actual data sent along with request.</font><br>
                 };
               </code>
@@ -226,7 +230,8 @@
     client, as well as the information to reply to such client. The structure of
     CkCcsRequestMsg is shown on the right.
 
-    <p>Being "changeValue" triggered on the entire chare array, every element will
+    </p>
+<p>Being "changeValue" triggered on the entire chare array, every element will
     execute the code. Each element will therefore pull the information out of
     the request, and update the values that belong to it. The format of this
     information must be agreed between client as server. This agreement, in our
@@ -234,7 +239,8 @@
     <i>SingleValue</i> inside the header file <i>jacobi-CS.h</i> (which is
     included by both the client and the server).
 
-    <p>Once the modification has happened, the array contributes back to the
+    </p>
+<p>Once the modification has happened, the array contributes back to the
     mainchare in stepCheckin, and a new iteration will be triggered if the
     modification exceeds the value of the threshold. The computation will then
     continue until a new balance is reached. To notice that this example follows
@@ -242,27 +248,31 @@
     left corner of the matrix is maintained fixed at one, and the border of the
     entire matrix is maintained fixed at zero.
 
-    <p>Another modification we made to Jacobi is eliminating the call to CkExit in
+    </p>
+<p>Another modification we made to Jacobi is eliminating the call to CkExit in
     Main::stepCheckin when the equilibrium is reached. This gives the
     possibility to a client to connect and send requests. In this case, to
     terminate the application, the client has to send a request to the CCS
     handler "exit", which will provide to call CkExit.
 
-    <p>In the case of "exit" we have no desire to reply to the client, so we can
+    </p>
+<p>In the case of "exit" we have no desire to reply to the client, so we can
     simply ignore it. Nevertheless, in the case of "changeValue" we would like
     to let the client know if the modification has succeeded. In order to do
     this, we use the same structure of the request to send back a list of value
     change request that could not be applied by the server (clearly an empty
     list means that everything went ok).
 
-    <p>The only caveat to be careful when replying to the client, is that <b>only
+    </p>
+<p>The only caveat to be careful when replying to the client, is that <b>only
     one single reply is allowed per request</b>. This implies that not every
     element of the chare array can respond to the client, but only one element
     can. In our example, the chare element with index (0, 0) will reply to the
     client.
 
 
-    <h2>Creating the client</h2>
+    </p>
+<h2>Creating the client</h2>
 
     Together with the modification of the parallel application to accept
     requests through CCS, we need to create a specific application to generate
@@ -279,7 +289,8 @@
     before asking the user for the next input. An empty input from the user will
     trigger the other request to the server, the one to terminate.
 
-    <p>To notice that the server does not implement security measures to prevent
+    </p>
+<p>To notice that the server does not implement security measures to prevent
     requests coming from a client to corrupt the data. This can happen if a
     request arrives to the server while it is still updating the matrix, before
     it has reached the equilibrium. Here we will consider only the case that the
@@ -288,7 +299,8 @@
     to allow the server to accept requests at any time, even if the matrix has
     not yet reached an equilibrium.
 
-    <p>Other than the usual system libraries, the client requires to header files. 
+    </p>
+<p>Other than the usual system libraries, the client requires to header files. 
     One is <i>jacobi-CS.h</i> which specifies the format of request and replies;
     the other is <i>ccs-client.h</i> which contains the classes and functions
     necessary to use CCS. When compiling, we will still need to use the Charm++
@@ -298,11 +310,11 @@
     The command line used to compile the client (present in the makefile) is
     shown here below.
 
-    <center>
-    <table class="StandardFigure" border=0 cellspacing=0 cellpaddin=5
-      align=left>
+    </p>
+<center>
+    <table class="StandardFigure" border="0" cellspacing="0" cellpaddin="5" align="left">
         <tr>
-          <td align=left valign=top bgColor=bbbbbb>
+          <td align="left" valign="top" bgcolor="bbbbbb">
             <div class="code">
               <code>
                 charmc -o client.o client.C<br>
@@ -319,12 +331,12 @@
  </div>
       
       <div id="footer">
-	&copy; 2020 
+	© 2020 
     	<a href="http://ppl.cs.illinois.edu">Parallel Programming Lab</a>,
 	<a href="http://cs.illinois.edu">Dept of Computer Science</a>,
 	<a href="http://illinois.edu">University of Illinois</a>
       </div>
     </div>
-    <script src="/assets/hover.js" type="text/javascript"></script>
+    <script src="../assets/hover.js" type="text/javascript"></script>
   </body>
 </html>
