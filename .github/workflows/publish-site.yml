@@ -1,0 +1,41 @@
+# Via: https://github.com/SamStephens/nanoc-build-pages
+name: Build and deploy to Github pages
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+on:
+  push:
+    branches:
+      - master
+
+# Workflow with two jobs: "Build" then "Deploy"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: 'Build page with Nanoc'
+        uses: SamStephens/nanoc-build-pages@v2
+        with:
+          source: ./
+      - name: 'Upload artifact'
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./output
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 'Deploy to GitHub Pages'
+        id: deployment
+        uses: actions/deploy-pages@v1
