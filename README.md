@@ -21,6 +21,8 @@ Steps to obtain a local copy of the website for updating:
       $ cd charmweb
       $ var/lib/gems/1.8/bin/nanoc compile
     
+Note that the directory where the nanoc executable is stored may be different than this.
+
 - Start a local server (port will print to screeen):
 
       $ /var/lib/gems/1.8/bin/nanoc view

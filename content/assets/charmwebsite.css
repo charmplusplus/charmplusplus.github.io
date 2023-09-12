@@ -19,7 +19,8 @@ BIG.XHUGE		{ font-size : xx-large }
 h1		{ color: #7b2e2e; margin: 2px auto; text-align:center; }
 h2		{ color: #7b2e2e; padding: 8pt; }
 h3		{ padding: 5pt; }
-h4		{ padding: 3pt;  }
+h4		{ padding: 3pt; }
+h5		{ padding: 3pt; }
 
 /* Remove the annoying underlines, but still keep it accessible */
 a { text-decoration: none; }
@@ -58,6 +59,7 @@ body {
 #splashscreen h2 { font-size: 300%; margin-bottom:2px; padding:2px; }
 #splashscreen h3 { font-size: 150%; margin-top:2px; padding:2px; }
 #splashscreen h4 { font-size: 125%; margin:2px auto; color:#006600; text-align: center; }
+#splashscreen h5 { font-size: 125%; margin:2px auto; color:#006600; text-align: left; }
 #keytraits {
 		list-style-type: none;
 		-moz-column-count: 3; -webkit-column-count: 3; column-count: 3;
