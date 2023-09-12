@@ -37,4 +37,4 @@ From here you can access the website by accessing http://localhost:PORT/.
 
 ## Deploy
 
-Copy the contents of the "output" folder to charm.cs.illinois.edu:/web/charmweb.
+After compiling the webpage with nanoc, jush push the changes to the master branch on GitHub and the website will automatically be deployed after a few minutes.
