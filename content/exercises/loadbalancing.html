@@ -28,7 +28,7 @@ helpc: help
 <ol>
   <li>
     Let <code>m&nbsp;×&nbsp;m</code> be the chare-array dimensions and <code>k</code> the baseline number of particles per chare. Update the number of particles per chare to be
-<span lang="latex">N_{x,y} = k + \frac{2k(x + y)}{2m}</span>.
+<span lang="latex">N_{x,y} = k + \frac{k(x + y)}{m}</span>.
   </li>
 
   <li>
@@ -38,6 +38,8 @@ helpc: help
     Install <a href="https://github.com/charmplusplus/projections">projections</a>, and focus on the time profile view to see how the imbalance affects performance and efficiency.
   </li>
 </ol>
+
+<p><u>Variants</u>: Instructors may choose to use a different formula for introducing imbalance</p>
 
 <!-- =================================================================== -->
 <h2>Part&nbsp;2 – Adding Migration Support &amp; Load-Balancing</h2>
