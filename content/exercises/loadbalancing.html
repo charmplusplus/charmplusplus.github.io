@@ -1,0 +1,84 @@
+---
+title: Load Balancing Particle Exercise (Extension)
+homec: home
+tutorialc: tutorial
+applicationsc: applications
+miniAppsc: miniApps
+downloadc: download
+toolsc: tools
+helpc: help
+---
+
+<link rel="stylesheet" type="text/css" href="../../tutorial/TutorialStyle.css">
+
+<h1>Load Balancing: Particle Exercise <em>(Extension)</em></h1>
+
+<table class="StandardFigure" align="right" border="0">
+  <tr><td align="center" valign="middle">
+    <a href="../images/particlescode_lb.png">
+      <img class="StandardFigure" src="../images/particlescode_lb.png" border="0" width="375">
+    </a>
+  </td></tr>
+  <tr><td align="center" valign="middle"><b>Figure&nbsp;1</b></td></tr>
+</table>
+<h2>Part&nbsp;1 – Introducing Imbalance</h2>
+
+<p>The very first task is to create measurable imbalance so that load balancers have something meaningful to fix.</p>
+
+<ol>
+  <li>
+    Let <code>m&nbsp;×&nbsp;m</code> be the chare-array dimensions and <code>k</code> the baseline number of particles per chare. Update the number of particles per chare to be
+<span lang="latex">N_{x,y} = k + \frac{2k(x + y)}{2m}</span>.
+  </li>
+
+  <li>
+    Build with tracing enabled using the <code>-tracemode projections</code> flag.
+  </li>
+  <li>
+    Install <a href="https://github.com/charmplusplus/projections">projections</a>, and focus on the time profile view to see how the imbalance affects performance and efficiency.
+  </li>
+</ol>
+
+<!-- =================================================================== -->
+<h2>Part&nbsp;2 – Adding Migration Support &amp; Load-Balancing</h2>
+
+<p>Now enable dynamic migration so Charm++ balancers can actually move work around.</p>
+
+<ol>
+  <li>
+    Implement <code>PUP</code> serialization for your chare array as <a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#arraymigratable">documented</a>.
+  </li>
+  <li>
+    At appropriate intervals, call <code><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#load-balancing-chare-arrays">AtSync()</a></code> so the runtime knows the chare is ready for potential migration.
+  </li>
+  <li>
+    Select a load-balancing strategy. For this exercise we will use
+    <code>GreedyRefineLB</code> (use option <code>-balancer GreedyRefineLB</code>).
+  </li>
+
+  <li>
+    Re-run the application as in Part&nbsp;1 and compare how the program behaves differently.
+  </li>
+</ol>
+
+<h2>Part&nbsp;3 – Visualising with LiveViz</h2>
+
+<p>Add colour to emphasise the skew and watch the balancer work.</p>
+
+<ol>
+  <li>
+    Extend each chare to contain particles of three different colors. Each color should move at different speeds - green should move at the default speed, red should move twice as fast and green should move half as fast.
+  </li>
+
+  <li>
+    Distribute colours to reproduce the imbalance as shown in the figure: reds bunched in the centre, greens in the upper-left, blues in the lower-right.
+  </li>
+
+  <li>
+    Compile with <a href="https://github.com/UIUC-PPL/ccs_tools">LiveViz</a> using the <code>-module liveViz</code> flag.
+  </li>
+
+  <li>
+    Run your C++ code using <code>++server</code> and <code>++server-port 1234</code>, and then run the liveViz client using <code>liveVize localhost 1234</code>, and observe how the particles behave.
+  </li>
+</ol>
