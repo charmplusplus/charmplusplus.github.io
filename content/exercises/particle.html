@@ -55,12 +55,21 @@ helpc: help
 	<li>The pseudocode for the overall algorithm is:</li>
 	<code>for(iteration=0; iteration&lt;ITERATION; iteration++){</code>
 		<ul>
-			<li>For each of the particles that belong to my chare: change its <i>x</i> and <i>y</i> coordinate by a small random amount.</li>
-			<li>Move all the particles that do not belong to a chare's bounding box to their correct homes. Since the movement is small, this will mean communication to the eight near neighbor chares. Some of these messages may contain no particles.</li>
+			<li>For each of the particles that belong to my chare: change its <i>x</i> and <i>y</i> coordinate by a small random amount. 
+				If this change causes the particle to move to an invalid coordinate, keep the particle in its original position.</li>
+			<li>Move all the particles that do not belong to a chare's bounding box to their correct homes. 
+				Since the movement is small, this will mean communication to the eight near neighbor chares. Some of these messages may contain no particles. 
+				For both efficiency and ease of implementation, all communication with neighbor chares should happen at the end of an iteration rather than after each particle.</li>
 			<li><code>if(iteration%10 == 0)</code></li>
 			<ul>
 				<li>Do reductions to calculate average and max number of particles</li>
 			</ul>
 		</ul>
 	<code>}</code>
+</ul>
+
+<p><u>Instructor's Note</u>: This exercise can be implemented in several ways, feel free to choose from the variations below or create your own based on your learning objectives:</p>
+<ul>
+	<li>Choose to move the particle along either the <i>x</i> <i>or</i> <i>y</i> axis using an additional random variable, which simplifies communication as there are now only four neighbor chares.</li>
+	<li>If a movement causes a particle to move to an invalid coordinate, move in the opposite direction instead.</li>
 </ul>
