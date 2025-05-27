@@ -1,0 +1,33 @@
+---
+title: Projections Particle Exercise (Extension)
+homec: home
+tutorialc: tutorial
+applicationsc: applications
+miniAppsc: miniApps
+downloadc: download
+toolsc: tools
+helpc: help
+---
+
+<link rel="stylesheet" type="text/css" href="../../tutorial/TutorialStyle.css">
+
+<h1>Projections: Particle Exercise <em>(Extension)</em></h1>
+
+<p>For this exercise, continue by building upon your work for the previous exercise. You will now work to enable dynamic migration so Charm++ balancers can actually move work around.</p>
+
+<ol>
+  <li>
+    Implement <code>PUP</code> serialization for your chare array as <a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#arraymigratable">documented</a>.
+  </li>
+  <li>
+    At appropriate intervals, call <code><a href="https://charm.readthedocs.io/en/latest/charm++/manual.html#load-balancing-chare-arrays">AtSync()</a></code> so the runtime knows the chare is ready for potential migration.
+  </li>
+  <li>
+    Select a load-balancing strategy. For this exercise we will use
+    <code>GreedyRefineLB</code> (use option <code>-balancer GreedyRefineLB</code>).
+  </li>
+
+  <li>
+    Re-run the application as in Part&nbsp;1 and compare how the program behaves differently.
+  </li>
+</ol>
