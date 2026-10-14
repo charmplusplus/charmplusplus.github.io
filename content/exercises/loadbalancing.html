@@ -18,7 +18,7 @@ helpc: help
 <ol>
   <li>
     Let <code>m&nbsp;×&nbsp;m</code> be the chare-array dimensions and <code>k</code> the baseline number of particles per chare. Update the number of particles per chare to be
-<span lang="latex">N_{x,y} = k + \frac{k(x + y)}{m}</span>.
+<span lang="latex">N_{x,y} = k + \eta \frac{k(x + y)}{m}</span> where <span lang="latex">\eta</span> is a factor used to control the degree of imbalance.
   </li>
 
   <li>
